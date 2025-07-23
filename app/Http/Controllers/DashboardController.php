@@ -27,7 +27,7 @@ class DashboardController extends Controller
         if(!\Auth::check()){
             return inertia('Auth/Login');
         }else{
-            return inertia('Modules/Executive/Dashboard/Index');
+            return inertia('Modules/Dashboard/Index');
         }
     }
 

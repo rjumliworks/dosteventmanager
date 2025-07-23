@@ -3,24 +3,11 @@ import { layoutComputed } from "@/Shared/State/helpers";
 import Vertical from "./Vertical.vue";
 import Horizontal from "./Horizontal.vue";
 import TwoColumns from "./Twocolumn.vue";
-import Survey from './Components/Survey.vue';
 export default {
     components: {
         Vertical,
         Horizontal,
-        TwoColumns,
-        Survey
-    },
-    props: { 
-        surveyQuestions: Array
-    },
-    data() {
-        return {
-            surveyRequired: false
-        };
-    },
-    created() {
-        this.surveyRequired = this.$page.props.surveyRequired;
+        TwoColumns
     },
     computed: {
         ...layoutComputed,
@@ -32,9 +19,6 @@ export default {
         check(){
             this.$page.props.flash = {};
             this.message = false;
-        },
-        handleSurveySubmit() {
-            this.surveyRequired = false;
         }
     }
 };

@@ -175,16 +175,20 @@
     "file": "assets/laboratory-DGebyxyk.png",
     "src": "public/images/apps/laboratory.png"
   },
+  "public/images/bg-pattern.png": {
+    "file": "assets/bg-pattern-C6uw14rj.png",
+    "src": "public/images/bg-pattern.png"
+  },
   "public/images/cover-pattern.png": {
     "file": "assets/cover-pattern-CzcjCYXt.png",
     "src": "public/images/cover-pattern.png"
   },
   "public/images/logo-dark.png": {
-    "file": "assets/logo-dark-BTQwWYkM.png",
+    "file": "assets/logo-dark-D4ccpHnt.png",
     "src": "public/images/logo-dark.png"
   },
   "public/images/logo-light.png": {
-    "file": "assets/logo-light-xO5Q2xFH.png",
+    "file": "assets/logo-light-9TqfRNmK.png",
     "src": "public/images/logo-light.png"
   },
   "public/images/logo-sm.png": {
@@ -208,17 +212,17 @@
     "src": "public/images/sidebar/img-4.jpg"
   },
   "resources/js/app.js": {
-    "file": "assets/app-DQJIoyNo.js",
+    "file": "assets/app-DDemdLG8.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
     "css": [
-      "assets/app-Bdi7On42.css"
+      "assets/app-DTlra9y4.css"
     ],
     "assets": [
       "assets/logo-sm-BMbbSDmV.png",
-      "assets/logo-dark-BTQwWYkM.png",
-      "assets/logo-light-xO5Q2xFH.png",
+      "assets/logo-dark-D4ccpHnt.png",
+      "assets/logo-light-9TqfRNmK.png",
       "assets/laboratory-DGebyxyk.png",
       "assets/inventory-DCAGjWxa.png",
       "assets/calendar-yfM8ZpJt.png",
@@ -236,6 +240,7 @@
       "assets/hkgrotesk-semibold-CaqhRViJ.woff",
       "assets/hkgrotesk-bold-CNnIfM9m.woff",
       "assets/cover-pattern-CzcjCYXt.png",
+      "assets/bg-pattern-C6uw14rj.png",
       "assets/materialdesignicons-webfont-Cd51xsCA.eot",
       "assets/materialdesignicons-webfont-DsMmahHu.woff2",
       "assets/materialdesignicons-webfont-BqTIB9TP.woff",

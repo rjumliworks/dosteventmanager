@@ -21,7 +21,6 @@ class HandleInertiaRequests extends Middleware
         return [
             ...parent::share($request),
             'user' => (\Auth::check()) ? new UserResource(User::with('profile')->where('id',\Auth::user()->id)->first()) : '',
-            'roles' => (\Auth::check()) ? \Auth::user()->roles->pluck('name') : '',
             'flash' => [
                 'data' => session('data'),
                 'message' => session('message'),

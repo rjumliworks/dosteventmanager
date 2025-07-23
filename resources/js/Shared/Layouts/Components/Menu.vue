@@ -9,128 +9,13 @@
                 <span class="fw-semibold fs-14" data-key="t-dashboards">Dashboard</span>
                 </Link>
             </li>
-            <tempalte v-if="$page.props.roles.includes('Travel Controler Officer')">
-                <li class="menu-title">
-                    <i class="ri-more-fill" aria-expanded="false"></i>
-                    <span data-key="t-menu">Regular Employee</span>
-                </li>
-                <li class="nav-item">
-                    <Link href="/patients" class="nav-link menu-link"
-                    :class="{'active': $page.component.startsWith('Patients') }">
-                    <i class="ri-bill-fill "></i>
-                    <span class="fw-semibold fs-14" data-key="t-dashboards">Requests</span>
-                    </Link>
-                </li>
-                <li class="nav-item">
-                    <Link href="/patients" class="nav-link menu-link"
-                    :class="{'active': $page.component.startsWith('Patients') }">
-                    <i class="ri-calendar-2-fill"></i>
-                    <span class="fw-semibold fs-14" data-key="t-dashboards">Calendar</span>
-                    </Link>
-                </li>
-            </tempalte>
-            <tempalte v-if="$page.props.roles.includes('Human Resource Officer')">
-                <li class="menu-title">
-                    <i class="ri-more-fill" aria-expanded="false"></i>
-                    <span data-key="t-menu">Human Resource</span>
-                </li>
-                <li class="nav-item">
-                    <Link href="/employees" class="nav-link menu-link"
-                    :class="{'active': $page.component.startsWith('Modules/HumanResource/Employees') }">
-                    <i class="ri-team-fill"></i>
-                    <span class="fw-semibold fs-14" data-key="t-dashboards">Employees</span>
-                    </Link>
-                </li>
-                <li class="nav-item">
-                    <Link href="/dtrs" class="nav-link menu-link"
-                        :class="{'active': $page.component.startsWith('Modules/HumanResource/Dtrs') }">
-                    <i class="ri-alarm-fill"></i>
-                    <span class="fw-semibold fs-14" data-key="t-dashboards">Daily Time Record</span>
-                    </Link>
-                </li>
-                <li class="nav-item">
-                    <Link href="/payrolls" class="nav-link menu-link"
-                        :class="{'active': $page.component.startsWith('Modules/HumanResource/Payrolls') }">
-                    <i class="ri-hand-coin-fill"></i>
-                    <span class="fw-semibold fs-14" data-key="t-dashboards">Payroll</span>
-                    </Link>
-                </li>
-                <li class="nav-item">
-                    <Link href="/leaves" class="nav-link menu-link"
-                        :class="{'active': $page.component.startsWith('Modules/HumanResource/Leaves') }">
-                    <i class="ri-calendar-2-line "></i>
-                    <span class="fw-semibold fs-14" data-key="t-dashboards">Leave Request</span>
-                    </Link>
-                </li>
-                <li class="nav-item">
-                    <Link href="/surveys" class="nav-link menu-link"
-                        :class="{'active': $page.component.startsWith('Modules/HumanResource/Surveys') }">
-                    <i class="ri-article-fill"></i>
-                    <span class="fw-semibold fs-14" data-key="t-dashboards">Morale Surveys</span>
-                    </Link>
-                </li>
-                  <li class="nav-item">
-                    <Link href="/calendar" class="nav-link menu-link"
-                        :class="{'active': $page.component.startsWith('Modules/HumanResource/Calendar') }">
-                    <i class="ri-calendar-fill"></i>
-                    <span class="fw-semibold fs-14" data-key="t-dashboards">Calendar</span>
-                    </Link>
-                </li>
-            </tempalte>
-            <tempalte v-if="$page.props.roles.includes('Travel Controler Officer')">
-                <li class="menu-title">
-                    <i class="ri-more-fill" aria-expanded="false"></i>
-                    <span data-key="t-menu">Transportation Management</span>
-                </li>
-                <li class="nav-item">
-                    <Link href="/patients/create" class="nav-link menu-link"
-                    :class="{ 'active': $page.component === 'Patients/Create' }">
-                    <i class="ri-taxi-fill"></i>
-                    <span class="fw-semibold fs-14" data-key="t-dashboards">Vehicle Reservation</span>
-                    </Link>
-                </li>
-                <li class="nav-item">
-                    <Link href="/patients/create" class="nav-link menu-link"
-                    :class="{ 'active': $page.component === 'Patients/Create' }">
-                    <i class="ri-map-pin-fill"></i>
-                    <span class="fw-semibold fs-14" data-key="t-dashboards">Travel Order</span>
-                    </Link>
-                </li>
-                <li class="nav-item">
-                    <Link href="/appointments" class="nav-link menu-link"
-                        :class="{'active': $page.component.startsWith('Appointments') }">
-                    <i class="ri-calendar-todo-fill"></i>
-                    <span class="fw-semibold fs-14" data-key="t-dashboards">Calendar</span>
-                    </Link>
-                </li>
-            </tempalte>
-            <tempalte v-if="$page.props.roles.includes('Document Control Officer')">
-                <li class="menu-title">
-                    <i class="ri-more-fill" aria-expanded="false"></i>
-                    <span data-key="t-menu">Trace</span>
-                </li>
-            
-                <li class="nav-item">
-                    <Link href="/documents" class="nav-link menu-link"
-                        :class="{'active': $page.component.startsWith('Modules/Trace/Documents') }">
-                    <i class="ri-file-text-fill"></i>
-                    <span class="fw-semibold fs-14" data-key="t-dashboards">Documents</span>
-                    </Link>
-                </li>
-            </tempalte>
-            <tempalte v-if="$page.props.roles.includes('Administrator')">
-                <li class="menu-title">
-                    <i class="ri-more-fill" aria-expanded="false"></i>
-                    <span data-key="t-menu">Executive</span>
-                </li>
-                <li class="nav-item">
-                    <Link href="/patients" class="nav-link menu-link"
-                    :class="{'active': $page.component.startsWith('Patients') }">
-                    <i class="ri-account-circle-fill"></i>
-                    <span class="fw-semibold fs-14" data-key="t-dashboards">Users</span>
-                    </Link>
-                </li>
-            </tempalte>
+            <li class="nav-item">
+                <Link href="/events" class="nav-link menu-link"
+                :class="{'active': $page.component.startsWith('Modules/Event') }">
+                <i class="ri-calendar-todo-fill"></i>
+                <span class="fw-semibold fs-14" data-key="t-dashboards">Events</span>
+                </Link>
+            </li>
         </ul>
         
     </BContainer>
