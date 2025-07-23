@@ -15,8 +15,8 @@
                                     </div>
                                     <div class="col-10">
                                         <div class="text-primary mt-1">
-                                            <h4 class="fs-16 fw-semibold">DOST-IX Application Portal</h4>
-                                            <p class="mt-n2">Integrated Application Management System</p>
+                                            <h4 class="fs-16 fw-semibold">DOST-IX Event Manager</h4>
+                                            <p class="mt-n2">Event & Attendance Management System</p>
                                         </div>
                                     </div>
                                 </div>

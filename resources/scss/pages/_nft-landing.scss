@@ -80,12 +80,12 @@
 
 //
 .nft-hero {
-    // background-image: url('@assets/images/nft/bg-home.jpg');
+    background-image: url('@assets/images/bg-pattern.png');
     background-size: cover;
     background-position: bottom;
     padding: 222px 0 150px 0;
     .bg-overlay {
-        background-color: #05175f;
+        background-color: #ffffff;
         opacity: 0.85;
     }
 }

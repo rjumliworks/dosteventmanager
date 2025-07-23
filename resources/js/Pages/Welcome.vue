@@ -1,17 +1,42 @@
 <template>
-    <Head title="Mobile Carwash" />
+    <Head title="Home Page" />
     <div class="layout-wrapper landing">
-        <section class="section nft-hero job-hero-section bg-light pb-0" id="hero" style="margin-top: -170px;">
+        <nav class="navbar navbar-expand-lg navbar-landing fixed-top" id="navbar">
+            <div class="container"><a class="navbar-brand" href="/" target="_self">
+                <img src="" class="card-logo card-logo-dark" alt="logo dark" height="17">
+                <img src="" class="card-logo card-logo-light" alt="logo light" height="17"></a>
+                <button class="navbar-toggler py-0 fs-20 text-body collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-expanded="false">
+                    <i class="mdi mdi-menu"></i>
+                </button>
+                <div id="navbarSupportedContent" class="collapse navbar-collapse" is-nav="false">
+                    <ul class="navbar-nav mx-auto mt-2 mt-lg-0" id="navbar-example">
+                        <li class="nav-item"><a class="nav-link active" href="#hero" target="_self">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#services" target="_self">Schedules</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#features" target="_self">Highlights</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#plans" target="_self">Hotels</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#reviews" target="_self">Recommendations</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#team" target="_self">Aboust Us</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#contact" target="_self">Contact</a></li>
+                    </ul>
+                    <div class="">
+                        <a href="/auth/signin-basic" class="btn btn-link fw-medium text-decoration-none text-dark">Sign in</a>
+                        <a href="/auth/signup-basic" class="btn btn-primary">Pre-Register</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <section class="section nft-hero job-hero-section bg-light pb-0" id="hero">
             <div class="bg-overlay"></div>
             <BContainer>
                 <BRow class="justify-content-between align-items-center">
                     <BCol lg="6">
                         <div>
-                            <img src="images/logo-sm.png" alt="logo light" height="70">
+                            <!-- <img src="images/logo-sm.png" alt="logo light" height="70">
                             <img src="images/new.png" alt="logo light" height="90">
-                            <img src="images/logo-dark.png" alt="logo light" height="50">
-                             <hr class="text-muted"/>
-                            <!-- <h1 class="display-6 fw-semibold text-capitalize mb-3 lh-base"><span class="text-primary">DOST-IX</span> RSTW 2024</h1> -->
+                            <img src="images/logo-dark.png" alt="logo light" height="50"> -->
+                            <!-- <hr class="text-muted"/> -->
+                            <h1 class="display-6 fw-semibold text-capitalize mb-n3 lh-base"><span class="text-primary">DOST-IX</span></h1>
+                            <h1 class="display-6 fw-semibold text-capitalize mb-3 lh-base">RSTW & HANDA 2025</h1>
                             <p class="lead lh-base mb-1">Siyensya, Teknolohiya at Inobasyon :</p>
                             <p class="lead text-muted fs-14 lh-base mb-4">Kabalikat sa Matatag, Maginhawa, at Panatag na Kinabukasan. <br />Providing Solutions and Opening Opportunities in the Green Economy</p>
                             <BButton @click="openRegister()" variant="primary" class="submit-btn w-80 h-100" type="submit">
@@ -29,13 +54,51 @@
                     </BCol>
                     <BCol lg="" class="hidemobile">
                         <div class="position-relative home-img text-center mt-5 mt-lg-0">
-                            <img src="/images/job.png" alt="" class="user-img rightpic" style="margin-right: -130px;">
-
-                            <div class="circle-effect">
-                                <div class="circle"></div>
-                                <div class="circle2"></div>
-                                <div class="circle3"></div>
-                                <div class="circle4"></div>
+                           <div class="live-preview">
+                                <div id="__BVID__833746___BV_carousel__" class="carousel slide" data-bs-ride="carousel">
+                                    <div class="carousel-indicators"><button type="button" data-bs-target="#__BVID__833746___BV_carousel__"
+                                            data-bs-slide-to="0" class="" aria-label="Slide 0"></button><button type="button"
+                                            data-bs-target="#__BVID__833746___BV_carousel__" data-bs-slide-to="1" class=""
+                                            aria-label="Slide 1"></button><button type="button" data-bs-target="#__BVID__833746___BV_carousel__"
+                                            data-bs-slide-to="2" class="active" aria-label="Slide 2" aria-current="true"></button></div>
+                                    <div class="carousel-inner">
+                                        <div class="carousel-item" style="background: rgb(171, 171, 171);"><img class="d-block w-100"
+                                                src="/images/slides/1.jpg" loading="eager">
+                                            <div class="carousel-caption">
+                                                <!---->
+                                                <!---->
+                                                <h5 class="text-white">Sunrise above a beach</h5>
+                                                <p class="text-white-50"> You've probably heard that opposites attract. The same is true for fonts.
+                                                    Don't be afraid to combine font styles that are different but complementary. </p>
+                                            </div>
+                                        </div>
+                                        <div class="carousel-item" style="background: rgb(171, 171, 171);"><img class="d-block w-100"
+                                                src="/images/slides/2.jpg" loading="eager">
+                                            <div class="carousel-caption">
+                                                <!---->
+                                                <!---->
+                                                <h5 class="text-white">Working from home little spot</h5>
+                                                <p class="text-white-50"> Consistency piques people’s interest is that it has become more and more
+                                                    popular over the years, which is excellent. </p>
+                                            </div>
+                                        </div>
+                                        <div class="carousel-item active" style="background: rgb(171, 171, 171);"><img class="d-block w-100"
+                                                src="/images/slides/3.jpg" loading="eager">
+                                            <div class="carousel-caption">
+                                                <!---->
+                                                <!---->
+                                                <h5 class="text-white"> Dramatic clouds at the Golden Gate Bridge </h5>
+                                                <p class="text-white-50"> Increase or decrease the letter spacing depending on the situation and
+                                                    try, try again until it looks right, and each letter. </p>
+                                            </div>
+                                        </div>
+                                    </div><button class="carousel-control-prev" type="button" data-bs-target="#__BVID__833746___BV_carousel__"
+                                        data-bs-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span
+                                            class="visually-hidden">Previous</span></button><button class="carousel-control-next" type="button"
+                                        data-bs-target="#__BVID__833746___BV_carousel__" data-bs-slide="next"><span
+                                            class="carousel-control-next-icon" aria-hidden="true"></span><span
+                                            class="visually-hidden">Next</span></button>
+                                </div>
                             </div>
                         </div>
                     </BCol>
@@ -43,7 +106,19 @@
             </BContainer>
         </section>
 
-        
+        <section class="section" id="process">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                      
+
+
+
+                    </div>
+                </div>
+                
+            </div>
+        </section>
         
         <section class="py-5 bg-primary position-relative">
             <div class="bg-overlay bg-overlay-pattern opacity-50"></div>
@@ -64,7 +139,7 @@
             <b-container class="showmobile"> 
                 <b-row class="align-items-center gy-3">
                 <div class="d-grid mt-n3 mb-n5" >
-                    <BButton @click="openRegister()" variant="warning" class="submit-btn w-80 h-100 fw-semibold" type="submit">BOOK NOW</BButton>
+                    <BButton @click="openRegister()" variant="warning" class="submit-btn w-80 h-100 fw-semibold" type="submit">REGISTER NOW</BButton>
                 </div></b-row>
             </b-container>
         </section>
@@ -75,15 +150,15 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-8">
                         <div class="text-center mb-5">
-                            <h3 class="mb-1 fw-semibold rstitle">Rates and Services</h3>
-                            <p class="text-muted mb-4 rsdef">Simple pricing. No hidden fees.</p>
+                            <h3 class="mb-1 fw-semibold rstitle">aa</h3>
+                            <p class="text-muted mb-4 rsdef">aa</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="row gy-4 mt-n5">
                     
-                    <div class="col-lg-12">
+                    <!-- <div class="col-lg-12">
                         <div class="card mb-0 ribbon-box right">
                             <div class="card-body p-4 m-2">
                                 <div class="ribbon-two ribbon-two-danger"><span>Popular</span></div>
@@ -176,7 +251,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     
                 </div>
                 <!--end row-->
