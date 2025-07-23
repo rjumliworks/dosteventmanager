@@ -138,6 +138,46 @@ class DropdownsTableSeeder extends Seeder
                 'others' => 'n/a',
                 'is_active' => 1,
             ),
+            12 => 
+            array (
+                'id' => 13,
+                'name' => 'Special Guest',
+                'classification' => 'Participant Type',
+                'type' => 'n/a',
+                'color' => 'n/a',
+                'others' => 'n/a',
+                'is_active' => 1,
+            ),
+            13 => 
+            array (
+                'id' => 14,
+                'name' => 'Resource Speaker',
+                'classification' => 'Participant Type',
+                'type' => 'n/a',
+                'color' => 'n/a',
+                'others' => 'n/a',
+                'is_active' => 1,
+            ),
+            14 => 
+            array (
+                'id' => 15,
+                'name' => 'Exhibitor',
+                'classification' => 'Participant Type',
+                'type' => 'n/a',
+                'color' => 'n/a',
+                'others' => 'n/a',
+                'is_active' => 1,
+            ),
+            15 => 
+            array (
+                'id' => 16,
+                'name' => 'Participant',
+                'classification' => 'Participant Type',
+                'type' => 'n/a',
+                'color' => 'n/a',
+                'others' => 'n/a',
+                'is_active' => 1,
+            ),
         ));
 
         
