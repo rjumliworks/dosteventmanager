@@ -16,10 +16,6 @@ return new class extends Migration
             $table->increments('id');
             $table->integer('capacity');
             $table->integer('attendees')->default(0);
-            $table->date('start_date');
-            $table->date('end_date');
-            $table->time('start_time')->nullable();
-            $table->time('end_time')->nullable();
             $table->string('description',250)->nullable();
             $table->integer('session_id')->unsigned()->index();
             $table->foreign('session_id')->references('id')->on('event_sessions')->onDelete('cascade');

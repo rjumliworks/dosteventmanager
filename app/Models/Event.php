@@ -12,7 +12,6 @@ class Event extends Model
     protected $fillable = [
        'code',
        'name',
-       'description',
        'year',
        'start',
        'end',
@@ -23,5 +22,30 @@ class Event extends Model
     public function user()
     {
         return $this->belongsTo('App\Models\User', 'user_id', 'id');
+    }
+
+    public function getStartAttribute($value)
+    {
+        return date('F d, Y', strtotime($value));
+    }
+
+    public function detail()
+    {
+        return $this->hasOne('App\Models\EventDetail', 'event_id');
+    } 
+
+    public function venues()
+    {
+        return $this->hasMany('App\Models\EventVenue', 'event_id');
+    }
+
+    public function sessions()
+    {
+        return $this->hasMany('App\Models\EventSession', 'event_id');
+    }
+
+    public function getEndAttribute($value)
+    {
+        return date('F d, Y', strtotime($value));
     }
 }

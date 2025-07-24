@@ -8,14 +8,15 @@ use App\Http\Resources\EventResource;
 class SaveClass
 {
     public function event($request){
-        $data = Event::create(array_merge($request->all(),[
+        $event = Event::create(array_merge($request->all(),[
             'code' => $this->generateCode(),
             'user_id' => \Auth::user()->id
         ]));
-        $data = Event::where('id',$data->id)->first();
-
+        if($event){
+            $event->detail()->create($request->except(['name','year','start','end','is_active','option']));
+        }
         return [
-            'data' => new EventResource($data),
+            'data' => $event,
             'message' => 'Event successfully created.', 
             'info' => "Great job! Your event is now active and ready for participants."
         ];

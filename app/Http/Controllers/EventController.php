@@ -7,15 +7,17 @@ use App\Services\DropdownClass;
 use App\Traits\HandlesTransaction;
 use App\Services\Event\ViewClass;
 use App\Services\Event\SaveClass;
+use App\Services\Event\VenueClass;
 
 
 class EventController extends Controller
 {
     use HandlesTransaction;
 
-    public function __construct(DropdownClass $dropdown, ViewClass $view, SaveClass $save){
+    public function __construct(DropdownClass $dropdown, ViewClass $view, SaveClass $save, VenueClass $venue){
         $this->save = $save;
         $this->view = $view;
+        $this->venue = $venue;
         $this->dropdown = $dropdown;
     }
 
@@ -25,13 +27,24 @@ class EventController extends Controller
                 return $this->view->lists($request);
             break;
             default :
-            return inertia('Modules/Event/Index');
+            return inertia('Modules/Event/Index',[
+                'dropdowns' => [
+                    'regions' => $this->dropdown->regions()
+                ]
+            ]);
         }
     }
 
     public function store(Request $request){
         $result = $this->handleTransaction(function () use ($request) {
-            return $this->save->event($request);
+            switch($request->option){
+                case 'event':
+                    return $this->save->event($request);
+                break;
+                case 'venue':
+                    return $this->venue->save($request);
+                break;
+            }
         });
 
         return back()->with([
@@ -41,4 +54,31 @@ class EventController extends Controller
             'status' => $result['status'],
         ]);
     }
+
+    public function update(Request $request){
+        $result = $this->handleTransaction(function () use ($request) {
+            switch($request->option){
+                case 'event':
+                    return $this->save->event($request);
+                break;
+                case 'venue':
+                    return $this->venue->update($request);
+                break;
+            }
+        });
+        
+        return back()->with([
+            'data' => $result['data'],
+            'message' => $result['message'],
+            'info' => $result['info'],
+            'status' => $result['status'],
+        ]);
+    }
+
+    public function show($id){
+        return inertia('Modules/Event/View',[
+            'event' => $this->view->view($id),
+        ]);
+    }
+
 }

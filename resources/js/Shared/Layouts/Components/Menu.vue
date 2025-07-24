@@ -4,7 +4,7 @@
         <ul class="navbar-nav h-100" id="navbar-nav">
             <li class="nav-item">
                 <Link href="/dashboard" class="nav-link menu-link"
-                    :class="{'active': $page.component.startsWith('Dashboard') }">
+                    :class="{'active': $page.component.startsWith('Modules/Dashboard') }">
                 <i class="ri-apps-line"></i>
                 <span class="fw-semibold fs-14" data-key="t-dashboards">Dashboard</span>
                 </Link>
@@ -14,6 +14,20 @@
                 :class="{'active': $page.component.startsWith('Modules/Event') }">
                 <i class="ri-calendar-todo-fill"></i>
                 <span class="fw-semibold fs-14" data-key="t-dashboards">Events</span>
+                </Link>
+            </li>
+            <li class="nav-item">
+                <Link href="/events" class="nav-link menu-link"
+                :class="{'active': $page.component.startsWith('Modules/Hotel') }">
+                <i class="ri-building-fill"></i>
+                <span class="fw-semibold fs-14" data-key="t-dashboards">Hotels</span>
+                </Link>
+            </li>
+            <li class="nav-item">
+                <Link href="/users" class="nav-link menu-link"
+                :class="{'active': $page.component.startsWith('Modules/User') }">
+                <i class="ri-team-fill"></i>
+                <span class="fw-semibold fs-14" data-key="t-dashboards">Users</span>
                 </Link>
             </li>
         </ul>

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->increments('id');
             $table->string('code')->unique();
             $table->string('name',250);
+            $table->string('establishment',255);
             $table->string('address',250);
             $table->integer('event_id')->unsigned()->index();
             $table->foreign('event_id')->references('id')->on('events')->onDelete('cascade');

@@ -12,7 +12,7 @@ class UserProfile extends Model
     use HasFactory, LogsActivity;
 
     protected $guarded = [];
-    protected $fillable = ['firstname', 'lastname', 'middlename','suffix','sex','contact_no','mobile','user_id', 'avatar','signature','birthdate','marital_id','religion_id','blood_id'];
+    protected $fillable = ['firstname', 'lastname', 'middlename','suffix','sex','contact_no','user_id', 'avatar','birthdate'];
 
     public function user()
     {

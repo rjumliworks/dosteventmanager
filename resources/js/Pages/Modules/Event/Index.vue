@@ -94,7 +94,7 @@
                                     <b-button @click="openEdit(list,index)" variant="soft-warning" class="me-1" v-b-tooltip.hover title="Edit" size="sm">
                                         <i class="ri-pencil-fill align-bottom"></i>
                                     </b-button>
-                                    <Link :href="`/events/${list.code}`">
+                                    <Link :href="`/events/${list.key}`">
                                         <b-button variant="soft-info" class="me-1" v-b-tooltip.hover title="View" size="sm">
                                             <i class="ri-eye-fill align-bottom"></i>
                                         </b-button>
@@ -111,7 +111,7 @@
         </div>
     </div>
 </BRow>
-<Create ref="create"/>
+<Create :dropdowns="dropdowns" @success="fetch()" ref="create"/>
 </template>
 <script>
 import _ from 'lodash';
@@ -119,6 +119,7 @@ import Create from './Modals/Create.vue';
 import PageHeader from '@/Shared/Components/PageHeader.vue';
 import Pagination from "@/Shared/Components/Pagination.vue";
 export default {
+    props: ['dropdowns'],
     components: { PageHeader, Pagination, Create },
     data(){
         return {

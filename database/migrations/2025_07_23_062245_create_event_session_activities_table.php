@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('speaker_title', 150)->nullable(); 
             $table->integer('session_id')->unsigned()->index();
             $table->foreign('session_id')->references('id')->on('event_sessions')->onDelete('cascade');
+            $table->integer('schedule_id')->unsigned()->index();
+            $table->foreign('schedule_id')->references('id')->on('event_session_schedules')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -16,7 +16,6 @@ return new class extends Migration
             $table->increments('id');
             $table->string('code')->unique();
             $table->string('name',150);
-            $table->string('description',150);
             $table->year('year');
             $table->date('start');
             $table->date('end');
