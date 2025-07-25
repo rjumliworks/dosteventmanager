@@ -21,6 +21,8 @@ class SessionResource extends JsonResource
             'schedules' => $this->schedules,
             'detail' => $this->detail,
             'venue' => $this->venue,
+            'activities' => $this->activities,
+            'managers' => $this->managers,
             'updated_at' => $this->updated_at,
             'created_at' => $this->created_at,
         ];

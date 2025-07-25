@@ -20,6 +20,7 @@ return new class extends Migration
             $table->boolean('is_whole_day')->default(0);
             $table->boolean('is_invitational')->default(0); //invite only
             $table->boolean('is_exclusive')->default(0); //only one to be attended 
+            $table->boolean('is_limited')->default(0);
             $table->boolean('has_registration')->default(1);
             $table->integer('venue_id')->unsigned()->index();
             $table->foreign('venue_id')->references('id')->on('event_venues')->onDelete('cascade');

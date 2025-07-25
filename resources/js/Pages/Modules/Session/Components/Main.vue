@@ -39,7 +39,7 @@
                                 <div class="carousel-content">
                                     <transition mode="out-in">
                                         <div :key="index" class="tab-content">
-                                            <Activity :id="selected.id" :activities="selected.activities" v-if="menu == 'Activities'"/>
+                                            <Activity :id="selected.id" :activities="selected.activities" :schedules="selected.schedules" v-if="menu == 'Activities'"/>
                                             <!-- <Session :id="selected.id" :venues="selected.venues" :sessions="selected.sessions" v-if="menu == 'Sessions'"/>
                                             <Venue :id="selected.id" :venues="selected.venues" :detail="selected.detail" v-if="menu == 'Venues'"/> -->
                                         </div>

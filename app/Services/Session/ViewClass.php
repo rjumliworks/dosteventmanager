@@ -13,7 +13,7 @@ class ViewClass
         $key = $hashids->decode($id);
 
         $data = new SessionResource(
-            EventSession::with('event','venue','detail','schedules')->where('id',$key)->first()
+            EventSession::with('event','venue','detail','schedules','activities.speaker','managers.user.profile')->where('id',$key)->first()
         );
         return $data;
     }

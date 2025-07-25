@@ -1,14 +1,14 @@
 <template>
     <b-col lg="12">
         <b-card no-body>
-            <div class="bg-info-subtle">
+            <div class="bg-success-subtle">
                 <b-card-body class="pb-0 px-4">
                      <b-row class="mb-3">
                         <b-col md>
                             <b-row class="align-items-center g-3">
                                 <b-col md>
                                     <div>
-                                        <h4 class="fw-semibold text-primary">{{ selected.title }}</h4>
+                                        <h4 class="fw-semibold text-success">{{ selected.title }}</h4>
                                         <div class="hstack gap-3 flex-wrap">
                                             <div><i class="ri-hashtag align-bottom me-1"></i>{{selected.code}}</div>
                                             <div class="vr" style="width: 1px;"></div>

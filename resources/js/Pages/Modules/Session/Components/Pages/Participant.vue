@@ -49,14 +49,12 @@
             </tbody>
         </table>
     </div>
-    <Create :id="id" :detail="detail" ref="create"/>
 </template>
 <script>
 import _ from 'lodash';
-import Create from './Modals/CreateVenue.vue';
 import Pagination from "@/Shared/Components/Pagination.vue";
 export default {
-    components: { Pagination, Create },
+    components: { Pagination },
     props: ['id','venues','detail'],
     methods: {
         openCreate(){

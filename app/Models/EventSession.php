@@ -13,6 +13,7 @@ class EventSession extends Model
        'is_whole_day',
        'is_invitational',
        'is_exclusive',
+       'is_limited',
        'has_registration',
        'venue_id',
        'event_id'
@@ -36,5 +37,15 @@ class EventSession extends Model
     public function schedules()
     {
         return $this->hasMany('App\Models\EventSessionSchedule', 'session_id');
+    } 
+
+    public function activities()
+    {
+        return $this->hasMany('App\Models\EventSessionActivity', 'session_id');
+    } 
+
+    public function managers()
+    {
+        return $this->hasMany('App\Models\EventSessionManager', 'session_id');
     } 
 }

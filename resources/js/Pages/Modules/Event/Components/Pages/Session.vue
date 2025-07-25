@@ -17,16 +17,16 @@
             <thead class="bg-primary text-white">
                 <tr class="fs-10">
                     <th style="width: 4%;"></th>
-                    <th style="width: 20%;">Title</th>
+                    <th>Title</th>
                     <th style="width: 25%;" class="text-center">Venue</th>
                     <th style="width: 16%;" class="text-center">Current Capacity</th>
-                    <th style="width: 25%;" class="text-center">Date</th>
+                    <th style="width: 20%;" class="text-center">Date</th>
                     <th style="width: 10%;" class="text-center"></th>
                 </tr>
             </thead>
             <tbody v-if="sessions.length > 0">
                 <tr v-for="(list,index) in sessions" v-bind:key="index" class="fs-12">
-                    <td>{{ index + 1 }}.</td>
+                    <td class="text-center">{{ index + 1 }}.</td>
                     <td>
                         <h5 class="fs-12 mb-0 fw-semibold text-primary">{{list.title}}</h5>
                         <p class="fs-12 text-muted mb-0">{{list.code}}</p>
@@ -59,7 +59,6 @@
 import _ from 'lodash';
 import Create from './Modals/CreateSession.vue';
 import Pagination from "@/Shared/Components/Pagination.vue";
-import { list } from 'postcss';
 export default {
     components: { Pagination, Create },
     props: ['id','sessions','venues'],

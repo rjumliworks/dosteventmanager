@@ -2,18 +2,32 @@
 
 namespace App\Services\Session;
 
+use App\Models\EventSessionActivity;
 use App\Models\EventSession;
 use App\Models\EventSessionSchedule;
+use App\Models\EventSessionManager;
 
 class SaveClass
 {
+    public function activity($request){
+        $speaker_id = $request->speaker['value'];
+        $data = EventSessionActivity::create(array_merge($request->all(),[
+            'speaker_id' => $speaker_id
+        ]));
+        return [
+            'data' => $data,
+            'message' => 'Activity successfully created.', 
+            'info' => "Great job! Your activity is now active and ready for participants."
+        ];
+    }
+
     public function session($request){
         $session = EventSession::create(array_merge($request->all(),[
             'code' => $this->generateCode()
         ]));
         if($session){
             $session->detail()->create($request->all());
-            $request->except(['title','is_closed','is_whole_day','is_invitational','is_exclusive','has_registration','venue_id','event_id','option']);
+            // $request->except(['title','is_closed','is_whole_day','is_invitational','is_exclusive','has_registration','venue_id','event_id','option']);
             foreach($request->dates as $date){
                 if($date['timeOfDay'] == 'AM'){
                     $start = '08:00:00';
@@ -35,6 +49,14 @@ class SaveClass
                 $schedule->end_time = $end;
                 $schedule->session_id = $session->id;
                 $schedule->save();
+            }
+
+            foreach($request->managers as $m){
+                $manager = new EventSessionManager;
+                $manager->type = $m['type'];
+                $manager->user_id = $m['value'];
+                $manager->session_id = $session->id;
+                $manager->save();
             }
         }
         return [

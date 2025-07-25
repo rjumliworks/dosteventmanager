@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\User;
+use App\Models\Speakers;
 use App\Models\ListDropdown;
 use App\Models\LocationRegion;
 use App\Models\LocationProvince;
@@ -68,26 +69,36 @@ class DropdownClass
         return $data;
     }
 
-    public function users($keyword,$is_regular){
+    public function users($keyword){
         $data =  User::with('profile')
-        ->with('organization.position')
-        ->when($is_regular == 1, function ($query) {
-            $query->whereHas('organization', function ($query) {
-                $query->where('type_id', 15);
-            });
-        })
         ->when($keyword, function ($query) use ($keyword){
             $query->whereHas('profile', function ($query) use ($keyword) {
                 $query->whereRaw('concat(firstname, " ", lastname) LIKE ?', ['%' . $keyword . '%'])
                     ->orWhereRaw('concat(lastname, " ", firstname) LIKE ?', ['%' . $keyword . '%']);
             });
         })
-        ->limit(5)->get()->map(function ($item) {
+        ->where('role','Session Manager')
+        ->limit(20)->get()->map(function ($item) {
             return [
                 'value' => $item->id,
                 'name' => $item->profile->lastname . ', ' . $item->profile->firstname . ' ' . $item->profile->middlename . '.',
-                'position' => $item->organization->position->name,
                 'avatar' => ($item->profile->avatar != 'avatar.jpg') ? '/storage/profile-pictures/'.$item->profile->avatar : '/images/avatars/avatar.jpg'
+            ];
+        });
+        return $data;
+    }
+
+    public function speakers($keyword){
+        $data =  Speakers::
+        when($keyword, function ($query) use ($keyword){
+            $query->where('name', 'LIKE', '%' . $keyword . '%');
+        })
+        ->limit(10)->get()->map(function ($item) {
+            return [
+                'value' => $item->id,
+                'name' => $item->name,
+                'title' => $item->title,
+                'establishment' => $item->establishment
             ];
         });
         return $data;

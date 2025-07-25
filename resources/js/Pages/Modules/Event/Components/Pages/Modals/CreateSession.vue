@@ -20,6 +20,47 @@
                     <Textarea v-model="form.description" type="text" class="form-control" placeholder="Please enter description" @input="handleInput('description')" :light="true"/>
                 </BCol>
                 <BCol lg="12" class="mt-1"><hr class="text-muted"/></BCol>
+                <BCol lg="12" class="mt-n2 mb-2">
+                    <InputLabel for="role" value="Session Manager" />
+                    <Multiselect
+                        v-model="form.managers"
+                        :options="managerOptions"
+                        mode="tags"
+                        object
+                         @search-change="searchUser"
+                        :multiple="true"
+                        :searchable="true"
+                        :loading="isLoading"
+                        label="name"
+                        placeholder="Select Manager"
+                        ref="multiselect2"
+                        />
+                </BCol>
+            </BRow>
+        </form>
+        <form>
+            <BRow class="g-3">
+                <BCol lg="12" style="max-height: 250px; overflow: auto;"  id="my-modal-content2"> 
+                    <div v-if="form.managers.length > 0" class="mt-1">
+                        <div v-for="(manager, index) in form.managers" :key="index" class="mb-2">
+                            <div class="input-group mb-1">
+                                <span class="input-group-text"> <i class="ri-user-line search-icon"></i></span>
+                                <input type="text" :value="manager.name" class="form-control" style="width: 20%;" readonly>
+                                <Multiselect class="white" style="width: 30%;" :options="['Head','Assistant']" v-model="manager.type" 
+                                :allow-empty="false"  
+                                :can-clear="false"
+                                :append-to-body="true"
+                                 append-to="#my-modal-content2"
+                                placeholder="Select Type" />
+                            </div>
+                        </div>
+                    </div>
+                </BCol>
+            </BRow>
+        </form>
+        <form class="customform">
+            <BRow class="g-3">
+                <BCol lg="12" class="mt-1"><hr class="text-muted"/></BCol>
                 <BCol :lg="(dateType) ? '6' : '12'" class="mt-n2">
                     <InputLabel for="name" value="Type" :message="form.errors.dates"/>
                     <Multiselect :options="['Single Day','Range','Multiple Dates (non-continuous)']" :searchable="true" label="name" v-model="dateType" placeholder="Select Date type"/>
@@ -106,6 +147,7 @@ export default {
                 event_id: this.id,
                 venue_id: null,
                 dates: [],
+                managers: [],
                 timeOfDay: 'Whole Day',
                 option: 'session'
             }),
@@ -143,8 +185,10 @@ export default {
                     }
                 ]
             },
+            managerOptions: [],
             showModal: false,
-            editable: false
+            editable: false,
+            isLoading: false,
         }
     },
     computed: {
@@ -233,7 +277,7 @@ export default {
             this.editable = false;
             this.showModal = false;
         },
-         formatDate(date) {
+        formatDate(date) {
             const d = new Date(date);
             const year = d.getFullYear();
             const month = String(d.getMonth() + 1).padStart(2, '0');
@@ -247,6 +291,21 @@ export default {
             const year = date.getFullYear();
             const weekday = date.toLocaleString('en-US', { weekday: 'long' });
             return `${month} ${day}, ${year} (${weekday})`;
+        },
+        searchUser: _.debounce(function(string) {
+            (string) ? this.fetchUsers(string) : '';
+        }, 300),
+        fetchUsers(string){
+            axios.get('/search',{
+                params: {
+                    option: 'users',
+                    code: string
+                }
+            })
+            .then(response => {
+                this.managerOptions = response.data;
+            })
+            .catch(err => console.log(err));
         },
     }
 }

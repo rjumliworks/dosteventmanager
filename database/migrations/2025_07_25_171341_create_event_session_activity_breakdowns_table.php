@@ -11,19 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('event_session_activities', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
+        Schema::create('event_session_activity_breakdowns', function (Blueprint $table) {
+           $table->engine = 'InnoDB';
             $table->increments('id');
             $table->time('start_time');
             $table->time('end_time');
             $table->string('activity',250);
             $table->unsignedInteger('speaker_id');
             $table->foreign('speaker_id')->references('id')->on('speakers')->onDelete('cascade');
-            $table->unsignedInteger('session_id');
-            $table->foreign('session_id')->references('id')->on('event_sessions')->onDelete('cascade');
-            $table->unsignedInteger('schedule_id');
-            $table->foreign('schedule_id')->references('id')->on('event_session_schedules')->onDelete('cascade');
-            $table->boolean('has_breakdown');
+            $table->unsignedInteger('activity_id');
+            $table->foreign('activity_id')->references('id')->on('event_session_activities')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -33,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('event_session_activities');
+        Schema::dropIfExists('event_session_activity_breakdowns');
     }
 };

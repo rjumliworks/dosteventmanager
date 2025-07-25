@@ -10,7 +10,7 @@
                 </div>
                 <div class="file-manager-sidebar" style="margin-right: 20px;">
                     <simplebar data-simplebar style="overflow-x: hidden;" class="h-100" ref="scrollbar">
-                        
+                        <Sidebar :selected="session.data"/>
                     </simplebar>
                 </div>
 
@@ -24,10 +24,11 @@
     import Main from './Components/Main.vue';
     import Message from './Modals/Message.vue';
     import simplebar from "simplebar-vue";
+    import Sidebar from './Components/Sidebar.vue';
     import PageHeader from '@/Shared/Components/PageHeader.vue';
     export default {
         layout: null,
-        components: { PageHeader, simplebar, Top, Main, Message },
+        components: { PageHeader, simplebar, Top, Main, Message, Sidebar },
         props: ['session'],
     }
 </script>
