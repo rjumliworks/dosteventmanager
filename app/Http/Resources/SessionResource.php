@@ -23,6 +23,12 @@ class SessionResource extends JsonResource
             'venue' => $this->venue,
             'activities' => $this->activities,
             'managers' => $this->managers,
+            'event' => new EventViewResource($this->event),
+            'is_closed' => ($this->is_closed) ? true : false,
+            'is_invitational' => ($this->is_invitational) ? true : false,
+            'is_exclusive' => ($this->is_exclusive) ? true : false,
+            'is_limited' => ($this->is_limited) ? true : false,
+            'has_registration' => ($this->has_registration) ? true : false,
             'updated_at' => $this->updated_at,
             'created_at' => $this->created_at,
         ];

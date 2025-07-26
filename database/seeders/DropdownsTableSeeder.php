@@ -178,6 +178,56 @@ class DropdownsTableSeeder extends Seeder
                 'others' => 'n/a',
                 'is_active' => 1,
             ),
+            16 => 
+            array (
+                'id' => 17,
+                'name' => 'Waiting',
+                'classification' => 'Session Status',
+                'type' => 'bg-secondary',
+                'color' => 'text-secondary',
+                'others' => 'n/a',
+                'is_active' => 1,
+            ),
+            17 => 
+            array (
+                'id' => 18,
+                'name' => 'Open',
+                'classification' => 'Session Status',
+                'type' => 'bg-success',
+                'color' => 'text-success',
+                'others' => 'n/a',
+                'is_active' => 1,
+            ),
+            18 => 
+            array (
+                'id' => 19,
+                'name' => 'Ongoing',
+                'classification' => 'Session Status',
+                'type' => 'bg-info',
+                'color' => 'text-info',
+                'others' => 'n/a',
+                'is_active' => 1,
+            ),
+            19 => 
+            array (
+                'id' => 20,
+                'name' => 'Closed',
+                'classification' => 'Session Status',
+                'type' => 'bg-danger',
+                'color' => 'text-danger',
+                'others' => 'n/a',
+                'is_active' => 1,
+            ),
+            20 => 
+            array (
+                'id' => 21,
+                'name' => 'Cancelled',
+                'classification' => 'Session Status',
+                'type' => 'bg-warning',
+                'color' => 'text-warning',
+                'others' => 'n/a',
+                'is_active' => 1,
+            ),
         ));
 
         

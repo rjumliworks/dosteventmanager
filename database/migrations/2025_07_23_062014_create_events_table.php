@@ -19,6 +19,7 @@ return new class extends Migration
             $table->year('year');
             $table->date('start');
             $table->date('end');
+            $table->string('registration_scope');
             $table->boolean('is_active');
             $table->integer('user_id')->unsigned()->index();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

@@ -2,18 +2,34 @@
 
 namespace App\Services\Session;
 
-use App\Models\EventSessionActivity;
 use App\Models\EventSession;
 use App\Models\EventSessionSchedule;
 use App\Models\EventSessionManager;
+use App\Models\EventSessionActivity;
+use App\Models\EventSessionActivityBreakdown;
 
 class SaveClass
 {
     public function activity($request){
-        $speaker_id = $request->speaker['value'];
-        $data = EventSessionActivity::create(array_merge($request->all(),[
-            'speaker_id' => $speaker_id
-        ]));
+        if($request->has_breakdown){
+            $data = EventSessionActivity::create($request->all());
+            if($data){
+                foreach($request->breakdowns as $b){
+                    $breakdown = new EventSessionActivityBreakdown;
+                    $breakdown->start_time = $b['start_time'];
+                    $breakdown->end_time = $b['end_time'];
+                    $breakdown->activity = $b['activity'];
+                    $breakdown->speaker_id = $b['speaker_id'];
+                    $breakdown->activity_id = $data->id;
+                    $breakdown->save();
+                }
+            }
+        }else{
+            $speaker_id = $request->speaker['value'];
+            $data = EventSessionActivity::create(array_merge($request->all(),[
+                'speaker_id' => $speaker_id
+            ]));
+        }
         return [
             'data' => $data,
             'message' => 'Activity successfully created.', 

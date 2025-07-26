@@ -93,7 +93,7 @@ class DropdownClass
         when($keyword, function ($query) use ($keyword){
             $query->where('name', 'LIKE', '%' . $keyword . '%');
         })
-        ->limit(10)->get()->map(function ($item) {
+        ->limit(50)->get()->map(function ($item) {
             return [
                 'value' => $item->id,
                 'name' => $item->name,

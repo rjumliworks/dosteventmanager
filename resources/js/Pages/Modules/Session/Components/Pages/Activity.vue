@@ -16,7 +16,6 @@
         <table class="table table-nowrap align-middle mb-0">
             <thead class="bg-primary text-white">
                 <tr class="fs-10">
-                    <!-- <th style="width: 4%;"></th> -->
                     <th style="width: 15%;" class="text-center">Time</th>
                     <th class="text-center">Activity</th>
                     <th style="width: 15%;" class="text-center">Person In Charge</th>
@@ -24,23 +23,9 @@
             </thead>
             <tbody v-if="activities.length > 0">
                 <tr v-for="(list,index) in activities" v-bind:key="index" class="fs-12">
-                    <!-- <td>{{ index + 1 }}.</td> -->
                     <td class="text-center">{{list.start_time }} - {{list.end_time }}</td>
-                    <td class="text-center">{{list.activity }}</td>
-                    <td class="text-center">{{list.speaker.name }}</td>
-                    <!-- <td class="text-center">{{list.venue.name}}, {{ list.venue.establishment }}</td>
-                    <td class="text-center">{{list.detail.attendees}}/{{ list.detail.capacity }}</td>
-                    <td class="text-center">{{ dateRange(list.schedules) }}</td>
-                     <td class="text-end">
-                        <Link :href="`/sessions/${list.key}`">
-                            <b-button variant="soft-info" class="me-1" v-b-tooltip.hover title="View" size="sm">
-                                <i class="ri-eye-fill align-bottom"></i>
-                            </b-button>
-                        </Link>
-                        <b-button @click="openEdit(list)" variant="soft-warning" v-b-tooltip.hover title="Edit" size="sm">
-                            <i class="ri-pencil-fill align-bottom"></i>
-                        </b-button>
-                    </td> -->
+                    <td class="text-center" :class="(list.has_breakdown) ? 'fw-semibold text-primary' : '' ">{{list.activity }}</td>
+                    <td class="text-center">{{(list.speaker) ? list.speaker.name : '-' }}</td>
                 </tr>
             </tbody>
             <tbody v-else>

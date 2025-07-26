@@ -14,8 +14,8 @@
                                             <div class="vr" style="width: 1px;"></div>
                                             <div>Venue : <span class="fw-medium">{{selected.venue.name}}, {{ selected.venue.establishment }}</span></div>
                                             <div class="vr" style="width: 1px;"></div>
-                                            <div>Current Capacity : <span class="fw-medium">{{selected.detail.attendees}}/{{ selected.detail.capacity }}</span></div>
-                                            <div class="vr" style="width: 1px;"></div>
+                                            <!-- <div>Current Capacity : <span class="fw-medium">{{selected.detail.attendees}}/{{ selected.detail.capacity }}</span></div>
+                                            <div class="vr" style="width: 1px;"></div> -->
                                             <div>Date : <span class="fw-medium">{{dateRangeText}}</span></div>
                                         </div>
                                     </div>

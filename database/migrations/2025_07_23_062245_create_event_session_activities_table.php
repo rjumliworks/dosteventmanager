@@ -17,7 +17,7 @@ return new class extends Migration
             $table->time('start_time');
             $table->time('end_time');
             $table->string('activity',250);
-            $table->unsignedInteger('speaker_id');
+            $table->unsignedInteger('speaker_id')->nullable();
             $table->foreign('speaker_id')->references('id')->on('speakers')->onDelete('cascade');
             $table->unsignedInteger('session_id');
             $table->foreign('session_id')->references('id')->on('event_sessions')->onDelete('cascade');

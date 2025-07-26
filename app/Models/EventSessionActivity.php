@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class EventSessionActivity extends Model
 {
     protected $fillable = [
-       'start_time','end_time','activity','speaker_id','session_id','schedule_id'
+       'start_time','end_time','activity','speaker_id','session_id','schedule_id', 'has_breakdown'
     ];
 
     public function schedule()
