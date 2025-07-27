@@ -16,8 +16,14 @@ class EventSession extends Model
        'is_limited',
        'has_registration',
        'venue_id',
-       'event_id'
+       'event_id',
+       'status_id'
     ];
+
+    public function status()
+    {
+        return $this->belongsTo('App\Models\Dropdown', 'status_id', 'id');
+    }
 
     public function event()
     {
@@ -47,5 +53,10 @@ class EventSession extends Model
     public function managers()
     {
         return $this->hasMany('App\Models\EventSessionManager', 'session_id');
+    } 
+
+    public function participants()
+    {
+        return $this->hasMany('App\Models\EventSessionParticipant', 'session_id');
     } 
 }

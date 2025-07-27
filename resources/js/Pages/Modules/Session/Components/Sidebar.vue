@@ -2,7 +2,116 @@
 
     <table class="table table-bordered">
         <tbody>
+           
             <tr>
+                <td style="border-right: none; border-left: none;"><span class="fw-semibold text-primary fs-12 ms-2">Session Information</span></td>
+            </tr>
+            <tr>
+                <td style="border-right: none; border-left: none;">
+                    <div class="row ms-n2 mb-0">
+                        <div class="col-md-12">
+                            <div class="d-flex mt-0">
+                                <div class="flex-shrink-0 avatar-xs align-self-center me-3">
+                                    <div class="avatar-title bg-light rounded-circle fs-16 text-primary"><i :class="(selected.managers.length > 1) ? 'ri-team-fill' : 'ri-user-3-fill'"></i>
+                                    </div>
+                                </div>
+                                <div class="flex-grow-1 overflow-hidden">
+                                    <p class="mb-1 fs-12 text-muted">Session Manager :</p> 
+                                    <h6 class="mb-0 fs-12">
+                                        <div class="fw-semibold" v-for="(manager, index) in selected.managers" :key="index">
+                                            {{ manager.user.profile.firstname }} {{ manager.user.profile.middlename[0] }}. {{ manager.user.profile.lastname }}
+                                        </div>
+                                    </h6>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="d-flex mt-3">
+                                <div class="flex-shrink-0 avatar-xs align-self-center me-3">
+                                    <div class="avatar-title bg-light rounded-circle fs-16 text-primary"><i class="ri-calendar-fill"></i>
+                                    </div>
+                                </div>
+                                <div class="flex-grow-1 overflow-hidden">
+                                    <p class="mb-1 fs-12 text-muted">Date :</p> 
+                                    <h6 class="text-truncate fw-semibold mb-0 fs-12">{{dateRangeText}}</h6>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="d-flex mt-3">
+                                <div class="flex-shrink-0 avatar-xs align-self-center me-3">
+                                    <div class="avatar-title bg-light rounded-circle fs-16 text-primary"><i class=" ri-map-pin-fill"></i>
+                                    </div>
+                                </div>
+                                <div class="flex-grow-1 overflow-hidden">
+                                    <p class="mb-1 fs-12 text-muted">Venue :</p> 
+                                    <h6 class="text-truncate fw-semibold mb-0 fs-12">{{selected.venue.name}}, {{ selected.venue.establishment }}</h6>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="d-flex mt-3">
+                                <div class="flex-shrink-0 avatar-xs align-self-center me-3">
+                                    <div class="avatar-title bg-light rounded-circle fs-16 text-primary"><i class="ri-information-fill "></i>
+                                    </div>
+                                </div>
+                                <div class="flex-grow-1 overflow-hidden">
+                                    <p class="mb-1 fs-12 text-muted">Status :</p>
+                                    <span :class="'badge '+selected.status.color+' '+selected.status.type">{{selected.status.name}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td style="border-right: none; border-left: none;"><span class="fw-semibold text-primary fs-12 ms-2">Session Settings</span></td>
+            </tr>
+            <tr>
+                <td style="border-right: none; border-left: none;">
+                    <!-- Base Switchs -->
+                    <div class="d-flex align-items-start gap-3 mb-2">
+                        <div class="form-check form-switch form-switch-md">
+                            <input class="form-check-input mt-2 ms-3 me-n2" v-model="selected.is_invitational" type="checkbox" role="switch" id="isInvitational">
+                        </div>
+                        <div>
+                            <label class="form-check-label fs-11" for="isInvitational">By Invitation Only</label>
+                            <div class="form-text fs-10 mt-0">Only invited participants can register.</div>
+                        </div>
+                        </div>
+
+                        <div class="d-flex align-items-start gap-3 mb-2">
+                        <div class="form-check form-switch form-switch-md">
+                            <input class="form-check-input mt-2 ms-3 me-n2" type="checkbox" role="switch" id="isExclusive">
+                        </div>
+                        <div>
+                            <label class="form-check-label fs-11" for="isExclusive">Exclusive Access</label>
+                            <div class="form-text fs-10 mt-0">Access is restricted to selected participants or groups.</div>
+                        </div>
+                        </div>
+
+                        <div class="d-flex align-items-start gap-3 mb-2">
+                        <div class="form-check form-switch form-switch-md">
+                            <input class="form-check-input mt-2 ms-3 me-n2" type="checkbox" role="switch" id="isLimited">
+                        </div>
+                        <div>
+                            <label class="form-check-label fs-11" for="isLimited">Limited Slots</label>
+                            <div class="form-text fs-10 mt-0">Participant count is capped. First come, first served.</div>
+                        </div>
+                        </div>
+
+                        <div class="d-flex align-items-start gap-3 mb-2">
+                        <div class="form-check form-switch form-switch-md">
+                            <input class="form-check-input mt-2 ms-3 me-n2" type="checkbox" role="switch" id="hasRegistration">
+                        </div>
+                        <div>
+                            <label class="form-check-label fs-11" for="hasRegistration">Requires Registration</label>
+                            <div class="form-text fs-10 mt-0">Participants must register before attending the event.</div>
+                        </div>
+                    </div>
+                </td>
+            </tr> 
+             <tr>
                 <td style="border-right: none; border-left: none;"><span class="fw-semibold text-primary fs-12 ms-2">Event Information</span></td>
             </tr>
             <tr>
@@ -63,145 +172,14 @@
                     </div>
                 </td>
             </tr>
-            <tr>
-                <td style="border-right: none; border-left: none;"><span class="fw-semibold text-primary fs-12 ms-2">Session Information</span></td>
+           <!-- <tr>
+                <td style="border-right: none; border-left: none;"><span class="fw-semibold text-primary fs-12 ms-2">Session Status</span></td>
             </tr>
             <tr>
                 <td style="border-right: none; border-left: none;">
-                    <div class="row ms-n2 mb-0">
-                        <div class="col-md-12">
-                            <div class="d-flex mt-0">
-                                <div class="flex-shrink-0 avatar-xs align-self-center me-3">
-                                    <div class="avatar-title bg-light rounded-circle fs-16 text-primary"><i :class="(selected.managers.length > 1) ? 'ri-team-fill' : 'ri-user-3-fill'"></i>
-                                    </div>
-                                </div>
-                                <div class="flex-grow-1 overflow-hidden">
-                                    <p class="mb-1 fs-12 text-muted">Session Manager :</p> 
-                                    <h6 class="mb-0 fs-12">
-                                        <div class="fw-semibold" v-for="(manager, index) in selected.managers" :key="index">
-                                            {{ manager.user.profile.firstname }} {{ manager.user.profile.middlename[0] }}. {{ manager.user.profile.lastname }}
-                                        </div>
-                                    </h6>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="d-flex mt-3">
-                                <div class="flex-shrink-0 avatar-xs align-self-center me-3">
-                                    <div class="avatar-title bg-light rounded-circle fs-16 text-primary"><i class="ri-calendar-fill"></i>
-                                    </div>
-                                </div>
-                                <div class="flex-grow-1 overflow-hidden">
-                                    <p class="mb-1 fs-12 text-muted">Date :</p> 
-                                    <h6 class="text-truncate fw-semibold mb-0 fs-12">{{dateRangeText}}</h6>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="d-flex mt-3">
-                                <div class="flex-shrink-0 avatar-xs align-self-center me-3">
-                                    <div class="avatar-title bg-light rounded-circle fs-16 text-primary"><i class=" ri-map-pin-fill"></i>
-                                    </div>
-                                </div>
-                                <div class="flex-grow-1 overflow-hidden">
-                                    <p class="mb-1 fs-12 text-muted">Venue :</p> 
-                                    <h6 class="text-truncate fw-semibold mb-0 fs-12">{{selected.venue.name}}, {{ selected.venue.establishment }}</h6>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- <div class="col-md-12">
-                            <div class="d-flex mt-3">
-                                <div class="flex-shrink-0 avatar-xs align-self-center me-3">
-                                    <div class="avatar-title bg-light rounded-circle fs-16 text-primary"><i class="ri-account-circle-fill"></i>
-                                    </div>
-                                </div>
-                                <div class="flex-grow-1 overflow-hidden">
-                                    <p class="mb-1 fs-12 text-muted">Received By :</p>
-                                    <h6 class="text-truncate mb-0"> <span class="fs-12">{{selected.received}}</span></h6>
-                                </div>
-                            </div>
-                        </div> -->
-                    </div>
+                  
                 </td>
-            </tr>
-            <tr>
-                <td style="border-right: none; border-left: none;"><span class="fw-semibold fs-12 ms-2">Session Settings</span></td>
-            </tr>
-            <tr>
-                <td style="border-right: none; border-left: none;">
-                    <!-- Base Switchs -->
-                    <div class="d-flex align-items-start gap-3 mb-2">
-                        <div class="form-check form-switch form-switch-md">
-                            <input class="form-check-input mt-2 ms-3 me-n2" v-model="selected.is_invitational" type="checkbox" role="switch" id="isInvitational">
-                        </div>
-                        <div>
-                            <label class="form-check-label fs-11" for="isInvitational">By Invitation Only</label>
-                            <div class="form-text fs-10 mt-0">Only invited participants can register.</div>
-                        </div>
-                        </div>
-
-                        <div class="d-flex align-items-start gap-3 mb-2">
-                        <div class="form-check form-switch form-switch-md">
-                            <input class="form-check-input mt-2 ms-3 me-n2" type="checkbox" role="switch" id="isExclusive">
-                        </div>
-                        <div>
-                            <label class="form-check-label fs-11" for="isExclusive">Exclusive Access</label>
-                            <div class="form-text fs-10 mt-0">Access is restricted to selected participants or groups.</div>
-                        </div>
-                        </div>
-
-                        <div class="d-flex align-items-start gap-3 mb-2">
-                        <div class="form-check form-switch form-switch-md">
-                            <input class="form-check-input mt-2 ms-3 me-n2" type="checkbox" role="switch" id="isLimited">
-                        </div>
-                        <div>
-                            <label class="form-check-label fs-11" for="isLimited">Limited Slots</label>
-                            <div class="form-text fs-10 mt-0">Participant count is capped. First come, first served.</div>
-                        </div>
-                        </div>
-
-                        <div class="d-flex align-items-start gap-3 mb-2">
-                        <div class="form-check form-switch form-switch-md">
-                            <input class="form-check-input mt-2 ms-3 me-n2" type="checkbox" role="switch" id="hasRegistration">
-                        </div>
-                        <div>
-                            <label class="form-check-label fs-11" for="hasRegistration">Requires Registration</label>
-                            <div class="form-text fs-10 mt-0">Participants must register before attending the event.</div>
-                        </div>
-                    </div>
-
-                    <!-- <div class="row ms-n2 mb-0">
-                        <div class="col-md-12">
-                            <div class="d-flex">
-                                <div class="flex-shrink-0 avatar-xs align-self-center me-3">
-                                    <div class="avatar-title bg-light rounded-circle fs-16 text-primary"><i class="ri-qr-code-fill"></i>
-                                    </div>
-                                </div>
-                                <div class="flex-grow-1 overflow-hidden">
-                                    <p class="mb-1 fs-12 text-muted">Discount :</p> 
-                                    <h6 class="text-truncate mb-0 fs-12">
-                                        asd
-                                    </h6>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="d-flex mt-3">
-                                <div class="flex-shrink-0 avatar-xs align-self-center me-3">
-                                    <div class="avatar-title bg-light rounded-circle fs-16 text-primary"><i class="ri-calendar-line"></i>
-                                    </div>
-                                </div>
-                                <div class="flex-grow-1 overflow-hidden">
-                                    <p class="mb-1 fs-12 text-muted">Purpose of Request :</p>
-                                    <h6 class="text-truncate mb-0 fs-12" v-if="selected.purpose">{{selected.purpose.name}}</h6>
-                                    <h6 class="text-warning mb-0 fs-12" v-else>Not Available</h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
-                </td>
-            </tr> 
-           
+            </tr>  -->
         </tbody>
     </table>
 </template>

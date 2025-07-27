@@ -23,6 +23,7 @@ class EventResource extends JsonResource
             'start' => $this->start,
             'end' => $this->end,
             'due_at' => $this->due_at,
+            'scope' => $this->registration_scope,
             'detail' => new DetailResource($this->detail),
             'venues' => $this->venues,
             'sessions' => SessionResource::collection($this->sessions),

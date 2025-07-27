@@ -19,8 +19,10 @@
                     <th style="width: 4%;"></th>
                     <th>Title</th>
                     <th style="width: 25%;" class="text-center">Venue</th>
-                    <th style="width: 16%;" class="text-center">Current Capacity</th>
-                    <th style="width: 20%;" class="text-center">Date</th>
+                    <th style="width: 10%;" class="text-center">Participants</th>
+                    <th style="width: 12%;" class="text-center">Date</th>
+                    <th style="width: 10%;" class="text-center">Registration</th>
+                    <th style="width: 10%;" class="text-center">Status</th>
                     <th style="width: 10%;" class="text-center"></th>
                 </tr>
             </thead>
@@ -32,8 +34,20 @@
                         <p class="fs-12 text-muted mb-0">{{list.code}}</p>
                     </td>
                     <td class="text-center">{{list.venue.name}}, {{ list.venue.establishment }}</td>
-                    <td class="text-center">{{list.detail.attendees}}/{{ list.detail.capacity }}</td>
+                    <td class="text-center" v-if="!list.has_registration">{{list.participants.length }}</td>
+                    <td class="text-center" v-else>{{list.detail.attendees}} / {{list.participants.length }}</td>
                     <td class="text-center">{{ dateRange(list.schedules) }}</td>
+                    <!-- <td class="text-center">
+                        <span v-if="list.has_registration" class="badge bg-success">Required</span>
+                        <span v-else class="badge bg-danger">Not Required</span>
+                    </td> -->
+                    <td class="text-center">
+                        <i v-if="list.has_registration" class="ri-checkbox-circle-fill text-success fs-18" v-b-tooltip.hover title="Required"></i>
+                        <i v-else class="ri-close-circle-fill text-danger fs-18" v-b-tooltip.hover title="Not Required"></i>
+                    </td>
+                    <td class="text-center">
+                        <span :class="'badge '+list.status.color+' '+list.status.type">{{list.status.name}}</span>
+                    </td>
                      <td class="text-end">
                         <a :href="`/sessions/${list.key}`" target="_blank">
                             <b-button variant="soft-info" class="me-1" v-b-tooltip.hover title="View" size="sm">

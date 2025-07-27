@@ -64,10 +64,11 @@
                             <tr class="fs-11">
                                 <th style="width: 3%;"></th>
                                 <th>Name</th>
-                                <th style="width: 15%;" class="text-center">Year</th>
-                                <th style="width: 15%;" class="text-center">Start Date</th>
-                                <th style="width: 15%;" class="text-center">End Date</th>
-                                <th style="width: 15%;" class="text-center">Status</th>
+                                <th style="width: 8%;" class="text-center">Year</th>
+                                <th style="width: 8%;" class="text-center">Scope</th>
+                                <th style="width: 13%;" class="text-center">Start Date</th>
+                                <th style="width: 13%;" class="text-center">End Date</th>
+                                <th style="width: 7%;" class="text-center">Status</th>
                                 <th style="width: 6%;"></th>
                             </tr>
                         </thead>
@@ -80,10 +81,11 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <h5 class="fs-13 mb-0 fw-semibold text-primary text-uppercase">{{list.name}}.</h5>
+                                    <h5 class="fs-13 mb-0 fw-semibold text-primary text-uppercase">{{list.name}}</h5>
                                     <p class="fs-12 text-muted mb-0">{{list.code}}</p>
                                 </td>
                                 <td class="text-center">{{ list.year }}</td>
+                                <td class="text-center">{{ list.scope }}</td>
                                 <td class="text-center">{{ list.start }}</td>
                                 <td class="text-center">{{ list.end }}</td>
                                 <td class="text-center">
