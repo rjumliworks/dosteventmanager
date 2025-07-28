@@ -17,6 +17,13 @@
                 </Link>
             </li>
             <li class="nav-item">
+                <Link href="/participants" class="nav-link menu-link"
+                :class="{'active': $page.component.startsWith('Modules/Participants') }">
+                <i class="ri-group-2-fill"></i>
+                <span class="fw-semibold fs-14" data-key="t-dashboards">Participants</span>
+                </Link>
+            </li>
+            <li class="nav-item">
                 <Link href="/events" class="nav-link menu-link"
                 :class="{'active': $page.component.startsWith('Modules/Hotel') }">
                 <i class="ri-building-fill"></i>

@@ -30,6 +30,10 @@ return Application::configure(basePath: dirname(__DIR__))
             \App\Http\Middleware\EnsureSurveyIsCompleted::class,
         ]);
 
+        $middleware->appendToGroup('par', [
+            \App\Http\Middleware\RedirectIfNotParticipant::class,
+        ]);
+
         $middleware->alias([
         'role' => \App\Http\Middleware\RoleMiddleware::class
         ]);

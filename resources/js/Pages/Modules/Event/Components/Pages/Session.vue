@@ -14,11 +14,11 @@
     </div>
     <div class="table-responsive table-card" style="height: calc(100vh - 330px);">
         <table class="table table-nowrap align-middle mb-0">
-            <thead class="bg-primary text-white">
+            <thead class="bg-primary text-white thead-fixed">
                 <tr class="fs-10">
                     <th style="width: 4%;"></th>
                     <th>Title</th>
-                    <th style="width: 25%;" class="text-center">Venue</th>
+                    <!-- <th style="width: 25%;" class="text-center">Venue</th> -->
                     <th style="width: 10%;" class="text-center">Participants</th>
                     <th style="width: 12%;" class="text-center">Date</th>
                     <th style="width: 10%;" class="text-center">Registration</th>
@@ -31,9 +31,9 @@
                     <td class="text-center">{{ index + 1 }}.</td>
                     <td>
                         <h5 class="fs-12 mb-0 fw-semibold text-primary">{{list.title}}</h5>
-                        <p class="fs-12 text-muted mb-0">{{list.code}}</p>
+                        <p class="fs-12 text-muted mb-0">{{list.venue.name}}, {{ list.venue.establishment }}</p>
                     </td>
-                    <td class="text-center">{{list.venue.name}}, {{ list.venue.establishment }}</td>
+                    <!-- <td class="text-center">{{list.venue.name}}, {{ list.venue.establishment }}</td> -->
                     <td class="text-center" v-if="!list.has_registration">{{list.participants.length }}</td>
                     <td class="text-center" v-else>{{list.detail.attendees}} / {{list.participants.length }}</td>
                     <td class="text-center">{{ dateRange(list.schedules) }}</td>

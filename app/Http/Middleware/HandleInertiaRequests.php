@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 use App\Http\Resources\UserResource;
+use App\Http\Resources\ParticipantResource;
 
 class HandleInertiaRequests extends Middleware
 {
@@ -20,7 +21,12 @@ class HandleInertiaRequests extends Middleware
     {   
         return [
             ...parent::share($request),
-            'user' => (\Auth::check()) ? new UserResource(User::with('profile')->where('id',\Auth::user()->id)->first()) : '',
+            'user' => (\Auth::guard('web')->check())
+                ? new UserResource(User::with('profile')->find(\Auth::guard('web')->id()))
+                : null,
+            'participant' => (\Auth::guard('participant')->check())
+                ? new ParticipantResource(\App\Models\Participant::with('detail')->find(\Auth::guard('participant')->id()))
+                : null,
             'flash' => [
                 'data' => session('data'),
                 'message' => session('message'),

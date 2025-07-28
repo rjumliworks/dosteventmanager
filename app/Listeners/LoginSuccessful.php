@@ -19,25 +19,24 @@ class LoginSuccessful
 
     public function handle(Login $event): void
     {
-        $user = $event->user;
-        // $ip = $this->request->ip();
+        // $user = $event->user;
 
-        $response = Http::get('https://api.ipify.org?format=json');
-        if ($response->successful()) {
-            $ipAddress = $response->json()['ip'];
-            $ip = $ipAddress;
-        }else{
-            $ip = '127.0.0.1';
-        }
+        // $response = Http::get('https://api.ipify.org?format=json');
+        // if ($response->successful()) {
+        //     $ipAddress = $response->json()['ip'];
+        //     $ip = $ipAddress;
+        // }else{
+        //     $ip = '127.0.0.1';
+        // }
         
-        \DB::table('authentication_logs')->insert([
-            'user_id' => $user->id,
-            'ip_address' => $ip,
-            'user_agent' => $this->request->userAgent(),
-            'location' => json_encode(geoip()->getLocation($ip)->toArray()),
-            'is_failed' => false,
-            'lockout_at' => null,
-            'created_at' => now(),
-        ]);
+        // \DB::table('authentication_logs')->insert([
+        //     'user_id' => $user->id,
+        //     'ip_address' => $ip,
+        //     'user_agent' => $this->request->userAgent(),
+        //     'location' => json_encode(geoip()->getLocation($ip)->toArray()),
+        //     'is_failed' => false,
+        //     'lockout_at' => null,
+        //     'created_at' => now(),
+        // ]);
     }
 }

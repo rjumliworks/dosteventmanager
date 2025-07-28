@@ -2,7 +2,6 @@
 
     <table class="table table-bordered">
         <tbody>
-           
             <tr>
                 <td style="border-right: none; border-left: none;"><span class="fw-semibold text-primary fs-12 ms-2">Session Information</span></td>
             </tr>
@@ -18,7 +17,7 @@
                                 <div class="flex-grow-1 overflow-hidden">
                                     <p class="mb-1 fs-12 text-muted">Session Manager :</p> 
                                     <h6 class="mb-0 fs-12">
-                                        <div class="fw-semibold" v-for="(manager, index) in selected.managers" :key="index">
+                                        <div v-for="(manager, index) in selected.managers" :key="index">
                                             {{ manager.user.profile.firstname }} {{ manager.user.profile.middlename[0] }}. {{ manager.user.profile.lastname }}
                                         </div>
                                     </h6>
@@ -33,7 +32,7 @@
                                 </div>
                                 <div class="flex-grow-1 overflow-hidden">
                                     <p class="mb-1 fs-12 text-muted">Date :</p> 
-                                    <h6 class="text-truncate fw-semibold mb-0 fs-12">{{dateRangeText}}</h6>
+                                    <h6 class="text-truncate mb-0 fs-12">{{dateRangeText}}</h6>
                                 </div>
                             </div>
                         </div>
@@ -45,7 +44,7 @@
                                 </div>
                                 <div class="flex-grow-1 overflow-hidden">
                                     <p class="mb-1 fs-12 text-muted">Venue :</p> 
-                                    <h6 class="text-truncate fw-semibold mb-0 fs-12">{{selected.venue.name}}, {{ selected.venue.establishment }}</h6>
+                                    <h6 class="text-truncate mb-0 fs-12">{{selected.venue.name}}, {{ selected.venue.establishment }}</h6>
                                 </div>
                             </div>
                         </div>
@@ -69,7 +68,6 @@
             </tr>
             <tr>
                 <td style="border-right: none; border-left: none;">
-                    <!-- Base Switchs -->
                     <div class="d-flex align-items-start gap-3 mb-2">
                         <div class="form-check form-switch form-switch-md">
                             <input class="form-check-input mt-2 ms-3 me-n2" v-model="selected.is_invitational" type="checkbox" role="switch" id="isInvitational">
@@ -82,7 +80,7 @@
 
                         <div class="d-flex align-items-start gap-3 mb-2">
                         <div class="form-check form-switch form-switch-md">
-                            <input class="form-check-input mt-2 ms-3 me-n2" type="checkbox" role="switch" id="isExclusive">
+                            <input class="form-check-input mt-2 ms-3 me-n2" v-model="selected.is_exclusive" type="checkbox" role="switch" id="isExclusive">
                         </div>
                         <div>
                             <label class="form-check-label fs-11" for="isExclusive">Exclusive Access</label>
@@ -92,7 +90,7 @@
 
                         <div class="d-flex align-items-start gap-3 mb-2">
                         <div class="form-check form-switch form-switch-md">
-                            <input class="form-check-input mt-2 ms-3 me-n2" type="checkbox" role="switch" id="isLimited">
+                            <input class="form-check-input mt-2 ms-3 me-n2" v-model="selected.is_limited" type="checkbox" role="switch" id="isLimited">
                         </div>
                         <div>
                             <label class="form-check-label fs-11" for="isLimited">Limited Slots</label>
@@ -102,7 +100,7 @@
 
                         <div class="d-flex align-items-start gap-3 mb-2">
                         <div class="form-check form-switch form-switch-md">
-                            <input class="form-check-input mt-2 ms-3 me-n2" type="checkbox" role="switch" id="hasRegistration">
+                            <input class="form-check-input mt-2 ms-3 me-n2" v-model="selected.has_registration" type="checkbox" role="switch" id="hasRegistration">
                         </div>
                         <div>
                             <label class="form-check-label fs-11" for="hasRegistration">Requires Registration</label>
@@ -111,7 +109,15 @@
                     </div>
                 </td>
             </tr> 
-             <tr>
+            <tr v-if="selected.has_registration">
+                <td style="border-right: none; border-left: none;"><span class="fw-semibold text-primary fs-12 ms-2">Registration Link</span></td>
+            </tr>
+            <tr v-if="selected.has_registration">
+                <td style="border-right: none; border-left: none;">
+                    <span class="fs-12 text-muted ms-2">http://dosteventmanager.test/registration/session/{{ selected.link }}</span>
+                </td>
+            </tr>
+            <!-- <tr>
                 <td style="border-right: none; border-left: none;"><span class="fw-semibold text-primary fs-12 ms-2">Event Information</span></td>
             </tr>
             <tr>
@@ -125,7 +131,7 @@
                                 </div>
                                 <div class="flex-grow-1 overflow-hidden">
                                     <p class="mb-1 fs-12 text-muted">Event Name :</p> 
-                                    <h6 class="text-truncate fw-semibold mb-0 fs-12">{{selected.event.name}}</h6>
+                                    <h6 class="text-truncate mb-0 fs-12">{{selected.event.name}}</h6>
                                 </div>
                             </div>
                         </div>
@@ -138,48 +144,14 @@
                                 </div>
                                 <div class="flex-grow-1 overflow-hidden">
                                     <p class="mb-1 fs-12 text-muted">Date :</p> 
-                                    <h6 class="text-truncate fw-semibold mb-0 fs-12" v-if="selected.event.start == selected.event.end">{{selected.event.start}}</h6>
-                                    <h6 class="text-truncate fw-semibold mb-0 fs-12">{{selected.event.start}} - {{selected.event.end}}</h6>
+                                    <h6 class="text-truncate mb-0 fs-12" v-if="selected.event.start == selected.event.end">{{selected.event.start}}</h6>
+                                    <h6 class="text-truncate mb-0 fs-12" v-else>{{selected.event.start}} - {{selected.event.end}}</h6>
                                 </div>
                             </div>
                         </div>
-                        <!-- <div class="col-md-12">
-                            <div class="d-flex mt-3">
-                                <div class="flex-shrink-0 avatar-xs align-self-center me-3">
-                                    <div class="avatar-title bg-light rounded-circle fs-16 text-primary"><i class="ri-service-fill"></i>
-                                    </div>
-                                </div>
-                                <div class="flex-grow-1 overflow-hidden">
-                                    <p class="mb-1 fs-12 text-muted">Current Status :</p> 
-                                    <span :class="'badge '+selected.status.color">{{selected.status.name}}</span>
-                                </div>
-                            </div>
-                        </div>
-                       
-                        <div class="col-md-12">
-                            <div class="d-flex mt-3">
-                                <div class="flex-shrink-0 avatar-xs align-self-center me-3">
-                                    <div class="avatar-title bg-light rounded-circle fs-16 text-primary"><i class="ri-calendar-event-fill"></i>
-                                    </div>
-                                </div>
-                                <div class="flex-grow-1 overflow-hidden">
-                                    <p class="mb-1 fs-12 text-muted">Due Date :</p>
-                                    <h6 class="text-truncate mb-0 fs-12" v-if="selected.due_at">{{selected.due_at}}</h6>
-                                    <h6 class="text-warning mb-0 fs-12" v-else>Not yet set</h6>
-                                </div>
-                            </div>
-                        </div> -->
                     </div>
                 </td>
-            </tr>
-           <!-- <tr>
-                <td style="border-right: none; border-left: none;"><span class="fw-semibold text-primary fs-12 ms-2">Session Status</span></td>
-            </tr>
-            <tr>
-                <td style="border-right: none; border-left: none;">
-                  
-                </td>
-            </tr>  -->
+            </tr> -->
         </tbody>
     </table>
 </template>

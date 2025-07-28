@@ -85,4 +85,10 @@ class SessionController extends Controller
             'status' => $result['status'],
         ]);
     }
+
+    public function view($key){
+        return inertia('Public/Session',[
+            'session' => $this->view->view($key),
+        ]);
+    }
 }

@@ -4,7 +4,7 @@ namespace App\Services;
 
 use App\Models\User;
 use App\Models\Speakers;
-use App\Models\ListDropdown;
+use App\Models\Dropdown;
 use App\Models\LocationRegion;
 use App\Models\LocationProvince;
 use App\Models\LocationMunicipality;
@@ -13,7 +13,7 @@ use App\Models\LocationBarangay;
 class DropdownClass
 {  
     public function dropdowns($class,$type = null){
-        $data = ListDropdown::where('classification',$class)
+        $data = Dropdown::where('classification',$class)
         ->when($type, function ($query) use ($type){
             $query->where('type',$type);
         })

@@ -12,11 +12,14 @@
                                         <div class="hstack gap-3 flex-wrap">
                                             <div><i class="ri-hashtag align-bottom me-1"></i>{{selected.code}}</div>
                                             <div class="vr" style="width: 1px;"></div>
-                                            <div>Venue : <span class="fw-medium">{{selected.venue.name}}, {{ selected.venue.establishment }}</span></div>
+                                            <div>Event : <span class="fw-medium">{{selected.event.name }}</span></div>
                                             <div class="vr" style="width: 1px;"></div>
                                             <!-- <div>Current Capacity : <span class="fw-medium">{{selected.detail.attendees}}/{{ selected.detail.capacity }}</span></div>
                                             <div class="vr" style="width: 1px;"></div> -->
-                                            <div>Date : <span class="fw-medium">{{dateRangeText}}</span></div>
+                                            <div>Date : 
+                                                <span class="fw-medium" v-if="selected.event.start == selected.event.end">{{selected.event.start}}</span>
+                                                <span class="fw-medium" v-else>{{selected.event.start}} - {{selected.event.end}}</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </b-col>

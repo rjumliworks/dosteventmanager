@@ -14,8 +14,6 @@ return new class extends Migration
         Schema::create('participant_details', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->string('sex',8);
-            $table->string('type',8);
             $table->string('designation',10)->nullable();
             $table->string('affiliation',10)->nullable();
             $table->date('birthdate')->nullable();

@@ -31,6 +31,7 @@ class SessionResource extends JsonResource
             'is_exclusive' => ($this->is_exclusive) ? true : false,
             'is_limited' => ($this->is_limited) ? true : false,
             'has_registration' => ($this->has_registration) ? true : false,
+            'link' => ($this->has_registration) ? base64_encode($key) : '',
             'updated_at' => $this->updated_at,
             'created_at' => $this->created_at,
         ];
