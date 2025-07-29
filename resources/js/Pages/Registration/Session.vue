@@ -61,7 +61,7 @@
                                         </BCol>
                                         <BCol lg="6" class="mt-0">
                                             <InputLabel for="region" value="Sex" :message="form.errors.sex_id"/>
-                                            <Multiselect :options="dropdowns.sexs" label="name" v-model="form.sex_id" :message="form.errors.sex_id" placeholder="Select Sex" @input="handleInput('sex_id')"/>
+                                            <Multiselect :options="dropdowns.sexs" label="name" v-model="form.sex_id" placeholder="Select Sex" @input="handleInput('sex_id')"/>
                                         </BCol>
                                         <BCol lg="6" class="mt-1">
                                             <InputLabel for="name" value="Designation" :message="form.errors.designation"/>

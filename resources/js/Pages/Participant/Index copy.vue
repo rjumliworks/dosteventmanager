@@ -1,10 +1,48 @@
 <template>
 <Head title="DOSTIX" />
     <div class="layout-wrapper landing">
-        
+        <nav v-if="!isMobile" class="navbar navbar-expand-lg navbar-landing fixed-top" id="navbar">
+            <b-container>
+                <b-link class="navbar-brand" href="/">
+                    <img src="images/logo-dark.png" class="card-logo card-logo-dark" alt="logo dark"
+                        height="25">
+                    <img src="images/logo-light.png" class="card-logo card-logo-light" alt="logo light"
+                        height="17">
+                </b-link>
+                <button class="navbar-toggler py-0 fs-20 text-body" type="button" v-b-toggle.navbarSupportedContent>
+                    <i class="mdi mdi-menu"></i>
+                </button>
+
+                <b-collapse class="navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mx-auto mt-2 mt-lg-0" id="navbar-example">
+                        <li class="nav-item">
+                            <Link href="/" class="nav-link active">Home</Link>
+                        </li>
+                        <li class="nav-item">
+                            <Link href="/search/schools" class="nav-link">Schools</Link>
+                        </li>
+                         <li class="nav-item">
+                            <Link href="/search/courses" class="nav-link">Courses</Link>
+                        </li>
+                        <li class="nav-item">
+                            <b-link class="nav-link" href="#contact">Contact</b-link>
+                        </li>
+                    </ul>
+
+                    <div class="">
+                        <span class="d-flex align-items-center"><img class="rounded-circle header-profile-user" src="images/avatars/avatar.jpg" alt="administrator">
+                            <span class="text-start ms-xl-2">
+                                <span class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">{{$page.props.participant.data.firstname}} {{ $page.props.participant.data.lastname }}</span>
+                                <span class="d-none d-xl-block ms-1 fs-12 user-name-sub-text">Administrator</span>
+                            </span>
+                        </span>
+                    </div>
+                </b-collapse>
+            </b-container>
+        </nav>
         <section class="section pb-0 " id="hero">
             <div class="bg-overlay bg-overlay-pattern"></div>
-            <b-container>
+            <b-container v-if="isMobile">
                 <div class="profile-wrapper">
                     <div class="row g-2">
                         <div class="col-auto">
@@ -31,41 +69,8 @@
             </b-container>
         </section>
 
-        <footer class="footer p-2" >
-            <ul class="nav nav-pills nav-justified card-footer-tabs">
-                <li class="nav-item">
-                    <Link href="/participant" class="nav-link">
-                        <i class="fs-20 ri-home-3-fill"></i>
-                    </Link>
-                </li>
-                <li class="nav-item">
-                    <Link href="/sessions" class="nav-link">
-                        <i class="fs-20 ri-file-text-fill"></i>
-                    </Link>
-                </li>
-                <li class="nav-item">
-                    <Link href="/qrcode" class="nav-link">
-                        <button class="btn btn-primary btn-md position-relative p-0 avatar-md rounded-circle" style="margin-top: -55px;" type="button">
-                            <div class="btn-content">
-                                <span class="avatar-title bg-transparent text-reset">
-                                    <i class='fs-24 ri-qr-code-line'></i>
-                                </span>
-                            </div>
-                        </button>
-                    </Link>
-                </li>
-                <li class="nav-item">
-                    <Link href="/schedules" class="nav-link">
-                        <i class="fs-20 ri-calendar-fill"></i>
-                    </Link>
-                </li>
-                <li class="nav-item">
-                    <Link href="/settings" class="nav-link">
-                        <i class='fs-20 ri-settings-4-fill'></i>
-                    </Link>
-                </li>
-            </ul>
-        </footer>
+        <Mobile v-if="isMobile" />
+        <Web v-else />
         <b-button variant="danger" @click="topFunction" class="btn-icon" id="back-to-top">
             <i class="ri-arrow-up-line"></i>
         </b-button>
