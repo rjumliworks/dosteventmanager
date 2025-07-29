@@ -25,7 +25,7 @@ class HandleInertiaRequests extends Middleware
                 ? new UserResource(User::with('profile')->find(\Auth::guard('web')->id()))
                 : null,
             'participant' => (\Auth::guard('participant')->check())
-                ? new ParticipantResource(\App\Models\Participant::with('detail')->find(\Auth::guard('participant')->id()))
+                ? new ParticipantResource(\App\Models\Participant::with('detail.sex','detail.type')->find(\Auth::guard('participant')->id()))
                 : null,
             'flash' => [
                 'data' => session('data'),

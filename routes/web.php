@@ -11,6 +11,12 @@ Route::get('/participant/login', [App\Http\Controllers\ParticipantController::cl
 Route::middleware('auth:participant')->group(function () {
     Route::get('/participant', [App\Http\Controllers\ParticipantController::class, 'view'])->name('participant.dashboard');
     Route::get('/participant/logout', [App\Http\Controllers\ParticipantController::class, 'logout'])->name('participant.logout');
+    Route::get('/qrcode', [App\Http\Controllers\Participant\IndexController::class, 'qrcode']);
+    Route::get('/settings', [App\Http\Controllers\Participant\IndexController::class, 'settings']);
+    Route::get('/sessions', [App\Http\Controllers\Participant\IndexController::class, 'sessions']);
+    
+    Route::get('/schedules', [App\Http\Controllers\Participant\IndexController::class, 'schedules']);
+    Route::get('/schedule/{id}', [App\Http\Controllers\Participant\IndexController::class, 'scheduleview']);
 });
 
 Route::middleware(['2fa','auth','verified'])->group(function () {
