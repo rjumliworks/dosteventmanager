@@ -7,7 +7,7 @@
                 <div class="d-flex flex-column align-items-center pt-0 pb-2" style="min-height: 80vh;">
 
                     <div class="avatar-border-wrapper mb-2">
-                        <img src="/images/avatars/avatar.jpg" alt="user-img" class="img-thumbnail rounded-circle avatar-lg" style="z-index: 3;" />
+                        <img src="/images/avatars/avatar.jpg" alt="user-img" class="img-thumbnail rounded-circle avatar-lg" style="width: 100px; height: 100px; object-fit: cover; z-index: 3;" />
                     </div>
 
                     <div class="p-2">
