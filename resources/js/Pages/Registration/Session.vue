@@ -4,26 +4,14 @@
 
             <div class="row justify-content-center align-items-center">
                 <div class="col-lg-12">
-                    <div class="text-center mb-4">
-                        <!-- <div class="row mb-2">
-                            <div class="col-2">
-                                <img src="@assets/images/logo-sm.png" alt="" class="avatar-sm">
-                            </div>
-                            <div class="col-10">
-                                <div class="text-primary mt-1">
-                                    <h4 class="fs-16 fw-semibold">DOSTIX - RSTW</h4>
-                                    <p class="mt-n2">Information Management System</p>
-                                </div>
-                            </div>
-                        </div> -->
-                          
+                    <div class="text-center mb-4 p-3">                          
                         <img src="@assets/images/logo-sm.png" alt="" class="avatar-xs mb-1">
-                        <h1 class="mb-0 ff-secondary fw-semibold text-capitalize lh-base fs-20"><span class="text-primary">{{ session.title }}</span></h1>
-                        <h1 class="mb-0 ff-secondary fw-semibold text-capitalize lh-base fs-14"><span class="text-warning">{{ session.event.name }}</span></h1>
+                        <h1 class="mb-0 ff-secondary fw-semibold text-capitalize lh-base fs-16"><span class="text-primary">{{ session.title }}</span></h1>
+                        <h1 class="mb-0 ff-secondary fw-semibold text-capitalize lh-base fs-13"><span class="text-warning">{{ session.event.name }}</span></h1>
                         <p class="text-muted mb-2 fs-12">{{ session.detail.description }}</p>
                     </div>
                 </div>
-                <div class="col-lg-6 mt-0">
+                <div class="col-lg-6 mt-n5 p-4">
                     <div class="card bg-light-subtle shadow-none border">
                         <div class="card-header bg-light-subtle">
                             <div class="d-flex mb-n3">
