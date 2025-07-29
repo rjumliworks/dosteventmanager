@@ -12,29 +12,21 @@
                     </div>
                 </div>
                 <div class="col-lg-12">
-                    <div class="text-center mb-0 mt-n5">
-                        <img class="" alt="200x200" width="600" src="/images/border.png" data-holder-rendered="true">
-                        <!-- <div class="col-lg-6 product-item games music 3d-style">
-                        <div class="card explore-box card-animate">
-                          
-                            <div class="explore-place-bid-img"><img src="/images/chatgpt.png" alt="" class="card-img-top explore-img">  
-                                <div class="bg-overlay"></div>
-                            </div>
-                            <div class="card-body">
-                                <p class="fw-medium mb-0 float-end"><i class="ri-qr-code-fill text-danger align-middle mt-n2"></i> 64.10k </p>
-                                <h5 class="mb-1"><a href="/apps/nft-item-detail" class="">Long-tailed Macaque</a></h5>
-                                <p class="text-muted mb-0">Artwork</p>
-                            </div>
-                            <div class="card-footer border-top border-top-dashed">
-                                <div class="d-flex align-items-center">
-                                    <div class="flex-grow-1 fs-14"><i class="ri-price-tag-3-fill text-warning align-bottom me-1"></i>
-                                        Highest: <span class="fw-medium">874.01ETH</span></div>
-                                    <h5 class="flex-shrink-0 fs-14 text-primary mb-0">745.14 ETH</h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
-                    </div>
+                   <div class="text-center mb-0 mt-n5">
+    <div class="position-relative d-inline-block" style="width: 600px;">
+        <!-- Phone image -->
+        <img src="/images/border.png" alt="Phone Frame" class="img-fluid" style="width: 100%;" />
+
+        <!-- QR code positioned on the phone screen -->
+        <img
+            :src="selected.qr"
+            alt="QR Code"
+            class="position-absolute"
+            style="top: 53%; left: 51.5%; transform: translate(-50%, -50%); width: 180px;"
+        />
+    </div>
+</div>
+
                     
                 </div>
                 <!-- <div class="col-lg-9">

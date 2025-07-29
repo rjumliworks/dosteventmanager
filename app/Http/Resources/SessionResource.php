@@ -4,6 +4,9 @@ namespace App\Http\Resources;
 
 use Hashids\Hashids;
 use Illuminate\Http\Request;
+use Endroid\QrCode\QrCode;
+use Endroid\QrCode\Logo\Logo;
+use Endroid\QrCode\Writer\PngWriter;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class SessionResource extends JsonResource
@@ -13,7 +16,17 @@ class SessionResource extends JsonResource
         $hashids = new Hashids('krad',10);
         $key = $hashids->encode($this->id);
 
+        $code = $this->code;
+        $qrCode = new QrCode($code);
+        $qrCode->setSize(2000)->setMargin(10);;
+        $logo = Logo::create(public_path('images/qrlogo.png'))->setResizeToWidth(400);                        
+
+        $pngWriter = new PngWriter();
+        $qrCodeImageString = $pngWriter->write($qrCode,$logo)->getString();
+        $qr = 'data:image/png;base64,' . base64_encode($qrCodeImageString);
+
         return [
+            'qr' => $qr,
             'id' => $this->id,
             'key' => $key,
             'code' => $this->code,
