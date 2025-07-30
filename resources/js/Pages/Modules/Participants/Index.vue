@@ -40,11 +40,11 @@
                             </td>
                             <td>
                                 <h5 class="fs-13 mb-0 text-dark text-uppercase">{{list.lastname}}, {{list.firstname}} {{list.middlename[0]}}.</h5>
-                                <p class="fs-12 text-muted mb-0 text-uppercase">{{list.detail.affiliation}} ({{ list.detail.designation }})</p>
+                                <p class="fs-12 text-muted mb-0 text-uppercase">{{list.affiliation}} ({{ list.designation }})</p>
                             </td>
                             <td class="text-center fs-12">{{list.email}}</td>
                             <td class="text-center fs-12">{{list.contact_no}}</td>
-                            <td class="text-center fs-12">{{list.detail.type.name}}</td>
+                            <td class="text-center fs-12">{{list.type.name}}</td>
                             <td class="text-center fs-12">
                                 <span v-if="list.is_active" class="badge bg-success">Active</span>
                                 <span v-else class="badge bg-danger">Inactive</span>

@@ -24,7 +24,7 @@
                 </Link>
             </li>
             <li class="nav-item">
-                <Link href="/events" class="nav-link menu-link"
+                <Link href="/hotels" class="nav-link menu-link"
                 :class="{'active': $page.component.startsWith('Modules/Hotel') }">
                 <i class="ri-building-fill"></i>
                 <span class="fw-semibold fs-14" data-key="t-dashboards">Hotels</span>
