@@ -17,9 +17,9 @@
 
                     <!-- Switch Button -->
                     <b-form-group class="mt-3">
-                    <b-form-checkbox switch v-model="showScanner">
-                        {{ showScanner ? 'Switch to My QR Code' : 'Switch to Scanner' }}
-                    </b-form-checkbox>
+                        <b-form-checkbox switch v-model="showScanner">
+                            {{ showScanner ? 'Switch to My QR Code' : 'Switch to Scanner' }}
+                        </b-form-checkbox>
                     </b-form-group>
 
                     <!-- QR Scanner (if enabled) -->

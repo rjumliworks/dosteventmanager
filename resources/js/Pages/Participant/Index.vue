@@ -1,35 +1,33 @@
 <template>
 <Head title="DOSTIX" />
     <div class="layout-wrapper landing">
-        
-        <section class="section pb-0 " id="hero">
+        <div class="mobile-curved-header">
             <div class="bg-overlay bg-overlay-pattern"></div>
-            <b-container>
-                <div class="profile-wrapper">
-                    <div class="row g-2">
-                        <div class="col-auto">
-                            <div class="avatar-sm"><img src="/images/avatars/avatar.jpg" alt="user-img" class="img-thumbnail rounded-circle"></div>
-                        </div>
-                        <div class="col">
-                            <div class="p-2">
-                                <h4 class="fs-14 text-primary text-uppercase fw-semibold mb-0">{{participant.firstname}} {{ participant.lastname }}</h4>
-                                <p class="fs-12 text-muted">{{participant.contact_no}}</p>
-                                
+     
+            <section class="section pb-0 " id="hero" style="margin-top: -28px;">
+                <b-container>
+                    <div class="profile-wrapper ms-2 me-2">
+                        <div class="row g-2">
+                            <div class="col-auto">
+                                <div class="avatar-sm"><img src="/images/avatars/avatar.jpg" alt="user-img" class="img-thumbnail rounded-circle"></div>
                             </div>
+                            <div class="col">
+                                <div class="p-2">
+                                    <h4 class="fs-14 text-white text-uppercase fw-semibold mb-0">{{participant.firstname}} {{ participant.lastname }}</h4>
+                                    <p class="fs-12 text-white">{{participant.contact_no}}</p>
+                                    
+                                </div>
+                            </div>
+                            
                         </div>
-                        
                     </div>
-                </div>
-            </b-container>
-        </section>
-
-        
-        <section class="py-5 hero-section position-relative">
-            <div class="bg-overlay bg-overlay-pattern opacity-50"></div>
-            <b-container>
-               
-            </b-container>
-        </section>
+                </b-container>
+            </section>
+        </div>
+        <div class="row">
+            
+        </div>
+       
 
         <footer class="footer p-2" >
             <ul class="nav nav-pills nav-justified card-footer-tabs">
@@ -142,4 +140,17 @@ export default {
         border-top: .1rem solid;
         border-color: #e4e2e2;
     }
+    .mobile-curved-header {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 95px;
+        background: linear-gradient(to bottom, #405189 0%, #2f3a58 100%);
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+        z-index: 0;
+        overflow: hidden;
+    }
+
 </style>

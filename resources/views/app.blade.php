@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title inertia>ONELAB</title>
+        <title inertia>DOST-IX</title>
         <meta name="description" content="STLIMS - DOST IX">
         <meta name="keywords" content="DOST, STLIMS, EULIMS, ONELAB">
         <meta name="author" content="Krad Jumli">
