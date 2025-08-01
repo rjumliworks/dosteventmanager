@@ -60,7 +60,7 @@
                             <tr class="fs-11">
                                 <th style="width: 3%;"></th>
                                 <th>Name</th>
-                                <th style="width: 15%;" class="text-center">Email</th>
+                                <th style="width: 20%;" class="text-center">Email</th>
                                 <th style="width: 15%;" class="text-center">Contact</th>
                                 <th style="width: 7%;" class="text-center">Status</th>
                                 <th style="width: 6%;"></th>
@@ -70,16 +70,16 @@
                             <tr v-for="(list,index) in lists" v-bind:key="index">
                                 <td class="text-center"> 
                                     <div class="avatar-xs chat-user-img online">
-                                        <img :src="list.avatar" alt="" class="avatar-xs rounded-circle">
+                                        <img :src="'/images/avatars/'+list.avatar" alt="" class="avatar-xs rounded-circle">
                                         <!-- <span v-if="list.is_active" class="user-status text-success"></span> -->
                                     </div>
                                 </td>
                                 <td>
                                     <h5 class="fs-13 mb-0 fw-semibold text-primary text-uppercase">{{list.name}}</h5>
-                                    <p class="fs-12 text-muted mb-0">{{list.code}}</p>
+                                    <p class="fs-12 text-muted mb-0">{{list.location.address}}, {{ list.location.municipality.name }}</p>
                                 </td>
                                 <td class="text-center">{{ list.email }}</td>
-                                <td class="text-center">{{ list.contact }}</td>
+                                <td class="text-center">{{ list.contact_no }}</td>
                                 <td class="text-center">
                                     <span v-if="list.is_active" class="badge bg-success">Active</span>
                                     <span v-else class="badge bg-danger">Inactive</span>
@@ -88,7 +88,7 @@
                                     <b-button @click="openEdit(list,index)" variant="soft-warning" class="me-1" v-b-tooltip.hover title="Edit" size="sm">
                                         <i class="ri-pencil-fill align-bottom"></i>
                                     </b-button>
-                                    <b-button variant="soft-info" class="me-1" v-b-tooltip.hover title="View" size="sm">
+                                    <b-button @click="openView(list)" variant="soft-info" class="me-1" v-b-tooltip.hover title="View" size="sm">
                                         <i class="ri-eye-fill align-bottom"></i>
                                     </b-button>
                                 </td>
@@ -103,16 +103,18 @@
         </div>
     </div>
 </BRow>
+<View ref="view"/>
 <Create :dropdowns="dropdowns" @success="fetch()" ref="create"/>
 </template>
 <script>
 import _ from 'lodash';
+import View from './Modals/View.vue';
 import Create from './Modals/Create.vue';
 import PageHeader from '@/Shared/Components/PageHeader.vue';
 import Pagination from "@/Shared/Components/Pagination.vue";
 export default {
     props: ['dropdowns'],
-    components: { PageHeader, Pagination, Create },
+    components: { PageHeader, Pagination, Create, View },
     data(){
         return {
             currentUrl: window.location.origin,
@@ -131,7 +133,7 @@ export default {
             this.fetch();
         }, 300),
         fetch(page_url){
-            page_url = page_url || '/events';
+            page_url = page_url || '/hotels';
             axios.get(page_url,{
                 params : {
                     keyword: this.keyword,
@@ -150,6 +152,9 @@ export default {
         },
         openCreate(){
             this.$refs.create.show();
+        },
+        openView(data){
+            this.$refs.view.show(data);
         }
     }
 }

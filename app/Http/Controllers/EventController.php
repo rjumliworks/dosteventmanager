@@ -44,6 +44,9 @@ class EventController extends Controller
                 case 'venue':
                     return $this->venue->save($request);
                 break;
+                case 'exhibitor':
+                    return $this->save->exhibitor($request);
+                break;
                 case 'speaker':
                     return $this->save->speaker($request);
                 break;

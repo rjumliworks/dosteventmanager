@@ -11,7 +11,7 @@ class Hotel extends Model
        'name',
        'link',
        'email',
-       'contact',
+       'contact_no',
        'is_active'
     ];
 
@@ -22,7 +22,7 @@ class Hotel extends Model
 
     public function rates()
     {
-        return $this->hasMany('App\Models\HotelRate', 'hotel_id');
+        return $this->hasMany('App\Models\HotelRates', 'hotel_id');
     }
 
     public function getUpdatedAtAttribute($value)

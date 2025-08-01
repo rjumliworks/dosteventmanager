@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Services\DropdownClass;
 use App\Traits\HandlesTransaction;
-use App\Services\Event\ViewClass;
-use App\Services\Event\SaveClass;
+use App\Services\Hotel\ViewClass;
+use App\Services\Hotel\SaveClass;
 
 class HotelController extends Controller
 {

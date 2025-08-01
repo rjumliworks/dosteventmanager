@@ -4,18 +4,11 @@
             <BRow>
                 <BCol lg="12">
                     <BRow class="g-3">
-                        <BCol lg="12" class="mt-3">
-                            <InputLabel value="Venue"/>
-                            <TextInput v-model="form.venue" type="text" class="form-control" placeholder="Please enter name of establishment" @input="handleInput('venue')" :light="true" />
-                        </BCol>
-                        <BCol lg="12">
-                            <hr class="text-muted mt-n1 mb-1"/>
-                        </BCol>
-                        <BCol lg="6" class="mt-1">
+                        <BCol lg="6" class="mt-4">
                             <InputLabel value="Region"/>
                             <Multiselect :options="regions" v-model="form.region" label="name" :searchable="true" placeholder="Select Region" />
                         </BCol>
-                        <BCol lg="6" class="mt-1">
+                        <BCol lg="6" class="mt-4">
                             <InputLabel value="Province"/>
                             <Multiselect :options="provinces" object v-model="form.province" label="name" :searchable="true" placeholder="Select Province" />
                         </BCol>
@@ -59,7 +52,6 @@ export default {
         return {
             currentUrl: window.location.origin,
             form: useForm({
-                venue: null,
                 address: null,
                 region: null,
                 province: null,
@@ -103,7 +95,7 @@ export default {
     },
     computed: {
         isFormValid() {
-            return this.form.venue && this.form.address && this.form.region && this.form.province && this.form.municipality && this.form.barangay;
+            return this.form.address && this.form.region && this.form.province && this.form.municipality && this.form.barangay;
         }
     },
     methods: { 
@@ -117,12 +109,11 @@ export default {
             this.showModal = true;
         },  
         submit(){
-            const address = `${this.form.venue}, ${this.form.address}, ${this.form.barangay.name}, ${this.form.municipality.name}, ${this.form.province.name}`;
+            const address = `${this.form.address}, ${this.form.barangay.name}, ${this.form.municipality.name}, ${this.form.province.name}`;
             this.$emit('submit', {
                 address: address,
                 index: this.index,
                 form: {
-                    venue: this.form.venue,
                     info: this.form.address,
                     region: this.form.region,
                     province: this.form.province,
@@ -138,7 +129,6 @@ export default {
             this.form.municipality = null;
             this.form.barangay = null;
             this.form.address = null;
-            this.form.venue = null;
             this.hide();
         },
         fetchProvince(code){

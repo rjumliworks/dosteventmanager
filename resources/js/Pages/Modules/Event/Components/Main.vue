@@ -39,8 +39,10 @@
                                 <div class="carousel-content">
                                     <transition mode="out-in">
                                         <div :key="index" class="tab-content">
+                                            <Exhibitor :id="selected.id" :exhibitors="selected.exhibitors" v-if="menu == 'Exhibitors'"/>
                                             <Session :id="selected.id" :venues="selected.venues" :sessions="selected.sessions" v-if="menu == 'Sessions'"/>
                                             <Venue :id="selected.id" :venues="selected.venues" :detail="selected.detail" v-if="menu == 'Venues'"/>
+                                            <Organizer :sessions="selected.sessions" v-if="menu == 'Organizers'"/>
                                         </div>
                                     </transition>
                                 </div>
@@ -56,8 +58,10 @@
 <script>
 import Venue from './Pages/Venue.vue';
 import Session from './Pages/Session.vue';
+import Exhibitor from './Pages/Exhibitor.vue';
+import Organizer from './Pages/Organizer.vue';
 export default {
-    components: { Session, Venue },
+    components: { Session, Venue, Organizer, Exhibitor },
     props:['selected'],
     data(){
         return {

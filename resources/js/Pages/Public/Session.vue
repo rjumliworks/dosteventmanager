@@ -8,7 +8,8 @@
                         <img src="@assets/images/logo-sm.png" alt="" class="avatar-xs mb-1">
                         <h1 class="mb-0 ff-secondary fw-semibold text-capitalize lh-base fs-24"><span class="text-primary">{{ selected.title }}</span></h1>
                         <h1 class="mb-0 ff-secondary fw-semibold text-capitalize lh-base fs-18"><span class="text-warning">{{ selected.event.name }}</span></h1>
-                        <p class="text-muted mb-2 fs-14">{{ selected.detail.description }}</p>
+                        <h1 class="mb-0 ff-secondary fw-semibold text-capitalize lh-base fs-12"><span class="text-success">{{ selected.venue.address}}</span></h1>
+                        <p class="text-muted mb-2 fs-12">{{ selected.detail.description }}</p>
                     </div>
                 </div>
                 <div class="col-lg-5" style="margin-top: 20px; margin-bottom: -80px;">

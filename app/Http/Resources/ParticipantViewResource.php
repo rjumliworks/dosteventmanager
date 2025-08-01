@@ -23,6 +23,7 @@ class ParticipantViewResource extends JsonResource
 
         return [
             'qr' => $qr,
+            'id' => $this->id,
             'code' => $this->code,
             'email' => $this->email,
             'contact_no' => $this->contact_no,

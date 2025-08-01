@@ -13,7 +13,7 @@ Route::middleware('auth:participant')->group(function () {
     Route::get('/participant/logout', [App\Http\Controllers\ParticipantController::class, 'logout'])->name('participant.logout');
     Route::get('/qrcode', [App\Http\Controllers\Participant\IndexController::class, 'qrcode']);
     Route::get('/settings', [App\Http\Controllers\Participant\IndexController::class, 'settings']);
-    Route::get('/sessions', [App\Http\Controllers\Participant\IndexController::class, 'sessions']);
+    Route::get('/exhibits', [App\Http\Controllers\Participant\IndexController::class, 'sessions']);
     
     Route::get('/schedules', [App\Http\Controllers\Participant\IndexController::class, 'schedules']);
     Route::get('/schedule/{id}', [App\Http\Controllers\Participant\IndexController::class, 'scheduleview']);
@@ -29,6 +29,7 @@ Route::middleware(['2fa','auth','verified'])->group(function () {
     Route::resource('/users', App\Http\Controllers\UserController::class);
     Route::resource('/participants', App\Http\Controllers\ParticipantController::class);
     Route::resource('/sessions', App\Http\Controllers\SessionController::class);
+    Route::resource('/exhibitors', App\Http\Controllers\ExhibitorController::class);
     Route::resource('/hotels', App\Http\Controllers\HotelController::class);
 });
 

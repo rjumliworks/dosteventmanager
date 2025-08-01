@@ -1,91 +1,105 @@
 <template>
 <Head title="DOSTIX" />
     <div class="layout-wrapper landing">
-        <nav v-if="!isMobile" class="navbar navbar-expand-lg navbar-landing fixed-top" id="navbar">
-            <b-container>
-                <b-link class="navbar-brand" href="/">
-                    <img src="images/logo-dark.png" class="card-logo card-logo-dark" alt="logo dark"
-                        height="25">
-                    <img src="images/logo-light.png" class="card-logo card-logo-light" alt="logo light"
-                        height="17">
-                </b-link>
-                <button class="navbar-toggler py-0 fs-20 text-body" type="button" v-b-toggle.navbarSupportedContent>
-                    <i class="mdi mdi-menu"></i>
-                </button>
-
-                <b-collapse class="navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mx-auto mt-2 mt-lg-0" id="navbar-example">
-                        <li class="nav-item">
-                            <Link href="/" class="nav-link active">Home</Link>
-                        </li>
-                        <li class="nav-item">
-                            <Link href="/search/schools" class="nav-link">Schools</Link>
-                        </li>
-                         <li class="nav-item">
-                            <Link href="/search/courses" class="nav-link">Courses</Link>
-                        </li>
-                        <li class="nav-item">
-                            <b-link class="nav-link" href="#contact">Contact</b-link>
-                        </li>
-                    </ul>
-
-                    <div class="">
-                        <span class="d-flex align-items-center"><img class="rounded-circle header-profile-user" src="images/avatars/avatar.jpg" alt="administrator">
-                            <span class="text-start ms-xl-2">
-                                <span class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">{{$page.props.participant.data.firstname}} {{ $page.props.participant.data.lastname }}</span>
-                                <span class="d-none d-xl-block ms-1 fs-12 user-name-sub-text">Administrator</span>
+        <nav  class="navbar navbar-expand-lg navbar-landing fixed-top" id="navbar" style="border-bottom: .1rem solid; border-color: #e4e2e2;">
+           <b-container>
+                <div class="d-flex pt-3">
+                    <div class="flex-shrink-0 me-3">
+                        <div style="height:2.5rem;width:2.5rem;">
+                            <span class="avatar-title bg-primary-subtle rounded p-2 mt-n1">
+                                <i class="ri-calendar-todo-fill text-primary fs-24"></i>
                             </span>
-                        </span>
-                    </div>
-                </b-collapse>
-            </b-container>
-        </nav>
-        <section class="section pb-0 " id="hero">
-            <div class="bg-overlay bg-overlay-pattern"></div>
-            <b-container v-if="isMobile">
-                <div class="profile-wrapper">
-                    <div class="row g-2">
-                        <div class="col-auto">
-                            <div class="avatar-sm"><img src="/images/avatars/avatar.jpg" alt="user-img" class="img-thumbnail rounded-circle"></div>
                         </div>
-                        <div class="col">
-                            <div class="p-2">
-                                <h4 class="fs-14 text-primary text-uppercase fw-semibold mb-0">{{participant.firstname}} {{ participant.lastname }}</h4>
-                                <p class="fs-12 text-muted">{{participant.contact_no}}</p>
-                                
-                            </div>
-                        </div>
-                        
                     </div>
+                    <div class="flex-grow-1">
+                        <h5 class="mb-0 fw-semibold fs-14"><span class="text-danger">Exhibitors</span></h5>
+                        <p class="text-muted  fs-12">Stay updated and don’t miss out!</p>
+                    </div>
+                  
                 </div>
             </b-container>
+        </nav>
+        <section class="section pb-0" style="margin-bottom: 60px; margin-top: 50px;" id="hero">
+            <div class="bg-overlay bg-overlay-pattern"></div>
+            <b-list-group flush>
+                <template v-for="(session,index) in exhibitors.data" v-bind:key="index">
+                    
+                        <b-list-group-item  class="d-flex justify-content-between align-items-center" style="cursor: pointer;" >
+                            <!-- <div class="blog-box mt-2 mb-4 mb-xl-0" >
+                                <div class="mt-0  fs-12">
+                                    <h6 class="mb-1 fw-semibold text-primary">{{session.title}}</h6>
+                                    <p class="text-muted">{{session.area }}</p>
+                                    <p class="mb-n3"><i class="ri-team-fill text-primary me-1"></i>{{session.institution }}</p> 
+                                </div>
+                                <div class="flex-shrink-0 avatar-xs"><div class="avatar-title bg-light rounded-circle"><i class="ri-trophy-fill text-primary"></i></div></div>
+                            </div> -->
+                            <div class="flex-grow-1">
+                                <div class="blog-box mt-2 mb-4 mb-xl-0" >
+                                    <div class="mt-0  fs-12">
+                                        <h6 class="mb-1 fw-semibold text-primary">{{session.title}}</h6>
+                                        <p class="text-muted">{{session.area }}</p>
+                                        <p class="mb-n3"><i class="ri-team-fill text-primary me-1"></i>{{session.institution }}</p> 
+                                    </div>
+                                    <!-- <div class="flex-shrink-0 avatar-xs">
+                                        <div class="avatar-title bg-light rounded-circle"><i class="ri-trophy-fill text-primary"></i></div>
+                                    </div> -->
+                                </div>
+                            </div>
+                            <div class="flex-shrink-0 avatar-sm">
+                                <div v-if="index == 1" class="avatar-title bg-warning-subtle rounded-circle"><i class="fs-20 ri-trophy-fill text-warning"></i></div>
+                                <div v-else class="avatar-title bg-light rounded-circle"><i class="fs-20 ri-trophy-fill text-primary"></i></div>
+                            </div>
+                        </b-list-group-item>
+                </template>
+            </b-list-group>
         </section>
-
-        
-        <section class="py-5 hero-section position-relative">
-            <div class="bg-overlay bg-overlay-pattern opacity-50"></div>
-            <b-container>
-               
-            </b-container>
-        </section>
-
-        <Mobile v-if="isMobile" />
-        <Web v-else />
+        <footer class="footer p-2" >
+            <ul class="nav nav-pills nav-justified card-footer-tabs">
+                <li class="nav-item">
+                    <Link href="/participant" class="nav-link">
+                        <i class="fs-20 ri-home-3-fill"></i>
+                    </Link>
+                </li>
+                <li class="nav-item">
+                    <Link href="/exhibits" class="nav-link">
+                        <i class="fs-20 ri-file-text-fill"></i>
+                    </Link>
+                </li>
+                <li class="nav-item">
+                    <Link href="/qrcode" class="nav-link">
+                        <button class="btn btn-primary btn-md position-relative p-0 avatar-md rounded-circle" style="margin-top: -55px;" type="button">
+                            <div class="btn-content">
+                                <span class="avatar-title bg-transparent text-reset">
+                                    <i class='fs-24 ri-qr-code-line'></i>
+                                </span>
+                            </div>
+                        </button>
+                    </Link>
+                </li>
+                <li class="nav-item">
+                    <Link href="/schedules" class="nav-link">
+                        <i class="fs-20 ri-calendar-fill"></i>
+                    </Link>
+                </li>
+                <li class="nav-item">
+                    <Link href="/settings" class="nav-link">
+                        <i class='fs-20 ri-settings-4-fill'></i>
+                    </Link>
+                </li>
+            </ul>
+        </footer>
         <b-button variant="danger" @click="topFunction" class="btn-icon" id="back-to-top">
             <i class="ri-arrow-up-line"></i>
         </b-button>
   </div>
 </template>
 <script>
-import Mobile from './Footer/Mobile.vue';
-import Web from './Footer/Web.vue';
 export default {
-    components: { Mobile, Web },
+    props:['exhibitors'],
     layout: null,
     data(){
         return {
             participant: this.$page.props.participant.data,
-            isMobile: false,
         }
     },
     methods: {
@@ -97,18 +111,40 @@ export default {
                 console.error('Logout failed:', error)
             }
         },
+        hasParticipant(participants) {
+            return participants.some(p => p.participant_id === this.$page.props.participant.data.id);
+        },
         topFunction() {
             document.body.scrollTop = 0;
             document.documentElement.scrollTop = 0;
         },
-        checkDevice() {
-            this.isMobile = window.innerWidth <= 768;
-        },
+        dateRange(schedules) {
+            if (!schedules || schedules.length === 0) return 'No date';
+
+            let start = schedules[0].date;
+            let end = schedules[0].date;
+
+            schedules.forEach(item => {
+                if (item.date < start) start = item.date;
+                if (item.date > end) end = item.date;
+            });
+
+            const formatDate = (dateStr) => {
+                const date = new Date(dateStr);
+                return date.toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+            };
+
+            return start === end
+                ? formatDate(start)
+                : `${formatDate(start)} - ${formatDate(end)}`;
+        }
     },
     mounted() {
-
         let backtoTop = document.getElementById("back-to-top");
-
         if (backtoTop) {
             backtoTop = document.getElementById("back-to-top");
             window.onscroll = function () {
@@ -119,7 +155,6 @@ export default {
                 }
             };
         }
-
         window.addEventListener('scroll', function (ev) {
             ev.preventDefault();
             var navbar = document.getElementById("navbar");
@@ -131,16 +166,10 @@ export default {
                 }
             }
         });
-
-        this.checkDevice();
-        window.addEventListener('resize', this.checkDevice);
-    },
-    beforeDestroy() {
-        window.removeEventListener('resize', this.checkDevice);
-    },
+    }
 }
 </script>
-<style>
+<style scoped>
     .footer {
         left: 0;
         position: fixed;

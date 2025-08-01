@@ -6,7 +6,7 @@
             <b-container v-if="isMobile" class="position-relative text-center" style="z-index: 2;">
                 <div class="d-flex flex-column align-items-center pt-0 pb-2" style="min-height: 80vh;">
                     <div class="avatar-border-wrapper mb-2">
-                        <img src="/images/avatars/avatar.jpg" alt="user-img" class="img-thumbnail rounded-circle avatar-lg" style="width: 100px; height: 100px; object-fit: cover; z-index: 3;" />
+                        <img :src="'/images/avatars/'+participant.avatar" alt="user-img" class="img-thumbnail rounded-circle avatar-lg" style="width: 100px; height: 100px; object-fit: cover; z-index: 3;" />
                     </div>
                     <div class="p-2">
                         <h4 class="fs-16 text-primary text-uppercase fw-bold mb-2"> {{ participant.firstname }} {{ participant.middlename }} {{ participant.lastname }}</h4>
@@ -38,7 +38,7 @@
                     </Link>
                 </li>
                 <li class="nav-item">
-                    <Link href="/sessions" class="nav-link">
+                    <Link href="/exhibits" class="nav-link">
                     <i class="fs-20 ri-file-text-fill"></i>
                     </Link>
                 </li>

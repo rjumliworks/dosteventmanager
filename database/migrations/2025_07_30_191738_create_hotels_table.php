@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('link');
             $table->string('email');
             $table->string('contact_no');
+            $table->string('avatar')->nullable();
             $table->boolean('is_active');
             $table->timestamps();
         });

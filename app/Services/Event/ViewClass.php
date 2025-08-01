@@ -11,7 +11,8 @@ class ViewClass
     public function lists($request){
         $data = EventResource::collection(
             Event::with('venues')
-            ->with('sessions.venue','sessions.detail','sessions.schedules','sessions.status','sessions.participants')
+            ->with('exhibitors.contact')
+            ->with('sessions.venue','sessions.detail','sessions.schedules','sessions.status','sessions.participants','sessions.managers.user.profile')
             ->with('detail.region:code,name,region','detail.province:code,name','detail.municipality:code,name','detail.barangay:code,name')
             ->when($request->keyword, function ($query,$keyword) {
                 $query->where('name', 'LIKE', "%{$keyword}%");
@@ -27,7 +28,9 @@ class ViewClass
         $key = $hashids->decode($id);
 
         $data = new EventResource(
-            Event::with('venues')->with('sessions.venue','sessions.detail','sessions.schedules')
+            Event::with('venues')
+             ->with('exhibitors.contact')
+            ->with('sessions.venue','sessions.detail','sessions.schedules','sessions.managers.user.profile')
             ->with('detail.region:code,name,region','detail.province:code,name','detail.municipality:code,name','detail.barangay:code,name')
             ->where('id',$key)->first()
         );

@@ -138,7 +138,7 @@
                     </Link>
                 </li>
                 <li class="nav-item">
-                    <Link href="/sessions" class="nav-link">
+                    <Link href="/exhibits" class="nav-link">
                         <i class="fs-20 ri-file-text-fill"></i>
                     </Link>
                 </li>

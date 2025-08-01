@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Participant;
 
 use Hashids\Hashids;
 use App\Models\EventSession;
+use App\Models\EventExhibitor;
+use App\Http\Resources\DefaultResource;
 use App\Http\Resources\SessionResource;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -15,7 +17,17 @@ class IndexController extends Controller
     }
 
     public function sessions(){
-        return inertia('Participant/Sessions');
+        return inertia('Participant/Sessions',[
+            'exhibitors' =>  DefaultResource::collection(
+                EventExhibitor::with('contact')
+                ->whereHas('event',function ($query) {
+                    $query->where('is_active',1);
+                })
+                ->get()
+            )
+        ]);
+
+        
     }
 
     public function schedules(){

@@ -26,6 +26,7 @@ class EventResource extends JsonResource
             'scope' => $this->registration_scope,
             'detail' => new DetailResource($this->detail),
             'venues' => $this->venues,
+            'exhibitors' => $this->exhibitors,
             'sessions' => SessionResource::collection($this->sessions),
             'is_active' => $this->is_active,
             'updated_at' => $this->updated_at,

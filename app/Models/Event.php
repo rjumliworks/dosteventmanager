@@ -44,6 +44,11 @@ class Event extends Model
         return $this->hasMany('App\Models\EventSession', 'event_id');
     }
 
+    public function exhibitors()
+    {
+        return $this->hasMany('App\Models\EventExhibitor', 'event_id');
+    }
+
     public function getEndAttribute($value)
     {
         return date('F d, Y', strtotime($value));

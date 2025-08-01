@@ -23,7 +23,6 @@ class UpdateClass
         ->where('participant_id', $participant_id)
         ->first();
 
-
         $data->attended_at = now();
         $data->status_id = 8;
         $data->save();

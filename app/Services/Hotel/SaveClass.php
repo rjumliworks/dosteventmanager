@@ -3,19 +3,28 @@
 namespace App\Services\Hotel;
 
 use App\Models\Hotel;
+use App\Models\HotelRates;
 
 class SaveClass
 {
     public function hotel($request){
-        $event = Hotel::create(array_merge($request->all(),[
+        $data = Hotel::create(array_merge($request->all(),[
             'code' => $this->generateCode()
         ]));
-        if($event){
-            $event->location()->create($request->except(['name','link','email','contact_no','is_active','option']));
+        if($data){
+            $data->location()->create($request->except(['name','link','email','contact_no','is_active','option']));
+            foreach($request->rates as $r){
+                $rate = new HotelRates;
+                $rate->name = $r['name'];
+                $rate->detail = $r['detail'];
+                $rate->rate = $r['rate'];
+                $rate->hotel_id = $data->id;
+                $rate->save();
+            }
         }
         return [
-            'data' => $event,
-            'message' => 'Event successfully created.', 
+            'data' => $data,
+            'message' => 'Hotel successfully created.', 
             'info' => "Great job! Your event is now active and ready for participants."
         ];
     }

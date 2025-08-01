@@ -12,7 +12,7 @@
                         </div>
                     </div>
                     <div class="flex-grow-1">
-                        <h5 class="mb-0 fw-semibold fs-14"><span class="text-danger">Schedules</span></h5>
+                        <h5 class="mb-0 fw-semibold fs-14"><span class="text-danger">Sessions</span></h5>
                         <p class="text-muted  fs-12">Stay updated and don’t miss out!</p>
                     </div>
                   
@@ -24,14 +24,16 @@
             <b-list-group flush>
                 <template v-for="(session,index) in sessions.data" v-bind:key="index">
                     <Link :href="`/schedule/${session.key}`">
-                        <b-list-group-item  class="d-flex justify-content-between align-items-center" style="cursor: pointer;">
-                            <div class="blog-box mt-2 mb-4 mb-xl-0">
+                        <b-list-group-item  class="d-flex justify-content-between align-items-center" :class="{ 'bg-success-subtle': hasParticipant(session.participants) }" style="cursor: pointer;" >
+                            <div class="blog-box mt-2 mb-4 mb-xl-0" >
                                 <div class="mt-0  fs-12">
                                     <h6 class="mb-1 fw-semibold text-primary">{{session.title}}</h6>
                                     <p class="text-muted">{{session.venue.name}}, {{ session.venue.establishment }}</p>
                                     <p class="mb-n3"><i class="bx bx-calendar me-1"></i>{{ dateRange(session.schedules) }}</p>
                                 </div>
                             </div>
+                            <span v-if="hasParticipant(session.participants)" class="badge bg-success fs-10" style="margin-bottom: -50px;">Registered</span>
+                            <span v-else class="badge bg-primary fs-10" style="margin-bottom: -50px;">Register Now</span>
                         </b-list-group-item>
                     </Link>
                 </template>
@@ -45,7 +47,7 @@
                     </Link>
                 </li>
                 <li class="nav-item">
-                    <Link href="/sessions" class="nav-link">
+                    <Link href="/exhibits" class="nav-link">
                         <i class="fs-20 ri-file-text-fill"></i>
                     </Link>
                 </li>
@@ -94,6 +96,9 @@ export default {
             } catch (error) {
                 console.error('Logout failed:', error)
             }
+        },
+        hasParticipant(participants) {
+            return participants.some(p => p.participant_id === this.$page.props.participant.data.id);
         },
         topFunction() {
             document.body.scrollTop = 0;

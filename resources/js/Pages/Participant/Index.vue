@@ -9,7 +9,7 @@
                     <div class="profile-wrapper ms-2 me-2">
                         <div class="row g-2">
                             <div class="col-auto">
-                                <div class="avatar-sm"><img src="/images/avatars/avatar.jpg" alt="user-img" class="img-thumbnail rounded-circle"></div>
+                                <div class="avatar-sm"><img :src="'/images/avatars/'+participant.avatar" alt="user-img" class="img-thumbnail rounded-circle"></div>
                             </div>
                             <div class="col">
                                 <div class="p-2">
@@ -24,11 +24,194 @@
                 </b-container>
             </section>
         </div>
-        <div class="row">
+        <section class="bg-light p-3" style="margin-top: 80px;">
             
-        </div>
-       
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card-body p-2">
+                        <div class="row align-items-center mt-3">
+                            <div class="col-6">
+                                <h6 class="text-muted text-uppercase fw-semibold text-truncate fs-14 mb-2">Total Points Garnered</h6>
+                                <div class="d-flex align-items-center">
+                                    <div class="flex-grow-1">
+                                        <div class="d-flex">
+                                            <div class="flex-shrink-0 avatar-xs">
+                                                <div class="avatar-title bg-primary-subtle text-primary rounded">
+                                                    <i class="ri-trophy-fill"></i>
+                                                </div>
+                                            </div>
+                                            <div class="flex-shrink-0 ms-3 mt-1">
+                                                <h4 class="fs- mb-0">0</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="text-center"><img src="/images/logo-sm.png" class="img-fluid avatar-md float-end" alt=""></div>
+                            </div>
+                        </div>
+                        <div class="mt-1 pt-2">
+                            <div class="progress progress-lg rounded-pill">
+                                <div class="progress-bar bg-primary rounded-0" role="progressbar" aria-valuenow="25" aria-valuemin="0"
+                                    style="width: 25%;"></div>
+                                <div class="progress-bar bg-info rounded-0" role="progressbar" aria-valuenow="18" aria-valuemin="0"
+                                    style="width: 18%;"></div>
+                                <div class="progress-bar bg-success rounded-0" role="progressbar" aria-valuenow="22" aria-valuemin="0"
+                                    style="width: 22%;"></div>
+                                <div class="progress-bar bg-warning rounded-0" role="progressbar" aria-valuenow="16" aria-valuemin="0"
+                                    style="width: 16%;"></div>
+                                <div class="progress-bar bg-danger rounded-0" role="progressbar" aria-valuenow="19" aria-valuemin="0"
+                                    style="width: 19%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div data-simplebar class="mt-4" style="max-height: 215px;"> 
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <div class="d-flex align-items-center">
+                            <div class="flex-grow-1">
+                                <div class="d-flex">
+                                    <div class="flex-shrink-0 avatar-xs">
+                                        <div class="avatar-title bg-primary-subtle text-primary rounded">
+                                            <i class="ri-walk-fill"></i>
+                                        </div>
+                                    </div>
+                                    <div class="flex-shrink-0 ms-3 mt-2">
+                                        <h6 class="fs-13 mb-0">Total Exhibits Visited</h6>
+                                        <!-- <small class="text-muted">2 min Ago</small> -->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex-shrink-0">
+                                <span class="text-danger">0 / 3</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="d-flex align-items-center">
+                            <div class="flex-grow-1">
+                                <div class="d-flex">
+                                    <div class="flex-shrink-0 avatar-xs">
+                                        <div class="avatar-title bg-primary-subtle text-primary rounded">
+                                            <i class=" ri-calendar-2-fill"></i>
+                                        </div>
+                                    </div>
+                                    <div class="flex-shrink-0 ms-3 mt-2">
+                                        <h6 class="fs-13 mb-0">Total Sessions Registered</h6>
+                                        <!-- <small class="text-muted">5 days Ago</small> -->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex-shrink-0">
+                                <span class="text-success">0 / 1</span>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- <li class="list-group-item">
+                        <div class="d-flex align-items-center">
+                            <div class="flex-grow-1">
+                                <div class="d-flex">
+                                    <div class="flex-shrink-0">
+                                        <img src="assets/images/users/avatar-2.jpg" alt="" class="avatar-xs rounded" />
+                                    </div>
+                                    <div class="flex-shrink-0 ms-2">
+                                        <h6 class="fs-14 mb-0">Emily Slater</h6>
+                                        <small class="text-muted">8 days Ago</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex-shrink-0">
+                                <span class="text-success">$354.90</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="d-flex align-items-center">
+                            <div class="flex-grow-1">
+                                <div class="d-flex">
+                                    <div class="flex-shrink-0 avatar-xs">
+                                        <div class="avatar-title bg-secondary-subtle text-secondary rounded">
+                                            <i class="ri-paypal-fill"></i>
+                                        </div>
+                                    </div>
+                                    <div class="flex-shrink-0 ms-2">
+                                        <h6 class="fs-14 mb-0">Paypal</h6>
+                                        <small class="text-muted">1 month Ago</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex-shrink-0">
+                                <span class="text-danger">-$12.22</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="d-flex align-items-center">
+                            <div class="flex-grow-1">
+                                <div class="d-flex">
+                                    <div class="flex-shrink-0">
+                                        <img src="assets/images/users/avatar-3.jpg" alt="" class="avatar-xs rounded" />
+                                    </div>
+                                    <div class="flex-shrink-0 ms-2">
+                                        <h6 class="fs-14 mb-0">Harvey Wells</h6>
+                                        <small class="text-muted">4 month Ago</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex-shrink-0">
+                                <span class="text-success">-$459.78</span>
+                            </div>
+                        </div>
+                    </li> -->
+                </ul>
+            </div>
+            <hr class="text-muted"/>
+             <video
+                class="landing-video"
+                src="/images/videos/teaser.mp4"
+                autoplay
+                muted
+                loop
+                playsinline
+                controls
+                >
+            </video>
 
+
+            <!-- <div class="card border">
+                <div class="card-body">
+                    <div class="d-flex flex-wrap">
+                        <div class="avatar-sm">
+                            <div class="avatar-title bg-light rounded-circle fs-20 text-primary">
+                                <i class="bx bxs-window-alt"></i>
+                            </div>
+                        </div>
+                        <div class="ms-3 mt-1">
+                            <p class="fw-semibold fs-13 text-truncated mb-0">Total Exhibits Visited</p>
+                            <h5 class="mb-0 text-muted fs-12">0 / 3</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card border mt-n3">
+                <div class="card-body">
+                    <div class="d-flex flex-wrap">
+                        <div class="avatar-sm">
+                            <div class="avatar-title bg-light rounded-circle fs-20 text-primary">
+                                <i class="bx bxs-window-alt"></i>
+                            </div>
+                        </div>
+                        <div class="ms-3 mt-1">
+                            <p class="fw-semibold fs-13 text-truncated mb-0">Total Sessions Registered</p>
+                            <h5 class="mb-0 text-muted fs-12">0 / 1</h5>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+        </section>
         <footer class="footer p-2" >
             <ul class="nav nav-pills nav-justified card-footer-tabs">
                 <li class="nav-item">
@@ -37,7 +220,7 @@
                     </Link>
                 </li>
                 <li class="nav-item">
-                    <Link href="/sessions" class="nav-link">
+                    <Link href="/exhibits" class="nav-link">
                         <i class="fs-20 ri-file-text-fill"></i>
                     </Link>
                 </li>
@@ -133,7 +316,7 @@ export default {
     },
 }
 </script>
-<style>
+<style scoped>
     .footer {
         left: 0;
         position: fixed;
@@ -152,5 +335,18 @@ export default {
         z-index: 0;
         overflow: hidden;
     }
+.landing-video {
+  width: 100%;
+  height: auto;
+  max-height: 80vh;
+  object-fit: cover;
+  border-radius: 8px;
+}
 
+@media (max-width: 576px) {
+  .landing-video {
+    max-height: 33vh;
+    border-radius: 0;
+  }
+}
 </style>

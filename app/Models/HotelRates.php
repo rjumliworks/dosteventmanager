@@ -27,4 +27,14 @@ class HotelRates extends Model
     {
         return date('M d, Y g:i a', strtotime($value));
     }
+
+    public function setRateAttribute($value)
+    {
+        $this->attributes['rate'] = trim(str_replace(',','',$value),'₱');
+    }
+
+    public function getRateAttribute($value)
+    {
+        return '₱'.number_format($value,2,'.',',');
+    }
 }
