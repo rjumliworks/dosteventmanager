@@ -31,6 +31,8 @@ Route::middleware(['2fa','auth','verified'])->group(function () {
     Route::resource('/sessions', App\Http\Controllers\SessionController::class);
     Route::resource('/exhibitors', App\Http\Controllers\ExhibitorController::class);
     Route::resource('/hotels', App\Http\Controllers\HotelController::class);
+
+    Route::get('/print', [App\Http\Controllers\PrintController::class, 'index']);
 });
 
 Route::get('/event/{key}', [App\Http\Controllers\EventController::class, 'view']);

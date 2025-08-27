@@ -19,26 +19,33 @@
                 <tr class="fs-10">
                     <th style="width: 4%;"></th>
                     <th>Name</th>
-                    <th style="width: 20%;" class="text-center">Establishment</th>
-                    <th style="width: 30%;" class="text-center">Address</th>
+                    <th style="width: 20%;" class="text-center">Affiliation</th>
+                    <th style="width: 20%;" class="text-center">Designation</th>
+                    <th style="width: 15%;" class="text-center">Attendance Record</th>
+                    <th style="width: 10%;" class="text-center">Status</th>
                     <th style="width: 7%;" class="text-center"></th>
                 </tr>
             </thead>
-            <tbody v-if="venues.length > 0">
-                <tr v-for="(list,index) in venues" v-bind:key="index" class="fs-12">
+            <tbody v-if="participants.length > 0">
+                <tr v-for="(list,index) in participants" v-bind:key="index" class="fs-12">
                     <td>{{ index + 1 }}</td>
-                    <td>{{list.name}}</td>
-                    <td class="text-center">{{list.establishment}}</td>
-                    <td class="text-center">{{list.address}}</td>
+                    <td>
+                        <h5 class="fs-12 mb-0 fw-semibold text-primary">{{list.participant.name}}</h5>
+                        <p class="fs-12 text-muted mb-0">{{list.participant.email }}</p>
+                    </td>
+                    <td class="text-center">{{list.participant.affiliation}}</td>
+                    <td class="text-center">{{list.participant.designation}}</td>
+                    <td class="text-center">{{list.attended_at}}</td>
+                    <td class="text-center">
+                        <span :class="'badge '+list.status.color+' '+list.status.type">{{list.status.name}}</span>
+                    </td>
                     <td class="text-end">
-                        <Link :href="`/sessions/${list.id}`">
-                            <b-button variant="soft-info" class="me-1" v-b-tooltip.hover title="View" size="sm">
-                                <i class="ri-eye-fill align-bottom"></i>
-                            </b-button>
-                        </Link>
-                        <b-button @click="openEdit(list)" variant="soft-warning" v-b-tooltip.hover title="Edit" size="sm">
-                            <i class="ri-pencil-fill align-bottom"></i>
+                        <b-button @click="openPrint(list.code)" variant="primary" class="me-1" v-b-tooltip.hover title="Print" size="sm">
+                            <i class="ri-printer-fill align-bottom"></i>
                         </b-button>
+                        <!-- <b-button @click="openEdit(list)" variant="soft-warning" v-b-tooltip.hover title="Edit" size="sm">
+                            <i class="ri-pencil-fill align-bottom"></i>
+                        </b-button> -->
                     </td>
                 </tr>
             </tbody>
@@ -55,13 +62,16 @@ import _ from 'lodash';
 import Pagination from "@/Shared/Components/Pagination.vue";
 export default {
     components: { Pagination },
-    props: ['id','venues','detail'],
+    props: ['participants','id'],
     methods: {
         openCreate(){
             this.$refs.create.show();
         },
         openEdit(list){
             this.$refs.create.edit(list);
+        },
+        openPrint(id){
+            window.open('/print?option=session&krdwrks='+id);
         }
     }
 }

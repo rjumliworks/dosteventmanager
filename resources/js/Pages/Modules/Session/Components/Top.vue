@@ -27,7 +27,7 @@
                         </b-col>
                         <b-col md="auto">
                             <div class="hstack gap-4 flex-wrap mt-2">
-                                <Link href="/events">
+                                <Link :href="'/events/'+selected.event_id">
                                     <div class="text-muted" @click="hide()">  
                                         <i class="ri-close-circle-fill fs-16"></i> Close
                                     </div>

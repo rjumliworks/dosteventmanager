@@ -15,6 +15,16 @@ class EventSessionParticipant extends Model
         return $this->belongsTo('App\Models\Participant', 'participant_id', 'id');
     }
 
+    public function session()
+    {
+        return $this->belongsTo('App\Models\EventSession', 'session_id', 'id');
+    }
+
+    public function status()
+    {
+        return $this->belongsTo('App\Models\Dropdown', 'status_id', 'id');
+    }
+
     public function getAttendedAtAttribute($value)
     {
         return date('F d, Y g:i a', strtotime($value));

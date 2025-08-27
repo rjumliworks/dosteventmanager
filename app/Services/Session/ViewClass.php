@@ -14,7 +14,7 @@ class ViewClass
         $key = $hashids->decode($id);
 
         $data = new SessionViewResource(
-            EventSession::with('venue','detail','schedules','participants','attendees.participant','status','activities.speaker','managers.user.profile')
+            EventSession::with('venue','detail','schedules','participants.participant.detail','attendees.participant','status','activities.speaker','managers.user.profile')
             ->with('event.detail.region:code,name,region','event.detail.province:code,name','event.detail.municipality:code,name','event.detail.barangay:code,name')
             ->where('id',$key[0])->first()
         );

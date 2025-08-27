@@ -141,6 +141,13 @@
     opacity: 0.2;
 }
 
+.bg-certificate {
+    background-image: url("@assets/images/bg-pattern.png");
+    background-color: transparent;
+    background-position: center;
+    background-size: cover;
+}
+
 .demo-carousel {
     position: relative;
     z-index: 1;

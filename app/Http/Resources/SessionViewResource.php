@@ -25,10 +25,14 @@ class SessionViewResource extends JsonResource
         $qrCodeImageString = $pngWriter->write($qrCode,$logo)->getString();
         $qr = 'data:image/png;base64,' . base64_encode($qrCodeImageString);
 
+        $hashids = new Hashids('krad',10);
+        $event_id = $hashids->encode($this->event->id);
+
         return [
             'qr' => $qr,
             'id' => $this->id,
             'key' => $key,
+            'event_id' => $event_id,
             'code' => $this->code,
             'title' => $this->title,
             'schedules' => $this->schedules,
@@ -36,7 +40,7 @@ class SessionViewResource extends JsonResource
             'venue' => $this->venue,
             'activities' => $this->activities,
             'managers' => $this->managers,
-            'participants' => $this->participants,
+            'participants' => ParticipantListResource::collection($this->participants),
             'attendees' => $this->attendees,
             'status' => $this->status,
             'event' => new EventViewResource($this->event),

@@ -20,6 +20,11 @@ class EventSession extends Model
        'status_id'
     ];
 
+    public function feedbackable()
+    {
+        return $this->morphOne('App\Models\CsfEntry', 'feedbackable');
+    }
+    
     public function status()
     {
         return $this->belongsTo('App\Models\Dropdown', 'status_id', 'id');
