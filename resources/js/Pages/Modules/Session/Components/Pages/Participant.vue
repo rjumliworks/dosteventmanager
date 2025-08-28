@@ -71,7 +71,8 @@ export default {
             this.$refs.create.edit(list);
         },
         openPrint(id){
-            window.open('/print?option=session&krdwrks='+id);
+            // window.open('/print?option=session&type=appearance&krdwrks='+id);
+            window.open('/print?option=session&type=appreciation&krdwrks='+id);
         }
     }
 }
