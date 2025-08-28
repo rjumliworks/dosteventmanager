@@ -77,7 +77,7 @@ class PrintController extends Controller
         ]; 
 
         $pdf = \PDF::loadView('certificates.appreciation',$array)->setPaper('a4', 'landscape');
-        // Mail::to($data->participant->email)->send(new CertificateMail($array, $pdf));
+        Mail::to($data->participant->email)->send(new CertificateMail($array, $pdf));
         return $pdf->stream('certificate.pdf');
     }
 
