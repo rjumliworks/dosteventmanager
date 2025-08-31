@@ -186,7 +186,7 @@
 // plan
 
 .plan-box {
-    max-width: 356px;
+    max-width: 100%;
     margin-left: auto;
     margin-right: auto;
 }
@@ -271,4 +271,28 @@
             }
         }
     }
+}
+
+// event_cover
+
+.event_cover{
+    background-color: transparent;
+    background-position: center;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+}
+
+.landing-wrapper {
+    background-image: url("@assets/images/event/landing_bg2.gif");
+    background-size: 100%;
+}
+
+.header-bg{
+    background-image: url("@assets/images/event/bg_cover.png");
+    background-color: transparent;
+    background-position: center;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
 }
