@@ -9,8 +9,14 @@
                     <i class="mdi mdi-menu"></i>
                 </button>
                 <div id="navbarSupportedContent" class="collapse navbar-collapse" is-nav="false">
-                    <ul class="navbar-nav mx-auto mt-2 mt-lg-0" id="navbar-example">
-                        <li class="nav-item"><a class="nav-link" href="/" target="_self">Back to Home</a></li>
+                     <ul class="navbar-nav ms-auto mt-2 mt-lg-0" id="navbar-example">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/" target="_self">
+                                <BButton>
+                                    Back to Home
+                                </BButton>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>

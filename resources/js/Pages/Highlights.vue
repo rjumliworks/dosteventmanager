@@ -9,68 +9,112 @@
                     <i class="mdi mdi-menu"></i>
                 </button>
                 <div id="navbarSupportedContent" class="collapse navbar-collapse" is-nav="false">
-                    <ul class="navbar-nav mx-auto mt-2 mt-lg-0" id="navbar-example">
-                        <li class="nav-item"><a class="nav-link" href="/" target="_self">Back to Home</a></li>
+                    <ul class="navbar-nav ms-auto mt-2 mt-lg-0" id="navbar-example">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/" target="_self">
+                                <BButton>
+                                    Back to Home
+                                </BButton>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
         </nav>
-        <section class="section">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-8">
-                        <div class="text-center mb-5">
-                              <h3 class="mb-1 fs-18 fw-semibold">Choose the Hotel that's right for you</h3>
-                            <p class="text-muted fs-14 mb-4">Simple pricing. View hotels on Google Maps from the venue location.</p>
-                        </div>
-                    </div>
-                </div>
+    
 
-                <div class="col-lg-12" v-for="(list,index) in hotels" v-bind:key="index">
-                <!-- <div class="col-sm-7 col-lg-12 order-1 order-lg-2 col-10 order-1 ms-auto">
-                    <div><img src="/images/banner/handa.jpg" alt="" class="img-fluid"></div>
-                </div> -->
-                   <div class="card plan-box mb-0">
-                            <div class="card-body p-2 m-2">
-                                <div class="d-flex align-items-center">
-                                    <div class="flex-grow-1">
-                                        <h5 class="mb-1 fs-12 fw-semibold">{{list.name}}</h5>
-                                        <p class="text-muted fs-12 mb-0">{{ list.contact_no }}</p>
-                                         <p class="text-muted fs-12 mb-0">{{ list.location.address }}</p>
-                                    </div>
-                                    <div class="avatar-sm">
-                                        <div class="avatar-title bg-light rounded-circle text-primary">
-                                             <img :src="'/images/avatars/'+list.avatar" alt="user-img" class="img-thumbnail rounded-circle avatar-sm"/>
-                                        </div>
-                                    </div>
-                                </div>
-                                <hr class="text-muted"/>
-                                <div>
-                                    <!-- <ul class="list-unstyled text-muted vstack gap-3 ff-secondary">
-                                        <li v-for="(a,index) in list.rates" v-bind:key="index">
-                                            <div class="d-flex">
-                                                <div class="flex-shrink-0 text-success me-1"><i
-                                                        class="ri-checkbox-circle-fill fs-15 align-middle"></i></div>
-                                                <div class="flex-grow-1">{{ a.rate }} </div>
-                                            </div>
-                                        </li>
-                                       
-                                    </ul> -->
-                                    <div class="mt-4">
-                                        <a class="btn btn-soft-success w-100" :href="list.link"
-                                            target="_self">
-                                            <img :src="'/images/avatars/'+list.avatar" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="mt-4">
-                                        <a class="btn btn-soft-success w-100" :href="list"
-                                            target="_self">View Hotel </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                </div>
+          <section class="section" id="highlights">
+        <div class="container">
+           <div class="text-center mb-5">
+                <h3 class="mb-1 fs-18 fw-semibold">Explore Event Highlights</h3>
+                <p class="text-muted fs-14 mb-4">Highlight for this event</p>
             </div>
+
+            <div class="scrolling-wrapper col-lg-12">
+
+            <b-card
+                title="Rapid Earthquake Damage Assessment System"
+                data-aos="fade-up-left"
+                data-aos-duration="5000"
+                data-aos-delay="500"
+                class="card-item text-center"
+            >
+                <img src="@assets/images/event/highlight2.png" class="img-fluid rounded shadow" style="height: 400px;" >
+                <p class="lead pt-3 text-justify text-muted fs-14 lh-base">
+                <b> REDAS (Rapid Earthquake Damage Assessment System) </b>is a software 
+                    developed by PHIVOLCS in 2002 under a DOST GIA Project. The software can simulate earthquake
+                    hazards such as ground shaking, liquefaction, landslides, and tsunami. The software can also
+                    compute earthquake impacts in terms of physical damage, casualties, and economic loss. Although
+                    REDAS was originally conceived for use in earthquake hazard and impact assessment, other multi-hazard
+                    maps including hydrometeorological hazards such as floods, storm surge and rain-induced landslides 
+                    are already incorporated into the software and can likewise be displayed by users. Participants 
+                    are also taught how to develop their own exposure database using android application. REDAS was
+                    developed by PHIVOLCS and is now being shared to local government units as a tool for emergency 
+                    preparedness, contingency planning and more importantly for mainstreaming disaster risk reduction
+                    into the local development planning process.
+                </p>
+                <p class="pt-2">
+                For more information visit
+                <a
+                    href="https://www.phivolcs.dost.gov.ph/index.php/redas"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                ><u>DOST PHIVOLCS Website</u></a>
+                </p>
+            </b-card>
+
+            <b-card
+                title="Storm Surge"
+                data-aos="flip-right"
+                data-aos-duration="5000"
+                data-aos-delay="100"
+                class="card-item text-center"
+            >
+                <img src="@assets/images/event/storm_surge1.png" class="img-fluid rounded shadow m-3" style="height: 400px;">
+                 <img src="@assets/images/event/storm_surge2.png" class="img-fluid rounded shadow m-3" style="height: 400px;">
+                <p class="lead pt-3 text-justify text-muted fs-14 lh-base">
+                    What is <b>Storm Surge?
+                    (Also known as “Daluyong ng Bagyo”)</b> is the abnormal rise in sea level that occurs
+                    during tropical cyclones or “bagyo”. It is caused by strong winds and low atmospheric
+                    pressures produced by tropical cyclones. As the tropical cyclone approaches the coast,
+                    strong winds push the ocean water over the low-lying coastal areas, which can lead to 
+                    flooding. This makes storm surges very dangerous.
+                </p>
+
+                <p class="pt-2">
+                For more information visit
+                <a
+                    href="https://www.pagasa.dost.gov.ph/information/storm-surge"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                ><u>DOST PAGASA Website</u></a>
+                </p>
+
+            </b-card>
+
+            <b-card
+                title="GeoRisk Philippines"
+                data-aos="flip-left"
+                data-aos-duration="5000"
+                data-aos-delay="500"
+                class="card-item text-center"
+            >
+                <img src="@assets/images/event/georisk1.png" class="img-fluid rounded shadow m-3" style="height: 400px;">
+                <img src="@assets/images/event/georisk2.png" class="img-fluid rounded shadow m-3" style="height: 370px;">
+               
+                <p class="pt-2">
+                For more information visit
+                <a
+                    href="https://georisk.gov.ph/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                ><u>Georisk PH Website</u></a>
+                </p>
+            </b-card>
+
+      
+            </div>
+        </div>
         </section>
 </div>
 </template>

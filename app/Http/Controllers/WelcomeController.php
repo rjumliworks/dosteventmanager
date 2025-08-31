@@ -32,7 +32,7 @@ class WelcomeController extends Controller
     }
 
     public function highlight_index(){
-        return inertia('Hotels',[
+        return inertia('Highlights',[
             'hotels' => Hotel::with('location','rates')->get()
         ]);
     }
