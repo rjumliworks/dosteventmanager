@@ -40,7 +40,10 @@
                         <span :class="'badge '+list.status.color+' '+list.status.type">{{list.status.name}}</span>
                     </td>
                     <td class="text-end">
-                        <b-button @click="openPrint(list.code)" variant="primary" class="me-1" v-b-tooltip.hover title="Print" size="sm">
+                        <b-button @click="openPrint1(list.code)" variant="primary" class="me-1" v-b-tooltip.hover title="Print Appreciation" size="sm">
+                            <i class="ri-printer-fill align-bottom"></i>
+                        </b-button>
+                        <b-button @click="openPrint2(list.code)" variant="primary" class="me-1" v-b-tooltip.hover title="Print Appearance" size="sm">
                             <i class="ri-printer-fill align-bottom"></i>
                         </b-button>
                         <!-- <b-button @click="openEdit(list)" variant="soft-warning" v-b-tooltip.hover title="Edit" size="sm">
@@ -70,9 +73,13 @@ export default {
         openEdit(list){
             this.$refs.create.edit(list);
         },
-        openPrint(id){
+        openPrint1(id){
             // window.open('/print?option=session&type=appearance&krdwrks='+id);
             window.open('/print?option=session&type=appreciation&krdwrks='+id);
+        },
+        openPrint2(id){
+            // window.open('/print?option=session&type=appearance&krdwrks='+id);
+            window.open('/print?option=session&type=appearance&krdwrks='+id);
         }
     }
 }

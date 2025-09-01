@@ -1,6 +1,10 @@
 {
   "node_modules/canvg/lib/index.es.js": {
+<<<<<<< HEAD
     "file": "assets/index.es-BQyyuezy.js",
+=======
+    "file": "assets/index.es-BJ1g3UeM.js",
+>>>>>>> 883291c805e49fa9f272324e04a0dbec8710c1a3
     "name": "index.es",
     "src": "node_modules/canvg/lib/index.es.js",
     "isDynamicEntry": true,
@@ -232,7 +236,11 @@
     "src": "public/images/event/bg_cover.png"
   },
   "public/images/event/event_title.png": {
+<<<<<<< HEAD
     "file": "assets/event_title-1V3NzgLj.png",
+=======
+    "file": "assets/event_title-CPPshPMI.png",
+>>>>>>> 883291c805e49fa9f272324e04a0dbec8710c1a3
     "src": "public/images/event/event_title.png"
   },
   "public/images/event/event_title2.png": {
@@ -259,6 +267,25 @@
     "file": "assets/logos-B2f0noRC.png",
     "src": "public/images/event/logos.png"
   },
+<<<<<<< HEAD
+=======
+  "public/images/event/sched1.png": {
+    "file": "assets/sched1-CjA18tzk.png",
+    "src": "public/images/event/sched1.png"
+  },
+  "public/images/event/sched2.png": {
+    "file": "assets/sched2-CTTb4LOL.png",
+    "src": "public/images/event/sched2.png"
+  },
+  "public/images/event/sched3.png": {
+    "file": "assets/sched3-BWnL3ypQ.png",
+    "src": "public/images/event/sched3.png"
+  },
+  "public/images/event/sched4.png": {
+    "file": "assets/sched4-SclC3Q7o.png",
+    "src": "public/images/event/sched4.png"
+  },
+>>>>>>> 883291c805e49fa9f272324e04a0dbec8710c1a3
   "public/images/event/storm_surge1.png": {
     "file": "assets/storm_surge1-RfOxt3He.png",
     "src": "public/images/event/storm_surge1.png"
@@ -304,7 +331,11 @@
     "src": "public/images/sidebar/img-4.jpg"
   },
   "resources/js/app.js": {
+<<<<<<< HEAD
     "file": "assets/app-DMJW8X8J.js",
+=======
+    "file": "assets/app-DJjrR5nL.js",
+>>>>>>> 883291c805e49fa9f272324e04a0dbec8710c1a3
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
@@ -323,7 +354,11 @@
       "node_modules/canvg/lib/index.es.js"
     ],
     "css": [
+<<<<<<< HEAD
       "assets/app-DLYsSi-6.css"
+=======
+      "assets/app-BmY0zBrs.css"
+>>>>>>> 883291c805e49fa9f272324e04a0dbec8710c1a3
     ],
     "assets": [
       "assets/logo-sm-BMbbSDmV.png",
@@ -334,7 +369,15 @@
       "assets/georisk2-SYsV0Hky.png",
       "assets/event_title2-MrARfqYu.png",
       "assets/logos-B2f0noRC.png",
+<<<<<<< HEAD
       "assets/event_title-1V3NzgLj.png",
+=======
+      "assets/event_title-CPPshPMI.png",
+      "assets/sched1-CjA18tzk.png",
+      "assets/sched2-CTTb4LOL.png",
+      "assets/sched3-BWnL3ypQ.png",
+      "assets/sched4-SclC3Q7o.png",
+>>>>>>> 883291c805e49fa9f272324e04a0dbec8710c1a3
       "assets/zc_bg-C-Ie339y.png",
       "assets/logo-dark-COS7D9iz.png",
       "assets/logo-light-9TqfRNmK.png",
