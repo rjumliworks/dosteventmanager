@@ -1,6 +1,6 @@
 {
   "node_modules/canvg/lib/index.es.js": {
-    "file": "assets/index.es-CYbZlwIc.js",
+    "file": "assets/index.es-BJ1g3UeM.js",
     "name": "index.es",
     "src": "node_modules/canvg/lib/index.es.js",
     "isDynamicEntry": true,
@@ -227,6 +227,66 @@
     "file": "assets/cover-pattern-CzcjCYXt.png",
     "src": "public/images/cover-pattern.png"
   },
+  "public/images/event/bg_cover.png": {
+    "file": "assets/bg_cover-qrTvN11r.png",
+    "src": "public/images/event/bg_cover.png"
+  },
+  "public/images/event/event_title.png": {
+    "file": "assets/event_title-CPPshPMI.png",
+    "src": "public/images/event/event_title.png"
+  },
+  "public/images/event/event_title2.png": {
+    "file": "assets/event_title2-MrARfqYu.png",
+    "src": "public/images/event/event_title2.png"
+  },
+  "public/images/event/georisk1.png": {
+    "file": "assets/georisk1-Biyw4OG1.png",
+    "src": "public/images/event/georisk1.png"
+  },
+  "public/images/event/georisk2.png": {
+    "file": "assets/georisk2-SYsV0Hky.png",
+    "src": "public/images/event/georisk2.png"
+  },
+  "public/images/event/highlight2.png": {
+    "file": "assets/highlight2-BnGyz5ST.png",
+    "src": "public/images/event/highlight2.png"
+  },
+  "public/images/event/landing_bg2.gif": {
+    "file": "assets/landing_bg2-B8JnCAKg.gif",
+    "src": "public/images/event/landing_bg2.gif"
+  },
+  "public/images/event/logos.png": {
+    "file": "assets/logos-B2f0noRC.png",
+    "src": "public/images/event/logos.png"
+  },
+  "public/images/event/sched1.png": {
+    "file": "assets/sched1-CjA18tzk.png",
+    "src": "public/images/event/sched1.png"
+  },
+  "public/images/event/sched2.png": {
+    "file": "assets/sched2-CTTb4LOL.png",
+    "src": "public/images/event/sched2.png"
+  },
+  "public/images/event/sched3.png": {
+    "file": "assets/sched3-BWnL3ypQ.png",
+    "src": "public/images/event/sched3.png"
+  },
+  "public/images/event/sched4.png": {
+    "file": "assets/sched4-SclC3Q7o.png",
+    "src": "public/images/event/sched4.png"
+  },
+  "public/images/event/storm_surge1.png": {
+    "file": "assets/storm_surge1-RfOxt3He.png",
+    "src": "public/images/event/storm_surge1.png"
+  },
+  "public/images/event/storm_surge2.png": {
+    "file": "assets/storm_surge2-CwZDO5Gh.png",
+    "src": "public/images/event/storm_surge2.png"
+  },
+  "public/images/event/zc_bg.png": {
+    "file": "assets/zc_bg-C-Ie339y.png",
+    "src": "public/images/event/zc_bg.png"
+  },
   "public/images/logo-dark.png": {
     "file": "assets/logo-dark-COS7D9iz.png",
     "src": "public/images/logo-dark.png"
@@ -236,6 +296,10 @@
     "src": "public/images/logo-light.png"
   },
   "public/images/logo-sm.png": {
+    "file": "assets/logo-sm-BMbbSDmV.png",
+    "src": "public/images/logo-sm.png"
+  },
+  "public/images/logos/logo-sm.png": {
     "file": "assets/logo-sm-BMbbSDmV.png",
     "src": "public/images/logo-sm.png"
   },
@@ -256,7 +320,7 @@
     "src": "public/images/sidebar/img-4.jpg"
   },
   "resources/js/app.js": {
-    "file": "assets/app-D-4jca6d.js",
+    "file": "assets/app-DJjrR5nL.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
@@ -275,10 +339,23 @@
       "node_modules/canvg/lib/index.es.js"
     ],
     "css": [
-      "assets/app-B_7sloMZ.css"
+      "assets/app-BmY0zBrs.css"
     ],
     "assets": [
       "assets/logo-sm-BMbbSDmV.png",
+      "assets/highlight2-BnGyz5ST.png",
+      "assets/storm_surge1-RfOxt3He.png",
+      "assets/storm_surge2-CwZDO5Gh.png",
+      "assets/georisk1-Biyw4OG1.png",
+      "assets/georisk2-SYsV0Hky.png",
+      "assets/event_title2-MrARfqYu.png",
+      "assets/logos-B2f0noRC.png",
+      "assets/event_title-CPPshPMI.png",
+      "assets/sched1-CjA18tzk.png",
+      "assets/sched2-CTTb4LOL.png",
+      "assets/sched3-BWnL3ypQ.png",
+      "assets/sched4-SclC3Q7o.png",
+      "assets/zc_bg-C-Ie339y.png",
       "assets/logo-dark-COS7D9iz.png",
       "assets/logo-light-9TqfRNmK.png",
       "assets/laboratory-DGebyxyk.png",
@@ -299,6 +376,8 @@
       "assets/hkgrotesk-bold-CNnIfM9m.woff",
       "assets/cover-pattern-CzcjCYXt.png",
       "assets/bg-pattern-C6uw14rj.png",
+      "assets/landing_bg2-B8JnCAKg.gif",
+      "assets/bg_cover-qrTvN11r.png",
       "assets/materialdesignicons-webfont-Cd51xsCA.eot",
       "assets/materialdesignicons-webfont-DsMmahHu.woff2",
       "assets/materialdesignicons-webfont-BqTIB9TP.woff",
