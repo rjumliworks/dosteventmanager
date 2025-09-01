@@ -10,12 +10,24 @@
                 </button>
                 <div id="navbarSupportedContent" class="collapse navbar-collapse" is-nav="false">
                     <ul class="navbar-nav mx-auto mt-2 mt-lg-0" id="navbar-example">
-                        <li class="nav-item"><a class="nav-link active" href="#home" target="_self">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#home" target="_self">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="#schedules" target="_self">Schedules</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/highlights" target="_self">Highlights</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/hotels" target="_self">Hotels</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/highlights" target="_blank">Highlights</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/hotels" target="_blank">Hotels</a></li>
                         <li class="nav-item"><a class="nav-link" href="#about" target="_self">About Us</a></li>
                         <li class="nav-item"><a class="nav-link" href="#contact" target="_self">Contact</a></li>
+                        <li class="nav-item">
+                            <div>
+                                <b-dropdown variant="light" id="dropdown-header" text="Downloadables" class="m-2">
+                                    <b-dropdown-item-button aria-describedby="dropdown-header-label">
+                                    Media Brief
+                                    </b-dropdown-item-button>
+                                    <b-dropdown-item-button aria-describedby="dropdown-header-label">
+                                    Programme
+                                    </b-dropdown-item-button>
+                                </b-dropdown>
+                            </div>
+                        </li>
                     </ul>
                     <div class="">
                         <!-- <a href="/auth/signin-basic" class="btn btn-link fw-medium text-decoration-none text-dark">Sign in</a> -->
@@ -99,7 +111,7 @@
 
 
 
-         <section class="section" id="schedules">
+<!-- <section class="section" id="schedules">
         <div class="container"
             data-aos="flip-left"
             data-aos-duration="5000"
@@ -118,7 +130,6 @@
                 <div class="position-relative home-img text-center mt-5 mt-lg-0">
                 <div class="live-preview">
                     <div id="scheduleCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
-                    <!-- Indicators -->
                     <div class="carousel-indicators">
                         <button type="button" data-bs-target="#scheduleCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                         <button type="button" data-bs-target="#scheduleCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -126,7 +137,6 @@
                         <button type="button" data-bs-target="#scheduleCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
                     </div>
 
-                    <!-- Slides -->
                     <div class="carousel-inner">
                         <div class="carousel-item active">
                         <img class="d-block w-100" src="@assets/images/event/sched1.png" loading="eager" alt="Schedule 1">
@@ -142,7 +152,6 @@
                         </div>
                     </div>
 
-                    <!-- Controls -->
                     <button class="carousel-control-prev" type="button" data-bs-target="#scheduleCarousel" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Previous</span>
@@ -157,8 +166,8 @@
             </div>
             </div>
         </div>
-        </section>
-
+        </section> -->
+<!-- 
         <section class="section" id="process">
             <div class="container">
                 <div class="row justify-content-center">
@@ -168,46 +177,18 @@
                 </div>
                 
             </div>
-        </section>
+        </section> -->
         
-        <section class="py-5 bg-primary position-relative">
-            <div class="bg-overlay bg-overlay-pattern opacity-50"></div>
-            <b-container class="hidemobile">
-                <b-row class="align-items-center gy-4">
-                    <b-col sm>
-                        <div>
-                            <h4 class="text-white mb-0 fw-semibold">Be one of our Participants!</h4>
-                        </div>
-                    </b-col>
-                    <b-col sm="auto">
-                        <div>
-                            <a href="/registration-form">
-                            <button  class="btn bg-gradient btn-danger">REGISTER NOW</button>
-                            </a>
-                        </div>
-                    </b-col>
-                </b-row>
-            </b-container>
-            <b-container class="showmobile"> 
-                <b-row class="align-items-center gy-3">
-                <div class="d-grid mt-n3 mb-n5" >
-                    <a href="/registration-form">
-                    <BButton  variant="warning" class="submit-btn w-80 h-100 fw-semibold" type="submit">REGISTER NOW</BButton>
-                    </a>
-                </div></b-row>
-            </b-container>
-        </section>
-
         <section class="section">
             <div class="container">
-                <div class="row justify-content-center">
+                <!-- <div class="row justify-content-center">
                     <div class="col-lg-8">
                         <div class="text-center mb-5">
                             <h3 class="mb-1 fs-18 fw-semibold">Events About</h3>
                             <p class="text-muted fs-14 mb-4">Read and Enjoy!</p>
                         </div>
                     </div>
-                </div>
+                </div> -->
              
 
                 <div class="row align-items-center mt-5 gy-4">
@@ -275,6 +256,33 @@
         
         </section>
 
+             <section class="py-5 bg-primary position-relative">
+            <div class="bg-overlay bg-overlay-pattern opacity-50"></div>
+            <b-container class="hidemobile">
+                <b-row class="align-items-center gy-4">
+                    <b-col sm>
+                        <div>
+                            <h4 class="text-white mb-0 fw-semibold">Be one of our Participants!</h4>
+                        </div>
+                    </b-col>
+                    <b-col sm="auto">
+                        <div>
+                            <a href="/registration-form">
+                            <button  class="btn bg-gradient btn-danger">REGISTER NOW</button>
+                            </a>
+                        </div>
+                    </b-col>
+                </b-row>
+            </b-container>
+            <b-container class="showmobile"> 
+                <b-row class="align-items-center gy-3">
+                <div class="d-grid mt-n3 mb-n5" >
+                    <a href="/registration-form">
+                    <BButton  variant="warning" class="submit-btn w-80 h-100 fw-semibold" type="submit">REGISTER NOW</BButton>
+                    </a>
+                </div></b-row>
+            </b-container>
+        </section>
 
          <section id="venue" class="py-5 position-relative section zc-bg" 
 
