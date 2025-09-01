@@ -40,7 +40,7 @@
                             >Join us!</span>
                         </h1>
                         <div style="margin-left:-20px" class="mb-3 responsive-title-img">
-                            <img src="@assets/images/event/event_title.png" alt="" class="img-fluid">
+                            <img src="@assets/images/event/event_title.png" alt="" class="img-fluid" style="width: 100%;">
                             </div>
 
                         <BRow>
