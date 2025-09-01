@@ -23,4 +23,22 @@ class WelcomeController extends Controller
             'hotels' => Hotel::with('location','rates')->get()
         ]);
     }
+
+    
+    public function hotel_index(){
+        return inertia('Hotels',[
+            'hotels' => Hotel::with('location','rates')->get()
+        ]);
+    }
+
+    public function highlight_index(){
+        return inertia('Highlights',[
+            'hotels' => Hotel::with('location','rates')->get()
+        ]);
+    }
+
+    public function registration_index(){
+        return inertia('Registration');
+    }
+
 }

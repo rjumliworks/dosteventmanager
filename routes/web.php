@@ -37,5 +37,8 @@ Route::middleware(['2fa','auth','verified'])->group(function () {
 
 Route::get('/event/{key}', [App\Http\Controllers\EventController::class, 'view']);
 Route::get('/session/{key}', [App\Http\Controllers\SessionController::class, 'view']);
+Route::get('/hotels', [App\Http\Controllers\WelcomeController::class, 'hotel_index']);
+Route::get('/highlights', [App\Http\Controllers\WelcomeController::class, 'highlight_index']);
+Route::get('/registration-form', [App\Http\Controllers\WelcomeController::class, 'registration_index']);
 
 require __DIR__.'/auth.php';
