@@ -35,18 +35,19 @@ class DatabaseSeeder extends Seeder
         //     'created_at' => now(),
         //     'updated_at' => now(),
         // ]);
-        $this->call(LocationRegionsTableSeeder::class);
-        $this->call(LocationProvincesTableSeeder::class);
-        $this->call(LocationMunicipalitiesTableSeeder::class);
-        $this->call(LocationBarangaysTableSeeder::class);
-        $this->call(DropdownsTableSeeder::class);
-        $this->call(UsersTableSeeder::class);
-        $this->call(UserProfilesTableSeeder::class);
-        $this->call(EventsTableSeeder::class);
-        $this->call(EventDetailsTableSeeder::class);
-        $this->call(EventVenuesTableSeeder::class);
-        $this->call(HotelsTableSeeder::class);
-        $this->call(HotelLocationsTableSeeder::class);
-        $this->call(HotelRatesTableSeeder::class);
+        // $this->call(LocationRegionsTableSeeder::class);
+        // $this->call(LocationProvincesTableSeeder::class);
+        // $this->call(LocationMunicipalitiesTableSeeder::class);
+        // $this->call(LocationBarangaysTableSeeder::class);
+        // $this->call(DropdownsTableSeeder::class);
+        // $this->call(UsersTableSeeder::class);
+        // $this->call(UserProfilesTableSeeder::class);
+        // $this->call(EventsTableSeeder::class);
+        // $this->call(EventDetailsTableSeeder::class);
+        // $this->call(EventVenuesTableSeeder::class);
+        // $this->call(HotelsTableSeeder::class);
+        // $this->call(HotelLocationsTableSeeder::class);
+        // $this->call(HotelRatesTableSeeder::class);
+        $this->call(CsfQuestionsTableSeeder::class);
     }
 }

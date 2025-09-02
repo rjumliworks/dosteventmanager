@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Hashids\Hashids;
 use Illuminate\Http\Request;
+use App\Models\EventSession;
 use App\Models\EventSessionParticipant;
 use Endroid\QrCode\QrCode;
 use Endroid\QrCode\Writer\PngWriter;
@@ -27,7 +28,46 @@ class PrintController extends Controller
                     break;
                 }
             break;
+            case 'attendance':
+                return $this->attendance($request);
+            break;
         }
+    }
+
+    public function attendance($request){
+        $session = $request->krdwrks;
+        $hashids = new Hashids('krad',10);
+        $id = $hashids->decode($session);
+
+        $data = EventSession::with('attendees','venue','schedules','managers')->where('id',$id)->first();
+        $url = $_SERVER['HTTP_HOST'].'/verification/'.$session;
+        $qrCode = new QrCode($url);
+        $qrCode->setSize(300);
+        $pngWriter = new PngWriter();
+        $qrCodeImageString = $pngWriter->write($qrCode)->getString();
+        $base64Image = 'data:image/png;base64,' . base64_encode($qrCodeImageString);
+        
+        $array = [
+            'qrCodeImage' => $base64Image,
+            'date' => $this->dateRangeText($data->schedules),
+            'head' => $data->managers->firstWhere('type', 'Head'),
+            'data' => $data
+        ]; 
+
+        $pdf = \PDF::loadView('prints.attendance',$array)->setPaper('a4', 'landscape');
+        $pdf->output();
+        $dompdf = $pdf->getDomPDF();
+        $canvas = $dompdf->getCanvas();
+        $canvas->page_script(function ($pageNumber, $pageCount, $canvas, $fontMetrics) {
+            $text = "PAGE $pageNumber OF $pageCount";
+            $font = $fontMetrics->get_font("Helvetica", "normal");
+            $size = 7;
+            $width = $fontMetrics->get_text_width($text, $font, $size);
+            $x = 63; // left margin
+            $y = $canvas->get_height() - 47; // 20pt from bottom
+            $canvas->text($x, $y, $text, $font, $size);
+        });
+        return $pdf->stream('attendance.pdf');
     }
 
     public function appearance($request){
@@ -104,5 +144,29 @@ class PrintController extends Controller
         $pdf = \PDF::loadView('certificates.participation',$array)->setPaper('a4', 'landscape');
         return $pdf->stream('certificate.pdf');
     }
+
+    private  function dateRangeText($schedules) {
+        $start = $schedules[0]['date'];
+        $end   = $schedules[0]['date'];
+
+        foreach ($schedules as $s) {
+            if ($s['date'] < $start) {
+                $start = $s['date'];
+            }
+            if ($s['date'] > $end) {
+                $end = $s['date'];
+            }
+        }
+
+        // Format date
+        $formatDate = function($dateStr) {
+            return date("F j, Y", strtotime($dateStr));
+        };
+
+        return $start === $end
+            ? $formatDate($start)
+            : $formatDate($start) . " - " . $formatDate($end);
+    }
+
 
 }

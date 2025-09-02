@@ -9,34 +9,45 @@
                 <span class="fw-semibold fs-14" data-key="t-dashboards">Dashboard</span>
                 </Link>
             </li>
-            <li class="nav-item">
-                <Link href="/events" class="nav-link menu-link"
-                :class="{'active': $page.component.startsWith('Modules/Event') }">
-                <i class="ri-calendar-todo-fill"></i>
-                <span class="fw-semibold fs-14" data-key="t-dashboards">Events</span>
-                </Link>
-            </li>
-            <li class="nav-item">
-                <Link href="/participants" class="nav-link menu-link"
-                :class="{'active': $page.component.startsWith('Modules/Participants') }">
-                <i class="ri-group-2-fill"></i>
-                <span class="fw-semibold fs-14" data-key="t-dashboards">Participants</span>
-                </Link>
-            </li>
-            <li class="nav-item">
-                <Link href="/hotels" class="nav-link menu-link"
-                :class="{'active': $page.component.startsWith('Modules/Hotel') }">
-                <i class="ri-building-fill"></i>
-                <span class="fw-semibold fs-14" data-key="t-dashboards">Hotels</span>
-                </Link>
-            </li>
-            <li class="nav-item">
-                <Link href="/users" class="nav-link menu-link"
-                :class="{'active': $page.component.startsWith('Modules/User') }">
-                <i class="ri-team-fill"></i>
-                <span class="fw-semibold fs-14" data-key="t-dashboards">Users</span>
-                </Link>
-            </li>
+            <template v-if="$page.props.user.data.role == 'Session Manager'">
+                <li class="nav-item">
+                    <Link href="/sessions" class="nav-link menu-link"
+                    :class="{'active': $page.component.startsWith('Modules/Session') }">
+                    <i class="ri-calendar-todo-fill"></i>
+                    <span class="fw-semibold fs-14" data-key="t-dashboards">Sessions</span>
+                    </Link>
+                </li>
+            </template>
+            <template v-if="$page.props.user.data.role == 'Administrator'">
+                <li class="nav-item">
+                    <Link href="/events" class="nav-link menu-link"
+                    :class="{'active': $page.component.startsWith('Modules/Event') }">
+                    <i class="ri-calendar-todo-fill"></i>
+                    <span class="fw-semibold fs-14" data-key="t-dashboards">Events</span>
+                    </Link>
+                </li>
+                <li class="nav-item">
+                    <Link href="/participants" class="nav-link menu-link"
+                    :class="{'active': $page.component.startsWith('Modules/Participants') }">
+                    <i class="ri-group-2-fill"></i>
+                    <span class="fw-semibold fs-14" data-key="t-dashboards">Participants</span>
+                    </Link>
+                </li>
+                <li class="nav-item">
+                    <Link href="/hotels" class="nav-link menu-link"
+                    :class="{'active': $page.component.startsWith('Modules/Hotel') }">
+                    <i class="ri-building-fill"></i>
+                    <span class="fw-semibold fs-14" data-key="t-dashboards">Hotels</span>
+                    </Link>
+                </li>
+                <li class="nav-item">
+                    <Link href="/users" class="nav-link menu-link"
+                    :class="{'active': $page.component.startsWith('Modules/User') }">
+                    <i class="ri-team-fill"></i>
+                    <span class="fw-semibold fs-14" data-key="t-dashboards">Users</span>
+                    </Link>
+                </li>
+            </template>
         </ul>
         
     </BContainer>

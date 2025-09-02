@@ -181,9 +181,7 @@
                     </b-col>
                     <b-col sm="auto">
                         <div>
-                            <a href="/registration-form">
-                            <button  class="btn bg-gradient btn-danger">REGISTER NOW</button>
-                            </a>
+                            <button type="button" @click="openRegister()" class="btn bg-gradient btn-danger">REGISTER NOW</button>
                         </div>
                     </b-col>
                 </b-row>
@@ -191,9 +189,9 @@
             <b-container class="showmobile"> 
                 <b-row class="align-items-center gy-3">
                 <div class="d-grid mt-n3 mb-n5" >
-                    <a href="/registration-form">
-                    <BButton  variant="warning" class="submit-btn w-80 h-100 fw-semibold" type="submit">REGISTER NOW</BButton>
-                    </a>
+                   
+                    <BButton type="button" @click="openRegister()" variant="warning" class="submit-btn w-80 h-100 fw-semibold">REGISTER NOW</BButton>
+                    
                 </div></b-row>
             </b-container>
         </section>
@@ -393,7 +391,101 @@
         </b-button>
     </div>
 
-
+ <BModal v-model="showModal" style="--vz-modal-width: 800px;" hide-footer body-class="p-0" header-class="p-0"
+        class="v-modal-custom" content-class="border-0 overflow-hidden" centered hide-header-close>
+        <div class="modal-body login-modal p-5">
+            <h5 class="text-white fs-18 mb-1 mt-n4">Registration Form</h5>
+            <p class="text-white-50 fs-12 mb-4">Please fill out the form carefully to ensure all information is accurate.</p>
+            <div class="vstack gap-2 justify-content-center">
+               <form class="customform mb-n5" style="color: white;">
+                    <BRow class="g-3 mb-3"> 
+                        <BCol lg="12" class="mt-n2 mb-0">
+                            <hr class="text-muted"/>
+                        </BCol>
+                        <BCol lg="12" class="mt-0">
+                            <InputLabel for="name" value="Full Name" :message="form.errors.fullname"/>
+                            <b-row class="g-3 mb-2 mt-n3">
+                                <b-col lg>
+                                    <div class="input-group mb-0">
+                                        <input type="text" v-model="form.firstname" placeholder="First name" class="form-control" style="width: 28%; min-height: 38.4px !important; background-color: #f5f6f7; text-transform: uppercase;">
+                                        <input type="text" v-model="form.middlename" placeholder="Middle name" class="form-control" style="width: 28%; min-height: 38.4px !important; background-color: #f5f6f7; text-transform: uppercase;">
+                                        <input type="text" v-model="form.lastname" placeholder="Last name" class="form-control" style="width: 28%; min-height: 38.4px !important; background-color: #f5f6f7; text-transform: uppercase;">
+                                        <input type="text" v-model="form.suffix" placeholder="Suffix" class="form-control" style="width: 16%; min-height: 38.4px !important; background-color: #f5f6f7; text-transform: uppercase;">
+                                    </div>
+                                </b-col>
+                            </b-row>
+                        </BCol>
+                    </BRow>
+               </form>
+            </div>
+        </div>
+       
+        <div class="modal-body p-5">
+            <form class="customform">
+                <BRow class="g-3" style="margin-top: -35px;"> 
+                    
+                   <BCol lg="6" class="mt-1">
+                        <InputLabel for="name" value="Email Address" :message="form.errors.email"/>
+                        <TextInput id="name" v-model="form.email" type="text" class="form-control" placeholder="Please enter email" @input="handleInput('email')" style="text-transform: lowercase;" :light="true"/>
+                    </BCol>
+                    <BCol lg="6" class="mt-1">
+                        <InputLabel for="name" value="Contact no." :message="form.errors.contact_no"/>
+                        <TextInput id="name" v-model="form.contact_no" type="text" class="form-control" placeholder="Please enter contact no." @input="handleInput('contact_no')" :light="true"/>
+                    </BCol>
+                    <BCol lg="6" class="mt-0">
+                        <InputLabel for="name" value="Birth Date" :message="form.errors.birthdate"/>
+                        <TextInput id="name" v-model="form.birthdate" type="date" class="form-control" placeholder="Please enter birthdate" @input="handleInput('birthdate')" :light="true"/>
+                    </BCol>
+                    <BCol lg="6" class="mt-0">
+                        <InputLabel for="region" value="Sex" :message="form.errors.sex_id"/>
+                        <Multiselect :options="dropdowns.sexs" label="name" v-model="form.sex_id" placeholder="Select Sex" @input="handleInput('sex_id')"/>
+                    </BCol>
+                    <BCol lg="6" class="mt-1">
+                        <InputLabel for="name" value="Designation" :message="form.errors.designation"/>
+                        <TextInput id="name" v-model="form.designation" type="text" class="form-control" placeholder="Please enter designation" @input="handleInput('designation')" style="text-transform: uppercase;" :light="true"/>
+                    </BCol>
+                    <BCol lg="6" class="mt-1">
+                        <InputLabel for="name" value="Affiliation" :message="form.errors.affiliation"/>
+                        <TextInput id="name" v-model="form.affiliation" type="text" class="form-control" placeholder="Please enter affiliation" @input="handleInput('affiliation')" style="text-transform: uppercase;" :light="true"/>
+                    </BCol>
+                    <BCol lg="12" class="mt-0"><hr class="text-muted"/></BCol>
+                    <BCol lg="12">
+                        <div class="mt-n3 form-check">
+                            <input type="checkbox" v-model="form.check" class="form-check-input" id="checkTerms">
+                            <label class="form-check-label" for="checkTerms"><i>I agree to the</i> <span class="fw-semibold text-primary" @click="tos = true">Terms of Service</span> <i>and Privacy Policy</i></label>
+                        </div>
+                    </BCol>
+                    
+                </BRow>
+                <div class="text-end mt-2">
+                    <button @click="submit('ok')" class="btn btn-primary btn-md" type="button" :disabled="!form.check">
+                        <div class="btn-content">Submit Now</div>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </BModal>
+    
+    <b-modal v-model="message" hide-footer class="v-modal-custom" modal-class="zoomIn" body-class="p-0" centered hide-header-close style="z-index: 5000;">
+        <div class="text-end me-4">
+            <button type="button" class="btn-close text-end" @click="check()"></button>
+        </div>
+        <div class="text-center px-5 pt-2">
+            <div class="mt-2">
+                 <div class="avatar-md mx-auto">
+                    <div class="avatar-title rounded-circle bg-light">
+                        <i v-if="$page.props.flash.status" class="ri-checkbox-circle-fill text-success h1 mb-0"></i>
+                        <i v-else class="ri-close-circle-fill text-danger h1 mb-0"></i>
+                    </div>
+                </div>
+                <h5 class="mb-1 mt-4 fs-14">{{$page.props.flash.message }}</h5>
+                <p v-if="$page.props.flash.info" class="text-muted fs-12">{{$page.props.flash.info }}</p>
+            </div>
+        </div>
+        <div class="modal-footer bg-light p-3 mt-5 justify-content-center">
+            <p class="mb-0 text-muted fs-10">Thank you for signing up! We look forward to your participation</p>
+        </div>
+    </b-modal>
 </template>
 <script>
 import AOS from 'aos';
@@ -470,6 +562,7 @@ export default {
             this.form.errors[field] = false;
         },
         openRegister(){
+            
             this.showModal = true;
         },
         topFunction() {

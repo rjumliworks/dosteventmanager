@@ -5,6 +5,9 @@
                 <div class="input-group mb-1">
                     <span class="input-group-text"> <i class="ri-search-line search-icon"></i></span>
                     <input type="text"  placeholder="Search Venue" class="form-control" style="width: 30%;">
+                    <span @click="openPrint()" class="input-group-text" v-b-tooltip.hover title="Print" style="cursor: pointer;"> 
+                        <i class="ri-printer-fill search-icon"></i>
+                    </span>
                     <b-button type="button" variant="primary" @click="openCreate">
                         <i class="ri-add-circle-fill align-bottom me-1"></i> Create
                     </b-button>
@@ -72,6 +75,9 @@ export default {
         },
         openEdit(list){
             this.$refs.create.edit(list);
+        },
+        openPrint(){
+            window.open('/print?option=attendance&krdwrks='+this.id);
         },
         openPrint1(id){
             // window.open('/print?option=session&type=appearance&krdwrks='+id);

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [App\Http\Controllers\WelcomeController::class, 'index']);
 Route::get('/registration/{type}/{key}', [App\Http\Controllers\RegistrationController::class, 'show']);
-Route::post('/registration', [App\Http\Controllers\RegistrationController::class, 'store']);
+Route::post('/', [App\Http\Controllers\RegistrationController::class, 'store']);
 
 
 Route::get('/participant/login', [App\Http\Controllers\ParticipantController::class, 'login'])->name('participant.login');
@@ -37,7 +37,7 @@ Route::middleware(['2fa','auth','verified'])->group(function () {
 
 Route::get('/event/{key}', [App\Http\Controllers\EventController::class, 'view']);
 Route::get('/session/{key}', [App\Http\Controllers\SessionController::class, 'view']);
-Route::get('/hotels', [App\Http\Controllers\WelcomeController::class, 'hotel_index']);
+// Route::get('/hotels', [App\Http\Controllers\WelcomeController::class, 'hotel_index']);
 Route::get('/highlights', [App\Http\Controllers\WelcomeController::class, 'highlight_index']);
 Route::get('/registration-form', [App\Http\Controllers\WelcomeController::class, 'registration_index']);
 

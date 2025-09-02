@@ -36,9 +36,7 @@
                                         <BRow>                        
                                             <BCol lg="6" class="mt-2">
                                                 <InputLabel value="First Name*" />
-                                                <TextInput v-model="form.firstname" type="text" class="form-control" placeholder="Enter Firstname" 
-                                                :class="{ 'is-invalid': form.errors.firstname }"   required/>
-                                                <InputError :message="form.errors.firstname" />
+                                                <TextInput v-model="form.firstname" type="text" class="form-control" placeholder="Enter Firstname"/>
                                                 
                                             </BCol>
                                             <BCol lg="6" class="mt-2">
@@ -47,9 +45,7 @@
                                             </BCol>
                                             <BCol lg="6" class="mt-2">
                                                 <InputLabel value="Last Name*" />
-                                                <TextInput v-model="form.lastname" type="text" class="form-control" placeholder="Enter Surname"  
-                                                 :class="{ 'is-invalid': form.errors.lastname }"   required/>
-                                                 <InputError :message="form.errors.lastname" />
+                                                <TextInput v-model="form.lastname" type="text" class="form-control" placeholder="Enter Surname"/>
                                             </BCol>
                                             <BCol lg="6" class="mt-2">
                                                 <InputLabel value="Suffix" />
@@ -58,29 +54,21 @@
                                             </BCol>
                                              <BCol lg="12" class="mt-2">
                                                 <InputLabel value="Email Address*" />
-                                                <TextInput v-model="form.email" type="email" class="form-control" placeholder="Enter Email Address"
-                                                :class="{ 'is-invalid': form.errors.email }"  required />
-                                                <InputError :message="form.errors.email" />
+                                                <TextInput v-model="form.email" type="email" class="form-control" placeholder="Enter Email Address"/>
                                             </BCol>
                                             <BCol lg="12" class="mt-2">
                                                 <InputLabel value="Agency/Firm Address*" />
-                                                <TextInput v-model="form.agency_firm_address" type="text" class="form-control" placeholder="Enter Agency/Firm Address" 
-                                                :class="{ 'is-invalid': form.errors.agency_firm_address }" required />
-                                                <InputError :message="form.errors.agency_firm_address" />
+                                                <TextInput v-model="form.affiliation" type="text" class="form-control" placeholder="Enter Agency/Firm Address"/>
                                             </BCol>
                                        
                                             <BCol lg="6" class="mt-2">
                                                 <InputLabel value="Designation/Position*" />
-                                                <TextInput v-model="form.designation" type="text" class="form-control" placeholder="Enter Designation/Postion" 
-                                                :class="{ 'is-invalid': form.errors.designation }" required/>
-                                                 <InputError :message="form.errors.designation" />
+                                                <TextInput v-model="form.designation" type="text" class="form-control" placeholder="Enter Designation/Postion"/>
                                             </BCol>
 
                                             <BCol lg="6" class="mt-2">
                                                 <InputLabel value="Contact Number*" />
-                                                <TextInput v-model="form.contact_number" type="text" class="form-control" placeholder="+63"  
-                                                :class="{ 'is-invalid': form.errors.contact_number }" required/>
-                                                <InputError :message="form.errors.contact_number" />
+                                                <TextInput v-model="form.contact_no" type="text" class="form-control" placeholder="+63"/>
                                             </BCol>
 
                                             <BCol lg="6" class="mt-2">
@@ -89,16 +77,12 @@
                                                     :options="['Male', 'Female', 'Prefer not to say']" 
                                                     v-model="form.sex"
                                                     :searchable="true"
-                                                    placeholder="Select Sex"
-                                                    :class="{ 'is-invalid': form.errors.sex }" required/>
-                                                <InputError :message="form.errors.sex" />
+                                                    placeholder="Select Sex"/>
                                             </BCol>
 
                                             <BCol lg="6" class="mt-2 mb-3">
                                                 <InputLabel value="Birthday*" />
-                                                <TextInput type="date" v-model="form.birthday" class="form-control"  
-                                                 :class="{ 'is-invalid': form.errors.birthday }"  required  />
-                                                <InputError :message="form.errors.birthday" />
+                                                <TextInput type="date" v-model="form.birthday" class="form-control"/>
                                             </BCol>
                                            <BCol lg="12" class="mt-2 mb-5 text-center">
                                             <InputLabel value="Check if Applicable" /> 

@@ -39,7 +39,8 @@
                                 <div class="carousel-content">
                                     <transition mode="out-in">
                                         <div :key="index" class="tab-content">
-                                            <Activity :id="selected.id" :activities="selected.activities" :schedules="selected.schedules" v-if="menu == 'Activities'"/>
+                                            <Overview v-if="menu == 'Overview'" />
+                                            <Activity :id="selected.id" :activities="selected.activities" :schedules="selected.schedules" v-else-if="menu == 'Activities'"/>
                                             <Participant :id="selected.key" :participants="selected.participants" v-else-if="menu == 'Participants'"/>
                                             <Certificate  v-else-if="menu == 'Certificates'"/>
                                             <!-- <Session :id="selected.id" :venues="selected.venues" :sessions="selected.sessions" v-if="menu == 'Sessions'"/>
@@ -57,19 +58,20 @@
     </BRow>
 </template>
 <script>
+import Overview from './Pages/Overview.vue';
 import Activity from './Pages/Activity.vue';
 import Participant from './Pages/Participant.vue';
 import Certificate from './Pages/Certificate.vue';
 export default {
-    components: { Activity, Participant, Certificate },
+    components: { Activity, Participant, Certificate, Overview },
     props:['selected'],
     data(){
         return {
             currentUrl: window.location.origin,
             menus: [
-                'Participants','Activities','Customer Satisfaction Feedback','Certificates'
+                'Overview','Participants','Activities','Customer Satisfaction Feedback','Certificates'
             ],
-            menu: 'Partifipants',
+            menu: 'Overview',
             index: null,
         }
     },
