@@ -161,7 +161,7 @@ import { router } from '@inertiajs/vue3';
         router.post('/logout');
     };
 </script>
-<style>
+<style scoped>
 .auth-page-wrapper {
     background-color: hsl(201, 80%, 82%);
 }

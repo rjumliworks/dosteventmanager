@@ -14,6 +14,7 @@ class WelcomeController extends Controller
         $this->dropdown = $dropdown;
     }
 
+
     public function index(){
         return inertia('Welcome',[
             'dropdowns' => [
@@ -38,7 +39,12 @@ class WelcomeController extends Controller
     }
 
     public function registration_index(){
-        return inertia('Registration');
+        return inertia('Registration2',[
+            'dropdowns' => [
+                'sexs' => $this->dropdown->dropdowns('Sex'),
+                'types' => $this->dropdown->dropdowns('Participant Type')
+            ],
+        ]);
     }
 
 }

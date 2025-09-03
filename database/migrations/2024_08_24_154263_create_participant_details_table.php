@@ -17,6 +17,9 @@ return new class extends Migration
             $table->string('designation',10)->nullable();
             $table->string('affiliation',10)->nullable();
             $table->date('birthdate')->nullable();
+            $table->boolean('is_pwd')->default(0);
+            $table->boolean('is_4ps')->default(0);
+            $table->boolean('is_ip')->default(0);
             $table->tinyInteger('type_id')->unsigned()->index();
             $table->foreign('type_id')->references('id')->on('dropdowns')->onDelete('cascade');
             $table->tinyInteger('sex_id')->unsigned()->index();

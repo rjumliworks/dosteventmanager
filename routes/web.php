@@ -3,8 +3,11 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [App\Http\Controllers\WelcomeController::class, 'index']);
+Route::post('/mail', [App\Http\Controllers\OtpController::class, 'mail']);
+Route::post('/verify', [App\Http\Controllers\OtpController::class, 'verify']);
 Route::get('/registration/{type}/{key}', [App\Http\Controllers\RegistrationController::class, 'show']);
 Route::post('/', [App\Http\Controllers\RegistrationController::class, 'store']);
+
 
 
 Route::get('/participant/login', [App\Http\Controllers\ParticipantController::class, 'login'])->name('participant.login');

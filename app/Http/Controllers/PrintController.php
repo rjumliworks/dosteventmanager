@@ -39,7 +39,7 @@ class PrintController extends Controller
         $hashids = new Hashids('krad',10);
         $id = $hashids->decode($session);
 
-        $data = EventSession::with('attendees','venue','schedules','managers')->where('id',$id)->first();
+        $data = EventSession::with('attendees.participant.detail.sex','venue','schedules','managers')->where('id',$id)->first();
         $url = $_SERVER['HTTP_HOST'].'/verification/'.$session;
         $qrCode = new QrCode($url);
         $qrCode->setSize(300);

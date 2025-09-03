@@ -2,12 +2,15 @@
 
 namespace App\Models;
 
+use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Database\Eloquent\Model;
 
 class Participant extends Authenticatable
 {
+    use HasApiTokens;
+    
     protected $guarded = [];
 
     public function getAuthIdentifierName()

@@ -63,15 +63,15 @@ class RegistrationController extends Controller
         if ($participant) {
             $participant->detail()->create($request->all());
 
-            if (count($request->sessions) > 0) {
-                foreach ($request->sessions as $session) {
-                    EventSessionParticipant::create([
-                        'status_id' => 7,
-                        'participant_id' => $participant->id,
-                        'session_id' => $session,
-                    ]);
-                }
-            }
+            // if (count($request->sessions) > 0) {
+            //     foreach ($request->sessions as $session) {
+            //         EventSessionParticipant::create([
+            //             'status_id' => 7,
+            //             'participant_id' => $participant->id,
+            //             'session_id' => $session,
+            //         ]);
+            //     }
+            // }
             // dd(\Auth::guard('participant')->login($participant));
            \Auth::guard('participant')->login($participant);
         }

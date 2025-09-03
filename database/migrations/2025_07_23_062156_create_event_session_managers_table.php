@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('session_id')->unsigned()->index();
             $table->foreign('session_id')->references('id')->on('event_sessions')->onDelete('cascade');
+            $table->unique(['user_id', 'session_id']);
             $table->timestamps();
         });
     }

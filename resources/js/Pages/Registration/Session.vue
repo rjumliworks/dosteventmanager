@@ -3,17 +3,18 @@
         <div class="auth-page-content d-flex justify-content-center align-items-center" style="background-color: #EFF0F3; min-height: 100vh; overflow: hidden;">
 
             <div class="row justify-content-center align-items-center">
-                <div class="col-lg-12">
+                <!-- <div class="col-lg-12">
                     <div class="text-center mb-4 p-3">                          
                         <img src="@assets/images/logo-sm.png" alt="" class="avatar-xs mb-1">
                         <h1 class="mb-0 ff-secondary fw-semibold text-capitalize lh-base fs-16"><span class="text-primary">{{ session.title }}</span></h1>
                         <h1 class="mb-0 ff-secondary fw-semibold text-capitalize lh-base fs-13"><span class="text-warning">{{ session.event.name }}</span></h1>
                         <p class="text-muted mb-2 fs-12">{{ session.detail.description }}</p>
                     </div>
-                </div>
+                </div> -->
                 <div class="col-lg-6 mt-n5 p-4">
+                    <img src="@assets/images/event/event_title.png" alt="" class="img-fluid" >      
                     <div class="card bg-light-subtle shadow-none border">
-                        <div class="card-header bg-light-subtle">
+                        <div class="card-header  bg-light-subtle">
                             <div class="d-flex mb-n3">
                                 <div class="flex-shrink-0 me-3">
                                     <div style="height: 2.5rem; width: 2.5rem;">

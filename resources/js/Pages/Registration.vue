@@ -15,7 +15,7 @@
                                         </div>
                                 </div>
 
-                                <div class="row mb-2 ">
+                                <div class="row mb-3 mt-n1">
                                     <div class="col-2 col-sm-1">
                                         <img src="@assets/images/logo-sm.png" alt="" class="avatar-sm">
                                     </div>
@@ -30,54 +30,49 @@
                                     {{ status }}
                                 </div>
 
-                                <div class="p-2 mt-3">
+                                <div class="p-2 mt-n3">
                                     <form class="customform" @submit.prevent="submit">
                                      
                                         <BRow>                        
-                                            <BCol lg="6" class="mt-2">
+                                            <BCol lg="6" class="mt-1">
                                                 <InputLabel value="First Name*" />
                                                 <TextInput v-model="form.firstname" type="text" class="form-control" placeholder="Enter Firstname"/>
-                                                
                                             </BCol>
-                                            <BCol lg="6" class="mt-2">
+                                            <BCol lg="6" class="mt-1">
                                                 <InputLabel value="Middle Name" />
                                                 <TextInput v-model="form.middlename" type="text" class="form-control" placeholder="Enter Middlename"  />
                                             </BCol>
-                                            <BCol lg="6" class="mt-2">
+                                            <BCol lg="6" class="mt-0">
                                                 <InputLabel value="Last Name*" />
                                                 <TextInput v-model="form.lastname" type="text" class="form-control" placeholder="Enter Surname"/>
                                             </BCol>
-                                            <BCol lg="6" class="mt-2">
+                                            <BCol lg="6" class="mt-0">
                                                 <InputLabel value="Suffix" />
                                                 <TextInput v-model="form.suffix" type="text" class="form-control" placeholder="e.g Jr." />
                                                 
                                             </BCol>
-                                             <BCol lg="12" class="mt-2">
+                                             <BCol lg="12" class="mt-1">
                                                 <InputLabel value="Email Address*" />
                                                 <TextInput v-model="form.email" type="email" class="form-control" placeholder="Enter Email Address"/>
                                             </BCol>
-                                            <BCol lg="12" class="mt-2">
+                                            <BCol lg="12" class="mt-1">
                                                 <InputLabel value="Agency/Firm Address*" />
                                                 <TextInput v-model="form.affiliation" type="text" class="form-control" placeholder="Enter Agency/Firm Address"/>
                                             </BCol>
                                        
-                                            <BCol lg="6" class="mt-2">
+                                            <BCol lg="6" class="mt-1">
                                                 <InputLabel value="Designation/Position*" />
                                                 <TextInput v-model="form.designation" type="text" class="form-control" placeholder="Enter Designation/Postion"/>
                                             </BCol>
 
-                                            <BCol lg="6" class="mt-2">
+                                            <BCol lg="6" class="mt-1">
                                                 <InputLabel value="Contact Number*" />
                                                 <TextInput v-model="form.contact_no" type="text" class="form-control" placeholder="+63"/>
                                             </BCol>
 
-                                            <BCol lg="6" class="mt-2">
+                                            <BCol lg="6" class="mt-1">
                                                 <InputLabel value="Sex*" />
-                                                <Multiselect 
-                                                    :options="['Male', 'Female', 'Prefer not to say']" 
-                                                    v-model="form.sex"
-                                                    :searchable="true"
-                                                    placeholder="Select Sex"/>
+                                                <Multiselect  :options="['Male', 'Female', 'Prefer not to say']"  v-model="form.sex_id" :searchable="true" placeholder="Select Sex"/>
                                             </BCol>
 
                                             <BCol lg="6" class="mt-2 mb-3">
@@ -88,35 +83,15 @@
                                             <InputLabel value="Check if Applicable" /> 
                                             <br>
                                             <div class="d-flex justify-content-center align-items-center">
-                                                <b-form-checkbox
-                                                    v-model="form.is_4ps"
-                                                    name="is_4ps"
-                                                    class="mx-2"
-                                                >
-                                                    4PS
-                                                </b-form-checkbox>
-
-                                                <b-form-checkbox
-                                                    v-model="form.is_pwd"
-                                                    name="is_pwd"
-                                                    class="mx-2"
-                                                >
-                                                    PWD
-                                                </b-form-checkbox>
-
-                                                <b-form-checkbox
-                                                    v-model="form.is_ip"
-                                                    name="is_ip"
-                                                    class="mx-2"
-                                                >
-                                                    IP
-                                                </b-form-checkbox>
+                                                <b-form-checkbox v-model="form.is_4ps" name="is_4ps" class="mx-2">4PS</b-form-checkbox>
+                                                <b-form-checkbox v-model="form.is_pwd" name="is_pwd" class="mx-2">PWD</b-form-checkbox>
+                                                <b-form-checkbox v-model="form.is_ip" name="is_ip" class="mx-2">IP</b-form-checkbox>
                                             </div>
                                         </BCol>
 
                                         <BCol lg="12" class="text-center ">
                                             <div class="mt-1">
-                                                <BButton variant="primary" class="w-100 header-bg" type="submit" :class="{ 'opacity-25': form.processing }" :disabled="form.processing" @click="submit" style="margin-top:-50px">Register</BButton>
+                                                <BButton variant="primary" class="w-100 header-bg" type="submit" :disabled="form.processing" @click="submit" style="margin-top:-50px">Register</BButton>
                                             </div>
                                         </BCol>
                                             
@@ -132,7 +107,7 @@
         </div>
     </div>
 
-   <b-modal v-model="showModal"  modal-class="zoomIn"  class="v-modal-custom" centered no-close-on-backdrop>
+  <b-modal v-model="showModal"  modal-class="zoomIn"  class="v-modal-custom" centered no-close-on-backdrop>
             <div class="text-center px-5 pt-2">
                 <div class="mt-2">
 
@@ -273,7 +248,7 @@ export default {
     
 }
 </script>
-<style>
+<style scoped>
 .auth-page-wrapper {
     background-color: hsl(201, 80%, 82%);
 }

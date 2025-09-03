@@ -19,7 +19,7 @@
         }
 
         .content {
-            margin-bottom:55px; /* Space for the footer */
+            margin-bottom:100px; /* Space for the footer */
         }
 
         table,
@@ -68,6 +68,7 @@
         label {
             display: inline-block;
         }
+       
         .footer {
             position: fixed;
             bottom: -10;
@@ -82,95 +83,30 @@
     </style>
 </head>
 <body>
-    <div class="header">
-        <div style="font-family:Arial;">
-            <img src="{{ public_path('images/logo-sm.png') }}" alt="tag" style="position: absolute; top: -4; left: 60; width: 50px; height: 50px;">
-            <center style="font-size: 10px; margin-bottom: 0px; text-transform: uppercase;">Republic of the Philippines</center>
-            <center style="font-size: 11px; margin-bottom: 0px; font-weight: bold;">DEPARTMENT OF SCIENCE AND TECHNOLOGY</center>
-            <center style="font-size: 11px;">Pettit Baracks, Zamboanga City | (062) 991-1024 | dost9info@gmail.com</center>
-            <br/>
-            <center style="margin-top: 8px; font-size: 11px;  color:#000; font-weight: bold; padding: 2px;">DOST Region Office No. IX</center>
-            <center style="font-size: 11px; background-color: #097eeb; color:#fff; font-weight: bold; padding: 2px; text-transform: uppercase; ">ATTENDANCE SHEET</center>
-        </div>
-    </div>
-    <div>
-        <table style="border: 1px solid black; margin-top: 10px;">
-            <thead style="background-color:#c8c8c8; padding: 5px; font-size: 9px;">
-                <tr>    
-                    <th style="vertical-align: middle;" width="33.3%">EVENT</th>
-                    <th style="vertical-align: middle;" width="33.3%">VENUE</th>
-                    <th style="vertical-align: middle;" width="33.3%">INCLUSIVE DATE</th>
-                </tr>
-            </thead>
+    <div class="footer">
+        <table style="border: hidden; font-size: 10px; page-break-inside: avoid;">
             <tbody>
-                <tr>
-                    <td style="text-align: center;">{{$data['title']}}</td>
-                    <td style="text-align: center;">{{$data['venue']['name']}}, {{$data['venue']['establishment']}}</td>
-                    <td style="text-align: center;">{{$date}}</td>
-                </tr>
-            </tbody>
-        </table>
-        <table style="border: 1px solid black; margin-top: 10px;">
-            <thead style="background-color:#c8c8c8; padding: 5px; font-size: 9px;">
-                <tr s>
-                    <th style="vertical-align: middle;" rowspan="2" width="3%">#</th>
-                    <th style="vertical-align: middle;" rowspan="2" width="15%">NAME</th>
-                    <th style="vertical-align: middle;" rowspan="2" width="15%">AGENCY/FIRM</th>
-                    <th style="vertical-align: middle;" rowspan="2" width="15%">DESIGNATION</th>
-                    <th style="vertical-align: middle;" rowspan="2" width="10%">CONTACT NO.</th>
-                    <th style="vertical-align: middle;" rowspan="2" width="10%">EMAIL</th>
-                    <th style="vertical-align: middle;" rowspan="2" width="5%">SEX</th>
-                    <th style="vertical-align: middle;" rowspan="2" width="5%">AGE</th>
-                    <th style="vertical-align: middle;" colspan="3" width="15%">Please check</th>
-                    <th style="vertical-align: middle;" rowspan="2" width="10%">SIGNATURE</th>
-                </tr>
-                <tr>
-                    <th width="5%">4Ps</th>
-                    <th width="5%">PWD</th>
-                    <th width="5%">IP</th>
-                </tr>
-            </thead>
-            <tbody>
-                @for ($i = 1; $i <= 20; $i++)
-                    <tr>
-                        <td style="text-align: center;">{{ $i }}</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                @endfor
-            </tbody>
-        </table>
-        <table style="border: 1px solid black; font-size: 10px; margin-top: 10px; page-break-inside: avoid;">
-            <tbody>
-                <tr>
+                {{-- <tr>
                     <td style="min-height: 50px; border-bottom-style: hidden;"><span style="font-size:9px; color: #606060;">Facilitated by:</span></td>
+                    <td style="min-height: 50px; border-left-style: hidden; border-right-style: hidden; border-bottom-style: hidden;"><span style="font-size:9px; color: #606060;"></span></td>
                     <td style="min-height: 50px; border-bottom-style: hidden;"><span style="font-size:9px; color: #606060;">Noted by:</span></td>
 
-                </tr>
+                </tr> --}}
                 <tr>
                     <td style="min-height: 50px; padding: 15px; border-bottom-style: hidden;"></td>
+                    <td style="min-height: 50px; padding: 15px; border: hidden;"></td>
                     <td style="min-height: 50px; padding: 15px; border-bottom-style: hidden;"></td>
                 </tr>
                 <tr style="text-align: center;">
-                    <td width="50%"><span style="font-weight: bold; font-size: 11px; color: #072388; text-transform: uppercase;">{{$head['user']['profile']['firstname']}} {{$head['user']['profile']['middlename'][0]}}. {{$head['user']['profile']['lastname']}}</span><hr style="margin-top: 0px; margin-bottom: 1px; border: .1px solid black; width: 50%;">Name and Signature</td>
-                    <td width="50%"><span style="font-weight: bold; font-size: 11px; color: #072388; text-transform: uppercase;">AW</span><hr style="margin-top: 0px; margin-bottom: 1px; border: .1px solid black; width: 50%;">Unit Head </td>
+                    <td width="33.3%"><span style="font-weight: bold; font-size: 11px; color: #072388; text-transform: uppercase;">{{$head['user']['profile']['firstname']}} {{$head['user']['profile']['middlename'][0]}}. {{$head['user']['profile']['lastname']}}</span><hr style="margin-top: 0px; margin-bottom: 1px; border: .1px solid black; width: 50%;">Name and Signature </br><span style="color: gray;">(Facilitated By)</span></td>
+                    <td width="33.3%" style="border-left-style: hidden; border-right-style: hidden;"> </td>
+                    <td width="33.3%"><span style="font-weight: bold; font-size: 11px; color: #072388; text-transform: uppercase;">AW</span><hr style="margin-top: 0px; margin-bottom: 1px; border: .1px solid black; width: 50%;">Unit Head </br><span style="color: gray;">(Noted By)</span></td>
                 </tr>
             </tbody>
         </table>
-    </div>
-    <div class="footer">
         <table style="border-bottom-style: hidden; border-right-style: hidden; border-top-style: hidden; border-left-style: hidden;">
             <tr>
-                <td style="width: 40%; text-align: left; font-weight: bold;"><hr/></td>
+                <td style="width: 100%; text-align: left; font-weight: bold;"><hr/></td>
             </tr>
         </table>
         <table style="margin-top: -5px; border-bottom-style: hidden; border-right-style: hidden; border-top-style: hidden; border-left-style: hidden;">
@@ -184,7 +120,91 @@
     </div>
 
 
+    <div class="content">
+        <div class="header">
+            <div style="font-family:Arial;">
+                <img src="{{ public_path('images/logo-sm.png') }}" alt="tag" style="position: absolute; top: -4; left: 60; width: 50px; height: 50px;">
+                <center style="font-size: 10px; margin-bottom: 0px; text-transform: uppercase;">Republic of the Philippines</center>
+                <center style="font-size: 11px; margin-bottom: 0px; font-weight: bold;">DEPARTMENT OF SCIENCE AND TECHNOLOGY</center>
+                <center style="font-size: 11px;">Pettit Baracks, Zamboanga City | (062) 991-1024 | dost9info@gmail.com</center>
+                <br/>
+                <center style="margin-top: 8px; font-size: 11px;  color:#000; font-weight: bold; padding: 2px;">DOST Region Office No. IX</center>
+                <center style="font-size: 11px; background-color: #097eeb; color:#fff; font-weight: bold; padding: 2px; text-transform: uppercase; ">ATTENDANCE SHEET</center>
+            </div>
 
+            <table style="border: 1px solid black; margin-top: 10px;">
+                <thead style="background-color:#c8c8c8; padding: 5px; font-size: 10px;">
+                    <tr>    
+                        <th style="vertical-align: middle;" width="52%">EVENT</th>
+                        <th style="vertical-align: middle;" width="25%">VENUE</th>
+                        <th style="vertical-align: middle;" width="23%">INCLUSIVE DATE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="font-size: 12px;">
+                        <td style="text-align: center;">{{$data['title']}}</td>
+                        <td style="text-align: center;">{{$data['venue']['name']}}, {{$data['venue']['establishment']}}</td>
+                        <td style="text-align: center;">{{$date}}</td>
+                    </tr>
+                </tbody>
+            </table>  
+        </div>
+        <table style="border: 1px solid black; margin-top: 15px;">
+            <thead style="background-color:#c8c8c8; padding: 5px; font-size: 10px;">
+                <tr>
+                    <th style="vertical-align: middle;" rowspan="2" width="3%">#</th>
+                    <th style="vertical-align: middle;" rowspan="2" width="16%">NAME</th>
+                    <th style="vertical-align: middle;" rowspan="2" width="19%">AGENCY/FIRM</th>
+                    <th style="vertical-align: middle;" rowspan="2" width="15%">DESIGNATION</th>
+                    <th style="vertical-align: middle;" rowspan="2" width="8.5%">CONTACT NO.</th>
+                    <th style="vertical-align: middle;" rowspan="2" width="17%">EMAIL</th>
+                    <th style="vertical-align: middle;" rowspan="2" width="3%">SEX</th>
+                    <th style="vertical-align: middle;" rowspan="2" width="3%">AGE</th>
+                    <th style="vertical-align: middle; font-size: 9px;" colspan="3" width="9%">Please check if applicable</th>
+                    <th style="vertical-align: middle;" rowspan="2" width="8.4%">SIGNATURE</th>
+                </tr>
+                <tr>
+                    <th width="3%">4Ps</th>
+                    <th width="3%">PWD</th>
+                    <th width="3%">IP</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for ($i = 0; $i <= 19; $i++)
+                    <tr style="text-align: center;">
+                        <td style="text-align: center;">{{ $i+1 }}</td>
+                        @if(isset($data['attendees'][$i]))
+                            @php $attendee = $data['attendees'][$i]; @endphp
+                            <td>{{ $attendee->participant->firstname ?? '' }}</td>
+                            <td>{{ $attendee->participant->detail->affiliation ?? '' }}</td>
+                            <td>{{ $attendee->participant->detail->designation ?? '' }}</td>
+                            <td>{{ $attendee->participant->contact_no ?? '' }}</td>
+                            <td>{{ $attendee->participant->email ?? '' }}</td>
+                            <td>{{ $attendee->participant->detail->sex->name[0] ?? '' }}</td>
+                            <td>{{ $attendee->age ?? '31' }}</td>
+                            <td>{{ $attendee->is_4ps ? '✔' : '' }}</td>
+                            <td>{{ $attendee->is_pwd ? '✔' : '' }}</td>
+                            <td>{{ $attendee->is_ip ? '✔' : '' }}</td>
+                            <td></td> {{-- signature column --}}
+                        @else
+                            {{-- Empty row if no attendee --}}
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        @endif
+                    </tr>
+                @endfor
+            </tbody>
+        </table>
+    </div>
 
     
 </body>
