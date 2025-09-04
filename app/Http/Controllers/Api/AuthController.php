@@ -92,7 +92,7 @@ class AuthController extends Controller
             ], 401);
         }
 
-        $email = hash('sha256', $request->email);
+        $email = hash('sha256', strtolower($request->email));
         $participant = Participant::where('email_hash',$email)->first();
         \Auth::guard('participant')->login($participant);
         $token = $participant->createToken('mobile')->plainTextToken;
