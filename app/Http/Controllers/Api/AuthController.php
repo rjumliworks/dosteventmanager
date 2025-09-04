@@ -9,7 +9,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\RateLimiter;
+use App\Http\Requests\ParticipantRequest;
 
 class AuthController extends Controller
 {
@@ -18,7 +20,7 @@ class AuthController extends Controller
         try {
             $request->validate(['email' => 'required|email']);
             $email = hash('sha256', $request->email);
-        
+      
             $participant = Participant::where('email_hash', $email)->first();
             if (!$participant) {
                 return response()->json([
@@ -101,5 +103,42 @@ class AuthController extends Controller
             'message' => 'User Logged In Successfully',
             'token' => $token
         ], 200);
+    }
+
+    public function register(ParticipantRequest $request)
+    {
+        DB::beginTransaction();
+        try {
+            $data = Participant::create(array_merge($request->all(), [
+                'code' => $this->generateCode()
+            ]));
+            if ($data) {
+                $data->detail()->create(array_merge($request->all(), [
+                    'type_id' => 16,
+                    'sex_id' => ($request->sex == 'Male') ? 2 : 3
+                ]));
+            }
+
+            DB::commit();
+
+            return response()->json([
+                'status' => true,
+                'message' => 'User Created Successfully',
+                'data' => true
+            ], 200);
+
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return response()->json([
+                'status' => false,
+                'message' => $th->getMessage()
+            ], 500);
+        }
+    }
+
+    private function generateCode(){
+        $count = Participant::count();
+        $code = 'DOSTIX-'.date('m').date('Y').'-R9-'.str_pad(($count+1), 5, '0', STR_PAD_LEFT);  //$tsr_count+ remove since it will reset
+        return $code;
     }
 }
