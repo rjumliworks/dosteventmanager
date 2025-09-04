@@ -19,7 +19,7 @@ class AuthController extends Controller
     {
         try {
             $request->validate(['email' => 'required|email']);
-            $email = hash('sha256', $request->email);
+            $email = hash('sha256', strtolower($request->email));
       
             $participant = Participant::where('email_hash', $email)->first();
             if (!$participant) {
