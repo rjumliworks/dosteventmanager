@@ -35,6 +35,7 @@ class AuthController extends Controller
                 return response()->json([
                     'status' => false,
                     'message' => "Too many attempts. Try again in {$seconds} seconds.",
+                    'seconds' => $seconds
                 ], 401);
             }
             RateLimiter::hit($key, 300);
