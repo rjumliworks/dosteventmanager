@@ -22,7 +22,7 @@ class EventSession extends Model
 
     public function feedbackable()
     {
-        return $this->morphOne('App\Models\CsfEntry', 'feedbackable');
+        return $this->morphMany('App\Models\CsfEntry', 'feedbackable');
     }
     
     public function status()
@@ -48,6 +48,11 @@ class EventSession extends Model
     public function schedules()
     {
         return $this->hasMany('App\Models\EventSessionSchedule', 'session_id');
+    } 
+
+    public function questions()
+    {
+        return $this->hasMany('App\Models\EventSessionQuestion', 'session_id');
     } 
 
     public function activities()

@@ -7,13 +7,21 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class SessionViewResource extends JsonResource
 {
-    /**
-     * Transform the resource into an array.
-     *
-     * @return array<string, mixed>
-     */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'title' => $this->title,
+            'venue' => $this->venue,
+            'detail' => $this->detail,
+            'schedules' => $this->schedules,
+            'participants' => $this->participants,
+            'status' => $this->status,
+            'activities' => $this->activities,
+            'managers' => $this->managers,
+            'event' => $this->event,
+            'feedbackable' => FeedbackResource::collection($this->feedbackable),
+            'questions' => QuestionResource::collection($this->questions)
+        ];
     }
 }

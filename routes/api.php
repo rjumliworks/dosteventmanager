@@ -20,6 +20,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::get('/', 'index');
         Route::get('/view/{id}', 'view');
         Route::post('/attendance', 'attendance');
+        Route::post('/question', 'question');
     });
 
     Route::prefix('exhibitors')->controller(App\Http\Controllers\Api\ExhibitorController::class)->group(function () {

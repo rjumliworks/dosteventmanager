@@ -11,15 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('csf_entries', function (Blueprint $table) {
+        Schema::create('event_session_questions', function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->bigIncrements('id');
-            $table->string('comment')->nullable();
-            $table->string('attribute')->nullable();
-            $table->unsignedInteger('feedbackable_id');   
-            $table->string('feedbackable_type'); 
-            $table->unsignedInteger('participant_id')->after('attribute');
+            $table->increments('id');
+            $table->longText('question');
+            $table->integer('participant_id')->unsigned()->index();
             $table->foreign('participant_id')->references('id')->on('participants')->onDelete('cascade');
+            $table->integer('session_id')->unsigned()->index();
+            $table->foreign('session_id')->references('id')->on('event_sessions')->onDelete('cascade');
+            $table->unique(['participant_id', 'session_id']);
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('csf_entries');
+        Schema::dropIfExists('event_session_questions');
     }
 };

@@ -4,22 +4,20 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class CsfEntry extends Model
+class EventSessionQuestion extends Model
 {
     protected $fillable = [
-        'comment',
-        'attribute',
-        'participant_id'
+      'participant_id', 'session_id', 'question'
     ];
-
-    public function feedbackable()
-    {
-        return $this->morphTo();
-    }
 
     public function participant()
     {
         return $this->belongsTo('App\Models\Participant', 'participant_id', 'id');
+    }
+
+    public function session()
+    {
+        return $this->belongsTo('App\Models\EventSession', 'session_id', 'id');
     }
 
     public function getUpdatedAtAttribute($value)
