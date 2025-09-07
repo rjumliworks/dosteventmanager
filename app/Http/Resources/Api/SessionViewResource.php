@@ -20,6 +20,7 @@ class SessionViewResource extends JsonResource
             'activities' => $this->activities,
             'managers' => $this->managers,
             'event' => $this->event,
+            'has_registered' => $this->has_registered,
             'feedbackable' => FeedbackResource::collection($this->feedbackable),
             'questions' => QuestionResource::collection($this->questions)
         ];

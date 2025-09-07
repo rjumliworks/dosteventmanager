@@ -34,14 +34,18 @@ class SessionController extends Controller
         return SessionResource::collection($data);
     }
 
-    public function view($id){
+    public function view(Request $request, $id){
+        $participantId = $request->participant_id;
         $data = EventSession::with('venue','detail','schedules','participants','questions','status','activities.speaker','managers.user.profile','feedbackable.participant.detail')
             ->with('event.detail.region:code,name,region','event.detail.province:code,name','event.detail.municipality:code,name','event.detail.barangay:code,name')
-            ->whereHas('event',function ($query) {
-                $query->where('is_active',1);
-            })
             ->where('id',$id)
             ->first();
+            
+            if($data){
+                $data->has_registered = $data->participants()
+                    ->where('participant_id', $participantId)
+                    ->exists();
+            }
         return new SessionViewResource($data);
     }
 
@@ -61,4 +65,25 @@ class SessionController extends Controller
         ], 200);
     }
 
+    public function registration(Request $request){
+        $data = EventSessionParticipant::create([
+            'status_id' => 7,
+            'participant_id' => $request->participant_id,
+            'session_id' => $request->session_id,
+        ]);
+        return response()->json([
+            'status' => true,
+            'message' => 'Registration submitted successfully',
+            'data' => true
+        ], 200);
+    }
+
+    public function cancel(Request $request){
+        $data = EventSessionParticipant::where('participant_id',$request->participant_id)->where('session_id',$request->session_id)->delete();
+        return response()->json([
+            'status' => true,
+            'message' => 'Registration cancelled successfully',
+            'data' => true
+        ], 200);
+    }
 }

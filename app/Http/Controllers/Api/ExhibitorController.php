@@ -24,7 +24,7 @@ class ExhibitorController extends Controller
             ->get()
             ->map(function ($exhibitor) use ($participantId) {
                 $exhibitor->has_voted = false;
-
+                $exhibitor->has_visited = $exhibitor->visitors->isNotEmpty();
                 if ($exhibitor->visitors->isNotEmpty()) {
                     $visitor = $exhibitor->visitors->first();
                     $exhibitor->has_voted = (bool) $visitor->has_voted;
@@ -34,6 +34,20 @@ class ExhibitorController extends Controller
             });
 
         return DefaultResource::collection($data);
+    }
+
+    public function view(Request $request, $id){
+        $participantId = $request->participant_id;
+        $data = EventExhibitor::with('contact','visitors')
+            ->where('id',$id)
+            ->first();
+            
+            if($data){
+                $data->has_visited = $data->visitors()
+                    ->where('participant_id', $participantId)
+                    ->exists();
+            }
+        return new DefaultResource($data);
     }
 
     public function attendance(Request $request)
