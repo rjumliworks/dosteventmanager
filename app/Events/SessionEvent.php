@@ -25,7 +25,7 @@ class SessionEvent implements ShouldBroadcast
     public function broadcastOn(): array
     {
         return [
-           new Channel('questionning'), 
+           new Channel('session'), 
         ];
     }
 
