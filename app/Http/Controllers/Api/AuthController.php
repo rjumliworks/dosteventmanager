@@ -61,8 +61,8 @@ class AuthController extends Controller
                 ['code' => $code, 'expires_at' => $expiresAt]
             );
 
-            EmailJob::dispatch($request->email, $code);
-            
+            EmailJob::dispatch($request->email, $code)->onConnection('database');
+
             return response()->json([
                 'status' => true,
                 'message' => 'User Logged In Successfully',
