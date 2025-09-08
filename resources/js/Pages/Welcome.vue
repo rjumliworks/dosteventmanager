@@ -119,9 +119,6 @@
                 </div>
              
                 <div class="row align-items-center mt-5 gy-4">
-                    <div class="col-sm-7 col-lg-6 col-10 mx-auto">
-                        <div><img src="/images/banner/rstw.jpg" alt="" class="img-fluid"></div>
-                    </div>
                     <div class="col-lg-6">
                         <div class="text-muted ps-lg-5">
                             <h5 class="fs-12 text-uppercase text-success">RSTW 2025</h5>
@@ -130,19 +127,14 @@
                             
                         </div>
                     </div>
-                </div>
-
-                <div class="row align-items-center pt-lg-5  gy-4">
-                    <div class="col-lg-6 order-2 order-lg-1 order-2">
-                        <div class="text-muted">
+                    <div class="col-lg-6">
+                           <div class="text-muted ps-lg-5">
                             <h5 class="fs-12 text-uppercase text-success">Mindanao Leg</h5>
                             <h4 class="fs-16 fw-semibold  mb-3">Handa Pilipinas sa Bagong Pilipinas</h4>
-                            <p class="mb-4 ff-secondary">A unified call to action for a more resilient, responsive, and forward-looking nation. Rooted in the spirit of preparedness and innovation, this movement embodies the collective efforts of government, communities, and individuals in building a safer, more progressive Philippines under the vision of "Bagong Pilipinas." It highlights proactive disaster risk reduction, good governance, sustainable development, and inclusive growth to ensure that every Filipino is ready for the challenges and opportunities of a new era.</p>
+                            <p class="mb-4">A unified call to action for a more resilient, responsive, and forward-looking nation. Rooted in the spirit of preparedness and innovation, this movement embodies the collective efforts of government, communities, and individuals in building a safer, more progressive Philippines under the vision of "Bagong Pilipinas." It highlights proactive disaster risk reduction, good governance, sustainable development, and inclusive growth to ensure that every Filipino is ready for the challenges and opportunities of a new era.</p>
                         </div>
                     </div>
-                    <div class="col-sm-7 col-lg-6 order-1 order-lg-2 col-10 order-1 ms-auto">
-                        <div><img src="/images/banner/handa.jpg" alt="" class="img-fluid"></div>
-                    </div>
+
                 </div>
             </div>
         </section>

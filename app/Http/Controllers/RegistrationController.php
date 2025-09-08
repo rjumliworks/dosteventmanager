@@ -8,6 +8,7 @@ use App\Models\Dropdown;
 use App\Models\EventSession;
 use App\Models\EventSessionParticipant;
 use App\Models\Participant;
+use App\Models\ParticipantDetail;
 use App\Services\DropdownClass;
 use App\Traits\HandlesTransaction;
 use App\Http\Requests\ParticipantRequest;
@@ -55,41 +56,51 @@ class RegistrationController extends Controller
     }
 
     public function store(ParticipantRequest $request){
-    $result = $this->handleTransaction(function () use ($request) {
-        $participant = Participant::create(array_merge($request->all(), [
-            'code' => $this->generateCode()
-        ]));
+        $result = $this->handleTransaction(function () use ($request) {
+            $participant = Participant::create(array_merge($request->except('captcha'), [
+                'code' => $this->generateCode()
+            ]));
+        
+            if ($participant) {
+                $participant->detail()->create(array_merge($request->except('captcha'), [
+                    'type_id' => 16
+                ]));
 
-        if ($participant) {
-            $participant->detail()->create($request->all());
+                // if (count($request->sessions) > 0) {
+                //     foreach ($request->sessions as $session) {
+                //         EventSessionParticipant::create([
+                //             'status_id' => 7,
+                //             'participant_id' => $participant->id,
+                //             'session_id' => $session,
+                //         ]);
+                //     }
+                // }
 
-            // if (count($request->sessions) > 0) {
-            //     foreach ($request->sessions as $session) {
-            //         EventSessionParticipant::create([
-            //             'status_id' => 7,
-            //             'participant_id' => $participant->id,
-            //             'session_id' => $session,
-            //         ]);
-            //     }
-            // }
-            // dd(\Auth::guard('participant')->login($participant));
-        //    \Auth::guard('participant')->login($participant);
-        }
+                //dd(\Auth::guard('participant')->login($participant));
+            //\Auth::guard('participant')->login($participant);
+            }
 
-        return [
-            'data' => $participant,
-            'message' => 'User information updated successfully.',
-            'info' => "All relevant fields have been refreshed with the latest data."
-        ];
-    });
+            return [
+                'data' => $participant,
+                'message' => 'User information saved successfully.',
+                'info' => "Check you email for verification, Thank you."
+            ];
+        });
 
-    return redirect()->route('participant.dashboard')->with([
-        'data' => $result['data'],
-        'message' => $result['message'],
-        'info' => $result['info'],
-        'status' => $result['status'],
-    ]);
-}
+        return redirect()->back()->with([
+            'data' => $result['data'],
+            'message' => $result['message'],
+            'info' => $result['info'],
+            'status' => $result['status'],
+        ]);
+
+        // return redirect()->route('participant.dashboard')->with([
+        //     'data' => $result['data'],
+        //     'message' => $result['message'],
+        //     'info' => $result['info'],
+        //     'status' => $result['status'],
+        // ]);
+    }
     private function generateCode(){
         $count = Participant::count();
         $code = 'DOSTIX-'.date('m').date('Y').'-R9-'.str_pad(($count+1), 5, '0', STR_PAD_LEFT);  //$tsr_count+ remove since it will reset

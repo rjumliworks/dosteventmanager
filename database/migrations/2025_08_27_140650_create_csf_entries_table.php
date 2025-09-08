@@ -18,7 +18,8 @@ return new class extends Migration
             $table->string('attribute')->nullable();
             $table->unsignedInteger('feedbackable_id');   
             $table->string('feedbackable_type'); 
-            $table->unsignedInteger('participant_id')->after('attribute');
+            $table->unsignedInteger('participant_id');
+            //   $table->unsignedInteger('participant_id')->after('attribute');
             $table->foreign('participant_id')->references('id')->on('participants')->onDelete('cascade');
             $table->timestamps();
         });
