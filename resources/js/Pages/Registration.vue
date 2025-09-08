@@ -36,15 +36,19 @@
                                         <BRow>                        
                                             <BCol lg="6" class="mt-1">
                                                 <InputLabel value="First Name*" />
-                                                <TextInput v-model="form.firstname" type="text" class="form-control" placeholder="Enter Firstname"/>
+                                                <TextInput v-model="form.firstname" type="text" class="form-control" placeholder="Enter Firstname" 
+                                                :class="{ 'is-invalid': form.errors.firstname }"   required />
+                                                <InputError :message="form.errors.firstname" />
                                             </BCol>
                                             <BCol lg="6" class="mt-1">
                                                 <InputLabel value="Middle Name" />
-                                                <TextInput v-model="form.middlename" type="text" class="form-control" placeholder="Enter Middlename"  />
+                                                <TextInput v-model="form.middlename" type="text" class="form-control" placeholder="Enter Middlename" />
                                             </BCol>
                                             <BCol lg="6" class="mt-0">
                                                 <InputLabel value="Last Name*" />
-                                                <TextInput v-model="form.lastname" type="text" class="form-control" placeholder="Enter Surname"/>
+                                                <TextInput v-model="form.lastname" type="text" class="form-control" placeholder="Enter Surname"
+                                                :class="{ 'is-invalid': form.errors.lastname }"   required />
+                                                <InputError :message="form.errors.lastname" />
                                             </BCol>
                                             <BCol lg="6" class="mt-0">
                                                 <InputLabel value="Suffix" />
@@ -53,31 +57,45 @@
                                             </BCol>
                                              <BCol lg="12" class="mt-1">
                                                 <InputLabel value="Email Address*" />
-                                                <TextInput v-model="form.email" type="email" class="form-control" placeholder="Enter Email Address"/>
+                                                <TextInput v-model="form.email" type="email" class="form-control" placeholder="Enter Email Address"
+                                                :class="{ 'is-invalid': form.errors.email }"  required />
+                                                <InputError :message="form.errors.email" />
                                             </BCol>
                                             <BCol lg="12" class="mt-1">
                                                 <InputLabel value="Agency/Firm Address*" />
-                                                <TextInput v-model="form.affiliation" type="text" class="form-control" placeholder="Enter Agency/Firm Address"/>
+                                                <TextInput v-model="form.affiliation" type="text" class="form-control" placeholder="Enter Agency/Firm Address"
+                                                :class="{ 'is-invalid': form.errors.affiliation }"  required />
+                                                <InputError :message="form.errors.affiliation" />
                                             </BCol>
                                        
                                             <BCol lg="6" class="mt-1">
                                                 <InputLabel value="Designation/Position*" />
-                                                <TextInput v-model="form.designation" type="text" class="form-control" placeholder="Enter Designation/Postion"/>
+                                                <TextInput v-model="form.designation" type="text" class="form-control" placeholder="Enter Designation/Postion"
+                                                :class="{ 'is-invalid': form.errors.designation }"  required />
+                                                <InputError :message="form.errors.designation" />
+
                                             </BCol>
 
                                             <BCol lg="6" class="mt-1">
                                                 <InputLabel value="Contact Number*" />
-                                                <TextInput v-model="form.contact_no" type="text" class="form-control" placeholder="+63"/>
+                                                <TextInput v-model="form.contact_no" type="text" class="form-control" placeholder="+63"
+                                                  :class="{ 'is-invalid': form.errors.contact_no }"  required />
+                                                <InputError :message="form.errors.contact_no" />
                                             </BCol>
 
                                             <BCol lg="6" class="mt-1">
                                                 <InputLabel value="Sex*" />
-                                                <Multiselect  :options="['Male', 'Female', 'Prefer not to say']"  v-model="form.sex_id" :searchable="true" placeholder="Select Sex"/>
+                                                <Multiselect :options="dropdowns.sexs"  v-model="form.sex_id" :searchable="true" placeholder="Select Sex"
+                                                 :class="{ 'is-invalid': form.errors.sex_id }"  required />
+                                                <InputError :message="form.errors.sex_id" />
                                             </BCol>
 
                                             <BCol lg="6" class="mt-2 mb-3">
                                                 <InputLabel value="Birthday*" />
-                                                <TextInput type="date" v-model="form.birthday" class="form-control"/>
+                                                <TextInput type="date" v-model="form.birthdate" class="form-control"
+                                                 :class="{ 'is-invalid': form.errors.birthdate }"  required />
+                                                <InputError :message="form.errors.birthdate" />
+                                                
                                             </BCol>
                                            <BCol lg="12" class="mt-2 mb-5 text-center">
                                             <InputLabel value="Check if Applicable" /> 
@@ -87,11 +105,31 @@
                                                 <b-form-checkbox v-model="form.is_pwd" name="is_pwd" class="mx-2">PWD</b-form-checkbox>
                                                 <b-form-checkbox v-model="form.is_ip" name="is_ip" class="mx-2">IP</b-form-checkbox>
                                             </div>
+
+                                            <BCol lg="12" class="mt-2 mb-3">
+                                                <div class="text-center pt-2 ">
+                                                    <img 
+                                                        :src="captchaUrl" 
+                                                        @click="refreshCaptcha" 
+                                                        alt="captcha" 
+                                                        style="width: 250px; height: 70px; object-fit: contain; cursor: pointer;"
+                                                        />
+                                                </div>
+                                                <InputLabel value="Enter Captcha" />
+                                                <TextInput type="text" v-model="form.captcha" class="form-control text-center mb-3"
+                                                    :class="{ 'is-invalid': form.errors.captcha }"  required />
+                                                    <InputError :message="form.errors.captcha" />
+                                                
+                                            </BCol>
+
+      
                                         </BCol>
+
+                                        
 
                                         <BCol lg="12" class="text-center ">
                                             <div class="mt-1">
-                                                <BButton variant="primary" class="w-100 header-bg" type="submit" :disabled="form.processing" @click="submit" style="margin-top:-50px">Register</BButton>
+                                                <BButton variant="primary" class="w-100 header-bg" type="submit" :disabled="form.processing" @click="generateCaptcha" style="margin-top:-50px">Register</BButton>
                                             </div>
                                         </BCol>
                                             
@@ -127,12 +165,35 @@
               <template v-slot:footer>
                 <div class="d-flex justify-content-center w-100 mb-4">
                     <b-button @click="hide" variant="primary">
-                    Understood
+                    I Understand
                     </b-button>
                 </div>
             </template>
 
 
+    </b-modal>
+
+     <b-modal v-model="formSubmitted" hide-footer class="v-modal-custom" modal-class="zoomIn" body-class="p-0" centered hide-header-close style="z-index: 5000;">
+        <div class="text-end me-4">
+            <button type="button" class="btn-close text-end" @click="check()"></button>
+        </div>
+        <div class="text-center px-5 pt-2">
+            <div class="mt-2">
+                 <div class="avatar-md mx-auto">
+                    <div class="avatar-title rounded-circle bg-light">
+                        <i v-if="$page.props.flash.status" class="ri-checkbox-circle-fill text-success h1 mb-0"></i>
+                        <i v-else class="ri-close-circle-fill text-danger h1 mb-0"></i>
+                    </div>
+                </div>
+                <h5 class="mb-1 mt-4 fs-14">{{$page.props.flash.message }}</h5>
+                <p v-if="$page.props.flash.info" class="text-muted fs-12">{{$page.props.flash.info }}</p>
+            </div>
+        </div>
+        <div class="modal-footer bg-light p-3 mt-5 justify-content-center">
+            <p class="mb-0 text-muted fs-10">Any suggestions please contact
+                <b-link href="" target="_blank" class="link-secondary fw-semibold">DOST IX</b-link>
+            </p>
+        </div>
     </b-modal>
 
 </template>
@@ -148,6 +209,7 @@ import Multiselect from '@/Shared/Components/Forms/Multiselect.vue';
 export default {
     layout: null,
     components: {   InputError, InputLabel, TextInput, Multiselect  },
+    props: ['dropdowns'],
     data() {
         return {
              form: useForm({
@@ -159,21 +221,34 @@ export default {
                 affiliation: null,
                 designation: null,
                 contact_no: null,
-                sex: null,
-                age: null,
+                sex_id: null,
+                birthdate: null,
                 is_4ps: false,
                 is_pwd: false,
                 is_ip: false,
-                signature: null,
+                captcha: null
             }),
             showModal: false,
+            formSubmitted : false,
+            inputed_captcha: null,
             event_sessions: {},
+            
+
+            //captcha
+            captchaUrl: '/captcha?' + Date.now(),
+            captcha: null,
+            userInput: "",
+            error: "",
+            success: ""
         }
     },
 
     mounted(){
         this.showModal = true;
+        this.refreshCaptcha()
     },
+
+
 
     methods: {
 
@@ -181,21 +256,25 @@ export default {
             return this.form.errors[field] ? this.form.errors[field][0] : '';
         },
 
+        refreshCaptcha() {
+            this.captcha = this.captchaUrl = '/captcha?' + Date.now(); // always flat, always new
+        },
+            
+
         submit(){ 
             this.loading = true;
             this.form.post('/', {
                 onSuccess: () => {
                     this.loading = false;
                     this.form.reset();   
-                    this.$refs.signaturePad.clearSignature() 
+                    this.formSubmitted = true;               
                 },
-                onFinish: () => {
-                    this.loading = false;
-                    this.$refs.flash_modal.show();
-                    this.formSubmitted = true;
-
-                }
             });
+
+            if(this.form.captcha){
+                this.captchaModal = false;
+            }
+          
         },
 
         hide(){
@@ -226,6 +305,16 @@ export default {
         },
     },
 
+    submit(){
+        this.form.post('/',{
+            preserveScroll: true,
+            onSuccess: (response) => {
+                this.form.clearErrors();
+                this.form.reset();
+            },
+        });
+    },
+
 
     // captcha
     randomCode(len = 5) {
@@ -253,6 +342,14 @@ export default {
 
 canvas {
   border: 1px solid #ccc;
+}
+
+.captcha-box img {
+  cursor: pointer;
+  border: 1px solid #ddd;
+  padding: 5px;
+  background: #f9f9f9;
+  border-radius: 6px;
 }
 
 </style>
