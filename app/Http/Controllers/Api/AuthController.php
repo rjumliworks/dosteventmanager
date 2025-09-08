@@ -12,6 +12,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\RateLimiter;
 use App\Http\Requests\ParticipantRequest;
+use App\Jobs\EmailJob;
 
 class AuthController extends Controller
 {
@@ -60,8 +61,8 @@ class AuthController extends Controller
                 ['code' => $code, 'expires_at' => $expiresAt]
             );
 
-            Mail::to($request->email)->send(new CodeMail($code));
-            // return response()->json(['success' => true]);
+            EmailJob::dispatch($request->email, $code);
+            
             return response()->json([
                 'status' => true,
                 'message' => 'User Logged In Successfully',
