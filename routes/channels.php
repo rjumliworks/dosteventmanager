@@ -13,6 +13,9 @@ Broadcast::channel('system-maintenance', function () {
     return true;
 });
 
+Broadcast::channel('questionning', function () {
+    return true;
+});
 
 Broadcast::channel('chat-room-{id}', function ($user, $id) {
     // $hashids = new Hashids('krad',10);

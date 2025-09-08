@@ -11,6 +11,7 @@ use App\Http\Resources\DefaultResource;
 use App\Http\Resources\Api\SessionResource;
 use App\Http\Resources\Api\SessionViewResource;
 use App\Http\Resources\Api\QuestionResource;
+use App\Events\QuestionEvent;
 
 class SessionController extends Controller
 {
@@ -57,7 +58,7 @@ class SessionController extends Controller
         ]);
 
         $data = EventSessionQuestion::with('participant.detail')->where('id',$data->id)->first();
-
+        broadcast(new QuestionningEvent(new QuestionResource($data)));
         return response()->json([
             'status' => true,
             'message' => 'Question submitted successfully',

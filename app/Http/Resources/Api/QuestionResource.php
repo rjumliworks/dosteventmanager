@@ -10,6 +10,7 @@ class QuestionResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'id' => $this->participant_id,
             'question' => $this->question,
             'name' => $this->participant->firstname.' '.$this->participant->lastname,
             'avatar' => 'http://eventmanager.test/images/avatars/'.$this->participant->detail->avatar,
