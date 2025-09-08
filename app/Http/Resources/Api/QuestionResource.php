@@ -13,7 +13,7 @@ class QuestionResource extends JsonResource
             'id' => $this->participant_id,
             'question' => $this->question,
             'name' => $this->participant->firstname.' '.$this->participant->lastname,
-            'avatar' => 'http://eventmanager.test/images/avatars/'.$this->participant->detail->avatar,
+            'avatar' => 'https://rstwhanda.dost9.ph/images/avatars/'.$this->participant->detail->avatar,
             'created_at' => $this->created_at 
         ];
     }
