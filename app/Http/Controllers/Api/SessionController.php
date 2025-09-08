@@ -52,7 +52,7 @@ class SessionController extends Controller
 
     public function attendance(Request $request)
     {
-        $session_id = EventSession::where('code', $request->code)->value('id');
+        $session_id = EventSession::where('code', $request->session)->value('id');
 
         if (!$session_id) {
             return response()->json([
