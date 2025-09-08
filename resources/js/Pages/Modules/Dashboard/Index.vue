@@ -25,7 +25,7 @@ export default {
             index: null
         }
     },
-     mounted() {
+    mounted() {
         this.setupEchoListener();
     },
     methods: {

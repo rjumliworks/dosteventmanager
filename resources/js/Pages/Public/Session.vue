@@ -109,7 +109,16 @@ export default {
             }
         }
     },
+    mounted() {
+        this.setupEchoListener();
+    },
     methods: { 
+        setupEchoListener() {
+            window.Echo.channel('session')
+            .listen('SessionEvent', (event) => {
+                this.session.data.attendees.unshift(event.data);
+            });
+        },
        async startScanner() {
             await this.$nextTick();
             const config = { fps: 10, qrbox: { width: 200, height: 200 } };
