@@ -16,6 +16,18 @@
                         <li class="nav-item"><a class="nav-link" href="/hotels" target="_self">Hotels</a></li>
                         <li class="nav-item"><a class="nav-link" href="#about" target="_self">About Us</a></li>
                         <li class="nav-item"><a class="nav-link" href="#contact" target="_self">Contact</a></li>
+                           <li class="nav-item">
+                            <div>
+                                <b-dropdown variant="light" id="dropdown-header" text="Downloadables" class="m-2">
+                                    <b-dropdown-item-button aria-describedby="dropdown-header-label">
+                                    Media Brief
+                                    </b-dropdown-item-button>
+                                    <b-dropdown-item-button aria-describedby="dropdown-header-label">
+                                        <a href="">Programme</a>
+                                    </b-dropdown-item-button>
+                                </b-dropdown>
+                            </div>
+                        </li>
                     </ul>
                     <div class="">
                         <!-- <a href="/auth/signin-basic" class="btn btn-link fw-medium text-decoration-none text-dark">Sign in</a> -->

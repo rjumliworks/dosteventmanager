@@ -16,11 +16,20 @@
                         <li class="nav-item"><a class="nav-link" href="/hotels" target="_self">Hotels</a></li>
                         <li class="nav-item"><a class="nav-link" href="#about" target="_self">About Us</a></li>
                         <li class="nav-item"><a class="nav-link" href="#contact" target="_self">Contact</a></li>
+                           <li class="nav-item">
+                            <div>
+                                <b-dropdown variant="light" id="dropdown-header" text="Downloadables" class="m-2">
+                                    <b-dropdown-item-button aria-describedby="dropdown-header-label">
+                                    Media Brief
+                                    </b-dropdown-item-button>
+                                    <b-dropdown-item-button aria-describedby="dropdown-header-label">
+                                        <a href="">Programme</a>
+                                    </b-dropdown-item-button>
+                                </b-dropdown>
+                            </div>
+                        </li>
                     </ul>
-                    <div class="">
-                        <!-- <a href="/auth/signin-basic" class="btn btn-link fw-medium text-decoration-none text-dark">Sign in</a> -->
-                        <a href="/registration-form" class="btn btn-primary">Register</a>
-                    </div>
+                   
                 </div>
             </div>
         </nav>
@@ -95,82 +104,42 @@
                     </b-col>
                 </b-row>
             </b-container>
-        </section>
+        </section>>
+    
 
-
-
-         <section class="section" id="schedules">
-        <div class="container"
-            data-aos="flip-left"
-            data-aos-duration="5000"
-            data-aos-delay="500"
-        >
-             <div class="row justify-content-center">
-                    <div class="col-lg-8">
-                        <div class="text-center mb-5">
-                            <h3 class="mb-1 fs-18 fw-semibold">Explore the List of Events and Sessions</h3>
-                            <p class="text-muted fs-14 mb-4">Browse scheduled sessions with simple details. Locations viewable via Google Maps.</p>
-                        </div>
-                    </div>
-                </div>
-            <div class="row justify-content-center">
-            <div class="col-lg-12">
-                <div class="position-relative home-img text-center mt-5 mt-lg-0">
-                <div class="live-preview">
-                    <div id="scheduleCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
-                    <!-- Indicators -->
-                    <div class="carousel-indicators">
-                        <button type="button" data-bs-target="#scheduleCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                        <button type="button" data-bs-target="#scheduleCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                        <button type="button" data-bs-target="#scheduleCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                        <button type="button" data-bs-target="#scheduleCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
-                    </div>
-
-                    <!-- Slides -->
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                        <img class="d-block w-100" src="@assets/images/event/sched1.png" loading="eager" alt="Schedule 1">
-                        </div>
-                        <div class="carousel-item">
-                        <img class="d-block w-100" src="@assets/images/event/sched2.png" loading="eager" alt="Schedule 2">
-                        </div>
-                        <div class="carousel-item">
-                        <img class="d-block w-100" src="@assets/images/event/sched3.png" loading="eager" alt="Schedule 3">
-                        </div>
-                        <div class="carousel-item">
-                        <img class="d-block w-100" src="@assets/images/event/sched4.png" loading="eager" alt="Schedule 4">
-                        </div>
-                    </div>
-
-                    <!-- Controls -->
-                    <button class="carousel-control-prev" type="button" data-bs-target="#scheduleCarousel" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#scheduleCarousel" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
-                    </div>
-                </div>
-                </div>
-            </div>
-            </div>
-        </div>
-        </section>
-
-        <section class="section" id="process">
+        <section class="section">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-8">
-
+                        <div class="text-center mb-0">
+                            <h3 class="mb-1 fs-18 fw-semibold">Events About</h3>
+                            <p class="text-muted fs-14 mb-4">Explore and Enjoy!</p>
+                        </div>
                     </div>
                 </div>
-                
+             
+                <div class="row align-items-center mt-5 gy-4">
+                    <div class="col-lg-6">
+                        <div class="text-muted ps-lg-5">
+                            <h5 class="fs-12 text-uppercase text-success">RSTW 2025</h5>
+                            <h4 class="fs-16 fw-semibold mb-3">Regional Science, Technology, and Innovation Week</h4>
+                            <p class="mb-4">A flagship celebration showcasing how science, technology, and innovation (STI) empower communities and drive national progress. Aligned with the call “Handa Pilipinas sa Bagong Pilipinas,” RSTW promotes awareness, preparedness, and resilience through science-based solutions. It brings together researchers, innovators, local governments, and the public to highlight how STI can address regional challenges, support disaster readiness, improve livelihoods, and build a more inclusive, forward-looking nation.</p>
+                            
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                           <div class="text-muted ps-lg-5">
+                            <h5 class="fs-12 text-uppercase text-success">Mindanao Leg</h5>
+                            <h4 class="fs-16 fw-semibold  mb-3">Handa Pilipinas sa Bagong Pilipinas</h4>
+                            <p class="mb-4">A unified call to action for a more resilient, responsive, and forward-looking nation. Rooted in the spirit of preparedness and innovation, this movement embodies the collective efforts of government, communities, and individuals in building a safer, more progressive Philippines under the vision of "Bagong Pilipinas." It highlights proactive disaster risk reduction, good governance, sustainable development, and inclusive growth to ensure that every Filipino is ready for the challenges and opportunities of a new era.</p>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </section>
-        
-        <section class="py-5 bg-primary position-relative">
+
+           <section class="py-5 bg-primary position-relative">
             <div class="bg-overlay bg-overlay-pattern opacity-50"></div>
             <b-container class="hidemobile">
                 <b-row class="align-items-center gy-4">
@@ -195,50 +164,6 @@
                 </div></b-row>
             </b-container>
         </section>
-
-        <section class="section">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-8">
-                        <div class="text-center mb-5">
-                            <h3 class="mb-1 fs-18 fw-semibold">Events About</h3>
-                            <p class="text-muted fs-14 mb-4">Read and Enjoy!</p>
-                        </div>
-                    </div>
-                </div>
-             
-
-                <div class="row align-items-center mt-5 gy-4">
-                    <div class="col-sm-7 col-lg-6 col-10 mx-auto">
-                        <div><img src="/images/banner/rstw.jpg" alt="" class="img-fluid"></div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="text-muted ps-lg-5">
-                            <h5 class="fs-12 text-uppercase text-success">RSTW 2025</h5>
-                            <h4 class="fs-16 fw-semibold mb-3">Regional Science, Technology, and Innovation Week</h4>
-                            <p class="mb-4">A flagship celebration showcasing how science, technology, and innovation (STI) empower communities and drive national progress. Aligned with the call “Handa Pilipinas sa Bagong Pilipinas,” RSTW promotes awareness, preparedness, and resilience through science-based solutions. It brings together researchers, innovators, local governments, and the public to highlight how STI can address regional challenges, support disaster readiness, improve livelihoods, and build a more inclusive, forward-looking nation.</p>
-                            
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row align-items-center pt-lg-5  gy-4">
-                    <div class="col-lg-6 order-2 order-lg-1 order-2">
-                        <div class="text-muted">
-                            <h5 class="fs-12 text-uppercase text-success">Mindanao Leg</h5>
-                            <h4 class="fs-16 fw-semibold  mb-3">Handa Pilipinas sa Bagong Pilipinas</h4>
-                            <p class="mb-4 ff-secondary">A unified call to action for a more resilient, responsive, and forward-looking nation. Rooted in the spirit of preparedness and innovation, this movement embodies the collective efforts of government, communities, and individuals in building a safer, more progressive Philippines under the vision of "Bagong Pilipinas." It highlights proactive disaster risk reduction, good governance, sustainable development, and inclusive growth to ensure that every Filipino is ready for the challenges and opportunities of a new era.</p>
-                        </div>
-                    </div>
-                    <div class="col-sm-7 col-lg-6 order-1 order-lg-2 col-10 order-1 ms-auto">
-                        <div><img src="/images/banner/handa.jpg" alt="" class="img-fluid"></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-
-
           <section class="py-5 position-relative" id="about">
             <b-container class="mt-4">
                 <b-row>
@@ -273,9 +198,7 @@
         
         </section>
 
-
-         <section id="venue" class="py-5 position-relative section zc-bg" 
-
+         <section id="venue" class="py-0  bg-primary position-relative section header-bg"
             data-aos="fade-up" 
             data-aos-duration="5000" 
             data-aos-delay="500">
@@ -289,8 +212,9 @@
                     <img src="@assets/images/event/zc_bg.png" class="img-fluid w-100" alt="Full width image">
                 </b-row>
             </b-container>
-        
         </section>
+            </div>
+
 
         <footer class="custom-footer bg-dark py-5 position-relative" id="contact">
             <b-container>
@@ -389,9 +313,9 @@
         <b-button variant="danger" @click="topFunction" class="btn-icon" id="back-to-top">
             <i class="ri-arrow-up-line"></i>
         </b-button>
-    </div>
+   
 
- <BModal v-model="showModal" style="--vz-modal-width: 800px;" hide-footer body-class="p-0" header-class="p-0"
+     <BModal v-model="showModal" style="--vz-modal-width: 800px;" hide-footer body-class="p-0" header-class="p-0"
         class="v-modal-custom" content-class="border-0 overflow-hidden" centered hide-header-close>
         <div class="modal-body login-modal p-5">
             <h5 class="text-white fs-18 mb-1 mt-n4">Registration Form</h5>
@@ -423,7 +347,6 @@
         <div class="modal-body p-5">
             <form class="customform">
                 <BRow class="g-3" style="margin-top: -35px;"> 
-                    
                    <BCol lg="6" class="mt-1">
                         <InputLabel for="name" value="Email Address" :message="form.errors.email"/>
                         <TextInput id="name" v-model="form.email" type="text" class="form-control" placeholder="Please enter email" @input="handleInput('email')" style="text-transform: lowercase;" :light="true"/>

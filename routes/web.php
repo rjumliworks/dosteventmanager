@@ -7,8 +7,11 @@ Route::post('/mail', [App\Http\Controllers\OtpController::class, 'mail']);
 Route::post('/verify', [App\Http\Controllers\OtpController::class, 'verify']);
 Route::get('/registration/{type}/{key}', [App\Http\Controllers\RegistrationController::class, 'show']);
 Route::post('/', [App\Http\Controllers\RegistrationController::class, 'store']);
-
-
+Route::get('/captcha', function () {
+    return response()->json([
+        'src' => captcha_src('flat') // always flat style
+    ]);
+});
 
 Route::get('/participant/login', [App\Http\Controllers\ParticipantController::class, 'login'])->name('participant.login');
 Route::middleware('auth:participant')->group(function () {
