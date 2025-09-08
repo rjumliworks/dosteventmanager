@@ -13,7 +13,7 @@ Broadcast::channel('system-maintenance', function () {
     return true;
 });
 
-Broadcast::channel('questionning', function () {
+Broadcast::channel('session', function () {
     return true;
 });
 
