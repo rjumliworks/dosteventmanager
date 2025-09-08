@@ -27,7 +27,7 @@ class EventSessionParticipant extends Model
 
     public function getAttendedAtAttribute($value)
     {
-        return date('F d, Y g:i a', strtotime($value));
+        return ($value) ? date('F d, Y g:i a', strtotime($value)) : null;
     }
 
     public function getUpdatedAtAttribute($value)
