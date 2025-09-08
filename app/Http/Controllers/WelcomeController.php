@@ -39,7 +39,7 @@ class WelcomeController extends Controller
     }
 
     public function registration_index(){
-        return inertia('Registration2',[
+        return inertia('Registration',[
             'dropdowns' => [
                 'sexs' => $this->dropdown->dropdowns('Sex'),
                 'types' => $this->dropdown->dropdowns('Participant Type')

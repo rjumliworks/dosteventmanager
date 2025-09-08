@@ -151,16 +151,14 @@ export default {
     data() {
         return {
              form: useForm({
-                attendee_type: null,
-                event_session: null,
                 firstname:null,
                 middlename : null,
                 lastname : null,
                 suffix: null,
                 email: null,
-                agency_firm_address: null,
+                affiliation: null,
                 designation: null,
-                contact_number: null,
+                contact_no: null,
                 sex: null,
                 age: null,
                 is_4ps: false,
@@ -185,7 +183,7 @@ export default {
 
         submit(){ 
             this.loading = true;
-            this.form.post('/attendance/register', {
+            this.form.post('/', {
                 onSuccess: () => {
                     this.loading = false;
                     this.form.reset();   

@@ -73,7 +73,7 @@ class RegistrationController extends Controller
             //     }
             // }
             // dd(\Auth::guard('participant')->login($participant));
-           \Auth::guard('participant')->login($participant);
+        //    \Auth::guard('participant')->login($participant);
         }
 
         return [
