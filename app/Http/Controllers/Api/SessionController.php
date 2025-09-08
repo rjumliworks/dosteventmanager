@@ -50,6 +50,52 @@ class SessionController extends Controller
         return new SessionViewResource($data);
     }
 
+    public function attendance(Request $request)
+    {
+        $session_id = EventSession::where('code', $request->code)->value('id');
+
+        if (!$session_id) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Session not found.'
+            ], 404);
+        }
+
+        $attendance = EventSessionParticipant::where('participant_id', $request->participant_id)
+            ->where('session_id', $session_id)
+            ->first();
+
+        if (!$attendance) {
+            return response()->json([
+                'status' => false,
+                'message' => 'You are not a registered participant.'
+            ], 400);
+        }
+
+        if ($attendance->attended_at) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Attendance already recorded for this participant.'
+            ], 400);
+        }
+
+        $attendance->attended_at = now();
+        $attendance->status_id = 8;
+
+        if ($attendance->save()) {
+            return response()->json([
+                'status' => true,
+                'message' => 'Attendance successfully recorded.',
+                'data' => $attendance
+            ], 200);
+        }
+
+        return response()->json([
+            'status' => false,
+            'message' => 'Failed to record attendance. Please try again.'
+        ], 500);
+    }
+
     public function question(Request $request){
         $data = EventSessionQuestion::create([
             'question' => $request->question,
