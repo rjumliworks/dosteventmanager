@@ -58,7 +58,7 @@ class SessionController extends Controller
         ]);
 
         $data = EventSessionQuestion::with('participant.detail')->where('id',$data->id)->first();
-        broadcast(new QuestionningEvent(new QuestionResource($data)));
+        broadcast(new QuestionEvent(new QuestionResource($data)));
         return response()->json([
             'status' => true,
             'message' => 'Question submitted successfully',
