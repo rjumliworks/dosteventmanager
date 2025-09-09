@@ -31,6 +31,11 @@ class EventExhibitor extends Model
         return $this->hasMany('App\Models\EventExhibitorVisitor', 'exhibitor_id');
     } 
 
+    public function reviews()
+    {
+        return $this->hasMany('App\Models\EventExhibitorReview', 'exhibitor_id');
+    } 
+
     public function getUpdatedAtAttribute($value)
     {
         return date('M d, Y g:i a', strtotime($value));

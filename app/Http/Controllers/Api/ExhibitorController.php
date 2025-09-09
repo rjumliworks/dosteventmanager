@@ -3,16 +3,20 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\EventExhibitor;
+use App\Models\EventExhibitorReview;
 use App\Models\EventExhibitorVisitor;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Resources\DefaultResource;
+use App\Http\Resources\Api\ExhibitorResource;
+use App\Http\Resources\Api\ReviewResource;
+use App\Events\ExhibitorEvent;
 
 class ExhibitorController extends Controller
 {
     public function index(Request $request)
     {
-        $participantId = $request->id;
+        $participantId = $request->participant_id;
 
         $data = EventExhibitor::with('contact')
             ->whereHas('event', function ($query) {
@@ -35,17 +39,50 @@ class ExhibitorController extends Controller
 
     public function view(Request $request, $id){
         $participantId = $request->participant_id;
-        $data = EventExhibitor::with('contact','visitors')
-            ->where('id',$id)
-            ->first();
-            
-            if($data){
-                $data->has_visited = $data->visitors()
-                    ->where('participant_id', $participantId)
-                    ->exists();
-            }
-        return new DefaultResource($data);
+
+        $data = EventExhibitor::with('contact','reviews')
+            ->withCount('visitors') // ✅ only gets the count, not full list
+            ->find($id);
+
+        if ($data) {
+            // Check if this participant has visited
+            $visitor = $data->visitors()
+                ->where('participant_id', $participantId)
+                ->first();
+
+            $data->has_visited = (bool) $visitor;
+            $data->has_voted   = $visitor ? (bool) $visitor->has_voted : false;
+        }
+
+        return new ExhibitorResource($data);
     }
+
+    public function review(Request $request){
+        $review = EventExhibitorReview::where('participant_id', $request->participant_id)
+            ->where('exhibitor_id', $request->exhibitor_id)
+            ->first();
+        if($review){
+            $review->rate = $request->rate;
+            $review->comment = $request->comment;
+            $review->save();
+        }else{
+            $data = EventExhibitorReview::create([
+                'rate' => $request->rate,
+                'comment' => $request->comment,
+                'participant_id' => $request->participant_id,
+                'exhibitor_id' => $request->exhibitor_id,
+            ]);
+        }
+
+        $data = EventExhibitorReview::with('participant.detail')->where('id',$data->id)->first();
+        broadcast(new ExhibitorEvent(new ReviewResource($data),'review'));
+        return response()->json([
+            'status' => true,
+            'message' => 'Review submitted successfully',
+            'data' => new ReviewResource($data)
+        ], 200);
+    }
+
 
     public function attendance(Request $request)
     {

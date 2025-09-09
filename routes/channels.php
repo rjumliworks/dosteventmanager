@@ -17,6 +17,10 @@ Broadcast::channel('session', function () {
     return true;
 });
 
+Broadcast::channel('exhibitor', function () {
+    return true;
+});
+
 Broadcast::channel('chat-room-{id}', function ($user, $id) {
     // $hashids = new Hashids('krad',10);
     // $id = $hashids->decode($id);

@@ -30,5 +30,10 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::get('/view/{id}', 'view');
         Route::post('/attendance', 'attendance');
         Route::post('/vote', 'vote');
+        Route::post('/review', 'review');
+    });
+
+    Route::prefix('hotels')->controller(App\Http\Controllers\Api\HotelController::class)->group(function () {
+        Route::get('/', 'index');
     });
 });
