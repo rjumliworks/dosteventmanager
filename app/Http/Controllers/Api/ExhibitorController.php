@@ -22,13 +22,10 @@ class ExhibitorController extends Controller
                 $query->where('participant_id', $participantId);
             }])
             ->get()
-            ->map(function ($exhibitor) use ($participantId) {
-                $exhibitor->has_voted = false;
-                $exhibitor->has_visited = $exhibitor->visitors->isNotEmpty();
-                if ($exhibitor->visitors->isNotEmpty()) {
-                    $visitor = $exhibitor->visitors->first();
-                    $exhibitor->has_voted = (bool) $visitor->has_voted;
-                }
+             ->map(function ($exhibitor) {
+                $visitor = $exhibitor->visitors->first();
+                $exhibitor->has_visited = $visitor ? true : false;
+                $exhibitor->has_voted = $visitor ? (bool) $visitor->has_voted : false;
                 unset($exhibitor->visitors); 
                 return $exhibitor;
             });
