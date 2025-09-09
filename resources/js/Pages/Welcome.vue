@@ -72,7 +72,7 @@
                                                 <li class="list-inline-item text-danger fw-semibold">
                                                     <i class="ri-map-pin-fill align-middle text-white"></i>
                                                 <span class="text-white">
-                                                    Marcian Garden Hotel , Palacio Del Sur, Zamboanga City
+                                                    Palacio Del Sur, Marcian Garden Hotel , Zamboanga City
                                                 </span>
                                             </li>
                                             <li class="list-inline-item">
