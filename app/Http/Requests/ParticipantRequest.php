@@ -14,6 +14,7 @@ class ParticipantRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'type_id' => 'sometimes|required|integer',
             'email' => 'sometimes|required|email|max:150|unique:participants,email_hash,'.$this->id,
             'firstname' => 'sometimes|required|string|max:100',
             'lastname' => 'sometimes|required|string|max:100',

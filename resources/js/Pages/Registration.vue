@@ -1,5 +1,5 @@
 <template>
-    <Head title="Log in"/>
+    <Head title="Registration Form"/>
     <div class="landing-wrapper d-flex justify-content-center align-items-center">
         <div class="auth-page-content registration_bg ">
             <BContainer >
@@ -21,8 +21,8 @@
                                     </div>
                                       <div class="col-10 col-sm-11 ; ">
                                         <div class="text-primary mt-1">
-                                            <h4 class="fs-16 fw-semibold">DOST Region IX</h4>
-                                            <p class="mt-n2 " >Registration Form</p>
+                                            <h4 class="fs-16 fw-semibold">Registration Form</h4>
+                                            <p class="mt-n2 " >Please fill out the form carefully to ensure all information is accurate.</p>
                                         </div>
                                     </div>
                                 </div>
@@ -33,7 +33,14 @@
                                 <div class="p-2 mt-n3">
                                     <form class="customform" @submit.prevent="submit">
                                      
-                                        <BRow>                        
+                                        <BRow>      
+                                            <BCol lg="12" class="mt-1">
+                                                <InputLabel value="Type*" />
+                                                <Multiselect :options="dropdowns.types"  v-model="form.type_id" :searchable="true" placeholder="Select Type"
+                                                 :class="{ 'is-invalid': form.errors.type_id }"  required />
+                                                <InputError :message="form.errors.type_id" />
+                                            </BCol>
+                  
                                             <BCol lg="6" class="mt-1">
                                                 <InputLabel value="First Name*" />
                                                 <TextInput v-model="form.firstname" type="text" class="form-control" placeholder="Enter Firstname" 
@@ -107,6 +114,7 @@
                                             </div>
 
                                             <BCol lg="12" class="mt-2 mb-3">
+                                                <InputLabel class="fw-20 text-muted" value="Click the captcha image to generate a new one if current captcha does not work"/>
                                                 <div class="text-center pt-2 ">
                                                     <img 
                                                         :src="captchaUrl" 
@@ -213,6 +221,7 @@ export default {
     data() {
         return {
              form: useForm({
+                type_id: null,
                 firstname:null,
                 middlename : null,
                 lastname : null,
@@ -267,13 +276,10 @@ export default {
                 onSuccess: () => {
                     this.loading = false;
                     this.form.reset();   
-                    this.formSubmitted = true;               
+                    this.formSubmitted = true;  
+                    this.refreshCaptcha(); 
                 },
             });
-
-            if(this.form.captcha){
-                this.captchaModal = false;
-            }
           
         },
 
