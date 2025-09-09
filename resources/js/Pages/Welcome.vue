@@ -31,7 +31,7 @@
                                     <a href="" target="_blank">Programme</a>
                                     </b-dropdown-item-button>
                                     <b-dropdown-item-button>
-                                    <a href="https://tinyurl.com/2b2rfpuj" target="_blank">Manifestation</a>
+                                    <a href="https://tinyurl.com/ydern4n9" target="_blank">Manifestation</a>
                                     </b-dropdown-item-button>
                                 </b-dropdown>
                                 </div>
@@ -206,22 +206,24 @@
         
         </section>
 
-         <section id="venue" class="py-0  bg-primary position-relative section header-bg"
-            data-aos="fade-up" 
-            data-aos-duration="5000" 
-            data-aos-delay="500">
-            <b-container class="mt-4 hidemobile">
-                <b-row class="align-items-center gy-4">
-                    <img src="@assets/images/event/zc_bg.png" class="img-fluid w-100" alt="Full width image">
-                </b-row>
-            </b-container>
-             <b-container class="mt-4 showmobile">
-                <b-row class="align-items-center gy-4">
-                    <img src="@assets/images/event/zc_bg.png" class="img-fluid w-100" alt="Full width image">
-                </b-row>
-            </b-container>
-        </section>
-            </div>
+        </div>
+        
+            <section id="venue" class="py-0  bg-primary position-relative section zc_bg"
+                data-aos="fade-up" 
+                data-aos-duration="5000" 
+                data-aos-delay="500">
+
+                <b-container class="mt-4 hidemobile">
+                    <b-row class="align-items-center gy-4">
+                        <img src="@assets/images/event/zc_bg.svg" class="img-fluid w-100" alt="Full width image" style="opacity: 0;" >
+                    </b-row>
+                </b-container>
+                <b-container class="mt-4 showmobile">
+                    <b-row class="align-items-center gy-4">
+                        <img src="@assets/images/event/zc_bg.svg" class="img-fluid w-100" alt="Full width image" style="opacity: 0;">
+                    </b-row>
+                </b-container>
+            </section>
 
 
         <footer class="custom-footer bg-dark py-5 position-relative" id="contact">
