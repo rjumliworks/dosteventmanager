@@ -114,7 +114,7 @@
                                             </div>
 
                                             <BCol lg="12" class="mt-2 mb-3">
-                                                <InputLabel class="fw-20 text-muted" value="Click the captcha image to refresh if needed"/>
+                                                <InputLabel class="fw-20 text-muted" value="Click the captcha image to refresh if current captcha does not work"/>
                                                 <div class="text-center pt-2 ">
                                                     <img 
                                                         :src="captchaUrl" 
@@ -276,13 +276,10 @@ export default {
                 onSuccess: () => {
                     this.loading = false;
                     this.form.reset();   
-                    this.formSubmitted = true;               
+                    this.formSubmitted = true;  
+                    this.refreshCaptcha(); 
                 },
             });
-
-            if(this.form.captcha){
-                this.captchaModal = false;
-            }
           
         },
 

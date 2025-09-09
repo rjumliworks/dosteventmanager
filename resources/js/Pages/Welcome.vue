@@ -11,9 +11,9 @@
                 <div id="navbarSupportedContent" class="collapse navbar-collapse" is-nav="false">
                     <ul class="navbar-nav mx-auto mt-2 mt-lg-0" id="navbar-example">
                         <li class="nav-item"><a class="nav-link active" href="#home" target="_self">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#schedules" target="_self">Schedules</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/highlights" target="_self">Highlights</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/hotels" target="_self">Hotels</a></li>
+                        <!-- <li class="nav-item"><a class="nav-link" href="#schedules" target="_self">Schedules</a></li> -->
+                        <li class="nav-item"><a class="nav-link" href="/highlights" target="_blank">Highlights</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/recommendation-hotels" target="_blank">Hotels</a></li>
                         <li class="nav-item"><a class="nav-link" href="#about" target="_self">About Us</a></li>
                         <li class="nav-item"><a class="nav-link" href="#contact" target="_self">Contact</a></li>
                            <li class="nav-item">
@@ -204,14 +204,9 @@
             data-aos="fade-up" 
             data-aos-duration="5000" 
             data-aos-delay="500">
-            <b-container class="mt-4 hidemobile">
-                <b-row class="align-items-center gy-4">
-                    <img src="@assets/images/event/zc_bg.png" class="img-fluid w-100" alt="Full width image">
-                </b-row>
-            </b-container>
-             <b-container class="mt-4 showmobile">
-                <b-row class="align-items-center gy-4">
-                    <img src="@assets/images/event/zc_bg.png" class="img-fluid w-100" alt="Full width image">
+            <b-container class="mt-4 " style="width: 100%;">
+                <b-row class="align-items-center ">
+                    <img src="@assets/images/event/zc_bg.svg" style="width: 100%;" alt="Full width image">
                 </b-row>
             </b-container>
         </section>

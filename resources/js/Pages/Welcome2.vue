@@ -286,19 +286,18 @@
         </section>
 
 
-         <section id="venue" class="py-5 position-relative section zc-bg" 
-
+         <section id="venue" class="py-5 position-relative section " 
             data-aos="fade-up" 
             data-aos-duration="5000" 
             data-aos-delay="500">
-            <b-container class="mt-4 hidemobile">
+            <b-container class="mt-4 hidemobile" >
                 <b-row class="align-items-center gy-4">
-                    <img src="@assets/images/event/zc_bg.png" class="img-fluid w-100" alt="Full width image">
+                    <img src="@assets/images/event/zc_bg.svg" style="width: 100%;" class="" alt="Full width image">
                 </b-row>
             </b-container>
              <b-container class="mt-4 showmobile">
-                <b-row class="align-items-center gy-4">
-                    <img src="@assets/images/event/zc_bg.png" class="img-fluid w-100" alt="Full width image">
+                <b-row class="align-items-center gy-4" >
+                    <img src="@assets/images/event/zc_bg.svg" style="width: 100%;" alt="Full width image">
                 </b-row>
             </b-container>
         

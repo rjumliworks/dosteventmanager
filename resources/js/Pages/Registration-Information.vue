@@ -1,9 +1,9 @@
 <template>
     <Head title="Log in"/>
     <div class="landing-wrapper d-flex justify-content-center align-items-center">
-        <div class="auth-page-content registration_bg ">
-            <BContainer >
-                <BRow class="justify-content-center  ">
+        <div class="auth-page-content registration_bg">
+            <BContainer fluid class="h-100 ">
+                <BRow class="justify-content-center align-items-center h-100">
                     <BCol md="8" lg="10" xl="8" >
                         <BCard no-body class="" style="height:100%" >
                             <BCardBody class="p-4 ">
@@ -18,7 +18,7 @@
                                     Your information has been submitted successfully  , Please check your email for verification. Thank you.
                                 </div>
 
-                                <div class="text-center"> 
+                                <!-- <div class="text-center"> 
                                     <h5 >Download the App</h5>
                                     <b-row>
                                         <b-col lg="6">
@@ -29,7 +29,7 @@
                                         </b-col>
                                     </b-row>
                                      <h5 class="text-muted mt-3">Click the button to see instructions.</h5>
-                                </div>
+                                </div> -->
 
                             </BCardBody>
                         </BCard>
@@ -182,20 +182,16 @@ export default {
 }
 </script>
 <style scoped>
-.auth-page-wrapper {
-    background-color: hsl(201, 80%, 82%);
+.landing-wrapper {
+  min-height: 100vh;  /* full viewport */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
-canvas {
-  border: 1px solid #ccc;
+.auth-page-content {
+  flex: 1;           /* take all remaining height */
+  display: flex;
+  flex-direction: column;
 }
-
-.captcha-box img {
-  cursor: pointer;
-  border: 1px solid #ddd;
-  padding: 5px;
-  background: #f9f9f9;
-  border-radius: 6px;
-}
-
 </style>
