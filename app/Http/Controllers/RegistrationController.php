@@ -62,9 +62,7 @@ class RegistrationController extends Controller
             ]));
         
             if ($participant) {
-                $participant->detail()->create(array_merge($request->except('captcha'), [
-                    'type_id' => 16
-                ]));
+                $participant->detail()->create($request->except('captcha'));
 
                 // if (count($request->sessions) > 0) {
                 //     foreach ($request->sessions as $session) {
@@ -87,12 +85,14 @@ class RegistrationController extends Controller
             ];
         });
 
-        return redirect()->back()->with([
-            'data' => $result['data'],
-            'message' => $result['message'],
-            'info' => $result['info'],
-            'status' => $result['status'],
-        ]);
+        return inertia('Registration-Information');
+
+        // return redirect()->->route('participant.dashboard')->with([
+        //     'data' => $result['data'],
+        //     'message' => $result['message'],
+        //     'info' => $result['info'],
+        //     'status' => $result['status'],
+        // ]);
 
         // return redirect()->route('participant.dashboard')->with([
         //     'data' => $result['data'],

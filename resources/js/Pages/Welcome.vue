@@ -150,7 +150,9 @@
                     </b-col>
                     <b-col sm="auto">
                         <div>
-                            <button type="button" @click="openRegister()" class="btn bg-gradient btn-danger">REGISTER NOW</button>
+                            <a href="/registration-form">
+                                <button type="button"  class="btn bg-gradient btn-danger">REGISTER NOW</button>
+                            </a>
                         </div>
                     </b-col>
                 </b-row>
