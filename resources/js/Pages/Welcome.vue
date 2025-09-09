@@ -17,16 +17,24 @@
                         <li class="nav-item"><a class="nav-link" href="#about" target="_self">About Us</a></li>
                         <li class="nav-item"><a class="nav-link" href="#contact" target="_self">Contact</a></li>
                            <li class="nav-item">
+                       
+
                             <div>
-                                <b-dropdown variant="light" id="dropdown-header" text="Downloadables" class="m-2">
-                                    <b-dropdown-item-button aria-describedby="dropdown-header-label">
-                                    Media Brief
+                                <b-dropdown variant="light" id="dropdown-grouped" text="Downloadables" class="m-2">
+                                    <b-dropdown-divider></b-dropdown-divider>
+                                    <b-dropdown-group  header="Media Brief">
+                                    <b-dropdown-item-button><a href="https://tinyurl.com/4kx5zdye" target="_blank">Part 1</a></b-dropdown-item-button>
+                                    <b-dropdown-item-button><a href="https://tinyurl.com/3uw8axk4" target="_blank">Part 2</a></b-dropdown-item-button>
+                                    </b-dropdown-group>
+                                    <b-dropdown-divider></b-dropdown-divider>
+                                    <b-dropdown-item-button>
+                                    <a href="" target="_blank">Programme</a>
                                     </b-dropdown-item-button>
-                                    <b-dropdown-item-button aria-describedby="dropdown-header-label">
-                                        <a href="">Programme</a>
+                                    <b-dropdown-item-button>
+                                    <a href="https://tinyurl.com/2b2rfpuj" target="_blank">Manifestation</a>
                                     </b-dropdown-item-button>
                                 </b-dropdown>
-                            </div>
+                                </div>
                         </li>
                     </ul>
                    
@@ -71,13 +79,13 @@
                                             <ul class="treding-keywords list-inline mb-0 mt-3 fs-13 ">
                                                 <li class="list-inline-item text-danger fw-semibold">
                                                     <i class="ri-map-pin-fill align-middle text-white"></i>
-                                                <span class="text-white">
-                                                    Marcian Garden Hotel , Palacio Del Sur, Zamboanga City
+                                                <span class="text-white fs-5">
+                                                    Palacio Del Sur, Marcian Garden Hotel, Zamboanga City
                                                 </span>
                                             </li>
                                             <li class="list-inline-item">
                                             <i class="ri-calendar-fill align-middle text-white"></i> 
-                                            <span class="fw-semibold text-primary text-white" >
+                                            <span class="fw-semibold text-primary text-white fs-5" >
                                                 September 23-25, 2025
                                             </span>
                                         </li>        
