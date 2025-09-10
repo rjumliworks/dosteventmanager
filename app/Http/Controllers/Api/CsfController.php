@@ -20,6 +20,15 @@ class CsfController extends Controller
     }
 
     public function save(Request $request){
+        $validated = $request->validate([
+            'session_id' => 'required|exists:event_sessions,id',
+            'participant_id' => 'required|exists:participants,id',
+            'comment' => 'required|string',
+            'questions' => 'required|array|min:1',
+            'questions.*.id' => 'required|integer|exists:questions,id',
+            'questions.*.rating' => 'required|integer|min:1|max:5',
+        ]);
+
         $session = EventSession::where('id',$request->session_id)->first();
         $ratings = collect($request->questions)->pluck('rating'); 
         $entry = $session->feedbackable()->create([
