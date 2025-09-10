@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('csf_entries', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->bigIncrements('id');
+            $table->decimal('rate',5,2);
             $table->string('comment')->nullable();
             $table->string('attribute')->nullable();
             $table->unsignedInteger('feedbackable_id');   

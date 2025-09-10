@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class CsfEntry extends Model
 {
     protected $fillable = [
+        'rate',
         'comment',
         'attribute',
         'participant_id'
