@@ -19,10 +19,17 @@ class CsfController extends Controller
 
     public function save(Request $request){
         $session = EventSession::where('id',$request->session_id)->first();
-        $session->feedbackable()->create([
+        $entry = $session->feedbackable()->create([
             'comment' => $request->comment,
             'participant_id' => $request->participant_id
         ]);
+        foreach($request->requests as $question){
+            $entry->ratings()->create([
+                'rating' => $question['rating'],
+                'question_id' => $question['id']
+            ]);
+        }
+
         return response()->json([
             'status' => true,
             'message' => 'Question submitted successfully',
