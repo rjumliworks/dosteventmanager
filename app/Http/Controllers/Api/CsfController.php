@@ -33,7 +33,7 @@ class CsfController extends Controller
                 'question_id' => $question['id']
             ]);
         }
-        
+        $entry->refresh();
         broadcast(new SessionEvent(new FeedbackResource($entry),'rating'));
         return response()->json([
             'status' => true,
