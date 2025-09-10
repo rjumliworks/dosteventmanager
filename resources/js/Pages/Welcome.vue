@@ -206,25 +206,25 @@
         
         </section>
 
-        </div>
+
         
-            <section id="venue" class="py-0  bg-primary position-relative section zc_bg"
+        <section id="venue" class="bg-primary position-relative section zc_bg"
                 data-aos="fade-up" 
                 data-aos-duration="5000" 
                 data-aos-delay="500">
 
-                <b-container class="mt-4 hidemobile">
+                <b-container class="mt-4 mb-0 hidemobile">
                     <b-row class="align-items-center gy-4">
                         <img src="@assets/images/event/zc_bg.svg" class="img-fluid w-100" alt="Full width image" style="opacity: 0;" >
                     </b-row>
                 </b-container>
-                <b-container class="mt-4 showmobile">
+                <b-container class="mt-4 mb-0 showmobile ">
                     <b-row class="align-items-center gy-4">
                         <img src="@assets/images/event/zc_bg.svg" class="img-fluid w-100" alt="Full width image" style="opacity: 0;">
                     </b-row>
                 </b-container>
-            </section>
-
+        </section>
+        </div>
 
         <footer class="custom-footer bg-dark py-5 position-relative" id="contact">
             <b-container>
