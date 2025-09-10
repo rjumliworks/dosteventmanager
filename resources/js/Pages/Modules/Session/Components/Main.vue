@@ -25,7 +25,7 @@
                                 <button class="nav-link fs-12 p-3" :class="(index == 0) ? 'active' : ''" 
                                     :id="menu+'-tab'" data-bs-toggle="pill" :data-bs-target="'#'+menu" 
                                     type="button" role="tab" :aria-controls="menu" aria-selected="true">
-                                    {{menu}}
+                                    {{menu}}  {{ (index == 2) ? '('+selected.questions.length+')' : ''}}
                                 </button>
                             </li>
                         </ul>
@@ -43,6 +43,7 @@
                                             <Activity :id="selected.id" :activities="selected.activities" :schedules="selected.schedules" v-else-if="menu == 'Activities'"/>
                                             <Participant :id="selected.key" :participants="selected.participants" v-else-if="menu == 'Participants'"/>
                                             <Certificate  v-else-if="menu == 'Certificates'"/>
+                                            <Question :questions="selected.questions" v-else-if="menu == 'Questions'"/>
                                             <!-- <Session :id="selected.id" :venues="selected.venues" :sessions="selected.sessions" v-if="menu == 'Sessions'"/>
                                             <Venue :id="selected.id" :venues="selected.venues" :detail="selected.detail" v-if="menu == 'Venues'"/> -->
                                         </div>
@@ -60,20 +61,40 @@
 <script>
 import Overview from './Pages/Overview.vue';
 import Activity from './Pages/Activity.vue';
+import Question from './Pages/Question.vue';
 import Participant from './Pages/Participant.vue';
 import Certificate from './Pages/Certificate.vue';
 export default {
-    components: { Activity, Participant, Certificate, Overview },
+    components: { Activity, Participant, Certificate, Overview, Question },
     props:['selected'],
     data(){
         return {
             currentUrl: window.location.origin,
             menus: [
-                'Overview','Participants','Activities','Customer Satisfaction Feedback','Certificates'
+                'Overview','Participants','Questions','Activities','Customer Satisfaction Feedback'
             ],
             menu: 'Overview',
             index: null,
         }
     },
+    mounted() {
+        this.setupEchoListener();
+    },
+    methods: {
+        setupEchoListener() {
+            window.Echo.channel('session')
+            .listen('SessionEvent', (event) => {
+                console.log(event);
+                switch(event.type){
+                    case 'question':
+                        this.selected.questions.unshift(event.data);
+                    break;
+                    case 'register':
+                        this.selected.participants.unshift(event.data);
+                    break;
+                }
+            });
+        },
+    }
 }
 </script>

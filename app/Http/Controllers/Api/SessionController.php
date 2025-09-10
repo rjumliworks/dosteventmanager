@@ -11,6 +11,7 @@ use App\Http\Resources\DefaultResource;
 use App\Http\Resources\Api\SessionResource;
 use App\Http\Resources\Api\SessionViewResource;
 use App\Http\Resources\Api\QuestionResource;
+use App\Http\Resources\ParticipantListResource;
 use App\Events\SessionEvent;
 
 class SessionController extends Controller
@@ -122,6 +123,8 @@ class SessionController extends Controller
             'participant_id' => $request->participant_id,
             'session_id' => $request->session_id,
         ]);
+        $data = EventSessionParticipant::with('participant.detail')->where('id',$data->id)->first();
+        broadcast(new SessionEvent(new ParticipantListResource($data),'register'));
         return response()->json([
             'status' => true,
             'message' => 'Registration submitted successfully',

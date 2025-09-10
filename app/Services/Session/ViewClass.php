@@ -12,7 +12,8 @@ class ViewClass
 
     public function lists($request){
         $data = SessionResource::collection(
-            EventSession::with('venue','detail','schedules','participants.participant.detail','attendees.participant','status','activities.speaker','managers.user.profile')
+            EventSession::with('venue','detail','schedules','attendees.participant','status','activities.speaker','managers.user.profile')
+            ->with('participants.participant.detail')
             ->with('event.detail.region:code,name,region','event.detail.province:code,name','event.detail.municipality:code,name','event.detail.barangay:code,name')
             ->when($request->keyword, function ($query,$keyword) {
                 $query->where('name', 'LIKE', "%{$keyword}%");
@@ -35,8 +36,22 @@ class ViewClass
         $key = $hashids->decode($id);
 
         $data = new SessionViewResource(
-            EventSession::with('venue','detail','schedules','participants.participant.detail','attendees.participant','status','activities.speaker','managers.user.profile')
-            ->with('event.detail.region:code,name,region','event.detail.province:code,name','event.detail.municipality:code,name','event.detail.barangay:code,name')
+           EventSession::with([
+                'venue','detail','schedules',
+                'participants.participant.detail',
+                'participants.participant.csfs' => function ($q) use ($key) {
+                    $q->where('feedbackable_type', EventSession::class)
+                    ->where('feedbackable_id', $key[0]);
+                },
+                'attendees.participant',
+                'status','activities.speaker',
+                'managers.user.profile',
+                'event.detail.region:code,name,region',
+                'event.detail.province:code,name',
+                'event.detail.municipality:code,name',
+                'event.detail.barangay:code,name',
+                'questions.participant.detail'
+            ])
             ->where('id',$key[0])->first()
         );
         return $data;

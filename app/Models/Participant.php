@@ -18,6 +18,11 @@ class Participant extends Authenticatable
         return 'id';
     }
 
+    public function getHasCsfAttribute()
+    {
+        return $this->csfs->isNotEmpty();
+    }
+
     protected $fillable = [
         'email','contact_no','firstname','lastname','middlename','suffix','avatar', 'code', 'email_hash','contact_no_hash','firstname_hash','lastname_hash','middlename_hash'
     ];
@@ -29,6 +34,11 @@ class Participant extends Authenticatable
     public function detail()
     {
         return $this->hasOne('App\Models\ParticipantDetail', 'participant_id');
+    }
+
+    public function csfs()
+    {
+        return $this->hasMany('App\Models\CsfEntry', 'participant_id');
     }
 
     public function setFirstnameAttribute($value)

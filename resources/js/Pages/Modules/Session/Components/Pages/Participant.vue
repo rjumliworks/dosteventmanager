@@ -24,9 +24,9 @@
                     <th>Name</th>
                     <th style="width: 20%;" class="text-center">Affiliation</th>
                     <th style="width: 20%;" class="text-center">Designation</th>
-                    <th style="width: 15%;" class="text-center">Attendance Record</th>
+                    <th style="width: 20%;" class="text-center">Attendance Record</th>
                     <th style="width: 10%;" class="text-center">Status</th>
-                    <th style="width: 7%;" class="text-center"></th>
+                    <th style="width: 5%;" class="text-center"></th>
                 </tr>
             </thead>
             <tbody v-if="participants.length > 0">
@@ -43,12 +43,15 @@
                         <span :class="'badge '+list.status.color+' '+list.status.type">{{list.status.name}}</span>
                     </td>
                     <td class="text-end">
-                        <b-button @click="openPrint1(list.code)" variant="primary" class="me-1" v-b-tooltip.hover title="Print Appreciation" size="sm">
-                            <i class="ri-printer-fill align-bottom"></i>
+                        <b-button @click="openView(list)" variant="primary" class="me-1" v-b-tooltip.hover title="View Participant" size="sm">
+                            <i class="ri-eye-fill align-bottom"></i>
                         </b-button>
-                        <b-button @click="openPrint2(list.code)" variant="primary" class="me-1" v-b-tooltip.hover title="Print Appearance" size="sm">
+                        <!-- <b-button @click="openPrint1(list.code)" variant="primary" class="me-1" v-b-tooltip.hover title="Print Appreciation" size="sm">
+                            <i class="ri-eye-fill align-bottom"></i>
+                        </b-button> -->
+                        <!-- <b-button @click="openPrint2(list.code)" variant="primary" class="me-1" v-b-tooltip.hover title="Print Appearance" size="sm">
                             <i class="ri-printer-fill align-bottom"></i>
-                        </b-button>
+                        </b-button> -->
                         <!-- <b-button @click="openEdit(list)" variant="soft-warning" v-b-tooltip.hover title="Edit" size="sm">
                             <i class="ri-pencil-fill align-bottom"></i>
                         </b-button> -->
@@ -62,16 +65,21 @@
             </tbody>
         </table>
     </div>
+    <Participant ref="participant"/>
 </template>
 <script>
 import _ from 'lodash';
+import Participant from './Modals/Participant.vue';
 import Pagination from "@/Shared/Components/Pagination.vue";
 export default {
-    components: { Pagination },
+    components: { Pagination, Participant },
     props: ['participants','id'],
     methods: {
         openCreate(){
             this.$refs.create.show();
+        },
+        openView(data){
+            this.$refs.participant.show(data);
         },
         openEdit(list){
             this.$refs.create.edit(list);

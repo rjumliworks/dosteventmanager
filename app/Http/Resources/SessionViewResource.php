@@ -43,6 +43,7 @@ class SessionViewResource extends JsonResource
             'participants' => ParticipantListResource::collection($this->participants),
             'attendees' => $this->attendees,
             'status' => $this->status,
+            'questions' => QuestionResource::collection($this->questions),
             'event' => new EventViewResource($this->event),
             'is_closed' => ($this->is_closed) ? true : false,
             'is_invitational' => ($this->is_invitational) ? true : false,

@@ -10,9 +10,9 @@
                                     <div>
                                         <h4 class="fw-semibold text-success">{{ selected.title }}</h4>
                                         <div class="hstack gap-3 flex-wrap">
-                                            <div><i class="ri-hashtag align-bottom me-1"></i>{{selected.code}}</div>
-                                            <div class="vr" style="width: 1px;"></div>
-                                            <div>Event : <span class="fw-medium">{{selected.event.name }}</span></div>
+                                            <!-- <div><i class="ri-hashtag align-bottom me-1"></i>{{selected.code}}</div>
+                                            <div class="vr" style="width: 1px;"></div> -->
+                                            <div><span class="fw-medium">{{selected.event.name }}</span></div>
                                             <div class="vr" style="width: 1px;"></div>
                                             <!-- <div>Current Capacity : <span class="fw-medium">{{selected.detail.attendees}}/{{ selected.detail.capacity }}</span></div>
                                             <div class="vr" style="width: 1px;"></div> -->
@@ -27,7 +27,7 @@
                         </b-col>
                         <b-col md="auto">
                             <div class="hstack gap-4 flex-wrap mt-2">
-                                <Link :href="'/events/'+selected.event_id">
+                                <Link :href="'/sessions'">
                                     <div class="text-muted" @click="hide()">  
                                         <i class="ri-close-circle-fill fs-16"></i> Close
                                     </div>
