@@ -92,6 +92,12 @@ export default {
                     case 'register':
                         this.selected.participants.unshift(event.data);
                     break;
+                    case 'cancel':
+                        const index = this.selected.participants.findIndex(p => p.code === event.data.code);
+                        if (index !== -1) {
+                            this.selected.participants.splice(index, 1);
+                        }
+                    break;
                 }
             });
         },
