@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class AvatarController extends Controller
 {
-    public function store($request){
+    public function store(Request $request){
         $request->validate([
             'image' => 'required|image|max:2048' // Assuming maximum file size is 2MB
         ]);
