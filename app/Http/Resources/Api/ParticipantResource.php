@@ -31,7 +31,7 @@ class ParticipantResource extends JsonResource
             'middlename' => $this->middlename,
             'lastname' => $this->lastname,
             'suffix' => $this->suffix,
-            'avatar' => asset('images/avatars/'.$this->avatar),
+            'avatar' => $this->avatar,
             'designation' => $this->detail->designation,
             'affiliation' => $this->detail->affiliation,
             'birthdate' => $this->detail->birthdate,
