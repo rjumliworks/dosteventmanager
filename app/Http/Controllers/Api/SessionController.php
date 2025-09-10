@@ -38,11 +38,8 @@ class SessionController extends Controller
 
     public function view(Request $request, $id){
         $participantId = $request->participant_id;
-        $data = EventSession::with('venue','detail','schedules','participants','questions','status','activities.speaker','managers.user.profile')
+        $data = EventSession::with('venue','detail','schedules','participants','questions','status','activities.speaker','managers.user.profile','feedbackable.participant.detail')
             ->with('event.detail.region:code,name,region','event.detail.province:code,name','event.detail.municipality:code,name','event.detail.barangay:code,name')
-            ->with(['feedbackable.participant.detail' => function ($q) use ($participantId) {
-                $q->where('participant_id', $participantId);
-            }])
             ->where('id',$id)
             ->first();
             
@@ -50,6 +47,10 @@ class SessionController extends Controller
                 $data->has_registered = $data->participants()
                     ->where('participant_id', $participantId)
                     ->exists();
+                $data->feedback = $data->feedbackable
+                    ->where('participant_id', $participantId)
+                    ->first(); 
+                $data->feedbacks = $data->feedbackable;
             }
         return new SessionViewResource($data);
     }
