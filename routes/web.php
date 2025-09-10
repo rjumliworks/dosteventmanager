@@ -47,4 +47,14 @@ Route::get('/session/{key}', [App\Http\Controllers\SessionController::class, 'vi
 Route::get('/highlights', [App\Http\Controllers\WelcomeController::class, 'highlight_index']);
 Route::get('/registration-form', [App\Http\Controllers\WelcomeController::class, 'registration_index']);
 
+Route::get('/avatars/{filename}', function ($filename) {
+    $path = public_path('images/avatars/'.$filename);
+
+    if (!file_exists($path)) {
+        abort(404);
+    }
+
+    return response()->file($path);
+});
+
 require __DIR__.'/auth.php';
