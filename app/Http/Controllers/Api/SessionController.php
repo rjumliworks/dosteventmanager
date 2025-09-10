@@ -41,8 +41,7 @@ class SessionController extends Controller
         $data = EventSession::with('venue','detail','schedules','participants','questions','status','activities.speaker','managers.user.profile')
             ->with('event.detail.region:code,name,region','event.detail.province:code,name','event.detail.municipality:code,name','event.detail.barangay:code,name')
             ->with(['feedbackable.participant.detail' => function ($q) use ($participantId) {
-                $q->where('participant_id', $participantId)
-                ->select('id', 'participant_id', 'feedbackable_id', 'feedbackable_type'); 
+                $q->where('participant_id', $participantId);
             }])
             ->where('id',$id)
             ->first();
