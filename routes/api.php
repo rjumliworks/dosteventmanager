@@ -41,4 +41,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::get('/', 'index');
         Route::post('/save', 'save');
     });
+
+    Route::post('/avatar', [App\Http\Controllers\Auth\ProfileController::class, 'store']);
 });
