@@ -10,6 +10,7 @@ class FeedbackResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'rate' => $this->rate,
             'comment' => $this->comment,
             'name' => $this->participant->firstname.' '.$this->participant->lastname,
             'avatar' => 'http://eventmanager.test/images/avatars/'.$this->participant->detail->avatar,
