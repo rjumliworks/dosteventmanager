@@ -27,8 +27,8 @@ class CsfController extends Controller
         ]);
         foreach($request->questions as $question){
             $entry->ratings()->create([
-                'rating' => $question['rating'],
-                'question_id' => $question['id']
+                'rating' => $question->rating,
+                'question_id' => $question->id
             ]);
         }
 
