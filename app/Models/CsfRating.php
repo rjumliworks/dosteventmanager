@@ -5,8 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 class CsfRating extends Model
-{
-     protected $fillable = [
+{   
+    public $timestamps = false;
+
+    protected $fillable = [
         'answer',
         'rating',
         'importance',
