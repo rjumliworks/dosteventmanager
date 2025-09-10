@@ -14,7 +14,7 @@ class ReviewResource extends JsonResource
             'rate' => $this->rate,
             'comment' => $this->comment,
             'name' => $this->participant->firstname.' '.$this->participant->lastname,
-            'avatar' => 'https://rstwhanda.dost9.ph/images/avatars/'.$this->participant->detail->avatar,
+            'avatar' => asset('images/avatars/'.$this->participant->detail->avatar),
             'created_at' => $this->created_at 
         ];
     }

@@ -21,7 +21,7 @@ class HotelResource extends JsonResource
             'link' => $this->link,
             'email' => $this->email,
             'contact_no' => $this->contact_no,
-            'avatar' => 'https://rstwhanda.dost9.ph/images/avatars/'.$this->avatar,
+            'avatar' => asset('images/avatars/'.$this->avatar),
             'location' => $this->location,
             'rates' => $this->rates
         ];
