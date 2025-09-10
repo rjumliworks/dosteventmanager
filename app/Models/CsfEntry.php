@@ -22,6 +22,11 @@ class CsfEntry extends Model
         return $this->belongsTo('App\Models\Participant', 'participant_id', 'id');
     }
 
+    public function rates()
+    {
+        return $this->hasMany('App\Models\CsfRating', 'csf_id');
+    } 
+
     public function getUpdatedAtAttribute($value)
     {
         return date('M d, Y g:i a', strtotime($value));

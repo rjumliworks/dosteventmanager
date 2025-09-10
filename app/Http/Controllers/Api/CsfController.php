@@ -18,7 +18,7 @@ class CsfController extends Controller
     }
 
     public function save(Request $request){
-        $session = EventSession::where('id',$request->id)->first();
+        $session = EventSession::where('id',$request->session_id)->first();
         $session->feedbackable()->create([
             'comment' => $request->comment,
             'participant_id' => $request->participant_id
