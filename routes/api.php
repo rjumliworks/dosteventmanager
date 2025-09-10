@@ -36,4 +36,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::prefix('hotels')->controller(App\Http\Controllers\Api\HotelController::class)->group(function () {
         Route::get('/', 'index');
     });
+
+    Route::prefix('csf')->controller(App\Http\Controllers\Api\CsfController::class)->group(function () {
+        Route::get('/', 'index');
+        Route::post('/save', 'save');
+    });
 });

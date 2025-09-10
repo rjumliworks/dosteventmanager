@@ -25,7 +25,7 @@
                                 <button class="nav-link fs-12 p-3" :class="(index == 0) ? 'active' : ''" 
                                     :id="menu+'-tab'" data-bs-toggle="pill" :data-bs-target="'#'+menu" 
                                     type="button" role="tab" :aria-controls="menu" aria-selected="true">
-                                    {{menu}}  {{ (index == 2) ? '('+selected.questions.length+')' : ''}}
+                                    {{menu}}  {{ (index == 2) ? '('+selected.questions.length+')' : ''}} {{ (index == 1) ? '('+selected.participants.length+')' : ''}}
                                 </button>
                             </li>
                         </ul>

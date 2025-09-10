@@ -144,4 +144,17 @@ class SessionController extends Controller
             'data' => true
         ], 200);
     }
+
+    public function csf(Request $request){
+        $data = EventSessionParticipant::with('participant.detail')->where('participant_id',$request->participant_id)->where('session_id',$request->session_id)->first();
+        $old = $data;
+        $data->delete();
+        
+        broadcast(new SessionEvent(new ParticipantListResource($old),'cancel'));
+        return response()->json([
+            'status' => true,
+            'message' => 'Registration cancelled successfully',
+            'data' => true
+        ], 200);
+    }
 }

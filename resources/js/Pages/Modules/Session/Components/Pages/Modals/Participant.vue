@@ -1,5 +1,5 @@
 <template>
-    <b-modal v-if="selected" v-model="showModal" style="--vz-modal-width: 700px;" header-class="p-3 bg-light" title="View Participant" class="v-modal-custom" modal-class="zoomIn" centered no-close-on-backdrop>
+    <b-modal v-if="selected" v-model="showModal" style="--vz-modal-width: 700px;" hide-footer header-class="p-3 bg-light" title="View Participant" class="v-modal-custom" modal-class="zoomIn" centered no-close-on-backdrop>
         <div class="row mb-3">
             <div class="col-md-12">
                 <div class="row align-items-center g-3">
@@ -21,8 +21,8 @@
             </div>
         </div>
         <hr class="text-muted"/>
-        <div class="row mt-2">
-            <div class="col-sm-4">
+        <div class="row g-1 mt-2">
+            <!-- <div class="col-sm-4">
                 <div class="p-1 border border-dashed rounded">
                     <div class="d-flex align-items-center">
                         <div class="avatar-sm me-2">
@@ -34,8 +34,8 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-sm-4">
+            </div> -->
+            <div class="col-sm-6">
                 <div class="p-1 border border-dashed rounded">
                     <div class="d-flex align-items-center">
                         <div class="avatar-sm me-2">
@@ -48,7 +48,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-6">
                 <div class="p-1 border border-dashed rounded">
                     <div class="d-flex align-items-center">
                         <div class="avatar-sm me-2">
@@ -92,10 +92,19 @@
                     </table>
                 </div>
             </div>
-        </div>
+            </div>
+            <div class="mt-4">
+                <b-button @click="openPrint1(selected.code)" variant="primary" class="me-1" v-b-tooltip.hover title="Print Appreciation">
+                    <i class="ri-eye-fill align-bottom"></i> Appreciation
+                </b-button> 
+                <b-button @click="openPrint2(selected.code)" variant="primary" class="me-1" v-b-tooltip.hover title="Print Appearance">
+                    <i class="ri-printer-fill align-bottom"></i> Appearance
+                </b-button>
+            </div>
         <template v-slot:footer>
-            <b-button @click="hide" variant="light" block>Close</b-button>
-            <b-button @click="openResult" variant="primary" block>Preview</b-button>
+            
+            <!-- <b-button @click="hide" variant="light" block>Close</b-button> -->
+            <!-- <b-button @click="openResult" variant="primary" block>Preview</b-button> -->
         </template>
     </b-modal>
 </template>
@@ -119,6 +128,14 @@ export default {
         hide() {
             this.showModal = false;
         },
+        openPrint1(id){
+            // window.open('/print?option=session&type=appearance&krdwrks='+id);
+            window.open('/print?option=session&type=appreciation&krdwrks='+id);
+        },
+        openPrint2(id){
+            // window.open('/print?option=session&type=appearance&krdwrks='+id);
+            window.open('/print?option=session&type=appearance&krdwrks='+id);
+        }
     }
 };
 </script>
