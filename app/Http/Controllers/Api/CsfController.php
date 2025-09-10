@@ -23,7 +23,7 @@ class CsfController extends Controller
             'comment' => $request->comment,
             'participant_id' => $request->participant_id
         ]);
-        foreach($request->requests as $question){
+        foreach($request->questions as $question){
             $entry->ratings()->create([
                 'rating' => $question['rating'],
                 'question_id' => $question['id']
