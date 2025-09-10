@@ -22,7 +22,7 @@ class CsfEntry extends Model
         return $this->belongsTo('App\Models\Participant', 'participant_id', 'id');
     }
 
-    public function rates()
+    public function ratings()
     {
         return $this->hasMany('App\Models\CsfRating', 'csf_id');
     } 
