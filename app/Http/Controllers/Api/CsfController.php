@@ -13,7 +13,7 @@ class CsfController extends Controller
 {
     public function index(Request $request)
     {   
-        $data = CsfQuestion::where('is_active',1)->get();
+        $data = CsfQuestion::where('is_active',1)->where('is_rating',1)->get();
         return DefaultResource::collection($data);
     }
 
