@@ -73,7 +73,8 @@ class CsfController extends Controller
         ]; 
 
         $pdf = \PDF::loadView('certificates.appearance',$array)->setPaper('a4', 'portrait');
-        CertificateJob::dispatch($data->participant->email, $array, $pdf)->onConnection('database');
+        $pdfContent = $pdf->output();
+        CertificateJob::dispatch($data->participant->email, $array, $pdfContent)->onConnection('database');
     }
 
 }
