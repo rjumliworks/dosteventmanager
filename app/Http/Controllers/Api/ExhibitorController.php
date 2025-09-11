@@ -58,7 +58,7 @@ class ExhibitorController extends Controller
             $data->feedbacks = $data->feedbackable;
         }
 
-        return new ExhibitorResource($data);
+        return new ExhibitorViewResource($data);
     }
 
     public function review(Request $request){
