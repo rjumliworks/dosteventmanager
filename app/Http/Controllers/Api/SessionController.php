@@ -88,14 +88,14 @@ class SessionController extends Controller
         $attendance->status_id = 8;
 
         if ($attendance->save()) {
-            $latest = EventSessionParticipant::with('participant')->where('session_id', $session_id)
+            $latest = EventSessionParticipant::with('participant.detail')->where('session_id', $session_id)
             ->where('id', $attendance->id)
             ->first();
             broadcast(new SessionEvent($latest,'attendance'));
             return response()->json([
                 'status' => true,
                 'message' => 'Attendance successfully recorded.',
-                'data' => $attendance
+                'data' => $latest
             ], 200);
         }
 
