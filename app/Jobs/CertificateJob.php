@@ -27,7 +27,6 @@ class CertificateJob implements ShouldQueue
 
     public function handle(): void
     {
-        $pdfBinary = base64_decode($this->pdf);
-        Mail::to($this->email)->send(new CertificateMail($this->data,$pdfBinary));
+        Mail::to($this->email)->send(new CertificateMail($this->data,$this->pdf));
     }
 }

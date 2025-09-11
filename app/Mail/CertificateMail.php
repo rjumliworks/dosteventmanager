@@ -24,9 +24,10 @@ class CertificateMail extends Mailable
 
     public function build()
     {
+        $pdfBinary = base64_decode($this->pdf);
         return $this->subject('Your Certificate of Appearance')
             ->view('emails.certificate') // simple blade for the email body
-            ->attachData($this->pdf->output(), 'certificate.pdf', [
+            ->attachData($pdfBinary, 'certificate.pdf', [
                 'mime' => 'application/pdf',
             ]);
     }
