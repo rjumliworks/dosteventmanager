@@ -99,7 +99,7 @@ export default {
                         }
                     break;
                     case 'attendance':
-                        const index2 = this.selected.participants.findIndex(p => p.code === event.data.participant.code);
+                        const index2 = this.selected.participants.findIndex(p => p.participant.code === event.data.participant.code);
                         this.selected.participants[index2] = event.data;
                     break;
                 }
