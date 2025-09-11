@@ -22,6 +22,8 @@ class ParticipantRequest extends FormRequest
             'suffix' => 'sometimes|nullable|string|max:10',
             'sex_id' => 'sometimes|required|integer',
             'birthdate' => 'sometimes|required',
+            'affiliation' =>'sometimes|required',
+            'designation' =>'sometimes|required',
             'contact_no' => [
                 'sometimes',
                 'required',
@@ -55,7 +57,7 @@ class ParticipantRequest extends FormRequest
                     }
                 },
             ],
-            // 'captcha' => 'required|captcha',
+            'captcha' => 'sometimes|required|captcha',
         ];
     }
 
