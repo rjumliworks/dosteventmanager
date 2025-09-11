@@ -15,8 +15,9 @@ class UpdateClass
         $status_id = $request->status_id;
 
         $data = EventSession::with('status')->where('id',$session_id)->first();
-        $data->update(['status_id' => $status_id]);
-        $data->fresh();
+        $data->status_id = $status_id;
+        $data->save();
+        $data = EventSession::with('status')->where('id',$session_id)->first();
         broadcast(new SessionEvent($data->status,'status'));
         return [
             'data' => $data->status,
