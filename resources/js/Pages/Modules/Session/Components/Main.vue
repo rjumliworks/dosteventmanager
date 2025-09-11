@@ -85,6 +85,7 @@ export default {
             window.Echo.channel('session')
             .listen('SessionEvent', (event) => {
                 console.log(event);
+                const index = null;
                 switch(event.type){
                     case 'question':
                         this.selected.questions.unshift(event.data);
@@ -93,10 +94,14 @@ export default {
                         this.selected.participants.unshift(event.data);
                     break;
                     case 'cancel':
-                        const index = this.selected.participants.findIndex(p => p.code === event.data.code);
+                        index = this.selected.participants.findIndex(p => p.participant.code === event.data.code);
                         if (index !== -1) {
                             this.selected.participants.splice(index, 1);
                         }
+                    break;
+                    case 'attendance':
+                        index = this.selected.participants.findIndex(p => p.code === event.data.code);
+                        this.selected.participants[index] = event.data;
                     break;
                 }
             });
