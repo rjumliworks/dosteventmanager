@@ -93,13 +93,14 @@ export default {
                         this.selected.participants.unshift(event.data);
                     break;
                     case 'cancel':
-                        const index = this.selected.participants.findIndex(p => p.participant.code === event.data.code);
+                        const index = this.selected.participants.findIndex(p => p.participant.code === event.data.participant.code);
                         if (index !== -1) {
                             this.selected.participants.splice(index, 1);
                         }
                     break;
                     case 'attendance':
-                        const index2 = this.selected.participants.findIndex(p => p.participant.code === event.data.participant.code);
+                        const index2 = this.selected.participants.findIndex(p => p.id === event.data.id);
+                        console.log(index2);
                         this.selected.participants[index2] = event.data;
                     break;
                 }
