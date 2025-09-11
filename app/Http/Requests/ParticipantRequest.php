@@ -55,7 +55,7 @@ class ParticipantRequest extends FormRequest
                     }
                 },
             ],
-            'captcha' => 'required|captcha',
+            // 'captcha' => 'required|captcha',
         ];
     }
 
