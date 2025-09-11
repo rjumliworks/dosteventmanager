@@ -3,6 +3,29 @@
     <table class="table table-bordered">
         <tbody>
             <tr>
+                <td style="border-right: none; border-left: none;"><span class="fw-semibold text-primary fs-12 ms-2">Session Status</span></td>
+            </tr>
+            <td style="border-right: none; border-left: none;">
+                    <div class="row ms-n2 mb-0">
+                        <div class="col-md-12">
+                            <div class="d-flex">
+                                <div class="flex-shrink-0 avatar-xs align-self-center me-3">
+                                    <div class="avatar-title bg-light rounded-circle fs-16 text-primary"><i class="ri-information-fill "></i>
+                                    </div>
+                                </div>
+                                <div class="flex-grow-1 overflow-hidden">
+                                    <h4 class="mt-2">
+                                        <b-badge :class="selected.status.type">{{selected.status.name}}</b-badge>
+                                    </h4>
+                                    
+                                    <!-- <p class="mb-1 fs-12 text-muted">Status :</p>
+                                    <span :class="'badge '+selected.status.color+' '+selected.status.type">{{selected.status.name}}</span> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            <tr>
                 <td style="border-right: none; border-left: none;"><span class="fw-semibold text-primary fs-12 ms-2">Session Information</span></td>
             </tr>
             <tr>
@@ -45,18 +68,6 @@
                                 <div class="flex-grow-1 overflow-hidden">
                                     <p class="mb-1 fs-12 text-muted">Venue :</p> 
                                     <h6 class="text-truncate mb-0 fs-12">{{selected.venue.name}}, {{ selected.venue.establishment }}</h6>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="d-flex mt-3">
-                                <div class="flex-shrink-0 avatar-xs align-self-center me-3">
-                                    <div class="avatar-title bg-light rounded-circle fs-16 text-primary"><i class="ri-information-fill "></i>
-                                    </div>
-                                </div>
-                                <div class="flex-grow-1 overflow-hidden">
-                                    <p class="mb-1 fs-12 text-muted">Status :</p>
-                                    <span :class="'badge '+selected.status.color+' '+selected.status.type">{{selected.status.name}}</span>
                                 </div>
                             </div>
                         </div>

@@ -32,6 +32,13 @@
                                         <i class="ri-close-circle-fill fs-16"></i> Close
                                     </div>
                                 </Link>
+                                <div class="vr" style="width: 1px;"></div>
+                                <div v-if="selected.status.name === 'Pending'">  
+                                    <b-button @click="openSave(selected.id)" variant="primary" block :disabled="(analyses == 0) ? true : false"><i class="ri-save-fill me-1"></i> Save</b-button>
+                                </div>
+                                 <div v-if="selected.status.name !== 'Pending'" @click="openStatus(selected.qr)">  
+                                    <b-button variant="primary" block><i class="ri-information-fill me-1"></i>Update Status</b-button>
+                                </div>
                                 
                             </div>
                         </b-col>
@@ -41,10 +48,13 @@
             </div>
         </b-card>
     </b-col>
+    <Status ref="status"/>
 </template>
 <script>
+import Status from './Modals/Status.vue';
 export default {
     props:['selected'],
+    components: { Status },
     computed: {
         dateRangeText() {
             const schedules = this.selected?.schedules || [];
@@ -71,6 +81,11 @@ export default {
             return start === end
                 ? formatDate(start)
                 : `${formatDate(start)} - ${formatDate(end)}`;
+        }
+    },
+    methods: { 
+        openStatus(){
+            this.$refs.status.show(this.selected);
         }
     }
 }

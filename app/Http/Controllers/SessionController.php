@@ -90,6 +90,9 @@ class SessionController extends Controller
                 case 'attendance':
                     return $this->update->attendance($request);
                 break;
+                case 'status':
+                    return $this->update->status($request);
+                break;
             }
         });
         
