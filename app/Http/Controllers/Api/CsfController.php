@@ -6,6 +6,7 @@ use App\Models\CsfEntry;
 use App\Models\CsfQuestion;
 use App\Models\EventSession;
 use App\Models\EventSessionParticipant;
+use App\Models\EventExhibitor;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Resources\Api\FeedbackResource;
@@ -102,7 +103,7 @@ class CsfController extends Controller
             ]);
         }
         $entry->refresh();
-        broadcast(new SessionEvent(new FeedbackResource($entry),'rating'));
+        broadcast(new ExhibitorEvent(new FeedbackResource($entry),'rating'));
         return response()->json([
             'status' => true,
             'message' => 'CSF submitted successfully',
