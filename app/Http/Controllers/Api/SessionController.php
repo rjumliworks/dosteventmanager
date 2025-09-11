@@ -91,11 +91,11 @@ class SessionController extends Controller
             $latest = EventSessionParticipant::with('participant.detail')->where('session_id', $session_id)
             ->where('id', $attendance->id)
             ->first();
-            broadcast(new SessionEvent($latest,'attendance'));
+            broadcast(new SessionEvent(new ParticipantListResource($latest),'attendance'));
             return response()->json([
                 'status' => true,
                 'message' => 'Attendance successfully recorded.',
-                'data' => $latest
+                'data' => new ParticipantListResource($latest)
             ], 200);
         }
 

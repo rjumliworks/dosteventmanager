@@ -31,7 +31,7 @@
             </thead>
             <tbody v-if="participants.length > 0">
                 <tr v-for="(list,index) in participants" v-bind:key="index" class="fs-12">
-                    <td>{{ index + 1 }}</td>
+                    <td>{{ list }}</td>
                     <td>
                         <h5 class="fs-12 mb-0 fw-semibold text-primary">{{list.participant.name}}</h5>
                         <p class="fs-12 text-muted mb-0">{{list.participant.email }}</p>
