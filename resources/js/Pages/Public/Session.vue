@@ -64,7 +64,7 @@
                                         <tr v-for="(list,index) in this.session.data.attendees" v-bind:key="index" :class="['fs-12',{ 'fw-semibold bg-success-subtle': index === 0 }]">
                                             <td class="text-center">{{ index+1 }}</td>
                                             <td>{{ list.participant.firstname }} {{ list.participant.lastname }}</td>
-                                            <td class="text-center">{{ list.updated_at }}</td>
+                                            <td class="text-center">{{ list.attended_at }}</td>
                                         </tr>
                                     </tbody>
                                     <tbody v-else>
@@ -116,6 +116,7 @@ export default {
         setupEchoListener() {
             window.Echo.channel('session')
             .listen('SessionEvent', (event) => {
+                console.log(event.data);
                 this.session.data.attendees.unshift(event.data);
             });
         },
