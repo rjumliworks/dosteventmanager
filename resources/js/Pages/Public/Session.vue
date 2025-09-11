@@ -116,8 +116,11 @@ export default {
         setupEchoListener() {
             window.Echo.channel('session')
             .listen('SessionEvent', (event) => {
-                console.log(event.data);
-                this.session.data.attendees.unshift(event.data);
+                switch(event.type){
+                    case 'attendance':
+                        this.session.data.attendees.unshift(event.data);
+                    break;
+                }
             });
         },
        async startScanner() {
