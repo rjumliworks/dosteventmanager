@@ -12,6 +12,8 @@ use App\Http\Resources\Api\FeedbackResource;
 use App\Http\Resources\DefaultResource;
 use App\Events\SessionEvent;
 use App\Jobs\CertificateJob;
+use Endroid\QrCode\QrCode;
+use Endroid\QrCode\Writer\PngWriter;
 use Illuminate\Support\Facades\Mail;
 
 class CsfController extends Controller
