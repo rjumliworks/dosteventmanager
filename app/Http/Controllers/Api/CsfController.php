@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Models\CsfEntry;
 use App\Models\CsfQuestion;
 use App\Models\EventSession;
+use App\Models\EventSessionParticipant;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Resources\Api\FeedbackResource;
