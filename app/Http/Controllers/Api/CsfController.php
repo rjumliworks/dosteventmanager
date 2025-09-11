@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use App\Http\Resources\Api\FeedbackResource;
 use App\Http\Resources\DefaultResource;
 use App\Events\SessionEvent;
+use App\Events\ExhibitorEvent;
 use App\Jobs\CertificateJob;
 use Endroid\QrCode\QrCode;
 use Endroid\QrCode\Writer\PngWriter;
@@ -24,7 +25,7 @@ class CsfController extends Controller
         return DefaultResource::collection($data);
     }
 
-    public function save(Request $request){
+    public function session(Request $request){
         $validated = $request->validate([
             'session_id' => 'required|exists:event_sessions,id',
             'participant_id' => 'required|exists:participants,id',
@@ -52,7 +53,7 @@ class CsfController extends Controller
         $this->certificate($request->session_id,$request->participant_id);
         return response()->json([
             'status' => true,
-            'message' => 'Question submitted successfully',
+            'message' => 'CSF submitted successfully',
             'data' => new FeedbackResource($entry)
         ], 200);
     }
@@ -75,6 +76,38 @@ class CsfController extends Controller
         $pdf = \PDF::loadView('certificates.appearance',$array)->setPaper('a4', 'portrait');
         $pdfContent = base64_encode($pdf->output());
         CertificateJob::dispatch($data->participant->email, $array, $pdfContent)->onConnection('database');
+    }
+
+    public function exhibitor(Request $request){
+        $validated = $request->validate([
+            'exhibitor_id' => 'required|exists:event_exhibitor,id',
+            'participant_id' => 'required|exists:participants,id',
+            'comment' => 'required|string',
+            'questions' => 'required|array|min:1',
+            'questions.*.id' => 'required|integer|exists:csf_questions,id',
+            'questions.*.rating' => 'required|integer|min:1|max:5',
+        ]);
+
+        $exhibitor = EventExhibitor::where('id',$request->exhibitor_id)->first();
+        $ratings = collect($request->questions)->pluck('rating'); 
+        $entry = $exhibitor->feedbackable()->create([
+            'rate' => round($ratings->avg(),1),
+            'comment' => $request->comment,
+            'participant_id' => $request->participant_id
+        ]);
+        foreach($request->questions as $question){
+            $entry->ratings()->create([
+                'rating' => $question['rating'],
+                'question_id' => $question['id']
+            ]);
+        }
+        $entry->refresh();
+        broadcast(new SessionEvent(new FeedbackResource($entry),'rating'));
+        return response()->json([
+            'status' => true,
+            'message' => 'CSF submitted successfully',
+            'data' => new FeedbackResource($entry)
+        ], 200);
     }
 
 }

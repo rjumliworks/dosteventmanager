@@ -16,6 +16,11 @@ class EventExhibitor extends Model
        'event_id'
     ];
 
+    public function feedbackable()
+    {
+        return $this->morphMany('App\Models\CsfEntry', 'feedbackable');
+    }
+
     public function event()
     {
         return $this->belongsTo('App\Models\Event', 'event_id', 'id');
@@ -29,11 +34,6 @@ class EventExhibitor extends Model
     public function visitors()
     {
         return $this->hasMany('App\Models\EventExhibitorVisitor', 'exhibitor_id');
-    } 
-
-    public function reviews()
-    {
-        return $this->hasMany('App\Models\EventExhibitorReview', 'exhibitor_id');
     } 
 
     public function getUpdatedAtAttribute($value)

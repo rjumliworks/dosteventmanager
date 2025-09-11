@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Resources\DefaultResource;
 use App\Http\Resources\Api\ExhibitorResource;
-use App\Http\Resources\Api\ReviewResource;
+use App\Http\Resources\Api\ExhibitorViewResource;
 use App\Events\ExhibitorEvent;
 
 class ExhibitorController extends Controller
@@ -40,7 +40,7 @@ class ExhibitorController extends Controller
     public function view(Request $request, $id){
         $participantId = $request->participant_id;
 
-        $data = EventExhibitor::with('contact','reviews')
+        $data = EventExhibitor::with('contact','feedbackable.participant.detail')
             ->withCount('visitors') // ✅ only gets the count, not full list
             ->find($id);
 
@@ -52,6 +52,10 @@ class ExhibitorController extends Controller
 
             $data->has_visited = (bool) $visitor;
             $data->has_voted   = $visitor ? (bool) $visitor->has_voted : false;
+            $data->feedback = $data->feedbackable
+                    ->where('participant_id', $participantId)
+                    ->first(); 
+            $data->feedbacks = $data->feedbackable;
         }
 
         return new ExhibitorResource($data);

@@ -39,7 +39,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     Route::prefix('csf')->controller(App\Http\Controllers\Api\CsfController::class)->group(function () {
         Route::get('/', 'index');
-        Route::post('/save', 'save');
+        Route::post('/session', 'session');
+        Route::post('/exhibitor', 'exhibitor');
     });
 
     Route::post('/avatar', [App\Http\Controllers\Api\AvatarController::class, 'store']);
