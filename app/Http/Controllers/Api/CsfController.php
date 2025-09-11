@@ -80,7 +80,7 @@ class CsfController extends Controller
 
     public function exhibitor(Request $request){
         $validated = $request->validate([
-            'exhibitor_id' => 'required|exists:event_exhibitor,id',
+            'exhibitor_id' => 'required|exists:event_exhibitors,id',
             'participant_id' => 'required|exists:participants,id',
             'comment' => 'required|string',
             'questions' => 'required|array|min:1',
