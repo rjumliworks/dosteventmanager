@@ -402,6 +402,7 @@ export default {
         hide(){
             this.showModal = false;
             this.formConsent  =  false;
+            this.is_agree  =  true;
         },
 
         
