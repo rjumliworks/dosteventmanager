@@ -25,6 +25,7 @@ return new class extends Migration
             $table->tinyInteger('sex_id')->unsigned()->index();
             $table->foreign('sex_id')->references('id')->on('dropdowns')->onDelete('cascade');
             $table->string('avatar', 200)->default('avatar.jpg');
+            $table->string('signature', 200);
             $table->unsignedInteger('participant_id');
             $table->foreign('participant_id')->references('id')->on('participants')->onDelete('cascade');
             $table->timestamps();

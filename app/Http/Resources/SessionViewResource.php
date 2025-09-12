@@ -51,6 +51,7 @@ class SessionViewResource extends JsonResource
             'is_limited' => ($this->is_limited) ? true : false,
             'has_registration' => ($this->has_registration) ? true : false,
             'link' => ($this->has_registration) ? base64_encode($key) : '',
+            'feedbacks' => FeedbackResource::collection($this->feedbackable),
             'updated_at' => $this->updated_at,
             'created_at' => $this->created_at,
         ];
