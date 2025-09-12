@@ -44,4 +44,5 @@ Route::middleware(['auth:sanctum'])->group(function () {
     });
 
     Route::post('/avatar', [App\Http\Controllers\Api\AvatarController::class, 'store']);
+    Route::get('/dashboard', [App\Http\Controllers\Api\DashboardController::class, 'index']);
 });
