@@ -69,8 +69,8 @@
                                         <h3 v-else>
                                             The event has started!
                                         </h3>
-                                            <a href="/registration-form">
-                                                <BButton @click="" variant="primary" class="submit-btn w-80 h-100 border border-solid" type="submit"  >
+                                            <a href="/registration">
+                                                <BButton variant="primary" class="submit-btn w-80 h-100 border border-solid" type="submit"  >
                                                     REGISTER NOW
                                                 </BButton>
                                             </a>
@@ -157,7 +157,9 @@
                     </b-col>
                     <b-col sm="auto">
                         <div>
-                            <button type="button" @click="openRegister()" class="btn bg-gradient btn-danger">REGISTER NOW</button>
+                            <a href="/registration">
+                                <button type="button" class="btn bg-gradient btn-danger">REGISTER NOW</button>
+                            </a>
                         </div>
                     </b-col>
                 </b-row>
@@ -165,8 +167,9 @@
             <b-container class="showmobile"> 
                 <b-row class="align-items-center gy-3">
                 <div class="d-grid mt-n3 mb-n5" >
-                   
-                    <BButton type="button" @click="openRegister()" variant="warning" class="submit-btn w-80 h-100 fw-semibold">REGISTER NOW</BButton>
+                   <a href="/registration">
+                    <BButton type="button" variant="warning" class="submit-btn w-80 h-100 fw-semibold">REGISTER NOW</BButton>
+                    </a>
                     
                 </div></b-row>
             </b-container>

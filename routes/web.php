@@ -5,7 +5,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [App\Http\Controllers\WelcomeController::class, 'index']);
 Route::post('/mail', [App\Http\Controllers\OtpController::class, 'mail']);
 Route::post('/verify', [App\Http\Controllers\OtpController::class, 'verify']);
-Route::get('/registration/{type}/{key}', [App\Http\Controllers\RegistrationController::class, 'show']);
 Route::post('/', [App\Http\Controllers\RegistrationController::class, 'store']);
 Route::get('/captcha', function () {
     return response()->json([
@@ -45,6 +44,6 @@ Route::get('/event/{key}', [App\Http\Controllers\EventController::class, 'view']
 Route::get('/session/{key}', [App\Http\Controllers\SessionController::class, 'view']);
 // Route::get('/hotels', [App\Http\Controllers\WelcomeController::class, 'hotel_index']);
 Route::get('/highlights', [App\Http\Controllers\WelcomeController::class, 'highlight_index']);
-Route::get('/registration-form', [App\Http\Controllers\WelcomeController::class, 'registration_index']);
+Route::get('/registration', [App\Http\Controllers\WelcomeController::class, 'registration_index']);
 
 require __DIR__.'/auth.php';
