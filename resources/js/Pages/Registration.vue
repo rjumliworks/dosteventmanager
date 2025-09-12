@@ -115,7 +115,9 @@
 
                                           <BCol lg="12" class="mt-2 mb-3 px-2 d-flex flex-column align-items-center">
                                                 <InputLabel class="mb-1" value="Signature*" /> 
-                                                <SignaturePad ref="signaturePad" class="signature-pad" />
+                                                <SignaturePad ref="signaturePad" class="signature-pad" 
+                                                 :class="{ 'is-invalid': form.errors.signature }"/>
+                                                 <InputError :message="form.errors.signature" />
                                                 <b-button size="sm" class="mt-2" @click="clearSignature()">Clear</b-button>
                                             </BCol>
 
@@ -406,7 +408,6 @@ export default {
                     this.loading = false;
                     this.form.reset();   
                     this.formSubmitted = true;  
-                    this.refreshCaptcha(); 
                 },
             });
           
@@ -416,7 +417,7 @@ export default {
         hideDisclaimer(){
             this.showModal = false;
         },
-        
+
         hide(){
             this.showModal = false;
             this.formConsent  =  false;
