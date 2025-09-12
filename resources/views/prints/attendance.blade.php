@@ -175,7 +175,7 @@
                         <td style="text-align: center;">{{ $i+1 }}</td>
                         @if(isset($data['attendees'][$i]))
                             @php $attendee = $data['attendees'][$i]; @endphp
-                            <td>{{ $attendee->participant->firstname ?? '' }} {{ $attendee->participant->lastname ?? '' }}</td>
+                            <td>{{ $attendee->participant->firstname ?? '' }}</td>
                             <td>{{ $attendee->participant->detail->affiliation ?? '' }}</td>
                             <td>{{ $attendee->participant->detail->designation ?? '' }}</td>
                             <td>{{ $attendee->participant->contact_no ?? '' }}</td>

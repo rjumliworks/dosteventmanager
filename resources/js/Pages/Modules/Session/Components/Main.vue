@@ -44,7 +44,8 @@
                                             <Participant :id="selected.key" :participants="selected.participants" v-else-if="menu == 'Participants'"/>
                                             <Certificate  v-else-if="menu == 'Certificates'"/>
                                             <Question :questions="selected.questions" v-else-if="menu == 'Questions'"/>
-                                            <Csf :feedbacks="selected.feedbacks" v-else-if="menu == 'Customer Satisfaction Feedback'"/>
+                                            <!-- <Session :id="selected.id" :venues="selected.venues" :sessions="selected.sessions" v-if="menu == 'Sessions'"/>
+                                            <Venue :id="selected.id" :venues="selected.venues" :detail="selected.detail" v-if="menu == 'Venues'"/> -->
                                         </div>
                                     </transition>
                                 </div>
@@ -58,14 +59,13 @@
     </BRow>
 </template>
 <script>
-import Csf from './Pages/Csf.vue';
 import Overview from './Pages/Overview.vue';
 import Activity from './Pages/Activity.vue';
 import Question from './Pages/Question.vue';
 import Participant from './Pages/Participant.vue';
 import Certificate from './Pages/Certificate.vue';
 export default {
-    components: { Activity, Participant, Certificate, Overview, Question, Csf },
+    components: { Activity, Participant, Certificate, Overview, Question },
     props:['selected'],
     data(){
         return {
