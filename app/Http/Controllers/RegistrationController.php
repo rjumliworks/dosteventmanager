@@ -60,10 +60,14 @@ class RegistrationController extends Controller
             $participant = Participant::create(array_merge($request->except('captcha'), [
                 'code' => $this->generateCode()
             ]));
-        
-            if ($participant) {
-                $participant->detail()->create($request->except('captcha'));
 
+            if ($participant) {
+                if ($request->hasFile('signature')) { 
+                    $signature_path = $request->file('signature')->store('signatures', 'public');
+                    $participant->detail()->create(array_merge($request->except('captcha'), [
+                         'signature' => $signature_path,
+                    ]));         
+                }
                 // if (count($request->sessions) > 0) {
                 //     foreach ($request->sessions as $session) {
                 //         EventSessionParticipant::create([

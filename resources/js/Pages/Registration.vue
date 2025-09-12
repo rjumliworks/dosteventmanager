@@ -185,7 +185,7 @@
                 </div>
                 <template v-slot:footer>
                     <div class="d-flex justify-content-center w-100 mb-4">
-                        <b-button @click="hide" variant="primary">
+                        <b-button @click="hideDisclaimer" variant="primary">
                         I Understand
                         </b-button>
                     </div>
@@ -392,7 +392,15 @@ export default {
         submit(){ 
             this.loading = true;
             this.form.type_id =  16;
-            this.form.signature =  this.$refs.signaturePad.toDataURL("image/png");
+
+            const dataUrl =  this.$refs.signaturePad.toDataURL("image/png");
+
+            fetch(dataUrl)
+                .then(res => res.blob())
+                .then(blob => {
+                    this.form.signature = blob;
+            });            
+            
             this.form.post('/', {
                 onSuccess: () => {
                     this.loading = false;
@@ -404,6 +412,11 @@ export default {
           
         },
 
+     
+        hideDisclaimer(){
+            this.showModal = false;
+        },
+        
         hide(){
             this.showModal = false;
             this.formConsent  =  false;
@@ -425,35 +438,7 @@ export default {
             .catch(err => console.log(err));
         },
     },
-
-    submit(){
-        this.form.type_id = 16;
-        this.form.post('/',{
-            preserveScroll: true,
-            onSuccess: (response) => {
-                this.form.clearErrors();
-                this.form.reset();
-            },
-        });
-    },
-
-
-    // captcha
-    randomCode(len = 5) {
-      const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
-      return Array.from({ length: len }, () => chars[Math.floor(Math.random() * chars.length)]).join("");
-    },
-    refresh() {
-      this.code = this.randomCode();
-      this.input = "";
-      this.isValid = null;
-      this.message = "";
-    },
-    check() {
-      this.isValid = this.input.trim().toUpperCase() === this.code;
-      this.message = this.isValid ? "Correct ✅" : "Incorrect ❌";
-      this.$emit("verified", this.isValid);
-    }    
+ 
     
 }
 </script>
