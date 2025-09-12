@@ -13,7 +13,7 @@ class ViewClass
     public function lists($request){
         $data = SessionResource::collection(
             EventSession::with('venue','detail','schedules','attendees.participant','status','activities.speaker','managers.user.profile')
-            ->with('participants.participant.detail')
+            ->with('participants.participant.detail','feedbackable.participant.detail')
             ->with('event.detail.region:code,name,region','event.detail.province:code,name','event.detail.municipality:code,name','event.detail.barangay:code,name')
             ->when($request->keyword, function ($query,$keyword) {
                 $query->where('name', 'LIKE', "%{$keyword}%");
