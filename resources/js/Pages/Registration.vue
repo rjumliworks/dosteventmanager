@@ -115,7 +115,9 @@
 
                                           <BCol lg="12" class="mt-2 mb-3 px-2 d-flex flex-column align-items-center">
                                                 <InputLabel class="mb-1" value="Signature*" /> 
-                                                <SignaturePad ref="signaturePad" class="signature-pad" />
+                                                <SignaturePad ref="signaturePad" class="signature-pad" 
+                                                 :class="{ 'is-invalid': form.errors.signature }"/>
+                                                 <InputError :message="form.errors.signature" />
                                                 <b-button size="sm" class="mt-2" @click="clearSignature()">Clear</b-button>
                                             </BCol>
 
@@ -185,7 +187,7 @@
                 </div>
                 <template v-slot:footer>
                     <div class="d-flex justify-content-center w-100 mb-4">
-                        <b-button @click="hide" variant="primary">
+                        <b-button @click="hideDisclaimer" variant="primary">
                         I Understand
                         </b-button>
                     </div>
@@ -392,21 +394,34 @@ export default {
         submit(){ 
             this.loading = true;
             this.form.type_id =  16;
-            this.form.signature =  this.$refs.signaturePad.toDataURL("image/png");
+
+            const dataUrl =  this.$refs.signaturePad.toDataURL("image/png");
+
+            fetch(dataUrl)
+                .then(res => res.blob())
+                .then(blob => {
+                    this.form.signature = blob;
+            });            
+            
             this.form.post('/', {
                 onSuccess: () => {
                     this.loading = false;
                     this.form.reset();   
                     this.formSubmitted = true;  
-                    this.refreshCaptcha(); 
                 },
             });
           
         },
 
+     
+        hideDisclaimer(){
+            this.showModal = false;
+        },
+
         hide(){
             this.showModal = false;
             this.formConsent  =  false;
+            this.is_agree  =  true;
         },
 
         
@@ -424,35 +439,7 @@ export default {
             .catch(err => console.log(err));
         },
     },
-
-    submit(){
-        this.form.type_id = 16;
-        this.form.post('/',{
-            preserveScroll: true,
-            onSuccess: (response) => {
-                this.form.clearErrors();
-                this.form.reset();
-            },
-        });
-    },
-
-
-    // captcha
-    randomCode(len = 5) {
-      const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
-      return Array.from({ length: len }, () => chars[Math.floor(Math.random() * chars.length)]).join("");
-    },
-    refresh() {
-      this.code = this.randomCode();
-      this.input = "";
-      this.isValid = null;
-      this.message = "";
-    },
-    check() {
-      this.isValid = this.input.trim().toUpperCase() === this.code;
-      this.message = this.isValid ? "Correct ✅" : "Incorrect ❌";
-      this.$emit("verified", this.isValid);
-    }    
+ 
     
 }
 </script>

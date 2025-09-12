@@ -57,7 +57,7 @@ class ParticipantRequest extends FormRequest
                     }
                 },
             ],
-            //'signature' => 'sometimes|required|string',
+            'signature' => 'sometimes|required|image|mimes:png,jpg,jpeg|max:2048',
             'captcha' => 'sometimes|required|captcha',
         ];
     }
