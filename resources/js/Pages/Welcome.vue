@@ -21,7 +21,6 @@
 
                             <div>
                                 <b-dropdown variant="light" id="dropdown-grouped" text="Downloadables" class="m-2">
-                                    <b-dropdown-divider></b-dropdown-divider>
                                     <b-dropdown-group  header="Media Brief">
                                     <b-dropdown-item-button><a href="https://tinyurl.com/4kx5zdye" target="_blank">Part 1</a></b-dropdown-item-button>
                                     <b-dropdown-item-button><a href="https://tinyurl.com/3uw8axk4" target="_blank">Part 2</a></b-dropdown-item-button>

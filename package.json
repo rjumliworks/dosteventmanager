@@ -52,7 +52,9 @@
         "vue-datepicker-next": "^1.0.3",
         "vue-draggable-next": "^2.2.1",
         "vue-flatpickr-component": "^11.0.3",
+        "vue-signature-pad": "^3.0.2",
         "vue3-apexcharts": "^1.8.0",
+        "vue3-signature-pad": "^1.0.7",
         "vuex": "^4.1.0"
     }
 }
