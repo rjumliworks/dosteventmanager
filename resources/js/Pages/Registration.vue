@@ -362,8 +362,13 @@ export default {
         // this.refreshCaptcha()
     },
 
-
-
+    watch: {
+        "is_agree"(val){
+            if(val){
+                 this.formConsent = true;
+            }
+        }
+    },
     methods: {
 
         clearSignature() {

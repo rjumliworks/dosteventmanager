@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ParticipantDetail extends Model
 {
     protected $fillable = [
-        'designation','affiliation','birthdate','type_id','sex_id','avatar','is_4ps','is_pwd','is_ip'
+        'designation','affiliation','birthdate','type_id','sex_id','avatar','signature','is_4ps','is_pwd','is_ip'
     ];
 
     public function sex()
