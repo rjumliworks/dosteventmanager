@@ -407,9 +407,13 @@ export default {
                 onSuccess: () => {
                     this.loading = false;
                     this.form.reset();   
-                    this.formSubmitted = true;  
                 },
             });
+
+            this.refreshCaptcha()
+            this.form.captcha = null;
+
+
           
         },
 
