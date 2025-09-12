@@ -113,11 +113,11 @@
                                                 <b-form-checkbox v-model="form.is_ip" name="is_ip" class="mx-2">IP</b-form-checkbox>
                                             </div>
 
-                                          <!-- <BCol lg="12" class="mt-2 mb-3 px-2 d-flex flex-column align-items-center">
+                                          <BCol lg="12" class="mt-2 mb-3 px-2 d-flex flex-column align-items-center">
                                                 <InputLabel class="mb-1" value="Signature*" /> 
                                                 <SignaturePad ref="signaturePad" class="signature-pad" />
                                                 <b-button size="sm" class="mt-2" @click="clearSignature()">Clear</b-button>
-                                            </BCol> -->
+                                            </BCol>
 
 
                                             <BCol lg="12" class="mt-2 mb-3">
@@ -137,12 +137,20 @@
                                                 
                                             </BCol>
 
-      
+                                            
+                                            <BCol lg="12" class="mb-2 px-2 d-flex flex-column align-items-center">
+                                                 <b-form-checkbox v-model="is_agree" name="is_agree" class="mx-2">
+                                                    <a @click="openConsentForm()" class="text-info">Consent Form
+                                                        <span class="text-muted">(Please read and check this consent form to proceed)</span>
+                                                    </a>
+                                                 </b-form-checkbox>
+                                            </BCol>
                                         </BCol>
 
+                                   
                                         <BCol lg="12" class="text-center ">
                                             <div class="mt-1">
-                                                <BButton variant="primary" class="w-100 header-bg" type="submit" :disabled="form.processing" @click="generateCaptcha" style="margin-top:-50px">Register</BButton>
+                                                <BButton :disabled="!is_agree || form.processing" variant="primary" class="w-100 header-bg" type="submit" @click="generateCaptcha" style="margin-top:-50px">Register</BButton>
                                             </div>
                                         </BCol>
                                             
@@ -158,55 +166,144 @@
         </div>
     </div>
 
-  <b-modal v-model="showModal"  modal-class="zoomIn"  class="v-modal-custom" centered no-close-on-backdrop>
-            <div class="text-center px-5 pt-2">
-                <div class="mt-2">
+    <b-modal v-model="showModal"  modal-class="zoomIn"  class="v-modal-custom" centered no-close-on-backdrop>
+                <div class="text-center px-5 pt-2">
+                    <div class="mt-2">
 
-                    <div class=" mb-1" >
-                        <i class="ri-error-warning-fill text-warning" style="font-size: 80px;"></i>
-                        <div class=" text-warning fs-2" style="margin-top:-30px ;">
-                            Disclaimer
+                        <div class=" mb-1" >
+                            <i class="ri-error-warning-fill text-warning" style="font-size: 80px;"></i>
+                            <div class=" text-warning fs-2" style="margin-top:-30px ;">
+                                Disclaimer
+                            </div>
+                        </div>
+                        <div class="mb-1 mt-3 fs-5 ">
+                            The DOST is committed to protect and respect your personal data privacy. 
+                            All information collected will only be used for documentation purposes only and 
+                            will not be published in any platform.
                         </div>
                     </div>
-                    <div class="mb-1 mt-3 fs-5 ">
-                        The DOST is committed to protect and respect your personal data privacy. 
-                        All information collected will only be used for documentation purposes only and 
-                        will not be published in any platform.
+                </div>
+                <template v-slot:footer>
+                    <div class="d-flex justify-content-center w-100 mb-4">
+                        <b-button @click="hide" variant="primary">
+                        I Understand
+                        </b-button>
                     </div>
-                </div>
-            </div>
-              <template v-slot:footer>
-                <div class="d-flex justify-content-center w-100 mb-4">
-                    <b-button @click="hide" variant="primary">
-                    I Understand
-                    </b-button>
-                </div>
-            </template>
+                </template>
 
 
     </b-modal>
 
-     <b-modal v-model="formSubmitted" hide-footer class="v-modal-custom" modal-class="zoomIn" body-class="p-0" centered hide-header-close style="z-index: 5000;">
-        <div class="text-end me-4">
-            <button type="button" class="btn-close text-end" @click="check()"></button>
-        </div>
-        <div class="text-center px-5 pt-2">
-            <div class="mt-2">
-                 <div class="avatar-md mx-auto">
-                    <div class="avatar-title rounded-circle bg-light">
-                        <i v-if="$page.props.flash.status" class="ri-checkbox-circle-fill text-success h1 mb-0"></i>
-                        <i v-else class="ri-close-circle-fill text-danger h1 mb-0"></i>
-                    </div>
+<b-modal v-model="formSubmitted" hide-footer class="v-modal-custom" modal-class="zoomIn" body-class="p-0" centered hide-header-close style="z-index: 5000;">
+    <div class="text-end me-4">
+        <button type="button" class="btn-close text-end" @click="check()"></button>
+    </div>
+    <div class="text-center px-5 pt-2">
+        <div class="mt-2">
+                <div class="avatar-md mx-auto">
+                <div class="avatar-title rounded-circle bg-light">
+                    <i v-if="$page.props.flash.status" class="ri-checkbox-circle-fill text-success h1 mb-0"></i>
+                    <i v-else class="ri-close-circle-fill text-danger h1 mb-0"></i>
                 </div>
-                <h5 class="mb-1 mt-4 fs-14">{{$page.props.flash.message }}</h5>
-                <p v-if="$page.props.flash.info" class="text-muted fs-12">{{$page.props.flash.info }}</p>
             </div>
+            <h5 class="mb-1 mt-4 fs-14">{{$page.props.flash.message }}</h5>
+            <p v-if="$page.props.flash.info" class="text-muted fs-12">{{$page.props.flash.info }}</p>
         </div>
-        <div class="modal-footer bg-light p-3 mt-5 justify-content-center">
-            <p class="mb-0 text-muted fs-10">Any suggestions please contact
-                <b-link href="" target="_blank" class="link-secondary fw-semibold">DOST IX</b-link>
-            </p>
+    </div>
+    <div class="modal-footer bg-light p-3 mt-5 justify-content-center">
+        <p class="mb-0 text-muted fs-10">Any suggestions please contact
+            <b-link href="" target="_blank" class="link-secondary fw-semibold">DOST IX</b-link>
+        </p>
+    </div>
+</b-modal>
+
+<b-modal v-model="formConsent" hide-footer class="v-modal-custom" size="lg" modal-class="zoomIn" body-class="p-0" centered hide-header-close style="z-index: 5000;">
+
+        <div class=" px-5 pt-2">
+            <div>
+                <h5 class="mb-1 mt-4 fs-14 text-center mb-3">CONSENT FORM</h5>
+                <p  class=" fs-12">
+                   <div class="fw-bold"> I, whose name and signature appears on this platform, hereby expressly agree, consent, and authorize DOST IX to collect and process the following personal information related to me:</div>
+                    <ul class="text-right number-list">
+                        <li>Name</li>
+                        <li>Agency/Firms Address</li>
+                        <li>Designation/Position</li>
+                        <li>Contact Nos.</li>
+                        <li>Email Address</li>
+                        <li>Sex</li>
+                        <li>Birthday/Age</li>
+                        <li>4Ps/PWD/IP</li>
+                        <li>Photos taken during the conduct of meetings/trainings</li>
+                    </ul>
+                </p>
+
+                <p class=" fs-12">
+                    <div class="fw-bold">  I agree that the above-mentioned personal information shall processed for the following purposes: </div>
+                   <ul class="number-list">
+                     <li>Generation Directory of Participants</li>
+                    <li>Issuance of Certificates</li>
+                    <li>Conduct of Impact Assessments</li>
+                    <li>Upload of pictures to DOST IX Website and Facebook Page</li>
+                    <li>Documents for Annual Reports and other publications</li>
+                    <li>Issuance of Billing Statements</li>
+                   </ul>
+                </p>
+
+                <p>
+                    <div class="fw-bold">I agree that the above-mentioned personal information shall be processed in the following manner:</div>
+                    <ul class="number-list">
+                        <li>Storage in a database</li>
+                        <li>Storage in Filing Cabinets</li>
+                        <li>Storage on Computer files</li>
+                    </ul>
+                </p>
+
+                <p>
+                    <div class="fw-bold">I agree that the above-mentioned personal information may be disclosed to the following recipients for the following purposes:</div>
+                    <ul class="number-list">
+                        <li>Recipient-Authorized DOST IX personnel</li>
+                        <li>Purpose-For Documentation</li>
+                    </ul>
+                </p>
+
+                <p>
+                    <div class="fw-bold">I agree that the above-mentioned personal information will be retained or stored for as long as the purposes for which they are being processed have not been satisfied.</div>
+                    I am aware of my rights under the Data Privacy Act, including the following:
+                    <ul class="number-list">
+                    
+                        <li>The right to access my personal information</li>
+                        <li>Purpose-For Documentation</li>
+                        <li>The right to object to the processing of my personal information</li>
+                        <li>The right to erasure or blocking of my personal information</li>
+                        <li>The right to be informed of the existence of processing my personal information</li>
+                        <li>The right to damage</li>
+                        <li>The right to lodge a complaint before the National Policy Commission	</li>
+                    </ul>
+                </p>
+
+                <p class="mb-5">
+                    <div class="fw-bold">I understand that in case of complaints, concerns, or questions regarding the processing of my personal information, I may address to them to.</div>
+                    <ul>
+                        <li>Data Privacy Officer</li>
+                        <li>Department of Science and Technology IX</li>
+                        <li>Pettit Barracks, Zamboanga City, 7000, Philippines</li>
+                        <li>Tel No. (062) 991-1024: Email: ord@ro9.dost.gov.ph</li>
+                    </ul>
+                    This consent and authorization remains valid and subsisting for a limited period consistent with the purpose above or until otherwise revoked or cancelled in writing.
+
+                    <div class="d-flex justify-content-center w-100 mb-3 mt-5">
+                        <b-button @click="hide()" variant="primary">
+                            I Understand
+                        </b-button>
+                    </div>
+
+                </p>
+                
+            </div>
+
+            
         </div>
+     
     </b-modal>
 
 </template>
@@ -246,8 +343,10 @@ export default {
             }),
             showModal: false,
             formSubmitted : false,
+            formConsent : false,
             inputed_captcha: null,
             event_sessions: {},
+            is_agree: false,
             
             //captcha
             captchaUrl: '/captcha?' + Date.now(),
@@ -267,9 +366,14 @@ export default {
 
     methods: {
 
-        // clearSignature() {
-        //     this.$refs.signaturePad.clearSignature();
-        // },
+        clearSignature() {
+            this.$refs.signaturePad.clearSignature();
+        },
+
+        openConsentForm(){
+            this.formConsent = true;
+        },
+
 
         getError(field) {
             return this.form.errors[field] ? this.form.errors[field][0] : '';
@@ -283,7 +387,7 @@ export default {
         submit(){ 
             this.loading = true;
             this.form.type_id =  16;
-            // this.form.signature =  this.$refs.signaturePad.toDataURL("image/png");
+            this.form.signature =  this.$refs.signaturePad.toDataURL("image/png");
             this.form.post('/', {
                 onSuccess: () => {
                     this.loading = false;
@@ -297,6 +401,7 @@ export default {
 
         hide(){
             this.showModal = false;
+            this.formConsent  =  false;
         },
 
         
@@ -369,4 +474,7 @@ canvas {
   height: 200px;
 }
 
+.number-list {
+  list-style-type: decimal; /* changes bullets to numbers */
+}
 </style>
