@@ -26,6 +26,7 @@ return new class extends Migration
             $table->text('middlename',100)->nullable();
             $table->string('middlename_hash', 64)->index();
             $table->string('suffix',10)->nullable();
+            $table->longText('signature')->nullable();
             $table->string('avatar', 200)->default('avatar.jpg');
             $table->timestamps();
         });

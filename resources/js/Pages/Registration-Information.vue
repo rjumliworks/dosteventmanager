@@ -5,7 +5,7 @@
             <BContainer fluid class="h-100 ">
                 <BRow class="justify-content-center align-items-center h-100">
                     <BCol md="8" lg="10" xl="8" >
-                        <BCard no-body class="" style="height:100%" >
+                        <BCard no-body class="" style="height:100%" variant="light" >
                             <BCardBody class="p-4 ">
                                 
                                 <div class="row mb-4 justify-content-center " >
@@ -13,23 +13,14 @@
                                             <img src="@assets/images/event/event_title2.png" alt="" class="img-fluid" >
                                         </div>
                                 </div>
-
-                                <div class="text-center fw-bold fs-3 text-success mb-5 mt-5 px-10">
+         
+                                  <div class="text-center fw-bold fs-3 text-success mb-1 mt-5 px-10">
                                     Your information has been submitted successfully  , Please check your email for verification. Thank you.
                                 </div>
 
-                                <!-- <div class="text-center"> 
-                                    <h5 >Download the App</h5>
-                                    <b-row>
-                                        <b-col lg="6">
-                                            <b-button> Android</b-button>
-                                        </b-col>
-                                        <b-col lg="6">
-                                            <b-button class="">IOS</b-button>
-                                        </b-col>
-                                    </b-row>
-                                     <h5 class="text-muted mt-3">Click the button to see instructions.</h5>
-                                </div> -->
+                                <div class="d-flex justify-content-center align-items-center">
+                                    <img src="@assets/images/event/solido.png" alt="" style="width:300px ; height: 400px;">
+                                </div>
 
                             </BCardBody>
                         </BCard>
