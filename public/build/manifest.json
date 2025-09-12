@@ -1,6 +1,6 @@
 {
   "node_modules/canvg/lib/index.es.js": {
-    "file": "assets/index.es-VF-1rVha.js",
+    "file": "assets/index.es-2tjRRg6W.js",
     "name": "index.es",
     "src": "node_modules/canvg/lib/index.es.js",
     "isDynamicEntry": true,
@@ -275,6 +275,10 @@
     "file": "assets/sched4-SclC3Q7o.png",
     "src": "public/images/event/sched4.png"
   },
+  "public/images/event/solido.png": {
+    "file": "assets/solido-CY9M8vG9.png",
+    "src": "public/images/event/solido.png"
+  },
   "public/images/event/storm_surge1.png": {
     "file": "assets/storm_surge1-RfOxt3He.png",
     "src": "public/images/event/storm_surge1.png"
@@ -324,7 +328,7 @@
     "src": "public/images/sidebar/img-4.jpg"
   },
   "resources/js/app.js": {
-    "file": "assets/app-DY2L4qI1.js",
+    "file": "assets/app-CagWuf7c.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
@@ -343,7 +347,7 @@
       "node_modules/canvg/lib/index.es.js"
     ],
     "css": [
-      "assets/app-Dr99Y46U.css"
+      "assets/app-OJ9jtzdK.css"
     ],
     "assets": [
       "assets/logo-sm-BMbbSDmV.png",
@@ -353,6 +357,7 @@
       "assets/georisk1-Biyw4OG1.png",
       "assets/georisk2-SYsV0Hky.png",
       "assets/event_title2-MrARfqYu.png",
+      "assets/solido-CY9M8vG9.png",
       "assets/event_title-Ur9Sw1qC.png",
       "assets/logos-B2f0noRC.png",
       "assets/zc_bg-CGWApJhc.svg",
