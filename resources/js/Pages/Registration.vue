@@ -435,6 +435,7 @@ export default {
             // convert base64 → Blob
             const blob = await fetch(dataUrl).then(res => res.blob());
             this.form.signature = blob;
+            this.form.type_id = 16;
 
             // now post the form
             this.form.post('/', {
