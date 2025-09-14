@@ -193,119 +193,144 @@
                     </div>
                 </template>
 
+    </b-modal>
+
+    <b-modal v-model="showNoSignatureModal"  modal-class="zoomIn"  class="v-modal-custom" centered no-close-on-backdrop>
+                <div class="text-center px-5 pt-2">
+                    <div class="mt-2">
+
+                        <div class=" mb-1" >
+                            <i class="ri-close-line text-danger" style="font-size: 80px;"></i>
+                            <div class=" text-danger fs-2" style="margin-top:-30px ;">
+                                Error
+                            </div>
+                        </div>
+                        <div class="mb-1 mt-3 fs-5 ">
+                            Please sign first to proceed.
+                        </div>
+                    </div>
+                </div>
+                <template v-slot:footer>
+                    <div class="d-flex justify-content-center w-100 mb-4">
+                        <b-button @click="hideNoSignatureModel" variant="primary">
+                        Okay
+                        </b-button>
+                    </div>
+                </template>
 
     </b-modal>
 
-<b-modal v-model="formSubmitted" hide-footer class="v-modal-custom" modal-class="zoomIn" body-class="p-0" centered hide-header-close style="z-index: 5000;">
-    <div class="text-end me-4">
-        <button type="button" class="btn-close text-end" @click="check()"></button>
-    </div>
-    <div class="text-center px-5 pt-2">
-        <div class="mt-2">
-                <div class="avatar-md mx-auto">
-                <div class="avatar-title rounded-circle bg-light">
-                    <i v-if="$page.props.flash.status" class="ri-checkbox-circle-fill text-success h1 mb-0"></i>
-                    <i v-else class="ri-close-circle-fill text-danger h1 mb-0"></i>
-                </div>
-            </div>
-            <h5 class="mb-1 mt-4 fs-14">{{$page.props.flash.message }}</h5>
-            <p v-if="$page.props.flash.info" class="text-muted fs-12">{{$page.props.flash.info }}</p>
+
+    <b-modal v-model="formSubmitted" hide-footer class="v-modal-custom" modal-class="zoomIn" body-class="p-0" centered hide-header-close style="z-index: 5000;">
+        <div class="text-end me-4">
+            <button type="button" class="btn-close text-end" @click="check()"></button>
         </div>
-    </div>
-    <div class="modal-footer bg-light p-3 mt-5 justify-content-center">
-        <p class="mb-0 text-muted fs-10">Any suggestions please contact
-            <b-link href="" target="_blank" class="link-secondary fw-semibold">DOST IX</b-link>
-        </p>
-    </div>
-</b-modal>
-
-<b-modal v-model="formConsent" hide-footer class="v-modal-custom" size="lg" modal-class="zoomIn" body-class="p-0" centered hide-header-close style="z-index: 5000;">
-
-        <div class=" px-5 pt-2">
-            <div>
-                <h5 class="mb-1 mt-4 fs-14 text-center mb-3">CONSENT FORM</h5>
-                <p  class=" fs-12">
-                   <div class="fw-bold"> I, whose name and signature appears on this platform, hereby expressly agree, consent, and authorize DOST IX to collect and process the following personal information related to me:</div>
-                    <ul class="text-right number-list">
-                        <li>Name</li>
-                        <li>Agency/Firms Address</li>
-                        <li>Designation/Position</li>
-                        <li>Contact Nos.</li>
-                        <li>Email Address</li>
-                        <li>Sex</li>
-                        <li>Birthday/Age</li>
-                        <li>4Ps/PWD/IP</li>
-                        <li>Photos taken during the conduct of meetings/trainings</li>
-                    </ul>
-                </p>
-
-                <p class=" fs-12">
-                    <div class="fw-bold">  I agree that the above-mentioned personal information shall processed for the following purposes: </div>
-                   <ul class="number-list">
-                     <li>Generation Directory of Participants</li>
-                    <li>Issuance of Certificates</li>
-                    <li>Conduct of Impact Assessments</li>
-                    <li>Upload of pictures to DOST IX Website and Facebook Page</li>
-                    <li>Documents for Annual Reports and other publications</li>
-                    <li>Issuance of Billing Statements</li>
-                   </ul>
-                </p>
-
-                <p>
-                    <div class="fw-bold">I agree that the above-mentioned personal information shall be processed in the following manner:</div>
-                    <ul class="number-list">
-                        <li>Storage in a database</li>
-                        <li>Storage in Filing Cabinets</li>
-                        <li>Storage on Computer files</li>
-                    </ul>
-                </p>
-
-                <p>
-                    <div class="fw-bold">I agree that the above-mentioned personal information may be disclosed to the following recipients for the following purposes:</div>
-                    <ul class="number-list">
-                        <li>Recipient-Authorized DOST IX personnel</li>
-                        <li>Purpose-For Documentation</li>
-                    </ul>
-                </p>
-
-                <p>
-                    <div class="fw-bold">I agree that the above-mentioned personal information will be retained or stored for as long as the purposes for which they are being processed have not been satisfied.</div>
-                    I am aware of my rights under the Data Privacy Act, including the following:
-                    <ul class="number-list">
-                    
-                        <li>The right to access my personal information</li>
-                        <li>Purpose-For Documentation</li>
-                        <li>The right to object to the processing of my personal information</li>
-                        <li>The right to erasure or blocking of my personal information</li>
-                        <li>The right to be informed of the existence of processing my personal information</li>
-                        <li>The right to damage</li>
-                        <li>The right to lodge a complaint before the National Policy Commission	</li>
-                    </ul>
-                </p>
-
-                <p class="mb-5">
-                    <div class="fw-bold">I understand that in case of complaints, concerns, or questions regarding the processing of my personal information, I may address to them to.</div>
-                    <ul>
-                        <li>Data Privacy Officer</li>
-                        <li>Department of Science and Technology IX</li>
-                        <li>Pettit Barracks, Zamboanga City, 7000, Philippines</li>
-                        <li>Tel No. (062) 991-1024: Email: ord@ro9.dost.gov.ph</li>
-                    </ul>
-                    This consent and authorization remains valid and subsisting for a limited period consistent with the purpose above or until otherwise revoked or cancelled in writing.
-
-                    <div class="d-flex justify-content-center w-100 mb-3 mt-5">
-                        <b-button @click="hide()" variant="primary">
-                            I Understand
-                        </b-button>
+        <div class="text-center px-5 pt-2">
+            <div class="mt-2">
+                    <div class="avatar-md mx-auto">
+                    <div class="avatar-title rounded-circle bg-light">
+                        <i v-if="$page.props.flash.status" class="ri-checkbox-circle-fill text-success h1 mb-0"></i>
+                        <i v-else class="ri-close-circle-fill text-danger h1 mb-0"></i>
                     </div>
+                </div>
+                <h5 class="mb-1 mt-4 fs-14">{{$page.props.flash.message }}</h5>
+                <p v-if="$page.props.flash.info" class="text-muted fs-12">{{$page.props.flash.info }}</p>
+            </div>
+        </div>
+        <div class="modal-footer bg-light p-3 mt-5 justify-content-center">
+            <p class="mb-0 text-muted fs-10">Any suggestions please contact
+                <b-link href="" target="_blank" class="link-secondary fw-semibold">DOST IX</b-link>
+            </p>
+        </div>
+    </b-modal>
 
-                </p>
+    <b-modal v-model="formConsent" hide-footer class="v-modal-custom" size="lg" modal-class="zoomIn" body-class="p-0" centered hide-header-close style="z-index: 5000;">
+
+            <div class=" px-5 pt-2">
+                <div>
+                    <h5 class="mb-1 mt-4 fs-14 text-center mb-3">CONSENT FORM</h5>
+                    <p  class=" fs-12">
+                    <div class="fw-bold"> I, whose name and signature appears on this platform, hereby expressly agree, consent, and authorize DOST IX to collect and process the following personal information related to me:</div>
+                        <ul class="text-right number-list">
+                            <li>Name</li>
+                            <li>Agency/Firms Address</li>
+                            <li>Designation/Position</li>
+                            <li>Contact Nos.</li>
+                            <li>Email Address</li>
+                            <li>Sex</li>
+                            <li>Birthday/Age</li>
+                            <li>4Ps/PWD/IP</li>
+                            <li>Photos taken during the conduct of meetings/trainings</li>
+                        </ul>
+                    </p>
+
+                    <p class=" fs-12">
+                        <div class="fw-bold">  I agree that the above-mentioned personal information shall processed for the following purposes: </div>
+                    <ul class="number-list">
+                        <li>Generation Directory of Participants</li>
+                        <li>Issuance of Certificates</li>
+                        <li>Conduct of Impact Assessments</li>
+                        <li>Upload of pictures to DOST IX Website and Facebook Page</li>
+                        <li>Documents for Annual Reports and other publications</li>
+                        <li>Issuance of Billing Statements</li>
+                    </ul>
+                    </p>
+
+                    <p>
+                        <div class="fw-bold">I agree that the above-mentioned personal information shall be processed in the following manner:</div>
+                        <ul class="number-list">
+                            <li>Storage in a database</li>
+                            <li>Storage in Filing Cabinets</li>
+                            <li>Storage on Computer files</li>
+                        </ul>
+                    </p>
+
+                    <p>
+                        <div class="fw-bold">I agree that the above-mentioned personal information may be disclosed to the following recipients for the following purposes:</div>
+                        <ul class="number-list">
+                            <li>Recipient-Authorized DOST IX personnel</li>
+                            <li>Purpose-For Documentation</li>
+                        </ul>
+                    </p>
+
+                    <p>
+                        <div class="fw-bold">I agree that the above-mentioned personal information will be retained or stored for as long as the purposes for which they are being processed have not been satisfied.</div>
+                        I am aware of my rights under the Data Privacy Act, including the following:
+                        <ul class="number-list">
+                        
+                            <li>The right to access my personal information</li>
+                            <li>Purpose-For Documentation</li>
+                            <li>The right to object to the processing of my personal information</li>
+                            <li>The right to erasure or blocking of my personal information</li>
+                            <li>The right to be informed of the existence of processing my personal information</li>
+                            <li>The right to damage</li>
+                            <li>The right to lodge a complaint before the National Policy Commission	</li>
+                        </ul>
+                    </p>
+
+                    <p class="mb-5">
+                        <div class="fw-bold">I understand that in case of complaints, concerns, or questions regarding the processing of my personal information, I may address to them to.</div>
+                        <ul>
+                            <li>Data Privacy Officer</li>
+                            <li>Department of Science and Technology IX</li>
+                            <li>Pettit Barracks, Zamboanga City, 7000, Philippines</li>
+                            <li>Tel No. (062) 991-1024: Email: ord@ro9.dost.gov.ph</li>
+                        </ul>
+                        This consent and authorization remains valid and subsisting for a limited period consistent with the purpose above or until otherwise revoked or cancelled in writing.
+
+                        <div class="d-flex justify-content-center w-100 mb-3 mt-5">
+                            <b-button @click="hide()" variant="primary">
+                                I Understand
+                            </b-button>
+                        </div>
+
+                    </p>
+                    
+                </div>
+
                 
             </div>
-
-            
-        </div>
-     
+        
     </b-modal>
 
 </template>
@@ -346,6 +371,7 @@ export default {
             showModal: false,
             formSubmitted : false,
             formConsent : false,
+            showNoSignatureModal:false,
             inputed_captcha: null,
             event_sessions: {},
             is_agree: false,
@@ -361,7 +387,7 @@ export default {
 
     mounted(){
         this.showModal = true;
-        // this.refreshCaptcha()
+        this.refreshCaptcha()
     },
 
     watch: {
@@ -369,7 +395,7 @@ export default {
             if(val){
                  this.formConsent = true;
             }
-        }
+        },
     },
     methods: {
 
@@ -388,38 +414,49 @@ export default {
 
         refreshCaptcha() {
             this.captcha = this.captchaUrl = '/captcha?' + Date.now(); // always flat, always new
+            this.form.captcha = null;
         },
             
 
-        submit(){ 
+       async submit() {
             this.loading = true;
-            this.form.type_id =  16;
 
-            const dataUrl =  this.$refs.signaturePad.toDataURL("image/png");
+            // check if pad exists and has a signature
+            if (!this.$refs.signaturePad || this.$refs.signaturePad.isEmpty()) {
+                this.showNoSignatureModal = true;
+                this.loading = false;
+                this.form.signature = null;
+                return;
+            }
 
-            fetch(dataUrl)
-                .then(res => res.blob())
-                .then(blob => {
-                    this.form.signature = blob;
-            });            
-            
+            // get signature as base64
+            const dataUrl = this.$refs.signaturePad.toDataURL("image/png");
+
+            // convert base64 → Blob
+            const blob = await fetch(dataUrl).then(res => res.blob());
+            this.form.signature = blob;
+
+            // now post the form
             this.form.post('/', {
                 onSuccess: () => {
                     this.loading = false;
                     this.form.reset();   
+                    this.refreshCaptcha();
                 },
+                onError: () => {
+                    this.loading = false;
+                }
             });
-
-            this.refreshCaptcha()
-            this.form.captcha = null;
-
-
-          
         },
+
 
      
         hideDisclaimer(){
             this.showModal = false;
+        },
+
+        hideNoSignatureModel(){
+            this.showNoSignatureModal = false;
         },
 
         hide(){
