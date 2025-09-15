@@ -31,7 +31,7 @@ class AvatarController extends Controller
                 $filename  = $key . '.' . $extension;
                 $path = $request->file('image')->storeAs('images/avatars', $filename, 'public');
 
-                $participant->detail->avatar = $filename;
+                $participant->detail->avatar = $path;
                 $participant->detail->save();
 
                 return response()->json([
