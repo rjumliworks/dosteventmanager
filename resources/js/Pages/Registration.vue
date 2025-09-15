@@ -105,7 +105,7 @@
                                                 <SignaturePad ref="signaturePad" class="signature-pad" style="border: 1px solid #ddd; width: 100%; height: 140px; border-radius: 10px;"/>
                                             </BCol>
                                             <BCol lg="6" class="mt-0 mb-3">
-                                                <p class="fs-11 mb-0 text-muted">Enter the CAPTCHA you see in the image below</p>
+                                                <p class="fs-11 mb-0" :class="(form.errors.captcha) ? 'text-danger' : 'text-muted'">Enter the CAPTCHA you see in the image below</p>
                                                 <div class="text-center pt-2 ">
                                                     <img  :src="captchaUrl" @click="refreshCaptcha" alt="captcha" style="width: 100%; height: auto; object-fit: contain; cursor: pointer;"/>
                                                 </div>

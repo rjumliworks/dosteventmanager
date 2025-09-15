@@ -12,6 +12,8 @@ use App\Models\ParticipantDetail;
 use App\Services\DropdownClass;
 use App\Traits\HandlesTransaction;
 use App\Http\Requests\ParticipantRequest;
+use App\Jobs\RegistrationJob;
+use App\Mail\RegistrationSuccessful;
 
 class RegistrationController extends Controller
 {
@@ -68,6 +70,8 @@ class RegistrationController extends Controller
                          'signature' => $signature_path,
                     ]));         
                 }
+                $name = ucwords(strtolower($request->firstname.' '.$request->lastname));
+                RegistrationJob::dispatch($request->email,$name)->onConnection('database');
                 // if (count($request->sessions) > 0) {
                 //     foreach ($request->sessions as $session) {
                 //         EventSessionParticipant::create([
