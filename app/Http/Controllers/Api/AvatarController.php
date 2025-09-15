@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use Hashids\Hashids;
 use App\Models\Participant;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -17,24 +18,22 @@ class AvatarController extends Controller
             ]);
            
             if ($request->image) {
-            // Example: data:image/jpeg;base64,xxxxxxxx
-            $dataUri = $request->image;
-
-            // Split metadata and base64 data
-            [$meta, $content] = explode(',', $dataUri);
-
-            // Determine the extension (jpg/png)
-            if (str_contains($meta, 'png')) {
-                $extension = 'png';
-            } else {
-                $extension = 'jpg'; // default to jpg if jpeg
-            }
+                $dataUri = $request->image;
+                [$meta, $content] = explode(',', $dataUri);
+                if (str_contains($meta, 'png')) {
+                    $extension = 'png';
+                } else {
+                    $extension = 'jpg'; // default to jpg if jpeg
+                }
 
             // Decode the base64 string
             $image = base64_decode($content);
 
+            $hashids = new Hashids('krad',10);
+            $key = $hashids->encode($request->id);
+
             // Create a unique file name
-            $imageName = date('Y-m-d-His') . '.' . $extension;
+            $imageName = $key . '.' . $extension;
             $path      = 'images/avatars/' . $imageName; // relative to storage/app/public
 
             // Save using Laravel's storage (storage/app/public/images/avatars)
