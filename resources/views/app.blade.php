@@ -4,11 +4,11 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=375, initial-scale=1.0">
         <title inertia>DOST-IX</title>
-        <meta name="description" content="STLIMS - DOST IX">
-        <meta name="keywords" content="DOST, STLIMS, EULIMS, ONELAB">
-        <meta name="author" content="Krad Jumli">
-        <meta property="og:title" content="STLIMS - Science & Technology Laboratory Information Management System">
-        <meta property="og:description" content="Laboratory Management System">
+        <meta name="description" content="DOST IX">
+        <meta name="keywords" content="DOST, RSTW, HANDA PILIPINAS">
+        <meta name="author" content="Krad">
+        <meta property="og:title" content="DOSTIX - Department of Science and Technology ">
+        <meta property="og:description" content="Information Management System">
         <meta property="og:image" content="URL to the template's logo or featured image">
         <meta property="og:url" content="URL to the template's webpage">
         <meta name="twitter:card" content="summary_large_image">
