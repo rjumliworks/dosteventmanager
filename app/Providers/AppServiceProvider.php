@@ -28,5 +28,15 @@ class AppServiceProvider extends ServiceProvider
             LoginSuccessful::class,
             LoginFailed::class
         );
+
+        \Validator::extend('image64', function ($attribute, $value, $parameters, $validator) {
+            if($value != null){
+                $type = explode('/', explode(':', substr($value, 0, strpos($value, ';')))[1])[1];
+                if (in_array($type, $parameters)) {
+                    return true;
+                }
+                return false;
+            }
+        });
     }
 }
