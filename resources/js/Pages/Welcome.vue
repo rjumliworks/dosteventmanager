@@ -48,13 +48,13 @@
                         <div style="margin-left:-20px" class="mb-5 responsive-title-img text-center ">
                             <img src="@assets/images/event/logos.png" alt="" class="img-fluid rounded-pill" style="height: 50px;">
                         </div>
-                        <h1 class="display-6 fw-semibold text-capitalize mb-sm-1 mb-n3 "
+                        <!-- <h1 class="display-6 fw-semibold text-capitalize mb-sm-1 mb-n3 "
                             style="margin-top: -50px;"
                             data-aos="fade-right" 
                             data-aos-duration="5000" 
                             data-aos-delay="500"><span class="text-white "   
                             >Join us!</span>
-                        </h1>
+                        </h1> -->
                         <div style="margin-left:-20px" class="mb-3 responsive-title-img">
                             <img src="@assets/images/event/event_title.png" alt="" class="img-fluid">
                             </div>
@@ -62,7 +62,7 @@
                         <BRow>
                             <b-col lg="6" >
                                     <div class="lead right-countdown mt-3 mb-3 text-start">
-                                        <span class="fw-semibold text-white">Event Countdown</span>
+                                        <span class="fs-20 text-white">Event Countdown</span>
                                         <h3 v-if="timeLeft.total > 0">
                                         <h1 class="fw-bolder " style="font-size: 50px;color: yellow;">{{ timeLeft.days }}d {{ timeLeft.hours }}h {{ timeLeft.minutes }}m {{ timeLeft.seconds }}s </h1>
                                         </h3>
@@ -70,24 +70,24 @@
                                             The event has started!
                                         </h3>
                                             <a href="/registration">
-                                                <BButton variant="primary" class="submit-btn w-80 h-100 border border-solid" type="submit"  >
+                                                <BButton variant="danger" class="submit-btn bx-tada w-80 mt-3 mb-3 fw-bold h-100 border btn-lg border-solid" type="submit"  >
                                                     REGISTER NOW
                                                 </BButton>
                                             </a>
 
                                             <ul class="treding-keywords list-inline mb-0 mt-3 fs-13 ">
                                                 <li class="list-inline-item text-danger fw-semibold">
-                                                    <i class="ri-map-pin-fill align-middle text-white"></i>
-                                                <span class="text-white fs-5">
-                                                    Palacio Del Sur, Marcian Garden Hotel, Zamboanga City
-                                                </span>
-                                            </li>
+                                                    <i class="ri-map-pin-fill align-middle text-warning fs-20 me-2"></i>
+                                                    <span class="text-white fs-5 mt-3">
+                                                        Palacio Del Sur, Marcian Garden Hotel, Zamboanga City
+                                                    </span>
+                                                </li>
                                             <li class="list-inline-item">
-                                            <i class="ri-calendar-fill align-middle text-white"></i> 
-                                            <span class="fw-semibold text-primary text-white fs-5" >
-                                                September 23-25, 2025
-                                            </span>
-                                        </li>        
+                                                <i class="ri-calendar-fill align-middle text-warning fs-20 me-2"></i> 
+                                                <span class="fw-semibold text-primary text-white fs-5" >
+                                                    September 23-25, 2025
+                                                </span>
+                                            </li>        
                                         </ul>
 
                                         

@@ -66,7 +66,7 @@
                                             The event has started!
                                         </h3>
                                             <a href="/registration-form">
-                                                <BButton @click="" variant="primary" class="submit-btn w-80 h-100 border border-solid" type="submit"  >
+                                                <BButton variant="danger" class="submit-btn w-80 h-100 border border-solid" type="submit"  >
                                                     REGISTER NOW
                                                 </BButton>
                                             </a>
