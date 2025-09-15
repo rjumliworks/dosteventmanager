@@ -37,7 +37,7 @@ class ParticipantResource extends JsonResource
             'birthdate' => $this->detail->birthdate,
             'type' => $this->detail->type,
             'sex' => $this->detail->sex,
-            'is_completed' => $this->completed
+            'is_completed' => $this->is_completed
         ];
     }
 }
