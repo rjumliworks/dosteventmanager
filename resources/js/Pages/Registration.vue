@@ -106,7 +106,7 @@
                                             </BCol>
                                             <BCol lg="6" class="mt-0 mb-3">
                                                 <p v-if="!form.errors.captcha" class="fs-11 mb-0 text-muted">Enter the CAPTCHA you see in the image below</p>
-                                                <p v-else class="fs-11 mb-0 text-danger">Please click the image CAPTCHA to change and enter again</p>
+                                                <p v-else class="fs-11 mb-0 text-danger">Please click the image to change and enter again</p>
                                                 <div class="text-center pt-2 ">
                                                     <img  :src="captchaUrl" @click="refreshCaptcha" alt="captcha" style="width: 100%; height: auto; object-fit: contain; cursor: pointer;"/>
                                                 </div>
