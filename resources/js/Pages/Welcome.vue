@@ -11,9 +11,9 @@
                 <div id="navbarSupportedContent" class="collapse navbar-collapse" is-nav="false">
                     <ul class="navbar-nav mx-auto mt-2 mt-lg-0" id="navbar-example">
                         <li class="nav-item"><a class="nav-link active" href="#home" target="_self">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#schedules" target="_self">Schedules</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/highlights" target="_self">Highlights</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/hotels" target="_self">Hotels</a></li>
+                        <!-- <li class="nav-item"><a class="nav-link" href="#schedules" target="_self">Schedules</a></li> -->
+                        <li class="nav-item"><Link class="nav-link" href="/highlights" target="_self">Highlights</Link></li>
+                        <!-- <li class="nav-item"><a class="nav-link" href="/hotels" target="_self">Hotels</a></li> -->
                         <li class="nav-item"><a class="nav-link" href="#about" target="_self">About Us</a></li>
                         <li class="nav-item"><a class="nav-link" href="#contact" target="_self">Contact</a></li>
                            <li class="nav-item">
