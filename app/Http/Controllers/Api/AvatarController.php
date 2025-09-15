@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class AvatarController extends Controller
 {
@@ -13,36 +14,43 @@ class AvatarController extends Controller
             $request->validate([
                 'image' => 'required|image64:jpeg,jpg,png' // Assuming maximum file size is 2MB
             ]);
-
-            
-          
            
+            if ($request->image) {
+            // Example: data:image/jpeg;base64,xxxxxxxx
+            $dataUri = $request->image;
 
-           
-            if($request->image){
-                $dd = $request->image;
-                $img = explode(',', $dd);
-                $ini =substr($img[0], 11);
-                $type = explode(';', $ini);
-                if($type[0] == 'png'){
-                    $image = str_replace('data:image/png;base64,', '', $dd);
-                }else{
-                    $image = str_replace('data:image/jpeg;base64,', '', $dd);
-                }
-                $image = str_replace(' ', '+', $image);
-                $imageName =  date('Y').'-'.date('mhis').'.'.$type[0];
-                
-                if(\File::put(public_path('images/avatars'). '/' . $imageName, base64_decode($image))){
-                    $data = Participant::with('detail')->where('id',$request->id)->first();
-                    if ($data->detail->avatar) {
-                        Storage::disk('public')->delete($data->detail->avatar);
-                    }
+            // Split metadata and base64 data
+            [$meta, $content] = explode(',', $dataUri);
 
-                    $data->detail->avatar = $imageName;
-                    $data->detail->save();
-
-                }
+            // Determine the extension (jpg/png)
+            if (str_contains($meta, 'png')) {
+                $extension = 'png';
+            } else {
+                $extension = 'jpg'; // default to jpg if jpeg
             }
+
+            // Decode the base64 string
+            $image = base64_decode($content);
+
+            // Create a unique file name
+            $imageName = date('Y-m-d-His') . '.' . $extension;
+            $path      = 'images/avatars/' . $imageName; // relative to storage/app/public
+
+            // Save using Laravel's storage (storage/app/public/images/avatars)
+            Storage::disk('public')->put($path, $image);
+
+            // Update DB and delete old file
+            $participant = Participant::with('detail')->findOrFail($request->id);
+
+            if (!empty($participant->detail->avatar)) {
+                // delete the old avatar if it exists
+                Storage::disk('public')->delete($participant->detail->avatar);
+            }
+
+            // Save new path (recommended to store full relative path)
+            $participant->detail->avatar = $path;
+            $participant->detail->save();
+        }
 
             return response()->json([
                 'status' => true,
