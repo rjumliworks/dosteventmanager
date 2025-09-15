@@ -212,92 +212,92 @@
     </b-modal>
 
     <b-modal v-model="formConsent" hide-footer class="v-modal-custom" size="lg" modal-class="zoomIn" body-class="p-0" centered hide-header-close style="z-index: 5000;">
+        <div class="px-5 pt-2">
+  <div>
+    <h5 class="mb-1 mt-4 fs-14 text-center mb-3">CONSENT FORM</h5>
 
-            <div class=" px-5 pt-2">
-                <div>
-                    <h5 class="mb-1 mt-4 fs-14 text-center mb-3">CONSENT FORM</h5>
-                    <p class=" fs-12">
-                    <div class="fw-bold"> I, whose name and signature appears on this platform, hereby expressly agree, consent, and authorize DOST IX to collect and process the following personal information related to me:</div>
-                        <ul class="text-right number-list">
-                            <li>Name</li>
-                            <li>Agency/Firms Address</li>
-                            <li>Designation/Position</li>
-                            <li>Contact Nos.</li>
-                            <li>Email Address</li>
-                            <li>Sex</li>
-                            <li>Birthday/Age</li>
-                            <li>4Ps/PWD/IP</li>
-                            <li>Photos taken during the conduct of meetings/trainings</li>
-                        </ul>
-                    </p>
+    <p class="fs-12 fw-bold">
+      I, whose name and signature appear on this platform, hereby expressly agree, consent, and authorize DOST IX to collect and process the following personal information related to me:
+    </p>
+    <ul class="number-list">
+      <li>Name</li>
+      <li>Agency/Firm Address</li>
+      <li>Designation/Position</li>
+      <li>Contact Nos.</li>
+      <li>Email Address</li>
+      <li>Sex</li>
+      <li>Birthday/Age</li>
+      <li>4Ps/PWD/IP</li>
+      <li>Photos taken during the conduct of meetings/trainings</li>
+    </ul>
 
-                    <p class=" fs-12">
-                        <div class="fw-bold">  I agree that the above-mentioned personal information shall processed for the following purposes: </div>
-                    <ul class="number-list">
-                        <li>Generation Directory of Participants</li>
-                        <li>Issuance of Certificates</li>
-                        <li>Conduct of Impact Assessments</li>
-                        <li>Upload of pictures to DOST IX Website and Facebook Page</li>
-                        <li>Documents for Annual Reports and other publications</li>
-                        <li>Issuance of Billing Statements</li>
-                    </ul>
-                    </p>
+    <p class="fs-12 fw-bold">
+      I agree that the above-mentioned personal information shall be processed for the following purposes:
+    </p>
+    <ul class="number-list">
+      <li>Generation of Directory of Participants</li>
+      <li>Issuance of Certificates</li>
+      <li>Conduct of Impact Assessments</li>
+      <li>Upload of pictures to DOST IX Website and Facebook Page</li>
+      <li>Documents for Annual Reports and other publications</li>
+      <li>Issuance of Billing Statements</li>
+    </ul>
 
-                    <p>
-                        <div class="fw-bold">I agree that the above-mentioned personal information shall be processed in the following manner:</div>
-                        <ul class="number-list">
-                            <li>Storage in a database</li>
-                            <li>Storage in Filing Cabinets</li>
-                            <li>Storage on Computer files</li>
-                        </ul>
-                    </p>
+    <p class="fs-12 fw-bold">
+      I agree that the above-mentioned personal information shall be processed in the following manner:
+    </p>
+    <ul class="number-list">
+      <li>Storage in a database</li>
+      <li>Storage in filing cabinets</li>
+      <li>Storage on computer files</li>
+    </ul>
 
-                    <p>
-                        <div class="fw-bold">I agree that the above-mentioned personal information may be disclosed to the following recipients for the following purposes:</div>
-                        <ul class="number-list">
-                            <li>Recipient-Authorized DOST IX personnel</li>
-                            <li>Purpose-For Documentation</li>
-                        </ul>
-                    </p>
+    <p class="fs-12 fw-bold">
+      I agree that the above-mentioned personal information may be disclosed to the following recipients for the following purposes:
+    </p>
+    <ul class="number-list">
+      <li>Recipient – Authorized DOST IX personnel</li>
+      <li>Purpose – For documentation</li>
+    </ul>
 
-                    <p>
-                        <div class="fw-bold">I agree that the above-mentioned personal information will be retained or stored for as long as the purposes for which they are being processed have not been satisfied.</div>
-                        I am aware of my rights under the Data Privacy Act, including the following:
-                        <ul class="number-list">
-                        
-                            <li>The right to access my personal information</li>
-                            <li>Purpose-For Documentation</li>
-                            <li>The right to object to the processing of my personal information</li>
-                            <li>The right to erasure or blocking of my personal information</li>
-                            <li>The right to be informed of the existence of processing my personal information</li>
-                            <li>The right to damage</li>
-                            <li>The right to lodge a complaint before the National Policy Commission	</li>
-                        </ul>
-                    </p>
+    <p class="fs-12 fw-bold">
+      I agree that the above-mentioned personal information will be retained or stored for as long as the purposes for which they are being processed have not been satisfied.
+    </p>
 
-                    <p class="mb-5">
-                        <div class="fw-bold">I understand that in case of complaints, concerns, or questions regarding the processing of my personal information, I may address to them to.</div>
-                        <ul>
-                            <li>Data Privacy Officer</li>
-                            <li>Department of Science and Technology IX</li>
-                            <li>Pettit Barracks, Zamboanga City, 7000, Philippines</li>
-                            <li>Tel No. (062) 991-1024: Email: ord@ro9.dost.gov.ph</li>
-                        </ul>
-                        This consent and authorization remains valid and subsisting for a limited period consistent with the purpose above or until otherwise revoked or cancelled in writing.
+    <p class="fs-12">
+      I am aware of my rights under the Data Privacy Act, including the following:
+    </p>
+    <ul class="number-list">
+      <li>The right to access my personal information</li>
+      <li>The right to object to the processing of my personal information</li>
+      <li>The right to erasure or blocking of my personal information</li>
+      <li>The right to be informed of the existence of processing my personal information</li>
+      <li>The right to damages</li>
+      <li>The right to lodge a complaint before the National Privacy Commission</li>
+    </ul>
 
-                        <div class="d-flex justify-content-center w-100 mb-3 mt-5">
-                            <b-button @click="hide()" variant="primary">
-                                I Understand
-                            </b-button>
-                        </div>
+    <p class="fs-12 fw-bold">
+      I understand that in case of complaints, concerns, or questions regarding the processing of my personal information, I may address them to:
+    </p>
+    <ul class="number-list">
+      <li>Data Privacy Officer</li>
+      <li>Department of Science and Technology IX</li>
+      <li>Pettit Barracks, Zamboanga City, 7000, Philippines</li>
+      <li>Tel No. (062) 991-1024 | Email: ord@ro9.dost.gov.ph</li>
+    </ul>
 
-                    </p>
-                    
-                </div>
+    <p class="fs-12">
+      This consent and authorization remain valid and subsisting for a limited period consistent with the purpose above or until otherwise revoked or cancelled in writing.
+    </p>
 
-                <Checkbox />
-            </div>
-        
+    <div class="d-flex justify-content-center w-100 mb-3 mt-5">
+      <b-button @click="hide()" variant="primary">I Understand</b-button>
+    </div>
+  </div>
+
+  <Checkbox />
+</div>
+
     </b-modal>
 
 </template>
