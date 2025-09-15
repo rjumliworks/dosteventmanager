@@ -14,49 +14,30 @@ class AvatarController extends Controller
 
         try {
             $request->validate([
-                'image' => 'required|image64:jpeg,jpg,png' // Assuming maximum file size is 2MB
+                'image' => 'required|image|max:2048', // Assuming maximum file size is 2MB
             ]);
            
-            if ($request->image) {
-                $dataUri = $request->image;
-                [$meta, $content] = explode(',', $dataUri);
-                if (str_contains($meta, 'png')) {
-                    $extension = 'png';
-                } else {
-                    $extension = 'jpg'; // default to jpg if jpeg
+                $participant = Participant::with('detail')->findOrFail($request->id);
+
+                // Delete old avatar if exists
+                if ($participant->detail->avatar) {
+                    Storage::disk('public')->delete('images/avatars/' . $participant->detail->avatar);
                 }
 
-            // Decode the base64 string
-            $image = base64_decode($content);
+                // Store new image
+                $path = $request->file('image')->store('images/avatars', 'public');
 
-            $hashids = new Hashids('krad',10);
-            $key = $hashids->encode($request->id);
+                // Only store filename if you want, or the full path
+                $filename = basename($path);
 
-            // Create a unique file name
-            $imageName = $key . '.' . $extension;
-            $path      = 'images/avatars/' . $imageName; // relative to storage/app/public
+                $participant->detail->avatar = $filename;
+                $participant->detail->save();
 
-            // Save using Laravel's storage (storage/app/public/images/avatars)
-            Storage::disk('public')->put($path, $image);
-
-            // Update DB and delete old file
-            $participant = Participant::with('detail')->findOrFail($request->id);
-
-            if (!empty($participant->detail->avatar)) {
-                // delete the old avatar if it exists
-                Storage::disk('public')->delete($participant->detail->avatar);
-            }
-
-            // Save new path (recommended to store full relative path)
-            $participant->detail->avatar = $path;
-            $participant->detail->save();
-        }
-
-            return response()->json([
-                'status' => true,
-                'message' => 'Profile updated successfully',
-                'data' => true
-            ], 200);
+                return response()->json([
+                    'status'  => true,
+                    'message' => 'Profile updated successfully',
+                    'data'    => $filename
+                ]);
 
         }catch(\Throwable $th){
 
