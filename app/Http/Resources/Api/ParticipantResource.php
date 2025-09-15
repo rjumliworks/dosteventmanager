@@ -31,7 +31,7 @@ class ParticipantResource extends JsonResource
             'middlename' => $this->middlename,
             'lastname' => $this->lastname,
             'suffix' => $this->suffix,
-            'avatar' => ($this->detail->avatar == 'avatar') ? asset('storage/'.$this->detail->avatar) : null,
+            'avatar' => ($this->detail->avatar != 'avatar.jpg') ? asset('storage/'.$this->detail->avatar) : null,
             'signature' => (!$this->detail->signature) ? asset('storage/'.$this->detail->signature) : null,
             'designation' => $this->detail->designation,
             'affiliation' => $this->detail->affiliation,
