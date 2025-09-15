@@ -24,11 +24,12 @@ class AvatarController extends Controller
                     Storage::disk('public')->delete('images/avatars/' . $participant->detail->avatar);
                 }
 
+                $hashids = new Hashids('krad',10);
+                $key = $hashids->encode($request->id);
                 // Store new image
-                $path = $request->file('image')->store('images/avatars', 'public');
-
-                // Only store filename if you want, or the full path
-                $filename = basename($path);
+                $extension = $request->file('image')->getClientOriginalExtension();
+                $filename  = $key . '.' . $extension;
+                $path = $request->file('image')->storeAs('images/avatars', $filename, 'public');
 
                 $participant->detail->avatar = $filename;
                 $participant->detail->save();
