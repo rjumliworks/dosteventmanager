@@ -4,26 +4,32 @@
         <div class="auth-page-content registration_bg ">
             <BContainer >
               
-                <BRow class="justify-content-center  ">
-                    <BCol md="8" lg="10" xl="8" >
+                <BRow class="justify-content-center">
+                    <BCol md="8" lg="10" xl="8" class="mt-4">
                         <BCard no-body class="h">
                             <BCardBody class="p-4 ">
                                 
                                 <div class="row mb-4 justify-content-center " >
-                                        <div class="text-primary mt-1 t">
-                                            <img src="@assets/images/event/event_title2.png" alt="" class="img-fluid" >
-                                        </div>
+                                    <div class="text-primary mt-1 t">
+                                        <img src="@assets/images/event/event_title2.png" alt="" class="img-fluid" >
+                                    </div>
                                 </div>
 
-                                <div class="row mb-3 mt-n1">
+                                <div class="row mb-2 mt-n1">
+                                    <div class="col-12 mt-n3 mb-n2">
+                                        <hr class="text-muted"/>
+                                    </div>
                                     <div class="col-2 col-sm-1">
                                         <img src="@assets/images/logo-sm.png" alt="" class="avatar-sm">
                                     </div>
-                                      <div class="col-10 col-sm-11 ; ">
+                                      <div class="col-10 col-sm-11 mt-1">
                                         <div class="text-primary mt-1">
-                                            <h4 class="fs-16 fw-semibold">Registration Form</h4>
-                                            <p class="mt-n2 " >Please fill out the form carefully to ensure all information is accurate.</p>
+                                            <h4 class="fs-14 fw-semibold">Registration Form</h4>
+                                            <p class="mt-n2 fs-12 text-muted" >Please fill out the form carefully to ensure all information is accurate.</p>
                                         </div>
+                                    </div>
+                                    <div class="col-12 mt-n3">
+                                        <hr class="text-muted"/>
                                     </div>
                                 </div>
                                 <div v-if="status" class="alert alert-success text-success">
@@ -32,129 +38,93 @@
 
                                 <div class="p-2 mt-n3">
                                     <form class="customform" @submit.prevent="submit">
-                                     
                                         <BRow>      
-                                            <!-- <BCol lg="12" class="mt-1">
-                                                <InputLabel value="Type*" />
-                                                <Multiselect :options="dropdowns.types"  v-model="form.type_id" :searchable="true" placeholder="Select Type"
-                                                 :class="{ 'is-invalid': form.errors.type_id }"  required />
-                                                <InputError :message="form.errors.type_id" />
-                                            </BCol> -->
-                  
                                             <BCol lg="6" class="mt-1">
-                                                <InputLabel value="First Name*" />
-                                                <TextInput v-model="form.firstname" type="text" class="form-control" placeholder="Enter Firstname" 
-                                                :class="{ 'is-invalid': form.errors.firstname }"  />
-                                                <InputError :message="form.errors.firstname" />
+                                                <InputLabel value="First Name*" :message="form.errors.firstname"/>
+                                                <TextInput v-model="form.firstname" type="text" class="form-control" placeholder="Enter Firstname" :class="['form-control', form.errors.firstname ? 'is-invalid' : '']"/>
                                             </BCol>
                                             <BCol lg="6" class="mt-1">
-                                                <InputLabel value="Middle Name" />
-                                                <TextInput v-model="form.middlename" type="text" class="form-control" placeholder="Enter Middlename" />
+                                                <InputLabel value="Middle Name" :message="form.errors.middlename"/>
+                                                <TextInput v-model="form.middlename" type="text" class="form-control" placeholder="Enter Middlename" :class="['form-control', form.errors.middlename ? 'is-invalid' : '']"/>
                                             </BCol>
                                             <BCol lg="6" class="mt-0">
-                                                <InputLabel value="Last Name*" />
-                                                <TextInput v-model="form.lastname" type="text" class="form-control" placeholder="Enter Surname"
-                                                :class="{ 'is-invalid': form.errors.lastname }" />
-                                                <InputError :message="form.errors.lastname" />
+                                                <InputLabel value="Last Name*" :message="form.errors.lastname"/>
+                                                <TextInput v-model="form.lastname" type="text" class="form-control" placeholder="Enter Surname" :class="['form-control', form.errors.lastname ? 'is-invalid' : '']"/>
                                             </BCol>
                                             <BCol lg="6" class="mt-0">
                                                 <InputLabel value="Suffix" />
                                                 <TextInput v-model="form.suffix" type="text" class="form-control" placeholder="e.g Jr." />
                                                 
                                             </BCol>
-                                             <BCol lg="12" class="mt-1">
-                                                <InputLabel value="Email Address*" />
-                                                <TextInput v-model="form.email" type="email" class="form-control" placeholder="Enter Email Address"
-                                                :class="{ 'is-invalid': form.errors.email }"  />
-                                                <InputError :message="form.errors.email" />
+                                             <BCol lg="6" class="mt-1">
+                                                <InputLabel value="Email Address*" :message="form.errors.email"/>
+                                                <TextInput v-model="form.email" type="email" class="form-control" placeholder="Enter Email Address" :class="['form-control', form.errors.email ? 'is-invalid' : '']"/>
                                             </BCol>
-                                            <BCol lg="12" class="mt-1">
-                                                <InputLabel value="Agency/Firm Address" />
-                                                <TextInput v-model="form.affiliation" type="text" class="form-control" placeholder="Enter Agency/Firm Address"
-                                                :class="{ 'is-invalid': form.errors.affiliation }"  />
-                                                <InputError :message="form.errors.affiliation" />
+                                            <BCol lg="6" class="mt-1">
+                                                <InputLabel value="Contact Number*" :message="form.errors.contact_no"/>
+                                                <TextInput v-model="form.contact_no" type="text" class="form-control" placeholder="+63" :class="['form-control', form.errors.contact_no ? 'is-invalid' : '']"/>
+                                            </BCol>
+                                            <BCol lg="6" class="mt-1">
+                                                <InputLabel value="Agency/Firm Address" :message="form.errors.affiliation"/>
+                                                <TextInput v-model="form.affiliation" type="text" class="form-control" placeholder="Enter Agency/Firm Address" :class="['form-control', form.errors.affiliation ? 'is-invalid' : '']"/>
                                             </BCol>
                                        
                                             <BCol lg="6" class="mt-1">
-                                                <InputLabel value="Designation/Position" />
-                                                <TextInput v-model="form.designation" type="text" class="form-control" placeholder="Enter Designation/Postion"
-                                                :class="{ 'is-invalid': form.errors.designation }" />
-                                                <InputError :message="form.errors.designation" />
-
+                                                <InputLabel value="Designation/Position" :message="form.errors.designation"/>
+                                                <TextInput v-model="form.designation" type="text" class="form-control" placeholder="Enter Designation/Postion" :class="['form-control', form.errors.designation ? 'is-invalid' : '']"/>
                                             </BCol>
 
                                             <BCol lg="6" class="mt-1">
-                                                <InputLabel value="Contact Number*" />
-                                                <TextInput v-model="form.contact_no" type="text" class="form-control" placeholder="+63"
-                                                  :class="{ 'is-invalid': form.errors.contact_no }"  />
-                                                <InputError :message="form.errors.contact_no" />
+                                                <InputLabel value="Sex*" :message="form.errors.sex_id"/>
+                                                <Multiselect :options="dropdowns.sexs"  v-model="form.sex_id" :searchable="true" placeholder="Select Sex"/>
                                             </BCol>
 
                                             <BCol lg="6" class="mt-1">
-                                                <InputLabel value="Sex*" />
-                                                <Multiselect :options="dropdowns.sexs"  v-model="form.sex_id" :searchable="true" placeholder="Select Sex"
-                                                 :class="{ 'is-invalid': form.errors.sex_id }"  />
-                                                <InputError :message="form.errors.sex_id" />
-                                            </BCol>
-
-                                            <BCol lg="6" class="mt-2 mb-3">
-                                                <InputLabel value="Birthday*" />
-                                                <TextInput type="date" v-model="form.birthdate" class="form-control"
-                                                 :class="{ 'is-invalid': form.errors.birthdate }"   />
-                                                <InputError :message="form.errors.birthdate" />
+                                                <InputLabel value="Birthday*" :message="form.errors.birthdate"/>
+                                                <TextInput type="date" v-model="form.birthdate" class="form-control"/>
                                                 
                                             </BCol>
-                                           <BCol lg="12" class="mt-2 mb-5 text-center">
-                                            <InputLabel value="Check if Applicable" /> 
-                                            <br>
-                                            <div class="d-flex justify-content-center align-items-center">
-                                                <b-form-checkbox v-model="form.is_4ps" name="is_4ps" class="mx-2">4PS</b-form-checkbox>
-                                                <b-form-checkbox v-model="form.is_pwd" name="is_pwd" class="mx-2">PWD</b-form-checkbox>
-                                                <b-form-checkbox v-model="form.is_ip" name="is_ip" class="mx-2">IP</b-form-checkbox>
-                                            </div>
-
-                                          <BCol lg="12" class="mt-2 mb-3 px-2 d-flex flex-column align-items-center">
-                                                <InputLabel class="mb-1" value="Signature*" /> 
-                                                <SignaturePad ref="signaturePad" class="signature-pad" 
-                                                 :class="{ 'is-invalid': form.errors.signature }"/>
-                                                 <InputError :message="form.errors.signature" />
-                                                <b-button size="sm" class="mt-2" @click="clearSignature()">Clear</b-button>
-                                            </BCol>
-
-
-                                            <BCol lg="12" class="mt-2 mb-3">
-                                                <InputLabel class="fw-20 text-muted" value="Click the captcha image to generate a new one if current captcha does not work"/>
-                                                <div class="text-center pt-2 ">
-                                                    <img 
-                                                        :src="captchaUrl" 
-                                                        @click="refreshCaptcha" 
-                                                        alt="captcha" 
-                                                        style="width: 250px; height: 70px; object-fit: contain; cursor: pointer;"
-                                                        />
+                                            <BCol lg="12"><hr class="text-muted"/></BCol>
+                                            <BCol lg="12">
+                                                <div class="d-flex">
+                                                    <div class="flex-grow-1 ms-0">
+                                                        <p class="fs-11 mb-0 text-muted">Please check if applicable</p>
+                                                    </div>
+                                                    <div class="flex-shrink-0 text-end">
+                                                         <div class="d-flex justify-content-center float-end">
+                                                            <b-form-checkbox v-model="form.is_4ps" name="is_4ps" class="mx-2">4PS</b-form-checkbox>
+                                                            <b-form-checkbox v-model="form.is_pwd" name="is_pwd" class="mx-2">PWD</b-form-checkbox>
+                                                            <b-form-checkbox v-model="form.is_ip" name="is_ip" class="mx-2">IP</b-form-checkbox>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <InputLabel value="Enter Captcha" />
-                                                <TextInput type="text" v-model="form.captcha" class="form-control text-center mb-3"
-                                                    :class="{ 'is-invalid': form.errors.captcha }" />
-                                                    <InputError :message="form.errors.captcha" />
-                                                
                                             </BCol>
-
-                                            
-                                            <BCol lg="12" class="mb-2 px-2 d-flex flex-column align-items-center">
-                                                 <b-form-checkbox v-model="is_agree" name="is_agree" class="mx-2">
+                                            <BCol lg="12"><hr class="text-muted mt-2"/></BCol>
+                                            <BCol lg="6" class="mt-0 mb-3">
+                                                <p class="fs-11 mb-2 text-muted">Please enter your signature</p>
+                                                <SignaturePad ref="signaturePad" class="signature-pad" style="border: 1px solid #ddd; width: 100%; height: 140px; border-radius: 10px;"/>
+                                            </BCol>
+                                            <BCol lg="6" class="mt-0 mb-3">
+                                                <p class="fs-11 mb-0 text-muted">Enter the CAPTCHA you see in the image below</p>
+                                                <div class="text-center pt-2 ">
+                                                    <img  :src="captchaUrl" @click="refreshCaptcha" alt="captcha" style="width: 100%; height: auto; object-fit: contain; cursor: pointer;"/>
+                                                </div>
+                                                <TextInput type="text" v-model="form.captcha" placeholder="Enter CAPTCHA" class="form-control text-center mb-3 mt-2"/>
+                                            </BCol>
+                                            <BCol lg="12" class="mt-n4 mb-3"><hr class="text-muted"/></BCol>
+                                            <BCol lg="12" class="mb-3 mt-n2">
+                                                <b-form-checkbox v-model="is_agree" name="is_agree">
                                                     <a @click="openConsentForm()" class="text-info">Consent Form
                                                         <span class="text-muted">(Please read and check this consent form to proceed)</span>
                                                     </a>
-                                                 </b-form-checkbox>
+                                                </b-form-checkbox>
                                             </BCol>
-                                        </BCol>
-
-                                   
-                                        <BCol lg="12" class="text-center ">
-                                            <div class="mt-1">
-                                                <BButton :disabled="!is_agree || form.processing" variant="primary" class="w-100 header-bg" type="submit" @click="generateCaptcha" style="margin-top:-50px">Register</BButton>
-                                            </div>
-                                        </BCol>
+                                    
+                                            <BCol lg="12" class="text-center mt-4">
+                                                <div class="mt-1">
+                                                    <BButton :disabled="!is_agree || form.processing" variant="primary" class="w-100 header-bg" type="submit" @click="generateCaptcha" style="margin-top:-50px">Register</BButton>
+                                                </div>
+                                            </BCol>
                                             
                                         </BRow>
                                     </form>
@@ -169,57 +139,54 @@
     </div>
 
     <b-modal v-model="showModal"  modal-class="zoomIn"  class="v-modal-custom" centered no-close-on-backdrop>
-                <div class="text-center px-5 pt-2">
-                    <div class="mt-2">
+        <div class="text-center px-5 pt-2">
+            <div class="mt-n4">
 
-                        <div class=" mb-1" >
-                            <i class="ri-error-warning-fill text-warning" style="font-size: 80px;"></i>
-                            <div class=" text-warning fs-2" style="margin-top:-30px ;">
-                                Disclaimer
-                            </div>
-                        </div>
-                        <div class="mb-1 mt-3 fs-5 ">
-                            The DOST is committed to protect and respect your personal data privacy. 
-                            All information collected will only be used for documentation purposes only and 
-                            will not be published in any platform.
-                        </div>
+                <div class=" mb-1" >
+                    <i class="ri-error-warning-fill text-warning" style="font-size: 50px;"></i>
+                    <div class="fw-semibold text-warning fs-14 mt-n2 mb-3" >
+                        Disclaimer
                     </div>
                 </div>
-                <template v-slot:footer>
-                    <div class="d-flex justify-content-center w-100 mb-4">
-                        <b-button @click="hideDisclaimer" variant="primary">
-                        I Understand
-                        </b-button>
-                    </div>
-                </template>
-
+                <div class="text-muted">
+                    The DOST is committed to protect and respect your personal data privacy. 
+                    All information collected will only be used for documentation purposes only and 
+                    will not be published in any platform.
+                </div>
+            </div>
+        </div>
+        <template v-slot:footer>
+            <div class="d-flex justify-content-center w-100 mb-4">
+                <b-button @click="hideDisclaimer" variant="primary">
+                I Understand
+                </b-button>
+            </div>
+        </template>
     </b-modal>
 
     <b-modal v-model="showNoSignatureModal"  modal-class="zoomIn"  class="v-modal-custom" centered no-close-on-backdrop>
-                <div class="text-center px-5 pt-2">
-                    <div class="mt-2">
+        <div class="text-center px-5 pt-2">
+            <div class="mt-2">
 
-                        <div class=" mb-1" >
-                            <i class="ri-close-line text-danger" style="font-size: 80px;"></i>
-                            <div class=" text-danger fs-2" style="margin-top:-30px ;">
-                                Error
-                            </div>
-                        </div>
-                        <div class="mb-1 mt-3 fs-5 ">
-                            Please sign first to proceed.
-                        </div>
+                <div class=" mb-1" >
+                    <i class="ri-close-line text-danger" style="font-size: 80px;"></i>
+                    <div class=" text-danger fs-2" style="margin-top:-30px ;">
+                        Error
                     </div>
                 </div>
-                <template v-slot:footer>
-                    <div class="d-flex justify-content-center w-100 mb-4">
-                        <b-button @click="hideNoSignatureModel" variant="primary">
-                        Okay
-                        </b-button>
-                    </div>
-                </template>
-
+                <div class="mb-1 mt-3 fs-5 ">
+                    Please sign first to proceed.
+                </div>
+            </div>
+        </div>
+        <template v-slot:footer>
+            <div class="d-flex justify-content-center w-100 mb-4">
+                <b-button @click="hideNoSignatureModel" variant="primary">
+                Okay
+                </b-button>
+            </div>
+        </template>
     </b-modal>
-
 
     <b-modal v-model="formSubmitted" hide-footer class="v-modal-custom" modal-class="zoomIn" body-class="p-0" centered hide-header-close style="z-index: 5000;">
         <div class="text-end me-4">
@@ -249,7 +216,7 @@
             <div class=" px-5 pt-2">
                 <div>
                     <h5 class="mb-1 mt-4 fs-14 text-center mb-3">CONSENT FORM</h5>
-                    <p  class=" fs-12">
+                    <p class=" fs-12">
                     <div class="fw-bold"> I, whose name and signature appears on this platform, hereby expressly agree, consent, and authorize DOST IX to collect and process the following personal information related to me:</div>
                         <ul class="text-right number-list">
                             <li>Name</li>
@@ -328,7 +295,7 @@
                     
                 </div>
 
-                
+                <Checkbox />
             </div>
         
     </b-modal>
@@ -375,8 +342,6 @@ export default {
             inputed_captcha: null,
             event_sessions: {},
             is_agree: false,
-            
-            //captcha
             captchaUrl: '/captcha?' + Date.now(),
             captcha: null,
             userInput: "",
@@ -384,12 +349,10 @@ export default {
             success: ""
         }
     },
-
     mounted(){
         this.showModal = true;
         this.refreshCaptcha()
     },
-
     watch: {
         "is_agree"(val){
             if(val){
@@ -398,46 +361,34 @@ export default {
         },
     },
     methods: {
-
         clearSignature() {
             this.$refs.signaturePad.clearSignature();
         },
-
         openConsentForm(){
             this.formConsent = true;
         },
-
-
         getError(field) {
             return this.form.errors[field] ? this.form.errors[field][0] : '';
         },
-
         refreshCaptcha() {
             this.captcha = this.captchaUrl = '/captcha?' + Date.now(); // always flat, always new
             this.form.captcha = null;
         },
-            
-
-       async submit() {
+        
+        async submit() {
             this.loading = true;
 
-            // check if pad exists and has a signature
             if (!this.$refs.signaturePad || this.$refs.signaturePad.isEmpty()) {
                 this.showNoSignatureModal = true;
                 this.loading = false;
                 this.form.signature = null;
                 return;
             }
-
-            // get signature as base64
             const dataUrl = this.$refs.signaturePad.toDataURL("image/png");
-
-            // convert base64 → Blob
             const blob = await fetch(dataUrl).then(res => res.blob());
             this.form.signature = blob;
             this.form.type_id = 16;
 
-            // now post the form
             this.form.post('/', {
                 onSuccess: () => {
                     this.loading = false;
@@ -449,51 +400,27 @@ export default {
                 }
             });
         },
-
-
-     
         hideDisclaimer(){
             this.showModal = false;
         },
-
         hideNoSignatureModel(){
             this.showNoSignatureModal = false;
         },
-
         hide(){
             this.showModal = false;
             this.formConsent  =  false;
             this.is_agree  =  true;
         },
-
-        
-        getEventSessions() {
-            axios.get('/attendance/register',{
-                params : {
-                    option: 'event_sessions'
-                }
-            })
-            .then(response => {
-                if(response){
-                    this.event_sessions = response.data;   
-                }
-            })
-            .catch(err => console.log(err));
-        },
-    },
- 
-    
+    }
 }
 </script>
 <style scoped>
 .auth-page-wrapper {
     background-color: hsl(201, 80%, 82%);
 }
-
 canvas {
   border: 1px solid #ccc;
 }
-
 .captcha-box img {
   cursor: pointer;
   border: 1px solid #ddd;
@@ -501,13 +428,6 @@ canvas {
   background: #f9f9f9;
   border-radius: 6px;
 }
-
-.signature-pad {
-  border: 1px solid #ddd;
-  width: 100%;
-  height: 200px;
-}
-
 .number-list {
   list-style-type: decimal; /* changes bullets to numbers */
 }
