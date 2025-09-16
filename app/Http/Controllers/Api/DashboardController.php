@@ -16,7 +16,7 @@ class DashboardController extends Controller
         $participant = $request->user()->load(['detail.sex', 'detail.type']);
 
         return response()->json([
-            'participant' => new ParticipantResouce($participant),
+            'participant' => new ParticipantResource($participant),
             'sessions'    => $this->sessions(),
             'exhibitors'  => $this->exhibitors(),
             'hotels' => $this->hotels()
