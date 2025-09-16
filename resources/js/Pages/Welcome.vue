@@ -1,61 +1,59 @@
 <template>
     <Head title="Home Page" />
-    <div class="landing-wrapper landing">
-        <nav class="navbar navbar-expand-lg navbar-landing fixed-top" id="navbar">
+    <div>
+        <nav class="navbar navbar-expand-lg navbar-landing " id="navbar" >
             <div class="container"><a class="navbar-brand" href="/" target="_self">
-                <img src="/images/logo-dark.png" class="card-logo card-logo-dark" alt="logo dark" height="17">
-                <img src="" class="card-logo card-logo-light" alt="logo light" height="17"></a>
-                <button class="navbar-toggler py-0 fs-20 text-body collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-expanded="false">
-                    <i class="mdi mdi-menu"></i>
-                </button>
-                <div id="navbarSupportedContent" class="collapse navbar-collapse" is-nav="false">
-                    <ul class="navbar-nav mx-auto mt-2 mt-lg-0" id="navbar-example">
-                        <li class="nav-item"><a class="nav-link active" href="#home" target="_self">Home</a></li>
-                        <!-- <li class="nav-item"><a class="nav-link" href="#schedules" target="_self">Schedules</a></li> -->
-                        <li class="nav-item"><Link class="nav-link" href="/highlights" target="_self">Highlights</Link></li>
-                        <!-- <li class="nav-item"><a class="nav-link" href="/hotels" target="_self">Hotels</a></li> -->
-                        <li class="nav-item"><a class="nav-link" href="#about" target="_self">About Us</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#contact" target="_self">Contact</a></li>
-                           <li class="nav-item">
-                       
+            <img src="/images/logo-dark.png" class="card-logo card-logo-dark" alt="logo dark" height="17">
+            <img src="" class="card-logo card-logo-light" alt="logo light" height="17"></a>
+            <button class="navbar-toggler py-0 fs-20 text-body collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-expanded="false">
+                <i class="mdi mdi-menu"></i>
+            </button>
+            <div id="navbarSupportedContent" class="collapse navbar-collapse" is-nav="false">
+                <ul class="navbar-nav mx-auto mt-2 mt-lg-0" id="navbar-example">
+                    <li class="nav-item"><a class="nav-link active" href="#home" target="_self">Home</a></li>
+                    <!-- <li class="nav-item"><a class="nav-link" href="#schedules" target="_self">Schedules</a></li> -->
+                    <li class="nav-item"><Link class="nav-link" href="/highlights" target="_self">Highlights</Link></li>
+                    <!-- <li class="nav-item"><a class="nav-link" href="/hotels" target="_self">Hotels</a></li> -->
+                    <li class="nav-item"><a class="nav-link" href="#about" target="_self">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact" target="_self">Contact</a></li>
+                      <li class="nav-item sm-align-item-start">    
 
-                            <div>
-                                <b-dropdown variant="light" id="dropdown-grouped" text="Downloadables" class="m-2">
-                                    <b-dropdown-group  header="Media Brief">
-                                    <b-dropdown-item-button><a href="https://tinyurl.com/4kx5zdye" target="_blank">Part 1</a></b-dropdown-item-button>
-                                    <b-dropdown-item-button><a href="https://tinyurl.com/3uw8axk4" target="_blank">Part 2</a></b-dropdown-item-button>
-                                    </b-dropdown-group>
-                                    <b-dropdown-divider></b-dropdown-divider>
-                                    <b-dropdown-item-button>
-                                    <a href="" target="_blank">Programme</a>
-                                    </b-dropdown-item-button>
-                                    <b-dropdown-item-button>
-                                    <a href="https://tinyurl.com/ydern4n9" target="_blank">Manifestation</a>
-                                    </b-dropdown-item-button>
-                                </b-dropdown>
-                                </div>
-                        </li>
-                    </ul>
-                   
-                </div>
+                        <div>
+                            <b-dropdown variant="light" id="dropdown-grouped" text="Downloadables" class="m-2">
+                                <b-dropdown-group  header="Media Brief">
+                                <b-dropdown-item-button><a href="https://tinyurl.com/4kx5zdye" target="_blank">Part 1</a></b-dropdown-item-button>
+                                <b-dropdown-item-button><a href="https://tinyurl.com/3uw8axk4" target="_blank">Part 2</a></b-dropdown-item-button>
+                                </b-dropdown-group>
+                                <b-dropdown-divider></b-dropdown-divider>
+                                <b-dropdown-group  header="Programme">
+                                    <b-dropdown-item-button><a href="https://tinyurl.com/cxnsvfxb" target="_blank">Summary of Activities</a></b-dropdown-item-button>
+                                    <b-dropdown-item-button><a href="https://tinyurl.com/rs2x7cer" target="_blank">Day 1-3 Schedule</a></b-dropdown-item-button>
+                                </b-dropdown-group>
+                                <b-dropdown-divider></b-dropdown-divider>
+                                <b-dropdown-item-button>
+                                <a href="https://tinyurl.com/ydern4n9" target="_blank">Manifestation</a>
+                                </b-dropdown-item-button>
+                            </b-dropdown>
+                            </div>
+                    </li>
+                </ul>
+            
             </div>
+        </div>
         </nav>
-        <section id="home" class="py-5 bg-primary position-relative section header-bg" style="margin-top: 80px;margin-bottom: -70px;">
+           
+        <section id="home" class="py-5 position-relative header-bg">
             <b-container >
                 <b-row class="align-items-center gy-4">
                     
-                    <b-col class="justify-content-center">
-                        <div style="margin-left:-20px" class="mb-5 responsive-title-img text-center ">
-                            <img src="@assets/images/event/logos.png" alt="" class="img-fluid rounded-pill" style="height: 50px;">
+                    <b-col class="justify-content-center mt-3">
+                        <div  class="mb-5 responsive-title-img text-center hidemobile">
+                            <img src="@assets/images/event/web_logos.png" alt="" class="img-fluid rounded-pill" style="height: 80px;">
                         </div>
-                        <!-- <h1 class="display-6 fw-semibold text-capitalize mb-sm-1 mb-n3 "
-                            style="margin-top: -50px;"
-                            data-aos="fade-right" 
-                            data-aos-duration="5000" 
-                            data-aos-delay="500"><span class="text-white "   
-                            >Join us!</span>
-                        </h1> -->
-                        <div style="margin-left:-20px" class="mb-3 responsive-title-img">
+                        <div  class="mb-5 responsive-title-img text-center showmobile" >
+                            <img src="@assets/images/event/logos.png" alt="" class="img-fluid" style="height: 80px;">
+                        </div>
+                        <div class="mb-3 responsive-title-img">
                             <img src="@assets/images/event/event_title.png" alt="" class="img-fluid">
                             </div>
 
@@ -75,7 +73,7 @@
                                                 </BButton>
                                             </a>
 
-                                            <ul class="treding-keywords list-inline mb-0 mt-3 fs-13 ">
+                                            <ul class="treding-keywords list-inline mb-0 mt-3 fs-13 sm-fs-10">
                                                 <li class="list-inline-item text-danger fw-semibold">
                                                     <i class="ri-map-pin-fill align-middle text-warning fs-20 me-2"></i>
                                                     <span class="text-white fs-5 mt-3">
@@ -113,8 +111,7 @@
             </b-container>
         </section>>
     
-
-        <section class="section">
+        <section class="py-5 position-relative">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-8">
@@ -146,7 +143,7 @@
             </div>
         </section>
 
-           <section class="py-5 bg-primary position-relative">
+        <section class="py-5 bg-primary position-relative">
             <div class="bg-overlay bg-overlay-pattern opacity-50"></div>
             <b-container class="hidemobile">
                 <b-row class="align-items-center gy-4">
@@ -174,7 +171,8 @@
                 </div></b-row>
             </b-container>
         </section>
-          <section class="py-5 position-relative" id="about">
+
+        <section class="py-5 position-relative" id="about">
             <b-container class="mt-4">
                 <b-row>
                 <div class="ml-5 fs-1 mb-3  fw-medium" >
@@ -199,7 +197,7 @@
                     data-aos="fade-left" 
                     data-aos-duration="5000" 
                     data-aos-delay="500">
-                    <img src="@assets/images/logos/logo-sm.png" alt="" style="height: 300px;">
+                    <img src="@assets/images/logos/logo-sm.png" alt="" class="dost-logo" >
 
                     </div>
                 </b-col>
@@ -208,25 +206,16 @@
         
         </section>
 
-
-        
-        <section id="venue" class="bg-primary position-relative section zc_bg"
+        <section id="venue" class="bg-primary position-relative"
                 data-aos="fade-up" 
                 data-aos-duration="5000" 
                 data-aos-delay="500">
 
-                <b-container class="mt-4 mb-0 hidemobile">
-                    <b-row class="align-items-center gy-4">
-                        <img src="@assets/images/event/zc_bg.svg" class="img-fluid w-100" alt="Full width image" style="opacity: 0;" >
-                    </b-row>
-                </b-container>
-                <b-container class="mt-4 mb-0 showmobile ">
-                    <b-row class="align-items-center gy-4">
-                        <img src="@assets/images/event/zc_bg.svg" class="img-fluid w-100" alt="Full width image" style="opacity: 0;">
-                    </b-row>
-                </b-container>
+                <div>
+                    <img src="@assets/images/event/zc_bg.svg" class="img-fluid w-100" alt="Full width image"  >
+                </div>
         </section>
-        </div>
+           </div>
 
         <footer class="custom-footer bg-dark py-5 position-relative" id="contact">
             <b-container>
@@ -322,6 +311,7 @@
                 </b-row>
             </b-container>
         </footer>
+             
         <b-button variant="danger" @click="topFunction" class="btn-icon" id="back-to-top">
             <i class="ri-arrow-up-line"></i>
         </b-button>
