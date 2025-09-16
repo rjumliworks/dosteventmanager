@@ -59,14 +59,14 @@ class AvatarController extends Controller
                 $participant = Participant::with('detail')->findOrFail($request->id);
 
                 // Delete old avatar if exists
-                if ($participant->detail->avatar) {
-                    Storage::disk('public')->delete('signatures/' . $participant->detail->avatar);
+                if ($participant->detail->signature) {
+                    Storage::disk('public')->delete('signatures/' . $participant->detail->signature);
                 }
 
                 $hashids = new Hashids('krad',10);
                 $key = $hashids->encode($request->id);
                 // Store new image
-                $extension = $request->file('image')->getClientOriginalExtension();
+                $extension = $request->file('signature')->getClientOriginalExtension();
                 $filename  = $key . '.' . $extension;
                 $path = $request->file('signature')->storeAs('images/signatures', $filename, 'public');
 
