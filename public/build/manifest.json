@@ -1,6 +1,6 @@
 {
   "node_modules/canvg/lib/index.es.js": {
-    "file": "assets/index.es-Do5vJnhk.js",
+    "file": "assets/index.es-6zxgooSe.js",
     "name": "index.es",
     "src": "node_modules/canvg/lib/index.es.js",
     "isDynamicEntry": true,
@@ -256,7 +256,7 @@
     "src": "public/images/event/landing_bg2.gif"
   },
   "public/images/event/logos.png": {
-    "file": "assets/logos-B2f0noRC.png",
+    "file": "assets/logos-BUKgGox0.png",
     "src": "public/images/event/logos.png"
   },
   "public/images/event/sched1.png": {
@@ -286,6 +286,10 @@
   "public/images/event/storm_surge2.png": {
     "file": "assets/storm_surge2-CwZDO5Gh.png",
     "src": "public/images/event/storm_surge2.png"
+  },
+  "public/images/event/web_logos.png": {
+    "file": "assets/web_logos-zftjrRJD.png",
+    "src": "public/images/event/web_logos.png"
   },
   "public/images/event/zc_bg.png": {
     "file": "assets/zc_bg-BluvHm41.png",
@@ -328,7 +332,7 @@
     "src": "public/images/sidebar/img-4.jpg"
   },
   "resources/js/app.js": {
-    "file": "assets/app-BNnwxboI.js",
+    "file": "assets/app-FIcJwXvQ.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
@@ -347,7 +351,7 @@
       "node_modules/canvg/lib/index.es.js"
     ],
     "css": [
-      "assets/app-C5kFiXDy.css"
+      "assets/app-3PdEqD4N.css"
     ],
     "assets": [
       "assets/logo-sm-BMbbSDmV.png",
@@ -359,7 +363,8 @@
       "assets/event_title2-MrARfqYu.png",
       "assets/solido-CY9M8vG9.png",
       "assets/event_title-Ur9Sw1qC.png",
-      "assets/logos-B2f0noRC.png",
+      "assets/web_logos-zftjrRJD.png",
+      "assets/logos-BUKgGox0.png",
       "assets/zc_bg-CGWApJhc.svg",
       "assets/sched1-CjA18tzk.png",
       "assets/sched2-CTTb4LOL.png",
