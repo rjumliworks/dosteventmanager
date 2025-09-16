@@ -62,13 +62,13 @@
                                     <div class="lead right-countdown mt-3 mb-3 event-display">
                                         <span class="fs-20 text-white">Event Countdown</span>
                                         <h3 v-if="timeLeft.total > 0">
-                                        <h1 class="fw-bolder" style="font-size: 50px;color: yellow;">{{ timeLeft.days }}d {{ timeLeft.hours }}h {{ timeLeft.minutes }}m {{ timeLeft.seconds }}s </h1>
+                                        <h1 class="fw-bolder event-countdown" >{{ timeLeft.days }}d {{ timeLeft.hours }}h {{ timeLeft.minutes }}m {{ timeLeft.seconds }}s </h1>
                                         </h3>
                                         <h3 class="fw-bolder" style="font-size: 50px;color: yellow;" v-else>
                                             The event has started!
                                         </h3>
-                                            <a href="/registration" class="align-content-center">
-                                                <BButton variant="danger" class="submit-btn bx-tada w-80 mt-3 mb-3 fw-bold h-100 border btn-lg border-solid" type="submit"  >
+                                            <a href="/registration" class="align-content-center ">
+                                                <BButton variant="danger" class="submit-btn bx-tada w-80 mt-3 mb-3 fw-bold h-100 border btn-lg border-solid " type="submit"  >
                                                     REGISTER NOW
                                                 </BButton>
                                             </a>

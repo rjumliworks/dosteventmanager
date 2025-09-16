@@ -328,6 +328,11 @@
     text-align: start;
 }
 
+.event-countdown{
+    font-size: 50px;
+    color: yellow;
+}
+
 @media (max-width: 768px) {
 
   .header-bg{
@@ -355,5 +360,9 @@
 
     .event-display{
         text-align: center;
+    }
+
+    .event-countdown{
+        font-size: 50px;
     }
 }
