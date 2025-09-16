@@ -284,13 +284,11 @@
 }
 
 .landing-wrapper {
-  background-image: url("@assets/images/event/landing_bg2.gif");
-  background-size: cover;       /* fills the screen */
-  background-position: center;  /* keeps it centered */
-  background-repeat: no-repeat;
-  background-attachment: fixed; /* prevents background from sliding */
-  
-  width: 100vw;
+  background-image: url("@assets/images/event/landing_bg2.gif");      
+  background-position: center;  
+  background-repeat:inherit;
+   background-size:100%;
+    width: 100%;
 }
 
 .header-bg{
@@ -333,6 +331,12 @@
     color: yellow;
 }
 
+.about-text{
+  text-align:start;
+}
+
+
+
 @media (max-width: 768px) {
 
   .header-bg{
@@ -365,4 +369,13 @@
     .event-countdown{
         font-size: 50px;
     }
+
+    .about-text{
+       text-align:justify;
+    }
+
+    .text-justify{
+        text-align:justify;
+    }
+    
 }
