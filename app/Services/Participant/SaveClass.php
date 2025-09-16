@@ -2,13 +2,30 @@
 
 namespace App\Services\Participant;
 
+use Hashids\Hashids;
 use App\Models\Participant;
 use Illuminate\Support\Facades\DB;
 use App\Imports\ParticipantImport;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Http\Resources\ParticipantResource;
 
 class SaveClass
 {
+     public function update($request){
+        $hashids = new Hashids('krad',10);
+        $id = $hashids->decode($request->id);
+
+        $data = Participant::with('detail')->where('id',$id[0])->first();
+        $data->update($request->all());
+        $data->detail()->update($request->except('firstname','middlename','lastname','suffix','email','contact_no','option','id'));
+       
+        return [
+            'data' => new ParticipantResource($data->refresh()),
+            'message' => 'Participant update was successful!', 
+            'info' => "You've successfully updated the selected user."
+        ];
+    }
+
     public function preview($request){
         $data =  Excel::toCollection(new ParticipantImport,$request->import_file);
        

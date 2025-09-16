@@ -23,13 +23,14 @@ class ParticipantResource extends JsonResource
             'middlename' => $this->middlename,
             'lastname' => $this->lastname,
             'suffix' => $this->suffix,
-            'avatar' => $this->avatar,
+            'avatar' => ($this->detail->avatar === 'avatar.jpg') ? '/images/avatars/'.$this->detail->avatar : '/storage/images/avatars/'.$this->detail->avatar,
             'designation' => $this->detail->designation,
             'affiliation' => $this->detail->affiliation,
             'birthdate' => $this->detail->birthdate,
             'type' => $this->detail->type,
             'sex' => $this->detail->sex,
-            'has_csf' => $this->has_csf
+            'has_csf' => $this->has_csf,
+            'is_completed' => $this->is_completed
         ];
     }
 }
