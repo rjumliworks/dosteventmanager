@@ -76,7 +76,7 @@ class AvatarController extends Controller
                 return response()->json([
                     'status'  => true,
                     'message' => 'Profile updated successfully',
-                    'data'    => $this->convertToBase64($this->participant->detail->signature)
+                    'data'    => $this->convertToBase64($participant->detail->signature)
                 ]);
 
         }catch(\Throwable $th){
