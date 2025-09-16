@@ -15,8 +15,8 @@ class DashboardController extends Controller
     {
         $id = $request->user_id;
         return response()->json([
-            'sessions'    => $this->sessions($id),
-            'exhibitors'  => $this->exhibitors(),
+            'sessions'    => $this->sessions(),
+            'exhibitors'  => $this->exhibitors($id),
             'hotels' => $this->hotels()
         ]);
     }
