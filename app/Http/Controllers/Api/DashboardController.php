@@ -13,10 +13,7 @@ class DashboardController extends Controller
 {
     public function index(Request $request)
     {
-        $participant = $request->user()->load(['detail.sex', 'detail.type']);
-
         return response()->json([
-            'participant' => new ParticipantResource($participant),
             'sessions'    => $this->sessions(),
             'exhibitors'  => $this->exhibitors(),
             'hotels' => $this->hotels()
