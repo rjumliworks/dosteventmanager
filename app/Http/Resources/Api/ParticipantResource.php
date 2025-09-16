@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Api;
 
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use Endroid\QrCode\QrCode;
 use Endroid\QrCode\Logo\Logo;
@@ -21,9 +22,6 @@ class ParticipantResource extends JsonResource
         $qrCodeImageString = $pngWriter->write($qrCode,$logo)->getString();
         $qr = 'data:image/png;base64,' . base64_encode($qrCodeImageString);
 
-        $sig = $pngWriter->write($qrCode,$logo)->getString();
-        $esig = 'data:image/png;base64,' . base64_encode($sig);
-
         return [
             'qr' => $qr,
             'id' => $this->id,
@@ -35,7 +33,7 @@ class ParticipantResource extends JsonResource
             'lastname' => $this->lastname,
             'suffix' => $this->suffix,
             'avatar' => ($this->detail->avatar != 'avatar.jpg') ? asset('storage/'.$this->detail->avatar) : null,
-            'signature' => ($this->detail->signature) ? $this->convertToBase64(asset('storage/'.$this->detail->signature)) : null,
+            'signature' => ($this->detail->signature) ? $this->convertToBase64($this->detail->signature) : null,
             'designation' => $this->detail->designation,
             'affiliation' => $this->detail->affiliation,
             'birthdate' => $this->detail->birthdate,
