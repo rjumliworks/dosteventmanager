@@ -1,6 +1,5 @@
 <template>
     <Head title="Home Page" />
-    <div class="landing-wrapper">
         <nav class="navbar navbar-expand-lg navbar-landing  " id="navbar" >
             <div class="container"><a class="navbar-brand" href="/" target="_self">
             <img src="/images/logo-dark.png" class="card-logo card-logo-dark" alt="logo dark" height="17">
@@ -41,7 +40,7 @@
             </div>
         </div>
         </nav>
-           
+    <div class="landing-wrapper">
         <section id="home" class="py-5 position-relative header-bg">
             <b-container >
                 <b-row class="align-items-center gy-4">
