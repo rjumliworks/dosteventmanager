@@ -59,33 +59,33 @@
 
                         <BRow>
                             <b-col lg="6" >
-                                    <div class="lead right-countdown mt-3 mb-3 text-start">
+                                    <div class="lead right-countdown mt-3 mb-3 event-display">
                                         <span class="fs-20 text-white">Event Countdown</span>
                                         <h3 v-if="timeLeft.total > 0">
-                                        <h1 class="fw-bolder " style="font-size: 50px;color: yellow;">{{ timeLeft.days }}d {{ timeLeft.hours }}h {{ timeLeft.minutes }}m {{ timeLeft.seconds }}s </h1>
+                                        <h1 class="fw-bolder" style="font-size: 50px;color: yellow;">{{ timeLeft.days }}d {{ timeLeft.hours }}h {{ timeLeft.minutes }}m {{ timeLeft.seconds }}s </h1>
                                         </h3>
-                                        <h3 v-else>
+                                        <h3 class="fw-bolder" style="font-size: 50px;color: yellow;" v-else>
                                             The event has started!
                                         </h3>
-                                            <a href="/registration">
+                                            <a href="/registration" class="align-content-center">
                                                 <BButton variant="danger" class="submit-btn bx-tada w-80 mt-3 mb-3 fw-bold h-100 border btn-lg border-solid" type="submit"  >
                                                     REGISTER NOW
                                                 </BButton>
                                             </a>
 
-                                            <ul class="treding-keywords list-inline mb-0 mt-3 fs-13 sm-fs-10">
+                                            <ul class="treding-keywords list-inline mb-0 mt-3 fs-13 venue-scheed-wrapper">
                                                 <li class="list-inline-item text-danger fw-semibold">
                                                     <i class="ri-map-pin-fill align-middle text-warning fs-20 me-2"></i>
-                                                    <span class="text-white fs-5 mt-3">
+                                                    <span class="venue-text">
                                                         Palacio Del Sur, Marcian Garden Hotel, Zamboanga City
                                                     </span>
                                                 </li>
-                                            <li class="list-inline-item">
-                                                <i class="ri-calendar-fill align-middle text-warning fs-20 me-2"></i> 
-                                                <span class="fw-semibold text-primary text-white fs-5" >
-                                                    September 23-25, 2025
-                                                </span>
-                                            </li>        
+                                                <li class="list-inline-item fw-semibold">
+                                                    <i class="ri-calendar-fill align-middle text-warning fs-20 me-2"></i> 
+                                                    <span class="schedule-text" >
+                                                        September 23-25, 2025
+                                                    </span>
+                                                </li>        
                                         </ul>
 
                                         
@@ -122,7 +122,7 @@
                     </div>
                 </div>
              
-                <div class="row align-items-center mt-5 gy-4">
+                <div class="row align-items-center mt-2 gy-4">
                     <div class="col-lg-6">
                         <div class="text-muted ps-lg-5">
                             <h5 class="fs-12 text-uppercase text-success">RSTW 2025</h5>
@@ -152,10 +152,12 @@
                             <h4 class="text-white mb-0 fw-semibold">Be one of our Participants!</h4>
                         </div>
                     </b-col>
-                    <b-col sm="auto">
+                    <b-col sm="auto" >
                         <div>
                             <a href="/registration">
-                                <button type="button" class="btn bg-gradient btn-danger">REGISTER NOW</button>
+                            <BButton variant="danger" class="submit-btn bx-tada w-80 mt-2 mb-2 fw-bold h-100 border btn-md border-solid" type="submit"  >
+                                REGISTER NOW
+                            </BButton>
                             </a>
                         </div>
                     </b-col>
@@ -163,9 +165,9 @@
             </b-container>
             <b-container class="showmobile"> 
                 <b-row class="align-items-center gy-3">
-                <div class="d-grid mt-n3 mb-n5" >
+                <div class="d-grid mt-n3 mb-n5 text-center" >
                    <a href="/registration">
-                    <BButton type="button" variant="warning" class="submit-btn w-80 h-100 fw-semibold">REGISTER NOW</BButton>
+                    <BButton type="button" variant="danger" class="submit-btn w-80 h-100 fw-semibold">REGISTER NOW</BButton>
                     </a>
                     
                 </div></b-row>
