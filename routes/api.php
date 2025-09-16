@@ -45,5 +45,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     Route::post('/avatar', [App\Http\Controllers\Api\AvatarController::class, 'avatar']);
     Route::post('/signature', [App\Http\Controllers\Api\AvatarController::class, 'signature']);
+    Route::post('/completed', [App\Http\Controllers\Api\AvatarController::class, 'completed']);
     Route::get('/dashboard', [App\Http\Controllers\Api\DashboardController::class, 'index']);
 });
