@@ -68,7 +68,7 @@ class AvatarController extends Controller
                 // Store new image
                 $extension = $request->file('image')->getClientOriginalExtension();
                 $filename  = $key . '.' . $extension;
-                $path = $request->file('image')->storeAs('images/signatures', $filename, 'public');
+                $path = $request->file('signature')->storeAs('images/signatures', $filename, 'public');
 
                 $participant->detail->signature = $path;
                 $participant->detail->save();
