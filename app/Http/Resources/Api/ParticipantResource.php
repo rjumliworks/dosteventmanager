@@ -21,6 +21,9 @@ class ParticipantResource extends JsonResource
         $qrCodeImageString = $pngWriter->write($qrCode,$logo)->getString();
         $qr = 'data:image/png;base64,' . base64_encode($qrCodeImageString);
 
+        $sig = $pngWriter->write($qrCode,$logo)->getString();
+        $esig = 'data:image/png;base64,' . base64_encode($sig);
+
         return [
             'qr' => $qr,
             'id' => $this->id,
@@ -32,7 +35,7 @@ class ParticipantResource extends JsonResource
             'lastname' => $this->lastname,
             'suffix' => $this->suffix,
             'avatar' => ($this->detail->avatar != 'avatar.jpg') ? asset('storage/'.$this->detail->avatar) : null,
-            'signature' => ($this->detail->signature) ? asset('storage/'.$this->detail->signature) : null,
+            'signature' => ($this->detail->signature) ? $this->convertToBase64(asset('storage/'.$this->detail->signature)) : null,
             'designation' => $this->detail->designation,
             'affiliation' => $this->detail->affiliation,
             'birthdate' => $this->detail->birthdate,
@@ -40,5 +43,29 @@ class ParticipantResource extends JsonResource
             'sex' => $this->detail->sex,
             'is_completed' => $this->is_completed
         ];
+    }
+
+     private function convertToBase64($path)
+    {
+        // If you store public files like: storage/app/public/signatures/filename.png
+        // and you saved the DB value like: signatures/filename.png
+        if (Storage::disk('public')->exists($path)) {
+            $file = Storage::disk('public')->get($path);
+            $mime = Storage::disk('public')->mimeType($path);
+            return 'data:' . $mime . ';base64,' . base64_encode($file);
+        }
+
+        // If you stored a full URL instead of a storage path:
+        if (filter_var($path, FILTER_VALIDATE_URL)) {
+            try {
+                $file = file_get_contents($path);
+                $mime = @mime_content_type($path) ?: 'image/png';
+                return 'data:' . $mime . ';base64,' . base64_encode($file);
+            } catch (\Exception $e) {
+                return null;
+            }
+        }
+
+        return null;
     }
 }
