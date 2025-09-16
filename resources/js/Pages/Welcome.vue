@@ -1,7 +1,6 @@
 <template>
     <Head title="Home Page" />
-    <div>
-        <nav class="navbar navbar-expand-lg navbar-landing " id="navbar" >
+        <nav class="navbar navbar-expand-lg navbar-landing  " id="navbar" >
             <div class="container"><a class="navbar-brand" href="/" target="_self">
             <img src="/images/logo-dark.png" class="card-logo card-logo-dark" alt="logo dark" height="17">
             <img src="" class="card-logo card-logo-light" alt="logo light" height="17"></a>
@@ -41,7 +40,7 @@
             </div>
         </div>
         </nav>
-           
+    <div class="landing-wrapper">
         <section id="home" class="py-5 position-relative header-bg">
             <b-container >
                 <b-row class="align-items-center gy-4">
@@ -62,13 +61,13 @@
                                     <div class="lead right-countdown mt-3 mb-3 event-display">
                                         <span class="fs-20 text-white">Event Countdown</span>
                                         <h3 v-if="timeLeft.total > 0">
-                                        <h1 class="fw-bolder" style="font-size: 50px;color: yellow;">{{ timeLeft.days }}d {{ timeLeft.hours }}h {{ timeLeft.minutes }}m {{ timeLeft.seconds }}s </h1>
+                                        <h1 class="fw-bolder event-countdown" >{{ timeLeft.days }}d {{ timeLeft.hours }}h {{ timeLeft.minutes }}m {{ timeLeft.seconds }}s </h1>
                                         </h3>
                                         <h3 class="fw-bolder" style="font-size: 50px;color: yellow;" v-else>
                                             The event has started!
                                         </h3>
-                                            <a href="/registration" class="align-content-center">
-                                                <BButton variant="danger" class="submit-btn bx-tada w-80 mt-3 mb-3 fw-bold h-100 border btn-lg border-solid" type="submit"  >
+                                            <a href="/registration" class="align-content-center ">
+                                                <BButton variant="danger" class="submit-btn bx-tada w-80 mt-3 mb-3 fw-bold h-100 border btn-lg border-solid " type="submit"  >
                                                     REGISTER NOW
                                                 </BButton>
                                             </a>
@@ -109,20 +108,20 @@
                     </b-col>
                 </b-row>
             </b-container>
-        </section>>
+        </section>
     
-        <section class="py-5 position-relative">
+        <section class="py-5 landing-wrapper position-relative">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-8">
                         <div class="text-center mb-0">
                             <h3 class="mb-1 fs-18 fw-semibold">Events About</h3>
-                            <p class="text-muted fs-14 mb-4">Explore and Enjoy!</p>
+                            <p class="text-muted fs-14 mb-0">Explore and Enjoy!</p>
                         </div>
                     </div>
                 </div>
              
-                <div class="row align-items-center mt-2 gy-4">
+                <div class="row align-items-center mt-2 gy-4 text-justify">
                     <div class="col-lg-6">
                         <div class="text-muted ps-lg-5">
                             <h5 class="fs-12 text-uppercase text-success">RSTW 2025</h5>
@@ -143,19 +142,19 @@
             </div>
         </section>
 
-        <section class="py-5 bg-primary position-relative">
+        <section class="header-bg position-relative">
             <div class="bg-overlay bg-overlay-pattern opacity-50"></div>
-            <b-container class="hidemobile">
-                <b-row class="align-items-center gy-4">
-                    <b-col sm>
+            <b-container  class="text-center">
+                <b-row class="align-items-center gy-4 pb-4">
+                    <b-col >
                         <div>
                             <h4 class="text-white mb-0 fw-semibold">Be one of our Participants!</h4>
                         </div>
                     </b-col>
-                    <b-col sm="auto" >
+                    <b-col>
                         <div>
                             <a href="/registration">
-                            <BButton variant="danger" class="submit-btn bx-tada w-80 mt-2 mb-2 fw-bold h-100 border btn-md border-solid" type="submit"  >
+                            <BButton variant="primary" class="submit-btn bx-tada w-80 mt-2 mb-2 fw-bold h-100 border btn-md border-solid" type="submit"  >
                                 REGISTER NOW
                             </BButton>
                             </a>
@@ -163,25 +162,17 @@
                     </b-col>
                 </b-row>
             </b-container>
-            <b-container class="showmobile"> 
-                <b-row class="align-items-center gy-3">
-                <div class="d-grid mt-n3 mb-n5 text-center" >
-                   <a href="/registration">
-                    <BButton type="button" variant="danger" class="submit-btn w-80 h-100 fw-semibold">REGISTER NOW</BButton>
-                    </a>
-                    
-                </div></b-row>
-            </b-container>
+          
         </section>
 
-        <section class="py-5 position-relative" id="about">
-            <b-container class="mt-4">
+        <section class="py-5 position-relative landing-wrapper " id="about">
+            <b-container class="w-100" >
                 <b-row>
-                <div class="ml-5 fs-1 mb-3  fw-medium" >
+                <div class="ml-5 fs-2 mb-3  fw-medium " >
                 About Us!
                 </div>
                 <b-col lg="8">
-                <p class="fs-16 lh-base" 
+                <p class="fs-16 lh-base text-justify" 
                     data-aos="fade-left" 
                     data-aos-duration="5000" 
                     data-aos-delay="500">
@@ -207,17 +198,17 @@
             </b-container>
         
         </section>
+        </div>
 
-        <section id="venue" class="bg-primary position-relative"
+        <section id="venue" class=" position-relative"
                 data-aos="fade-up" 
                 data-aos-duration="5000" 
                 data-aos-delay="500">
-
                 <div>
                     <img src="@assets/images/event/zc_bg.svg" class="img-fluid w-100" alt="Full width image"  >
                 </div>
         </section>
-           </div>
+        
 
         <footer class="custom-footer bg-dark py-5 position-relative" id="contact">
             <b-container>
