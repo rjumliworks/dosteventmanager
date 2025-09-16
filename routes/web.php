@@ -33,6 +33,7 @@ Route::middleware(['2fa','auth','verified'])->group(function () {
     Route::resource('/events', App\Http\Controllers\EventController::class);
     Route::resource('/users', App\Http\Controllers\UserController::class);
     Route::resource('/participants', App\Http\Controllers\ParticipantController::class);
+    Route::post('/import', [App\Http\Controllers\ParticipantController::class, 'import']);
     Route::resource('/sessions', App\Http\Controllers\SessionController::class);
     Route::resource('/exhibitors', App\Http\Controllers\ExhibitorController::class);
     Route::resource('/hotels', App\Http\Controllers\HotelController::class);

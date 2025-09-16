@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('participant_details', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->string('designation',10)->nullable();
-            $table->string('affiliation',10)->nullable();
+            $table->string('designation',250)->nullable();
+            $table->string('affiliation',250)->nullable();
             $table->date('birthdate')->nullable();
             $table->boolean('is_pwd')->default(0);
             $table->boolean('is_4ps')->default(0);

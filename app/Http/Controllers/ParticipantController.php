@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Services\DropdownClass;
 use App\Services\Participant\ViewClass;
 use App\Services\Participant\SaveClass;
 use App\Traits\HandlesTransaction;
@@ -13,9 +14,10 @@ class ParticipantController extends Controller
 {
     use HandlesTransaction;
 
-    public function __construct(ViewClass $view, SaveClass $save){
+    public function __construct(ViewClass $view, SaveClass $save, DropdownClass $dropdown){
         $this->save = $save;
         $this->view = $view;
+        $this->dropdown = $dropdown;
     }
 
     public function index(Request $request){
@@ -24,12 +26,22 @@ class ParticipantController extends Controller
                 return $this->view->lists($request);
             break;
             default :
-            return inertia('Modules/Participants/Index');
+            return inertia('Modules/Participants/Index',[
+                'types' => $this->dropdown->dropdowns('Participant Type')
+            ]);
         }
     }
 
     public function store(Request $request){
         $result = $this->handleTransaction(function () use ($request) {
+            switch($request->option){
+                case 'preview':
+                    return $this->save->preview($request);
+                break;
+                case 'upload':
+                    return $this->save->upload($request);
+                break;
+            }
             return $this->save->store($request);
         });
 
@@ -39,6 +51,17 @@ class ParticipantController extends Controller
             'info' => $result['info'],
             'status' => $result['status'],
         ]);
+    }
+
+    public function import(Request $request){
+        switch($request->option){
+            case 'preview':
+                return $this->save->preview($request);
+            break;
+            case 'upload':
+                return $this->save->upload($request);
+            break;
+        }
     }
 
     public function update(Request $request){

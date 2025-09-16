@@ -8,6 +8,9 @@
                     <div class="input-group mb-1">
                         <span class="input-group-text"> <i class="ri-search-line search-icon"></i></span>
                         <input type="text" v-model="filter.keyword" placeholder="Search User" class="form-control" style="width: 60%;">
+                         <span @click="openUpload()" class="input-group-text" v-b-tooltip.hover title="Upload" style="cursor: pointer;"> 
+                            <i class="ri-upload-cloud-fill search-icon"></i>
+                        </span>
                         <span @click="refresh()" class="input-group-text" v-b-tooltip.hover title="Refresh" style="cursor: pointer;"> 
                             <i class="bx bx-refresh search-icon"></i>
                         </span>
@@ -69,14 +72,17 @@
         </div>
     </div>
     <Create ref="create"/>
+    <Upload ref="upload"/>
 </template>
 <script>
 import _ from 'lodash';
+import Upload from './Modals/Upload.vue';
 import Create from './Modals/Create.vue';
 import PageHeader from '@/Shared/Components/PageHeader.vue';
 import Pagination from "@/Shared/Components/Pagination.vue";
 export default {
-    components: { PageHeader, Pagination, Create },
+    components: { PageHeader, Pagination, Create, Upload },
+    props: ['types'],
     data(){
         return {
             currentUrl: window.location.origin,
@@ -122,6 +128,9 @@ export default {
         },
         openCreate(){
             this.$refs.create.show();
+        },
+        openUpload(){
+            this.$refs.upload.show();
         }
     }
 }
