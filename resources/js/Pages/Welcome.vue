@@ -152,10 +152,12 @@
                             <h4 class="text-white mb-0 fw-semibold">Be one of our Participants!</h4>
                         </div>
                     </b-col>
-                    <b-col sm="auto">
+                    <b-col sm="auto" >
                         <div>
                             <a href="/registration">
-                                <button type="button" class="btn bg-gradient btn-danger">REGISTER NOW</button>
+                            <BButton variant="danger" class="submit-btn bx-tada w-80 mt-2 mb-2 fw-bold h-100 border btn-md border-solid" type="submit"  >
+                                REGISTER NOW
+                            </BButton>
                             </a>
                         </div>
                     </b-col>
@@ -163,9 +165,9 @@
             </b-container>
             <b-container class="showmobile"> 
                 <b-row class="align-items-center gy-3">
-                <div class="d-grid mt-n3 mb-n5" >
+                <div class="d-grid mt-n3 mb-n5 text-center" >
                    <a href="/registration">
-                    <BButton type="button" variant="warning" class="submit-btn w-80 h-100 fw-semibold">REGISTER NOW</BButton>
+                    <BButton type="button" variant="danger" class="submit-btn w-80 h-100 fw-semibold">REGISTER NOW</BButton>
                     </a>
                     
                 </div></b-row>
