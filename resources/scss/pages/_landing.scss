@@ -315,6 +315,19 @@
     height:300px;
 }
 
+.venue-text,.schedule-text{
+    font-size: 16px;
+    color: white;
+}
+
+.venue-scheed-wrapper{
+    text-align:start;
+}
+
+.event-display{
+    text-align: start;
+}
+
 @media (max-width: 768px) {
 
   .header-bg{
@@ -327,5 +340,21 @@
 
     .dost-logo{
         height:200px;
+    }
+
+    .register-btn{
+        align-items: center;
+    }
+
+    .venue-text,.schedule-text{
+        font-size: 13px;
+    }
+
+    .venue-scheed-wrapper{
+        text-align:center;
+    }
+
+    .event-display{
+        text-align: center;
     }
 }
