@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api;
 
 use Hashids\Hashids;
 use App\Models\Participant;
-use App\Models\ParticipantDetail;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -12,7 +11,7 @@ use Illuminate\Support\Facades\Storage;
 class AvatarController extends Controller
 {
     public function completed(Request $request){
-        $data = ParticipantDetail::where('participant_id',$request->id)->first();
+        $data = Participant::where('id',$request->id)->first();
         $data->is_completed = 1;
         $data->save();
         $data->refresh();
