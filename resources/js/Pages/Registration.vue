@@ -2,14 +2,14 @@
     <Head title="Registration Form"/>
     <div class="landing-wrapper d-flex justify-content-center align-items-center">
         <div class="auth-page-content registration_bg ">
-            <BContainer >
+            <BContainer>
               
                 <BRow class="justify-content-center">
                     <BCol md="8" lg="10" xl="8" class="mt-4">
                         <BCard no-body class="h">
                             <BCardBody class="p-4 ">
                                 
-                                <div class="row mb-4 justify-content-center " >
+                                <div class="row mb-4 justify-content-center "  >
                                     <div class="text-primary mt-1 t">
                                         <img src="@assets/images/event/event_title2.png" alt="" class="img-fluid" >
                                     </div>
