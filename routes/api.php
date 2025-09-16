@@ -8,18 +8,14 @@ Route::post('/login', [App\Http\Controllers\Api\AuthController::class, 'login'])
 Route::post('/verify', [App\Http\Controllers\Api\AuthController::class, 'verify']);
 Route::post('/register', [App\Http\Controllers\Api\AuthController::class, 'register']);
 
-// Route::get('/participant', function (Request $request) {
-//     //  return new ParticipantResource(
-//     //     $request->user()->load(['detail.sex', 'detail.type'])
-//     // );
-//     Route::get('/dashboard', [DashboardController::class, 'index']);
-// })->middleware('auth:sanctum');
+Route::get('/participant', function (Request $request) {
+     return new ParticipantResource(
+        $request->user()->load(['detail.sex', 'detail.type'])
+    );
+})->middleware('auth:sanctum');
 
 
 Route::middleware(['auth:sanctum'])->group(function () {
-
-    Route::get('/participant', [App\Http\Controllers\Api\DashboardController::class, 'index']);
-
     Route::prefix('sessions')->controller(App\Http\Controllers\Api\SessionController::class)->group(function () {
         Route::get('/', 'index');
         Route::get('/view/{id}', 'view');
@@ -50,4 +46,5 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/avatar', [App\Http\Controllers\Api\AvatarController::class, 'avatar']);
     Route::post('/signature', [App\Http\Controllers\Api\AvatarController::class, 'signature']);
     Route::post('/completed', [App\Http\Controllers\Api\AvatarController::class, 'completed']);
+    Route::get('/dashboard', [App\Http\Controllers\Api\DashboardController::class, 'index']);
 });
