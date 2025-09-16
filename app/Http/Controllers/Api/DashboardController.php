@@ -13,8 +13,9 @@ class DashboardController extends Controller
 {
     public function index(Request $request)
     {
+        $id = $request->user_id;
         return response()->json([
-            'sessions'    => $this->sessions(),
+            'sessions'    => $this->sessions($id),
             'exhibitors'  => $this->exhibitors(),
             'hotels' => $this->hotels()
         ]);
@@ -24,8 +25,19 @@ class DashboardController extends Controller
         return [];
     }
 
-    public function exhibitors(){
-        return [];
+    public function exhibitors($id){
+        $data = EventExhibitor::with('contact')
+        ->whereHas('event', fn($q) => $q->where('is_active', 1))
+        ->withExists([
+            'visitors as has_visited' => fn($q) => 
+                $q->where('participant_id', $id),
+            'visitors as has_voted' => fn($q) =>
+                $q->where('participant_id', $id)->where('has_voted', 1),
+            'feedbackable as has_feedback' => fn($q) =>
+                $q->where('participant_id', $id),
+        ])
+        ->get();
+        return $data;
     }
 
     public function hotels(){
