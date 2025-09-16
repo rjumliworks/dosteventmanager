@@ -7,7 +7,7 @@ use App\Models\EventSession;
 use App\Models\ParticipantPoint;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Resources\Api\ParticipantResource;
+use App\Http\Resources\Api\Data\ExhibitorResource;
 
 class DashboardController extends Controller
 {
@@ -25,7 +25,8 @@ class DashboardController extends Controller
         return [];
     }
 
-    public function exhibitors($id){
+    public function exhibitors($id)
+    {
         $data = EventExhibitor::with('contact')
         ->whereHas('event', fn($q) => $q->where('is_active', 1))
         ->withExists([
@@ -37,7 +38,7 @@ class DashboardController extends Controller
                 $q->where('participant_id', $id),
         ])
         ->get();
-        return $data;
+        return ExhibitorResource::collection($data);
     }
 
     public function hotels(){
