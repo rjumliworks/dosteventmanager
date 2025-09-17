@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\Hotel;
 use App\Models\CsfQuestion;
 use App\Models\EventExhibitor;
 use App\Models\EventSession;
@@ -9,6 +10,7 @@ use App\Models\ParticipantPoint;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Resources\DefaultResource;
+use App\Http\Resources\Api\HotelResource;
 use App\Http\Resources\Api\Data\ExhibitorResource;
 
 class DashboardController extends Controller
@@ -50,7 +52,8 @@ class DashboardController extends Controller
     }
 
     public function hotels(){
-        return [];
+        $data = Hotel::with('location','rates')->where('is_active',1)->get();
+        return HotelResource::collection($data);
     }
 
     // public function index(Request $request){
