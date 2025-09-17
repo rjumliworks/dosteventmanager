@@ -188,7 +188,7 @@
                             <td>
                                 @if(!empty($attendee->participant->detail->signature_base64))
                                     <img src="{{ $attendee->participant->detail->signature_base64 }}" 
-                                        style="width:100px; height:auto;" alt="Signature">
+                                        style="width:50px; height:auto;" alt="Signature">
                                 @else
                                     <span>No signature</span>
                                 @endif
