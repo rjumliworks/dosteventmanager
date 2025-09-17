@@ -155,7 +155,7 @@ class ExhibitorController extends Controller
                 'id'             => $request->exhibitor_id,
                 'status'         => $visitor->has_voted,
             ];
-            broadcast(new SessionEvent($data, 'vote'));
+            // broadcast(new SessionEvent($data, 'vote'));
 
             return response()->json([
                 'status'  => true,
