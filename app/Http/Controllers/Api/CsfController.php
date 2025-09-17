@@ -9,7 +9,7 @@ use App\Models\EventSessionParticipant;
 use App\Models\EventExhibitor;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Resources\Api\FeedbackResource;
+use App\Http\Resources\Api\Data\FeedbackResource;
 use App\Http\Resources\DefaultResource;
 use App\Events\SessionEvent;
 use App\Events\ExhibitorEvent;
