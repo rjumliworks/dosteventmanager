@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('participant_points', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->bigIncrements('id');
-            $table->integer('point')->default(0);
-            $table->unsignedInteger('participant_id');
+            $table->integer('points')->default(0);
+            $table->unsignedInteger('participant_id')->unique();
             $table->foreign('participant_id')->references('id')->on('participants')->onDelete('cascade');
             $table->timestamps();
         });

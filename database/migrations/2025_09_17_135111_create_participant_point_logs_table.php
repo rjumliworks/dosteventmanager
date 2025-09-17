@@ -14,8 +14,10 @@ return new class extends Migration
         Schema::create('participant_point_logs', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->bigIncrements('id');
-            $table->integer('point');
+            $table->integer('points');
             $table->string('remarks')->nullable();
+            $table->tinyInteger('type_id')->unsigned()->nullable();
+            $table->foreign('type_id')->references('id')->on('dropdowns')->onDelete('cascade');
             $table->unsignedInteger('engageable_id');
             $table->string('engageable_type');
             $table->unsignedBigInteger('point_id');
