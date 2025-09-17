@@ -26,7 +26,7 @@
                     <Multiselect
                         v-model="form.area"
                         :options="[
-                            'Preparedness & Response','Prevention & Mitigation','Prevention & Mitigation / Preparedness'
+                            'Prevention & Mitigation','Preparedness','Response','Recovery/Rehabilitation'
                         ]"
                         placeholder="Select Area"
                         ref="multiselect2"
