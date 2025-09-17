@@ -36,6 +36,11 @@ class Participant extends Authenticatable
         return $this->hasOne('App\Models\ParticipantDetail', 'participant_id');
     }
 
+    public function points()
+    {
+        return $this->hasOne('App\Models\ParticipantPoint', 'participant_id');
+    }
+
     public function csfs()
     {
         return $this->hasMany('App\Models\CsfEntry', 'participant_id');
