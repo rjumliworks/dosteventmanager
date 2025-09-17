@@ -121,11 +121,11 @@ class ExhibitorController extends Controller
                     $point->points -= $engageable->points;
                     $point->save();
                     $engageable->delete();
-                    $array = [
+                    $data = [
                         'participant_id'        => $request->participant_id,
                         'points'    => $engageable->points
                     ];
-                    broadcast(new SessionEvent($array, 'minus'));
+                    broadcast(new SessionEvent($data, 'minus'));
                 }
             } else {
                 // 👍 Vote
@@ -142,11 +142,11 @@ class ExhibitorController extends Controller
 
                 $point->points += $engage->others;
                 $point->save();
-                $array = [
+                $data = [
                     'participant_id'        => $request->participant_id,
                     'points'    => $engage->others
                 ];
-                broadcast(new SessionEvent($array, 'plus'));
+                broadcast(new SessionEvent($data, 'plus'));
             }
 
             // Broadcast update
