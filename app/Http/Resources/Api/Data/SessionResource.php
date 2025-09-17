@@ -34,7 +34,8 @@ class SessionResource extends JsonResource
             'has_registration' => ($this->has_registration) ? true : false,
             'link' => ($this->has_registration) ? base64_encode($key) : '',
             'has_registered' => $this->has_registered,
-            'has_feedback' => $this->has_feedback
+            'has_feedback' => $this->has_feedback,
+            'has_attended' => $this->has_attended
         ];
     }
 }

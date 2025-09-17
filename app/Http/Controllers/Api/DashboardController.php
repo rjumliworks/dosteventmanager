@@ -45,6 +45,8 @@ class DashboardController extends Controller
         ->withExists([
             'participants as has_registered' => fn($q) => 
                 $q->where('participant_id', $id),
+            'participants as has_attended' => fn($q) => 
+                $q->where('participant_id', $id)->whereNotNull('attended_at'),
             'feedbackable as has_feedback' => fn($q) =>
                 $q->where('participant_id', $id),
         ])
