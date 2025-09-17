@@ -24,7 +24,7 @@ class SessionResource extends JsonResource
             'activities' => $this->activities,
             'managers' => $this->managers,
             'status' => $this->status,
-            'questions' => $this->questions,
+            'questions' => QuestionResource::collection($this->questions),
             'feedbackable' => $this->feedbackable,
             'event' => new EventResource($this->event),
             'is_closed' => ($this->is_closed) ? true : false,
