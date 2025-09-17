@@ -188,5 +188,7 @@ class ExhibitorController extends Controller
             $point->points += $engage->others;
             $point->save();
         }
+
+        return $attendance;
     }
 }
