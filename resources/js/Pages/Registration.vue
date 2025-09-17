@@ -394,6 +394,7 @@ export default {
                 onSuccess: () => {
                     this.loading = false;
                     this.form.reset();   
+                    this.refreshCaptcha()
                 },
                 onError: () => {
                     this.loading = false;
