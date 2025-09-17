@@ -25,6 +25,8 @@ class SessionResource extends JsonResource
             'managers' => $this->managers,
             'participants' => $this->participants,
             'status' => $this->status,
+            'questions' => $this->questions,
+            'feedbackable' => $this->feedbackable,
             'event' => new EventResource($this->event),
             'is_closed' => ($this->is_closed) ? true : false,
             'is_invitational' => ($this->is_invitational) ? true : false,

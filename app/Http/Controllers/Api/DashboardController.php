@@ -31,6 +31,14 @@ class DashboardController extends Controller
     {
         $data = EventSession::with('venue','detail','schedules','status','activities.speaker','managers.user.profile')
         ->with('event.detail.region:code,name,region','event.detail.province:code,name','event.detail.municipality:code,name','event.detail.barangay:code,name')
+        ->with([
+            'questions' => function ($query) {
+                $query->latest()->take(10);
+            },
+            'feedbackable.participant.detail' => function ($query) {
+                $query->latest()->take(10);
+            },
+        ])
         ->whereHas('event',function ($query) {
             $query->where('is_active',1);
         })
