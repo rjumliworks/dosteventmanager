@@ -20,11 +20,26 @@ class DashboardController extends Controller
     {
         $id = $request->user_id;
         return response()->json([
+            'points'      => $this->points($id),
             'sessions'    => $this->sessions($id),
             'exhibitors'  => $this->exhibitors($id),
-            'csfs' => $this->csfs(),
-            'hotels' => $this->hotels()
+            'csfs'        => $this->csfs(),
+            'hotels'      => $this->hotels()
         ]);
+    }
+
+    public function points($id){
+        $point = ParticipantPoint::where('participant_id',$id)->first();
+        if(!$point) {
+            $point = ParticipantPoint::firstOrCreate(
+                [
+                    'participant_id' => $participantId,
+                    'points'   => 0
+                ]
+            );
+        }
+        $data = ParticipantPoint::where('participant_id',$id)->value('points');
+        return $data;
     }
 
     public function sessions($id)
