@@ -126,18 +126,16 @@ class ExhibitorController extends Controller
                 'has_voted' => false,
                 'voted_at'  => null,
             ]);
-            $status = false;
         }else{
             $visitor->update([
                 'has_voted' => true,
                 'voted_at'  => now(),
             ]);
-            $status = true;
         }
         $data = [
             'participant_id' => $request->participant_id,
             'id' =>  $request->exhibitor_id,
-            'status' => $status
+            'status' => $visitor->has_voted
         ];
         broadcast(new SessionEvent($data,'vote'));
 
