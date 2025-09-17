@@ -15,6 +15,7 @@ class QuestionResource extends JsonResource
             'question' => $this->question,
             'name' => $this->participant->firstname.' '.$this->participant->lastname,
             'avatar' => $this->participant->detail->avatar,
+            ($this->participant->detail->avatar === 'avatar.jpg') ? '/images/avatars/'.$this->participant->detail->avatar : '/storage/'.$this->participant->detail->avatar,
             'created_at' => $this->created_at 
         ];
     }
