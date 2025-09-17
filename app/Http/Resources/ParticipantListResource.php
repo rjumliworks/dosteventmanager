@@ -16,6 +16,7 @@ class ParticipantListResource extends JsonResource
         return [
             'code' => $code,
             'participant' => new ParticipantResource($this->participant),
+            'session_id' => $this->session_id,
             'status' => $this->status,
             'attended_at' => $this->attended_at,
             'created_at' => $this->created_at
