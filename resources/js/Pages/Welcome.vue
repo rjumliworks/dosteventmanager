@@ -40,7 +40,7 @@
             </div>
         </div>
         </nav>
-    <div class="landing-wrapper">
+    <div>
         <section id="home" class="py-5 position-relative header-bg">
             <b-container >
                 <b-row class="align-items-center gy-4">
