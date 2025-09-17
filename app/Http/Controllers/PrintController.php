@@ -47,9 +47,10 @@ class PrintController extends Controller
         $pngWriter = new PngWriter();
         $qrCodeImageString = $pngWriter->write($qrCode)->getString();
         $base64Image = 'data:image/png;base64,' . base64_encode($qrCodeImageString);
-dd($data);
+
         foreach ($data->attendees as $attendee) {
             if (!empty($attendee->participant->detail->signature)) {
+                dd($attendee->participant->detail->signature);
                 $attendee->participant->detail->signature_base64 = ($attendee->participant->detail->signature) ? $this->convertToBase64($attendee->participant->detail->signature) : null;
             }
         }
