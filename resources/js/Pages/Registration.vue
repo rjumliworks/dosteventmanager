@@ -352,7 +352,7 @@ export default {
     },
     mounted(){
         this.showModal = true;
-        this.refreshCaptcha()
+        //this.refreshCaptcha()
     },
     watch: {
         "is_agree"(val){
@@ -394,10 +394,10 @@ export default {
                 onSuccess: () => {
                     this.loading = false;
                     this.form.reset();   
-                    this.refreshCaptcha();
                 },
                 onError: () => {
                     this.loading = false;
+                    this.refreshCaptcha()
                 }
             });
         },
