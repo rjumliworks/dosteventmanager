@@ -10,6 +10,7 @@ use Endroid\QrCode\QrCode;
 use Endroid\QrCode\Writer\PngWriter;
 use App\Mail\CertificateMail;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 
 class PrintController extends Controller
 {
@@ -49,12 +50,7 @@ class PrintController extends Controller
 
         foreach ($data->attendees as $attendee) {
             if (!empty($attendee->participant->detail->signature)) {
-                $path = storage_path('app/public/'.$attendee->participant->detail->signature);
-                if (file_exists($path)) {
-                    $attendee->participant->detail->signature_base64 = 'data:image/png;base64,' . base64_encode(file_get_contents($path));
-                } else {
-                    $attendee->participant->detail->signature_base64 = null;
-                }
+                $attendee->participant->detail->signature_base64 = ($attendee->participant->detail->signature) ? $this->convertToBase64($attendee->participant->detail->signature) : null;
             }
         }
 
@@ -179,5 +175,28 @@ class PrintController extends Controller
             : $formatDate($start) . " - " . $formatDate($end);
     }
 
+    private function convertToBase64($path)
+    {
+        // If you store public files like: storage/app/public/signatures/filename.png
+        // and you saved the DB value like: signatures/filename.png
+        if (Storage::disk('public')->exists($path)) {
+            $file = Storage::disk('public')->get($path);
+            $mime = Storage::disk('public')->mimeType($path);
+            return 'data:' . $mime . ';base64,' . base64_encode($file);
+        }
+
+        // If you stored a full URL instead of a storage path:
+        if (filter_var($path, FILTER_VALIDATE_URL)) {
+            try {
+                $file = file_get_contents($path);
+                $mime = @mime_content_type($path) ?: 'image/png';
+                return 'data:' . $mime . ';base64,' . base64_encode($file);
+            } catch (\Exception $e) {
+                return null;
+            }
+        }
+
+        return null;
+    }
 
 }
