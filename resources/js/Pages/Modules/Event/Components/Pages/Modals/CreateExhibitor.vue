@@ -7,9 +7,19 @@
                     <InputLabel for="due" value="Title" :message="form.errors.title"/>
                     <TextInput v-model="form.title" type="text" class="form-control" placeholder="Please enter title" @input="handleInput('title')" :light="true"/>
                 </BCol>
-                <BCol lg="6" class="mt-0">
+                <BCol lg="12" class="mt-0">
                     <InputLabel for="due" value="Institution" :message="form.errors.institution"/>
                     <TextInput v-model="form.institution" type="text" class="form-control" placeholder="Please enter institution" @input="handleInput('institution')" :light="true"/>
+                </BCol>
+                <BCol lg="6" class="mt-0">
+                    <InputLabel for="role" value="Type" />
+                    <Multiselect
+                        v-model="form.type_id"
+                        :options="types"
+                        label="name"
+                        placeholder="Select Type"
+                        ref="multiselect2"
+                        />
                 </BCol>
                 <BCol lg="6" class="mt-0">
                     <InputLabel for="role" value="Area" />
@@ -22,7 +32,7 @@
                         ref="multiselect2"
                         />
                 </BCol>
-                <BCol lg="12" class="mt-0">
+                <BCol lg="12" class="mt-1">
                     <InputLabel for="due" value="Description" :message="form.errors.description"/>
                     <Textarea v-model="form.description" rows="4" type="text" class="form-control" placeholder="Please enter description" @input="handleInput('description')" :light="true"/>
                 </BCol>
@@ -58,7 +68,7 @@ import TextInput from '@/Shared/Components/Forms/TextInput.vue';
 import Textarea from '@/Shared/Components/Forms/Textarea.vue';
 export default {
     components: { InputLabel, TextInput, Textarea, Multiselect },
-    props: ['id'],
+    props: ['id','types'],
     data(){
         return {
             currentUrl: window.location.origin,
@@ -66,6 +76,7 @@ export default {
                 id: null,
                 title: null,
                 institution: null,
+                type_id: null,
                 area: null,
                 description: null,
                 email: null,

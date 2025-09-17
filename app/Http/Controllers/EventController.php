@@ -84,6 +84,7 @@ class EventController extends Controller
     public function show($id){
         return inertia('Modules/Event/View',[
             'event' => $this->view->view($id),
+            'types' => $this->dropdown->dropdowns('Exhibit Type')
         ]);
     }
 

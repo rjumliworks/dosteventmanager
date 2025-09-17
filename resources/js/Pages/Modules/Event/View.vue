@@ -9,7 +9,7 @@
             <Top :selected="event.data"/>
             <div class="chat-wrapper d-lg-flex gap-1 mx-n4 mt-n4 p-1">
                 <div class="file-manager-content w-100 p-4 pb-0" ref="box" style="margin-left: 20px;">
-                    <Main :selected="event.data"/>
+                    <Main :types="types" :selected="event.data"/>
                 </div>
                 <div class="file-manager-sidebar" style="margin-right: 20px;">
                     <simplebar data-simplebar style="overflow-x: hidden;" class="h-100" ref="scrollbar">
@@ -31,7 +31,7 @@
     export default {
         layout: null,
         components: { PageHeader, simplebar, Top, Main, Message },
-        props: ['event'],
+        props: ['event','types'],
     }
 
 </script>

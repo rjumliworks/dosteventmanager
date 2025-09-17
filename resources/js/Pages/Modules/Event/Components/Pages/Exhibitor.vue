@@ -60,7 +60,7 @@
             </tbody>
         </table>
     </div>
-    <Create :id="id" ref="create"/>
+    <Create :types="types" :id="id" ref="create"/>
 </template>
 <script>
 import _ from 'lodash';
@@ -68,7 +68,7 @@ import Create from './Modals/CreateExhibitor.vue';
 import Pagination from "@/Shared/Components/Pagination.vue";
 export default {
     components: { Pagination, Create },
-    props: ['id','exhibitors'],
+    props: ['id','exhibitors','types'],
     methods: {
         openCreate(){
             this.$refs.create.show();
