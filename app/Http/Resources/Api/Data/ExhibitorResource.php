@@ -21,6 +21,7 @@ class ExhibitorResource extends JsonResource
             'has_voted' => $this->has_voted,
             'has_feedback' => $this->has_feedback,
             'contact' => $this->contact,
+            'feedbackable' => FeedbackResource::collection($this->feedbackable),
         ];
     }
 }

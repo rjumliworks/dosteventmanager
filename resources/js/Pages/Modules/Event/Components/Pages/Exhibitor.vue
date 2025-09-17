@@ -19,10 +19,10 @@
                     <th style="width: 4%;"></th>
                     <th>Title</th>
                     <!-- <th style="width: 25%;" class="text-center">Venue</th> -->
-                    <th style="width: 15%;" class="text-center">Institution</th>
-                    <th style="width: 15%;" class="text-center">Contact Person</th>
-                    <th style="width: 25%;" class="text-center">Contact</th>
-                    <th style="width: 7%;" class="text-center"></th>
+                    <th style="width: 8%;" class="text-center">Visitors</th>
+                    <th style="width: 8%;" class="text-center">Votes</th>
+                    <th style="width: 10%;" class="text-center">Status</th>
+                    <th style="width: 10%;" class="text-center"></th>
                 </tr>
             </thead>
             <tbody v-if="exhibitors.length > 0">
@@ -30,17 +30,14 @@
                     <td class="text-center">{{ index + 1 }}.</td>
                     <td>
                         <h5 class="fs-12 mb-0 fw-semibold text-primary">{{list.title}}</h5>
-                        <p class="fs-12 text-muted mb-0">{{list.area }}</p>
+                        <p class="fs-12 text-muted mb-0">{{list.institution }}</p>
                     </td>
-                    <!-- <td class="text-center">{{list.venue.name}}, {{ list.venue.establishment }}</td> -->
-                    <td class="text-center">{{list.institution }}</td>
-                    <td class="text-center">{{list.contact.name }}</td>
-                    <td class="text-center">{{list.contact.email }} | {{list.contact.contact_no }}</td>
-                    <!-- <td class="text-center">
-                        <span v-if="list.has_registration" class="badge bg-success">Required</span>
-                        <span v-else class="badge bg-danger">Not Required</span>
-                    </td> -->
-                  
+                    <td class="text-center">0</td>
+                    <td class="text-center">0</td>
+                    <td class="text-center">
+                        <span v-if="list.is_acive" class="badge text-white bg-success">Active</span>
+                        <span v-else class="badge text-white bg-danger">Inactive</span>
+                    </td>
                      <td class="text-end">
                        
                             <b-button variant="soft-info" class="me-1" v-b-tooltip.hover title="View" size="sm">

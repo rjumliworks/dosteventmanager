@@ -63,6 +63,11 @@ class DashboardController extends Controller
     {
         $data = EventExhibitor::with('contact')
         ->whereHas('event', fn($q) => $q->where('is_active', 1))
+        ->with([
+            'feedbackable.participant.detail' => function ($query) {
+                $query->latest('created_at')->take(10);
+            },
+        ])
         ->withExists([
             'visitors as has_visited' => fn($q) => 
                 $q->where('participant_id', $id),
