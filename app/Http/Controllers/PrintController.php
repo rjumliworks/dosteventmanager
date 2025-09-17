@@ -50,8 +50,6 @@ class PrintController extends Controller
 
         foreach ($data->attendees as $attendee) {
             if (!empty($attendee->participant->detail->signature)) {
-                dd($attendee->participant->detail->signature);
-                dd($this->convertToBase64($attendee->participant->detail->signature));
                 $attendee->participant->detail->signature_base64 = ($attendee->participant->detail->signature) ? $this->convertToBase64($attendee->participant->detail->signature) : null;
             }
         }
