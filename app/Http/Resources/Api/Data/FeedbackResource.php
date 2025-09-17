@@ -12,6 +12,7 @@ class FeedbackResource extends JsonResource
         return [
             'rate' => $this->rate,
             'session_id' => $this->feedbackable_id,
+            'participant_id' => $this->participant->id,
             'comment' => $this->comment,
             'name' => $this->participant->firstname.' '.$this->participant->lastname,
             'avatar' =>  ($this->participant->detail->avatar != 'avatar.jpg') ? asset('storage/'.$this->participant->detail->avatar) : asset('images/avatars/'.$this->participant->detail->avatar),

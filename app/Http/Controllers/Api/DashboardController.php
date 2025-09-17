@@ -33,10 +33,10 @@ class DashboardController extends Controller
         ->with('event.detail.region:code,name,region','event.detail.province:code,name','event.detail.municipality:code,name','event.detail.barangay:code,name')
         ->with([
             'questions' => function ($query) {
-                $query->latest()->take(10);
+                $query->latest('created_at')->take(10);
             },
             'feedbackable.participant.detail' => function ($query) {
-                $query->orderBy('created_at','DESC')->latest()->take(10);
+                $query->latest('created_at')->take(10);
             },
         ])
         ->whereHas('event',function ($query) {
