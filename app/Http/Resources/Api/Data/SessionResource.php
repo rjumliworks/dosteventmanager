@@ -23,7 +23,6 @@ class SessionResource extends JsonResource
             'venue' => $this->venue,
             'activities' => $this->activities,
             'managers' => $this->managers,
-            'participants' => $this->participants,
             'status' => $this->status,
             'questions' => $this->questions,
             'feedbackable' => $this->feedbackable,
