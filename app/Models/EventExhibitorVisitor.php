@@ -12,4 +12,9 @@ class EventExhibitorVisitor extends Model
        'exhibitor_id',
        'participant_id'
     ];
+
+    public function engageable()
+    {
+        return $this->morphMany('App\Models\ParticipantPointLog', 'engageable');
+    }
 }

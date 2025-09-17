@@ -185,9 +185,15 @@
                             <td>{{ $attendee->is_4ps ? '✔' : '' }}</td>
                             <td>{{ $attendee->is_pwd ? '✔' : '' }}</td>
                             <td>{{ $attendee->is_ip ? '✔' : '' }}</td>
-                            <td></td> {{-- signature column --}}
+                            <td>
+                                @if(!empty($attendee->participant->detail->signature_base64))
+                                    <img src="{{ $attendee->participant->detail->signature_base64 }}" 
+                                        style="width:100px; height:auto;" alt="Signature">
+                                @else
+                                    <span>No signature</span>
+                                @endif
+                            </td> 
                         @else
-                            {{-- Empty row if no attendee --}}
                             <td></td>
                             <td></td>
                             <td></td>

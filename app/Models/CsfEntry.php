@@ -18,6 +18,11 @@ class CsfEntry extends Model
         return $this->morphTo();
     }
 
+    public function engageable()
+    {
+        return $this->morphMany('App\Models\ParticipantPointLog', 'engageable');
+    }
+
     public function participant()
     {
         return $this->belongsTo('App\Models\Participant', 'participant_id', 'id');

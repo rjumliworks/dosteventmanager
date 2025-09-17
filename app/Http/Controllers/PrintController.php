@@ -46,7 +46,18 @@ class PrintController extends Controller
         $pngWriter = new PngWriter();
         $qrCodeImageString = $pngWriter->write($qrCode)->getString();
         $base64Image = 'data:image/png;base64,' . base64_encode($qrCodeImageString);
-        
+
+        foreach ($data->attendees as $attendee) {
+            if (!empty($attendee->participant->detail->signature)) {
+                $path = storage_path('app/public/'.$attendee->participant->detail->signature);
+                if (file_exists($path)) {
+                    $attendee->participant->detail->signature_base64 = 'data:image/png;base64,' . base64_encode(file_get_contents($path));
+                } else {
+                    $attendee->participant->detail->signature_base64 = null;
+                }
+            }
+        }
+
         $array = [
             'qrCodeImage' => $base64Image,
             'date' => $this->dateRangeText($data->schedules),

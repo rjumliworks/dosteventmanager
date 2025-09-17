@@ -62,33 +62,6 @@ class ExhibitorController extends Controller
         return new ExhibitorViewResource($data);
     }
 
-    public function review(Request $request){
-        $review = EventExhibitorReview::where('participant_id', $request->participant_id)
-            ->where('exhibitor_id', $request->exhibitor_id)
-            ->first();
-        if($review){
-            $review->rate = $request->rate;
-            $review->comment = $request->comment;
-            $review->save();
-        }else{
-            $data = EventExhibitorReview::create([
-                'rate' => $request->rate,
-                'comment' => $request->comment,
-                'participant_id' => $request->participant_id,
-                'exhibitor_id' => $request->exhibitor_id,
-            ]);
-        }
-
-        $data = EventExhibitorReview::with('participant.detail')->where('id',$data->id)->first();
-        broadcast(new ExhibitorEvent(new ReviewResource($data),'review'));
-        return response()->json([
-            'status' => true,
-            'message' => 'Review submitted successfully',
-            'data' => new ReviewResource($data)
-        ], 200);
-    }
-
-
     public function attendance(Request $request)
     {
         $visitor = EventExhibitorVisitor::where('participant_id', $request->participant_id)
