@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\Dropdown;
+use Illuminate\Support\Facades\DB;
+use App\Models\ParticipantPoint;
 use App\Models\EventExhibitor;
-use App\Models\EventExhibitorReview;
 use App\Models\EventExhibitorVisitor;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Resources\DefaultResource;
 use App\Http\Resources\Api\ExhibitorResource;
 use App\Http\Resources\Api\ExhibitorViewResource;
-use App\Events\ExhibitorEvent;
 use App\Events\SessionEvent;
 
 class ExhibitorController extends Controller
@@ -62,70 +63,130 @@ class ExhibitorController extends Controller
         return new ExhibitorViewResource($data);
     }
 
+
     public function attendance(Request $request)
     {
-        $visitor = EventExhibitorVisitor::where('participant_id', $request->participant_id)
-            ->where('exhibitor_id', $request->exhibitor_id)
-            ->first();
+        return DB::transaction(function () use ($request) {
+            $visitor = EventExhibitorVisitor::where('participant_id', $request->participant_id)
+                ->where('exhibitor_id', $request->exhibitor_id)
+                ->first();
 
-        if ($visitor) {
+            if ($visitor) {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Attendance already recorded for this participant.'
+                ], 400);
+            }
+
+            $visitor = $this->recordAttendance($request->participant_id, $request->exhibitor_id);
+
             return response()->json([
-                'status' => false,
-                'message' => 'Attendance already recorded for this participant.'
-            ], 400);
-        }
-
-        $visitor = $this->recordAttendance($request->participant_id, $request->exhibitor_id);
-
-        return response()->json([
-            'status' => true,
-            'message' => 'Attendance successfully recorded.',
-            'data' => $visitor
-        ], 201);
+                'status'  => true,
+                'message' => 'Attendance successfully recorded.',
+                'data'    => $visitor
+            ], 201);
+        });
     }
+
 
     public function vote(Request $request)
     {
-        $visitor = EventExhibitorVisitor::where('participant_id', $request->participant_id)
-        ->where('exhibitor_id', $request->exhibitor_id)
-        ->first();
+        return DB::transaction(function () use ($request) {
+            $visitor = EventExhibitorVisitor::where('participant_id', $request->participant_id)
+                ->where('exhibitor_id', $request->exhibitor_id)
+                ->first();
 
-        if(!$visitor) {
-            $visitor = $this->recordAttendance($request->participant_id, $request->exhibitor_id);
-        }
+            if (! $visitor) {
+                $visitor = $this->recordAttendance($request->participant_id, $request->exhibitor_id);
+            }
 
-        if ($visitor->has_voted) {
-            $visitor->update([
-                'has_voted' => false,
-                'voted_at'  => null,
-            ]);
-        }else{
-            $visitor->update([
-                'has_voted' => true,
-                'voted_at'  => now(),
-            ]);
-        }
-        $data = [
-            'participant_id' => $request->participant_id,
-            'id' =>  $request->exhibitor_id,
-            'status' => $visitor->has_voted
-        ];
-        broadcast(new SessionEvent($data,'vote'));
+            $engage = Dropdown::findOrFail(27);
+            $point = ParticipantPoint::where('participant_id', $request->participant_id)->firstOrFail();
 
-        return response()->json([
-            'status' => true,
-            'message' => 'Vote submitted successfully!',
-            'data' => $visitor->has_voted
-        ], 200);
+            if ($visitor->has_voted) {
+                // 👎 Unvote
+                $visitor->update([
+                    'has_voted' => false,
+                    'voted_at'  => null,
+                ]);
+
+                // delete engageable record and subtract points
+                $engageable = $visitor->engageable()
+                    ->where('type_id', $engage->id)
+                    ->where('point_id', $point->id)
+                    ->latest()
+                    ->first();
+
+                if ($engageable) {
+                    $point->points -= $engageable->points;
+                    $point->save();
+                    $engageable->delete();
+                    $array = [
+                        'id' => $request->participant_id,
+                        'points' => $engageable->points
+                    ];
+                    broadcast(new SessionEvent($array, 'minus'));
+                }
+            } else {
+                // 👍 Vote
+                $visitor->update([
+                    'has_voted' => true,
+                    'voted_at'  => now(),
+                ]);
+
+                $visitor->engageable()->create([
+                    'points'   => $engage->others,
+                    'type_id'  => $engage->id,
+                    'point_id' => $point->id,
+                ]);
+
+                $point->points += $engage->others;
+                $point->save();
+                $array = [
+                    'id' => $request->participant_id,
+                    'points' => $engage->others
+                ];
+                broadcast(new SessionEvent($array, 'plus'));
+            }
+
+            // Broadcast update
+            $data = [
+                'participant_id' => $request->participant_id,
+                'id'             => $request->exhibitor_id,
+                'status'         => $visitor->has_voted,
+            ];
+            broadcast(new SessionEvent($data, 'vote'));
+
+            return response()->json([
+                'status'  => true,
+                'message' => $visitor->has_voted
+                    ? 'Vote submitted successfully!'
+                    : 'Vote removed successfully!',
+                'data'    => $visitor->has_voted,
+            ], 200);
+        });
     }
 
     private function recordAttendance($participantId, $exhibitorId)
     {
-        return EventExhibitorVisitor::firstOrCreate(
+        $attendance = EventExhibitorVisitor::firstOrCreate(
             [
                 'participant_id' => $participantId,
                 'exhibitor_id'   => $exhibitorId,
             ]
         );
+        if($attendance) {
+            $engage = Dropdown::find(26);
+            $point = ParticipantPoint::where('participant_id', $participantId)->firstOrFail();
+
+            $attendance->engageable()->create([
+                'points'   => $engage->others,
+                'type_id'  => $engage->id,
+                'point_id' => $point->id,
+            ]);
+
+            $point->points += $engage->others;
+            $point->save();
+        }
     }
 }
