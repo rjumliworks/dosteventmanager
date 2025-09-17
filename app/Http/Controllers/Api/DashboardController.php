@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\CsfQuestion;
 use App\Models\EventExhibitor;
 use App\Models\EventSession;
 use App\Models\ParticipantPoint;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Resources\DefaultResource;
 use App\Http\Resources\Api\Data\ExhibitorResource;
 
 class DashboardController extends Controller
@@ -17,12 +19,18 @@ class DashboardController extends Controller
         return response()->json([
             'sessions'    => $this->sessions(),
             'exhibitors'  => $this->exhibitors($id),
+            'csfs' => $this->csfs(),
             'hotels' => $this->hotels()
         ]);
     }
 
     public function sessions(){
         return [];
+    }
+
+    public function csfs(){
+        $data = CsfQuestion::where('is_active', 1)->where('is_rating', 1)->get();
+        return DefaultResource::collection($data);
     }
 
     public function exhibitors($id)
