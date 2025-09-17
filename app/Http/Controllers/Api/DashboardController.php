@@ -36,7 +36,7 @@ class DashboardController extends Controller
                 $query->latest()->take(10);
             },
             'feedbackable.participant.detail' => function ($query) {
-                $queryorderBy('created_at','DESC')->latest()->take(10);
+                $queryorderBy('created_at','ASC')->latest()->take(10);
             },
         ])
         ->whereHas('event',function ($query) {
