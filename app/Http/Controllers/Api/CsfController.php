@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\Dropdown;
+use Illuminate\Support\Facades\DB;
+use App\Models\ParticipantPoint;
 use App\Models\CsfEntry;
 use App\Models\CsfQuestion;
 use App\Models\EventSession;
@@ -103,6 +106,25 @@ class CsfController extends Controller
             ]);
         }
         $entry->refresh();
+        if($entry) {
+            $engage = Dropdown::find(28);
+            $point = ParticipantPoint::where('participant_id', $request->participant_id)->firstOrFail();
+
+            $entry->engageable()->create([
+                'points'   => $engage->others,
+                'type_id'  => $engage->id,
+                'point_id' => $point->id,
+            ]);
+
+            $point->points += $engage->others;
+            $point->save();
+
+            $data = [
+                'participant_id'        => $request->participant_id,
+                'points'    => $engage->others
+            ];
+            broadcast(new SessionEvent($data, 'plus'));
+        }
         broadcast(new SessionEvent(new FeedbackResource($entry),'ex-rating'));
         return response()->json([
             'status' => true,
