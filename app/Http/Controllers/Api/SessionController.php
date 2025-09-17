@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use App\Http\Resources\DefaultResource;
 use App\Http\Resources\Api\SessionResource;
 use App\Http\Resources\Api\SessionViewResource;
-use App\Http\Resources\Api\QuestionResource;
+use App\Http\Resources\Api\Data\QuestionResource;
 use App\Http\Resources\ParticipantListResource;
 use App\Events\SessionEvent;
 
