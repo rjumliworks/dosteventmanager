@@ -122,8 +122,8 @@ class ExhibitorController extends Controller
                     $point->save();
                     $engageable->delete();
                     $array = [
-                        'id' => $request->participant_id,
-                        'points' => $engageable->points
+                        'participant_id'        => $request->participant_id,
+                        'points'    => $engageable->points
                     ];
                     broadcast(new SessionEvent($array, 'minus'));
                 }
@@ -143,8 +143,8 @@ class ExhibitorController extends Controller
                 $point->points += $engage->others;
                 $point->save();
                 $array = [
-                    'id' => $request->participant_id,
-                    'points' => $engage->others
+                    'participant_id'        => $request->participant_id,
+                    'points'    => $engage->others
                 ];
                 broadcast(new SessionEvent($array, 'plus'));
             }
@@ -155,7 +155,7 @@ class ExhibitorController extends Controller
                 'id'             => $request->exhibitor_id,
                 'status'         => $visitor->has_voted,
             ];
-            // broadcast(new SessionEvent($data, 'vote'));
+            broadcast(new SessionEvent($data, 'vote'));
 
             return response()->json([
                 'status'  => true,
