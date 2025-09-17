@@ -1,6 +1,6 @@
 <template>
-<Head title="Hotels"/>
-<PageHeader title="List of Hotels" pageTitle="List" />
+<Head title="Participants"/>
+<PageHeader title="List of Participants" pageTitle="List" />
     <BRow>
         <div class="col-md-12">
             <div class="card bg-light-subtle shadow-none border">
@@ -27,7 +27,7 @@
                         <b-col lg>
                             <div class="input-group mb-1">
                                 <span class="input-group-text"> <i class="ri-search-line search-icon"></i></span>
-                                <input type="text" v-model="keyword" placeholder="Search Event" class="form-control" style="width: 70%;">
+                                <input type="text" v-model="filter.keyword" placeholder="Search Participants" class="form-control" style="width: 70%;">
                                 <Multiselect class="white" style="width: 17%;" :options="types" v-model="filter.type" label="name" :searchable="true" placeholder="Select Type" />
                                 <span @click="openUpload()" class="input-group-text" v-b-tooltip.hover title="Upload" style="cursor: pointer;"> 
                                     <i class="ri-upload-cloud-fill search-icon"></i>
@@ -45,7 +45,7 @@
                             <ul class="nav nav-tabs nav-tabs-custom nav-primary fs-12" role="tablist">
                                 <li class="nav-item">
                                     <BLink @click="viewStatus(null,null)" class="nav-link py-3 active" data-bs-toggle="tab" role="tab" aria-selected="true">
-                                    <i class="ri-apps-2-line me-1 align-bottom"></i> All Hotels
+                                    <i class="ri-apps-2-line me-1 align-bottom"></i> All Participants
                                     </BLink>
                                 </li>
                             </ul>
@@ -57,6 +57,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="card-body bg-white rounded-bottom">
                     <div class="table-responsive table-card" style="margin-top: -39px; height: calc(100vh - 465px); overflow: auto;">
                         <table class="table table-nowrap align-middle mb-0">
@@ -75,7 +76,7 @@
                                 <tr v-for="(list,index) in lists" v-bind:key="index" :class="[(list.is_active == 0) ? 'table-warnings' : '']">
                                     <td>
                                         <div class="avatar-xs chat-user-img online">
-                                            <img :src="list.avatar" alt="" class="avatar-xs rounded-circle">
+                                            <img :src="list?.avatar" alt="" class="avatar-xs rounded-circle">
                                             <span v-if="list.is_active" class="user-status text-success"></span>
                                         </div>
                                     </td>
