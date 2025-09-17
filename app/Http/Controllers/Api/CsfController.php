@@ -103,7 +103,7 @@ class CsfController extends Controller
             ]);
         }
         $entry->refresh();
-        broadcast(new ExhibitorEvent(new FeedbackResource($entry),'rating'));
+        broadcast(new SessionEvent(new FeedbackResource($entry),'ex-rating'));
         return response()->json([
             'status' => true,
             'message' => 'CSF submitted successfully',
