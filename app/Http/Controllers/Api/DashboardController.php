@@ -33,7 +33,7 @@ class DashboardController extends Controller
         if(!$point) {
             $point = ParticipantPoint::firstOrCreate(
                 [
-                    'participant_id' => $participantId,
+                    'participant_id' => $id,
                     'points'   => 0
                 ]
             );
