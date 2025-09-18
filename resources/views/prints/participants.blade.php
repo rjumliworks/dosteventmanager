@@ -150,8 +150,8 @@
                             <td>{{ $attendee->is_pwd ? '✔' : '' }}</td>
                             <td>{{ $attendee->is_ip ? '✔' : '' }}</td>
                             <td>
-                                @if(!empty($attendee->participant->detail->signature_base64))
-                                    <img src="{{ $attendee->participant->detail->signature_base64 }}" 
+                                @if(!empty($attendee->detail->signature_base64))
+                                    <img src="{{ $attendee->detail->signature_base64 }}" 
                                         style="width:70px; height:auto;" alt="Signature">
                                 @else
                                     <span>No signature</span>
