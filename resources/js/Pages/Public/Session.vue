@@ -189,10 +189,16 @@ export default {
         setupEchoListener() {
             window.Echo.channel('session')
                 .listen('SessionEvent', (event) => {
-                    if (event.type === 'attendance') {
-                        this.session.data.attendees.push(event.data)
+                if (event.type === 'attendance') {
+                    if (!this.session.data.attendees.some(a => a.id === event.data.id)) {
+                        this.session.data.attendees.unshift(event.data);
                     }
-                })
+                    this.session.data.attendees = this.session.data.attendees.filter(
+                        (attendee, index, self) =>
+                            index === self.findIndex(a => a.id === attendee.id)
+                    );
+                }
+            })
         },
 
         async startScanner() {
