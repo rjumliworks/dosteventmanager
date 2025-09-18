@@ -1,44 +1,81 @@
 <template>
     <div class="auth-page-wrapper d-flex flex-column">
-        <div class="auth-page-content d-flex justify-content-center " style="background-color: #EFF0F3; min-height: 100vh; overflow: hidden;">
-
-           <div class="row p-5">
-                <div class="col-lg-12">
-                    <div class="text-center">
-                        <img src="@assets/images/logo-sm.png" alt="" class="avatar-xs mb-1">
-                        <h1 class="mb-0 ff-secondary fw-semibold text-capitalize lh-base fs-24"><span class="text-primary">{{ selected.title }}</span></h1>
-                        <h1 class="mb-0 ff-secondary fw-semibold text-capitalize lh-base fs-18"><span class="text-warning">{{ selected.event.name }}</span></h1>
-                        <h1 class="mb-0 ff-secondary fw-semibold text-capitalize lh-base fs-12"><span class="text-success">{{ selected.venue.address}}</span></h1>
-                        <p class="text-muted mb-2 fs-12">{{ selected.detail.description }}</p>
-                    </div>
+        <div class="auth-page-content d-flex justify-content-center"
+             style="background-color:#EFF0F3; min-height:100vh; overflow:hidden;">
+            <div class="row p-5">
+                <!-- Header Info -->
+                <div class="col-lg-12 text-center mb-3">
+                    <img src="@assets/images/logo-sm.png" alt="" class="avatar-xs mb-1">
+                    <h1 class="mb-0 ff-secondary fw-semibold text-capitalize lh-base fs-24">
+                        <span class="text-primary">{{ selected.title }}</span>
+                    </h1>
+                    <h1 class="mb-0 ff-secondary fw-semibold text-capitalize lh-base fs-18">
+                        <span class="text-warning">{{ selected.event.name }}</span>
+                    </h1>
+                    <h1 class="mb-0 ff-secondary fw-semibold text-capitalize lh-base fs-12">
+                        <span class="text-success">{{ selected.venue.address }}</span>
+                    </h1>
+                    <!-- <p class="text-muted mb-2 fs-12">{{ selected.detail.description }}</p> -->
                 </div>
-                <div class="col-lg-5" style="margin-top: 20px; margin-bottom: -80px;">
-                   <div class="text-center">
-                       <div class="position-relative d-inline-block" style="width: 700px; height: 400px;">
-                            <img src="/images/border.png" alt="Phone Frame" class="img-fluid position-absolute" style="top: -40%; left: 0%; width: 100%;" />
-                            <div class="position-absolute" style="top: 53%; left: 51.7%; transform: translate(-50%, -50%); width: 200px; height: 200px;">
-                                <img
+
+                <!-- QR / Camera Box -->
+                <div class="col-lg-5 mt-4">
+                    <div class="text-center">
+                        <div class="position-relative d-inline-block" style="width:700px; height:400px;">
+                            <img src="/images/border.png"
+                                 alt="Phone Frame"
+                                 class="img-fluid position-absolute"
+                                 style="top:-40%; left:0; width:100%;" />
+
+                            <!-- ✅ Fixed 200x200 box -->
+                            <div class="position-absolute qr-box"
+                                style="top:53%; left:51.7%; transform:translate(-50%, -50%);">
+                              <img
                                     v-if="!showScanner"
                                     :src="selected.qr"
                                     alt="QR Code"
                                     style="width: 100%; height: 100%; object-fit: contain;"
                                 />
-                                <div v-else id="qr-reader" style="width: 100%; height: 100%;"></div>
+                                <!-- QR Scanner -->
+                                <div v-show="showScanner" id="qr-reader" class="qr-child"></div>
+
+                                <!-- Camera Preview -->
+                                <video v-show="showCamera"
+                                    ref="cameraPreview"
+                                    autoplay
+                                    playsinline
+                                    class="qr-child"></video>
+
+                                <!-- Captured Image -->
+                                <img v-if="capturedImage && !showCamera && !showScanner"
+                                    :src="capturedImage"
+                                    class="qr-child" />
+
+                                <!-- Countdown -->
+                                <div v-if="countdown > 0" class="countdown-overlay">
+                                    {{ countdown }}
+                                </div>
                             </div>
-                            <b-form-group class="text-center position-absolute" style="top: 85%; left: 55%; transform: translate(-50%, -50%); width: 200px;">
-                                <b-form-checkbox switch v-model="showScanner">
-                                    {{ showScanner ? 'Switch to QR Code' : 'Switch to Scanner' }}
+
+                            <b-form-group class="text-center position-absolute"
+                                          style="top:85%; left:55%;
+                                                 transform:translate(-50%, -50%);
+                                                 width:200px;">
+                                <b-form-checkbox switch v-model="scannerToggle">
+                                    {{ scannerToggle ? 'Stop Scanner' : 'Start Scanner' }}
                                 </b-form-checkbox>
                             </b-form-group>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6" style="margin-top: -20px; margin-bottom: -80px;">
+
+                <!-- Attendance Table -->
+                <div class="col-lg-6 mt-4">
                     <div class="card bg-light-subtle shadow-none border">
                         <div class="card-header bg-light-subtle">
                             <div class="d-flex mb-n3">
                                 <div class="flex-shrink-0 me-3">
-                                    <div style="height: 2.5rem; width: 2.5rem;">
+                                    <div style="height:2.5rem; width:2.5rem;">
                                         <span class="avatar-title bg-primary-subtle rounded p-2 mt-n1">
                                             <i class="ri-file-list-3-line text-primary fs-24"></i>
                                         </span>
@@ -46,128 +83,197 @@
                                 </div>
                                 <div class="flex-grow-1">
                                     <h5 class="mb-0 fs-14"><span class="text-body">Attendance</span></h5>
-                                    <p class="text-muted text-truncate-two-lines fs-12">Shows participants who have successfully scanned the QR code and marked their attendance.</p>
+                                    <p class="text-muted fs-12">
+                                        Shows participants who have successfully scanned the QR code.
+                                    </p>
                                 </div>
                             </div>
                         </div>
                         <div class="card-body bg-white rounded-bottom">
-                            <div class="table-responsive table-card" style="height: calc(100vh - 400px); overflow-x: hidden;">
+                            <div class="table-responsive table-card"
+                                 style="height:calc(100vh - 400px); overflow-x:hidden;">
                                 <table class="table table-nowrap align-middle mb-0">
                                     <thead class="bg-light thead-fixed">
                                         <tr class="fs-11">
-                                            <th style="width: 7%;" class="text-center">#</th>
+                                            <th class="text-center">#</th>
                                             <th>Name</th>
-                                            <th style="width: 29%;" class="text-center">Time</th>
+                                            <th class="text-center">Time</th>
                                         </tr>
                                     </thead>
-                                    <tbody v-if="this.session.data.attendees.length > 0">
-                                        <tr v-for="(list,index) in this.session.data.attendees" v-bind:key="index" :class="['fs-12',{ 'fw-semibold bg-success-subtle': index === 0 }]">
-                                            <td class="text-center">{{ index+1 }}</td>
+                                    <tbody v-if="session.data.attendees.length">
+                                        <tr v-for="(list,index) in session.data.attendees"
+                                            :key="index"
+                                            :class="['fs-12',{ 'fw-semibold bg-success-subtle': index === 0 }]">
+                                            <td class="text-center">{{ index + 1 }}</td>
                                             <td>{{ list.participant.firstname }} {{ list.participant.lastname }}</td>
                                             <td class="text-center">{{ list.attended_at }}</td>
                                         </tr>
                                     </tbody>
                                     <tbody v-else>
-                                        <tr>
-                                            <td colspan="6" class="text-center text-muted">No participants found.</td>
-                                        </tr>
+                                        <tr><td colspan="3" class="text-center text-muted">No participants found.</td></tr>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
+            </div>
         </div>
     </div>
 </template>
 <script>
-import { useForm } from '@inertiajs/vue3';
-import { Html5Qrcode } from "html5-qrcode";
+import { useForm } from '@inertiajs/vue3'
+import { Html5Qrcode } from 'html5-qrcode'
+
 export default {
     layout: null,
     props: ['session'],
-    data(){
+    data() {
         return {
             selected: this.session.data,
-            showScanner: false,
+            scannerToggle: false,   // checkbox state
+            showScanner: false,     // show QR scanner box
+            showCamera: false,      // show camera preview
+            capturedImage: null,    // final snapshot
+            countdown: 0,
             qrScanner: null,
+            cameraStream: null,
             form: useForm({
                 session: this.session.data.key,
                 participant: null,
                 option: 'attendance'
-            }),
+            })
         }
     },
     watch: {
-        showScanner(newVal) {
-            if (newVal) {
-                this.startScanner();
-            } else {
-                this.stopScanner();
-            }
+        scannerToggle(val) {
+            if (val) this.startScanner()
+            else this.stopScanner()
         }
     },
     mounted() {
-        this.setupEchoListener();
+        this.setupEchoListener()
     },
-    methods: { 
+    methods: {
         setupEchoListener() {
             window.Echo.channel('session')
-            .listen('SessionEvent', (event) => {
-                switch(event.type){
-                    case 'attendance':
-                        this.session.data.attendees.unshift(event.data);
-                    break;
-                }
-            });
+                .listen('SessionEvent', (event) => {
+                    if (event.type === 'attendance') {
+                        this.session.data.attendees.unshift(event.data)
+                    }
+                })
         },
-       async startScanner() {
-            await this.$nextTick();
-            const config = { fps: 10, qrbox: { width: 200, height: 200 } };
-            this.qrScanner = new Html5Qrcode("qr-reader");
+
+        async startScanner() {
+            await this.$nextTick()
+            this.showScanner = true
+            this.capturedImage = null
+            const config = { fps: 10, qrbox: { width: 200, height: 200 } }
+
+            this.qrScanner = new Html5Qrcode("qr-reader")
             try {
                 await this.qrScanner.start(
                     { facingMode: "environment" },
                     config,
-                    (decodedText) => {
-                        // alert("Scanned QR: " + decodedText);
-                        this.submit(decodedText);
-                        // You can redirect, emit event, or store this
-                        // this.stopScanner();
-                        // this.showScanner = false;
+                    async (decodedText) => {
+                        await this.qrScanner.stop()
+                        this.qrScanner.clear()
+                        this.qrScanner = null
+                        this.showScanner = false
+                        this.startCamera(decodedText)
                     },
-                    (errorMessage) => {
-                        console.warn("QR Scan Error", errorMessage);
-                    }
-                );
+                    (err) => console.warn(err)
+                )
             } catch (err) {
-                console.error("Failed to start scanner", err);
+                console.error("Scanner error:", err)
             }
         },
+
         stopScanner() {
+            this.showScanner = false
             if (this.qrScanner) {
-                this.qrScanner.stop().then(() => {
-                    this.qrScanner.clear();
-                    this.qrScanner = null;
-                }).catch(err => {
-                    console.error("Failed to stop scanner", err);
-                });
+                this.qrScanner.stop().then(() => this.qrScanner.clear()).catch(()=>{})
+                this.qrScanner = null
             }
         },
-        submit(code){
-            this.form.participant = code;
-            this.form.put('/sessions/update',{
-                preserveScroll: true,
-                onSuccess: (response) => {
-                    
-                },
-            });
+
+        async startCamera(code) {
+            try {
+                this.showCamera = true
+                this.cameraStream = await navigator.mediaDevices.getUserMedia({ video: true })
+                this.$refs.cameraPreview.srcObject = this.cameraStream
+                this.countdown = 3
+                while (this.countdown > 0) {
+                    await new Promise(r => setTimeout(r, 1000))
+                    this.countdown--
+                }
+                this.capturePhoto()
+                this.stopCamera()
+                this.submit(code)
+            } catch (err) {
+                console.error("Camera error:", err)
+            }
+        },
+
+        capturePhoto() {
+            const video = this.$refs.cameraPreview
+            const canvas = document.createElement("canvas")
+            canvas.width = video.videoWidth
+            canvas.height = video.videoHeight
+            const ctx = canvas.getContext("2d")
+            ctx.drawImage(video, 0, 0, canvas.width, canvas.height)
+            this.capturedImage = canvas.toDataURL("image/png")
+        },
+
+        stopCamera() {
+            if (this.cameraStream) {
+                this.cameraStream.getTracks().forEach(t => t.stop())
+                this.cameraStream = null
+            }
+            this.showCamera = false
+        },
+
+        submit(code) {
+            this.form.participant = code
+            this.form.put('/sessions/update', { preserveScroll: true })
         }
     },
-    beforeDestroy() {
-        this.stopScanner();
+    beforeUnmount() {
+        this.stopScanner()
+        this.stopCamera()
     }
 }
 </script>
+<style scoped>
+/* Parent container controls final size */
+.qr-box {
+  width: 200px;        /* ✅ change here for bigger/smaller box */
+  height: 200px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* All child layers fill exactly the same area */
+.qr-child {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;   /* ensures camera/photo scales uniformly */
+}
+
+/* Centered countdown */
+.countdown-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+  color: #fff;
+  text-shadow: 0 0 5px #000;
+  font-weight: bold;
+}
+
+</style>
