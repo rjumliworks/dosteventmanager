@@ -204,24 +204,15 @@ class PrintController extends Controller
     }
 
     public function lists(){
-         ini_set('max_execution_time', 0);
+        ini_set('max_execution_time', 0);
         set_time_limit(0);
         $data = Participant::with('detail.sex')->get();
-        $url = $_SERVER['HTTP_HOST'].'/verification/';
-        $qrCode = new QrCode($url);
-        $qrCode->setSize(300);
-        $pngWriter = new PngWriter();
-        $qrCodeImageString = $pngWriter->write($qrCode)->getString();
-        $base64Image = 'data:image/png;base64,' . base64_encode($qrCodeImageString);
-
         foreach ($data as $attendee) {
             if (!empty($attendee->detail->signature)) {
                 $attendee->detail->signature_base64 = ($attendee->detail->signature) ? $this->convertToBase64($attendee->detail->signature) : null;
             }
         }
-
         $array = [
-            'qrCodeImage' => $base64Image,
             'data' => $data
         ]; 
 
