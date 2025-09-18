@@ -131,8 +131,8 @@
                     <th rowspan="2" width="3%">SEX</th>
                     <th rowspan="2" width="3%">AGE</th>
                     <th colspan="3" width="17%">Please check if applicable</th>
-                    <th rowspan="2" width="8%">SIGNATURE</th>
-                    <th rowspan="2" width="8%">PHOTO</th>
+                    <th rowspan="2" width="7.5%">SIGNATURE</th>
+                    <th rowspan="2" width="7.5%">PHOTO</th>
                 </tr>
                 <tr>
                     <th width="3%">4Ps</th>
