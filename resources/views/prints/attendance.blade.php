@@ -162,13 +162,13 @@
                         <td>{{ $attendee->is_ip ? '✔' : '' }}</td>
                         <td>
                             @if(!empty($attendee->participant->detail->signature_base64))
-                                <img src="{{ $attendee->participant->detail->signature_base64 }}" style="width:70px; height:auto;" alt="Signature">
+                                <img src="{{ $attendee->participant->detail->signature_base64 }}" style="width:80px; height:auto;" alt="Signature">
                             @else
                                 <span>No signature</span>
                             @endif
                         </td>
                         <td>
-                            <img src="{{ $attendee->image_base64 }}" style="width:70px; height:auto;" alt="Photo">
+                            <img src="{{ $attendee->image_base64 }}" style="width:80px; height:auto;" alt="Photo">
                         </td>
                     </tr>
                 @endforeach
