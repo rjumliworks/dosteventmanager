@@ -145,7 +145,7 @@
                             <td>{{ $attendee->contact_no ?? '' }}</td>
                             <td>{{ $attendee->email ?? '' }}</td>
                             <td>{{ $attendee->detail->sex->name[0] ?? '' }}</td>
-                            <td>{{ $attendee->age ?? '31' }}</td>
+                            <td>{{ $attendee->age ?? '-' }}</td>
                             <td>{{ $attendee->is_4ps ? '✔' : '' }}</td>
                             <td>{{ $attendee->is_pwd ? '✔' : '' }}</td>
                             <td>{{ $attendee->is_ip ? '✔' : '' }}</td>
