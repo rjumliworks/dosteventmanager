@@ -27,8 +27,11 @@
                         <b-col lg>
                             <div class="input-group mb-1">
                                 <span class="input-group-text"> <i class="ri-search-line search-icon"></i></span>
-                                <input type="text" v-model="keyword" placeholder="Search Event" class="form-control" style="width: 70%;">
+                                <input type="text" v-model="keyword" placeholder="Search Event" class="form-control" style="width: 60%;">
                                 <Multiselect class="white" style="width: 17%;" :options="types" v-model="filter.type" label="name" :searchable="true" placeholder="Select Type" />
+                                 <span @click="openPrint()" class="input-group-text" v-b-tooltip.hover title="Print" style="cursor: pointer;"> 
+                                    <i class="ri-printer-fill search-icon"></i>
+                                </span>
                                 <span @click="openUpload()" class="input-group-text" v-b-tooltip.hover title="Upload" style="cursor: pointer;"> 
                                     <i class="ri-upload-cloud-fill search-icon"></i>
                                 </span>
@@ -181,7 +184,12 @@ export default {
         openUpdate(data,index){
             this.index = index;
             this.$refs.update.edit(data);
-        }
+        },
+        openPrint(){
+            window.open('/print?option=lists'
+                
+            );
+        },
     }
 }
 </script>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Participant;
 use Hashids\Hashids;
 use Illuminate\Http\Request;
 use App\Models\EventSession;
@@ -31,6 +32,9 @@ class PrintController extends Controller
             break;
             case 'attendance':
                 return $this->attendance($request);
+            break;
+            case 'lists':
+                return $this->lists($request);
             break;
         }
     }
@@ -197,6 +201,42 @@ class PrintController extends Controller
         }
 
         return null;
+    }
+
+    public function lists($request){
+        $data = Participant::with('detail.sex')->get();
+        $url = $_SERVER['HTTP_HOST'].'/verification/';
+        $qrCode = new QrCode($url);
+        $qrCode->setSize(300);
+        $pngWriter = new PngWriter();
+        $qrCodeImageString = $pngWriter->write($qrCode)->getString();
+        $base64Image = 'data:image/png;base64,' . base64_encode($qrCodeImageString);
+
+        foreach ($data as $attendee) {
+            if (!empty($attendee->detail->signature)) {
+                $attendee->detail->signature_base64 = ($attendee->detail->signature) ? $this->convertToBase64($attendee->detail->signature) : null;
+            }
+        }
+
+        $array = [
+            'qrCodeImage' => $base64Image,
+            'data' => $data
+        ]; 
+
+        $pdf = \PDF::loadView('prints.participants',$array)->setPaper('a4', 'landscape');
+        $pdf->output();
+        $dompdf = $pdf->getDomPDF();
+        $canvas = $dompdf->getCanvas();
+        $canvas->page_script(function ($pageNumber, $pageCount, $canvas, $fontMetrics) {
+            $text = "PAGE $pageNumber OF $pageCount";
+            $font = $fontMetrics->get_font("Helvetica", "normal");
+            $size = 7;
+            $width = $fontMetrics->get_text_width($text, $font, $size);
+            $x = 63; // left margin
+            $y = $canvas->get_height() - 47; // 20pt from bottom
+            $canvas->text($x, $y, $text, $font, $size);
+        });
+        return $pdf->stream('participants.pdf');
     }
 
 }
