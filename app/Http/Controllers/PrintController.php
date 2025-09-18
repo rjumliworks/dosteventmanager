@@ -56,6 +56,9 @@ class PrintController extends Controller
             if (!empty($attendee->participant->detail->signature)) {
                 $attendee->participant->detail->signature_base64 = ($attendee->participant->detail->signature) ? $this->convertToBase64($attendee->participant->detail->signature) : null;
             }
+            if (!empty($attendee->image)) {
+                $attendee->image_base64 = ($attendee->image) ? $this->convertToBase64($attendee->image) : null;
+            }
         }
 
         $array = [

@@ -15,7 +15,7 @@
         }
         body {
             font-family: Arial, Helvetica, sans-serif;
-            font-size: 9px;
+            font-size: 10px;
         }
 
         .content {
@@ -33,42 +33,14 @@
         }
         th {
             padding: 3px;
-            vertical-align: top;
+            vertical-align: middle; 
+            text-align: center;
         }
         td {
             padding: 3px;
             /* vertical-align: top; */
             /* text-align: center; */
-        }
-        input[type=checkbox] {
-            transform: scale(.7);
-        }
-        .a {
-            width: 55px; 
-            height: 55px;
-        }
-        label {
-            display: block;
-            padding-left: 15px;
-            text-indent: -15px;
-        }
-        input {
-            width: 13px;
-            height: 13px;
-            padding: 0;
-            margin:0;
-            vertical-align: bottom;
-            position: relative;
-            top: -5px;
-            left: 7px;
-            *overflow: hidden;
-        }
-        input[type=checkbox] { display: inline; }
-        input[type=checkbox]:before { font-family: DejaVu Sans; }
-        label {
-            display: inline-block;
-        }
-       
+        } 
         .footer {
             position: fixed;
             bottom: -10;
@@ -152,16 +124,15 @@
         <table style="border: 1px solid black; margin-top: 15px;">
             <thead style="background-color:#c8c8c8; padding: 5px; font-size: 10px;">
                 <tr>
-                    <th style="vertical-align: middle;" rowspan="2" width="3%">#</th>
-                    <th style="vertical-align: middle;" rowspan="2" width="16%">NAME</th>
-                    <th style="vertical-align: middle;" rowspan="2" width="19%">AGENCY/FIRM</th>
-                    <th style="vertical-align: middle;" rowspan="2" width="15%">DESIGNATION</th>
-                    <th style="vertical-align: middle;" rowspan="2" width="8.5%">CONTACT NO.</th>
-                    <th style="vertical-align: middle;" rowspan="2" width="17%">EMAIL</th>
-                    <th style="vertical-align: middle;" rowspan="2" width="3%">SEX</th>
-                    <th style="vertical-align: middle;" rowspan="2" width="3%">AGE</th>
-                    <th style="vertical-align: middle; font-size: 9px;" colspan="3" width="9%">Please check if applicable</th>
-                    <th style="vertical-align: middle;" rowspan="2" width="8.4%">SIGNATURE</th>
+                    <th rowspan="2" width="3%">#</th>
+                    <th rowspan="2" width="15%">NAME</th>
+                    <th rowspan="2" width="15%">AFFILIATION / DESIGNATION</th>
+                    <th rowspan="2" width="15%">EMAIL / CONTACT NO.</th>
+                    <th rowspan="2" width="3%">SEX</th>
+                    <th rowspan="2" width="3%">AGE</th>
+                    <th colspan="3" width="15%">Please check if applicable</th>
+                    <th rowspan="2" width="9%">SIGNATURE</th>
+                    <th rowspan="2" width="9%">PHOTO</th>
                 </tr>
                 <tr>
                     <th width="3%">4Ps</th>
@@ -169,46 +140,61 @@
                     <th width="3%">IP</th>
                 </tr>
             </thead>
+
             <tbody>
                 @for ($i = 0; $i <= 19; $i++)
                     <tr style="text-align: center;">
-                        <td style="text-align: center;">{{ $i+1 }}</td>
+                        <td>{{ $i+1 }}</td>
                         @if(isset($data['attendees'][$i]))
                             @php $attendee = $data['attendees'][$i]; @endphp
-                            <td>{{ $attendee->participant->firstname ?? '' }} {{ $attendee->participant->lastname ?? '' }}</td>
-                            <td>{{ $attendee->participant->detail->affiliation ?? '' }}</td>
-                            <td>{{ $attendee->participant->detail->designation ?? '' }}</td>
-                            <td>{{ $attendee->participant->contact_no ?? '' }}</td>
-                            <td>{{ $attendee->participant->email ?? '' }}</td>
+
+                            <!-- NAME -->
+                            <td>
+                                {{ $attendee->participant->firstname ?? '' }} {{ $attendee->participant->lastname ?? '' }}
+                            </td>
+
+                            <!-- AFFILIATION / DESIGNATION -->
+                            <td style="text-align: center;">
+                                {{ $attendee->participant->detail->affiliation ?? '' }}<br>
+                                <small style="color: gray;">{{ $attendee->participant->detail->designation ?? '' }}</small>
+                            </td>
+
+                            <!-- EMAIL / CONTACT -->
+                            <td style="text-align: center;">
+                                {{ $attendee->participant->email ?? '' }}<br>
+                                <small style="color: gray;">{{ $attendee->participant->contact_no ?? '' }}</small>
+                            </td>
+
+                            <!-- SEX -->
                             <td>{{ $attendee->participant->detail->sex->name[0] ?? '' }}</td>
+
+                            <!-- AGE -->
                             <td>{{ $attendee->age ?? '31' }}</td>
+
+                            <!-- CHECKBOX COLUMNS -->
                             <td>{{ $attendee->is_4ps ? '✔' : '' }}</td>
                             <td>{{ $attendee->is_pwd ? '✔' : '' }}</td>
                             <td>{{ $attendee->is_ip ? '✔' : '' }}</td>
+
+                            <!-- SIGNATURE -->
                             <td>
                                 @if(!empty($attendee->participant->detail->signature_base64))
-                                    <img src="{{ $attendee->participant->detail->signature_base64 }}" 
-                                        style="width:70px; height:auto;" alt="Signature">
+                                    <img src="{{ $attendee->participant->detail->signature_base64 }}" style="width:70px; height:auto;" alt="Signature">
                                 @else
                                     <span>No signature</span>
                                 @endif
-                            </td> 
+                            </td>
+                            <td>
+                                <img src="{{ $attendee->image_base64 }}" style="width:70px; height:auto;" alt="Photo">
+                            </td>
                         @else
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td></td><td></td><td></td><td></td>
+                            <td></td><td></td><td></td><td></td><td></td><td></td>
                         @endif
                     </tr>
                 @endfor
             </tbody>
+
         </table>
     </div>
 
