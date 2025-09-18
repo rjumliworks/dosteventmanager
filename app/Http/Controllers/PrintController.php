@@ -207,11 +207,7 @@ class PrintController extends Controller
         ini_set('max_execution_time', 0);
         set_time_limit(0);
         $data = Participant::with('detail.sex')->get();
-        foreach ($data as $attendee) {
-            if (!empty($attendee->detail->signature)) {
-                $attendee->detail->signature_base64 = ($attendee->detail->signature) ? $this->convertToBase64($attendee->detail->signature) : null;
-            }
-        }
+     
         $array = [
             'data' => $data
         ]; 
