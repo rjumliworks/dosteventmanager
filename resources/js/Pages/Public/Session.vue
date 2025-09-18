@@ -190,7 +190,7 @@ export default {
             window.Echo.channel('session')
                 .listen('SessionEvent', (event) => {
                     if (event.type === 'attendance') {
-                        this.session.data.attendees.unshift(event.data)
+                        this.session.data.attendees.push(event.data)
                     }
                 })
         },
