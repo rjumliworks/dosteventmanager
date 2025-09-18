@@ -43,7 +43,7 @@ class SessionViewResource extends JsonResource
             'activities' => $this->activities,
             'managers' => $this->managers,
             'participants' => ParticipantListResource::collection($this->participants),
-            'attendees' => $this->attendees,
+            'attendees' => AttendanceResource::collection($this->attendees),
             'status' => $this->status,
             'questions' => QuestionResource::collection($this->questions),
             'event' => new EventViewResource($this->event),

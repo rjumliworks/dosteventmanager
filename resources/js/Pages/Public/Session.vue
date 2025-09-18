@@ -6,10 +6,10 @@
                 <!-- Header Info -->
                 <div class="col-lg-12 text-center mb-3">
                     <img src="@assets/images/logo-sm.png" alt="" class="avatar-xs mb-1">
-                    <h1 class="mb-0 ff-secondary fw-semibold text-capitalize lh-base fs-24">
+                    <h1 class="mb-0 ff-secondary fw-semibold text-capitalize lh-base fs-22">
                         <span class="text-primary">{{ selected.title }}</span>
                     </h1>
-                    <h1 class="mb-0 ff-secondary fw-semibold text-capitalize lh-base fs-18">
+                    <h1 class="mb-0 ff-secondary fw-semibold text-capitalize lh-base fs-14">
                         <span class="text-warning">{{ selected.event.name }}</span>
                     </h1>
                     <h1 class="mb-0 ff-secondary fw-semibold text-capitalize lh-base fs-12">
@@ -19,7 +19,7 @@
                 </div>
 
                 <!-- QR / Camera Box -->
-                <div class="col-lg-5 mt-4">
+                <div class="col-lg-5" style="margin-top: 65px;">
                     <div class="text-center">
                         <div class="position-relative d-inline-block" style="width:700px; height:400px;">
                             <img src="/images/border.png"
@@ -72,6 +72,35 @@
                 <!-- Attendance Table -->
                 <div class="col-lg-6 mt-4">
                     <div class="card bg-light-subtle shadow-none border">
+                        <div class="card-header bg-light-subtle" style="height:calc(100vh - 700px);">
+                            <div class="pt-1 ps-1 profile-wrapper" v-if="session.data.attendees.length == 0">
+                                <div class="row g-4">
+                                    <div class="col-12 text-center">
+                                        <div class="p-4 border rounded bg-light">
+                                            <p class="mb-0 text-muted fw-semibold">No attendee found</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div v-else class="pt-1 ps-1 profile-wrapper">
+                                <div class="row g-4">
+                                    <div class="col-auto">
+                                        <div>
+                                            <img :src="session.data.attendees[0].avatar" alt="user-img" class="avatar-lg">
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="p-2 mt-1">
+                                            <p class="text-primary text-opacity-75 mb-1">Welcome, and thank you..</p>
+                                            <h3 class="text-primary mb-1">{{ session.data.attendees[0].participant.firstname }} {{ session.data.attendees[0].participant.middlename }} {{ session.data.attendees[0].participant.lastname }}</h3>
+                                            <p class="text-primary text-muted fs-14">Attendance confirmed on <b class="text-primary">{{session.data.attendees[0].attended_at}}</b></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card bg-light-subtle shadow-none border">
                         <div class="card-header bg-light-subtle">
                             <div class="d-flex mb-n3">
                                 <div class="flex-shrink-0 me-3">
@@ -82,7 +111,7 @@
                                     </div>
                                 </div>
                                 <div class="flex-grow-1">
-                                    <h5 class="mb-0 fs-14"><span class="text-body">Attendance</span></h5>
+                                    <h5 class="mb-0 fs-14"><span class="text-body">List of Attendees</span></h5>
                                     <p class="text-muted fs-12">
                                         Shows participants who have successfully scanned the QR code.
                                     </p>
@@ -91,7 +120,7 @@
                         </div>
                         <div class="card-body bg-white rounded-bottom">
                             <div class="table-responsive table-card"
-                                 style="height:calc(100vh - 400px); overflow-x:hidden;">
+                                 style="height:calc(100vh - 560px); overflow-x:hidden;">
                                 <table class="table table-nowrap align-middle mb-0">
                                     <thead class="bg-light thead-fixed">
                                         <tr class="fs-11">
@@ -132,16 +161,17 @@ export default {
     data() {
         return {
             selected: this.session.data,
-            scannerToggle: false,   // checkbox state
-            showScanner: false,     // show QR scanner box
-            showCamera: false,      // show camera preview
-            capturedImage: null,    // final snapshot
+            scannerToggle: false,  
+            showScanner: false,     
+            showCamera: false,      
+            capturedImage: null,   
             countdown: 0,
             qrScanner: null,
             cameraStream: null,
             form: useForm({
                 session: this.session.data.key,
                 participant: null,
+                image: null,
                 option: 'attendance'
             })
         }
@@ -223,7 +253,7 @@ export default {
             canvas.height = video.videoHeight
             const ctx = canvas.getContext("2d")
             ctx.drawImage(video, 0, 0, canvas.width, canvas.height)
-            this.capturedImage = canvas.toDataURL("image/png")
+            this.form.image = canvas.toDataURL("image/png")
         },
 
         stopCamera() {
