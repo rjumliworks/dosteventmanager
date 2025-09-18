@@ -130,9 +130,9 @@
                     <th rowspan="2" width="15%">EMAIL / CONTACT NO.</th>
                     <th rowspan="2" width="3%">SEX</th>
                     <th rowspan="2" width="3%">AGE</th>
-                    <th colspan="3" width="15%">Please check if applicable</th>
-                    <th rowspan="2" width="9%">SIGNATURE</th>
-                    <th rowspan="2" width="9%">PHOTO</th>
+                    <th colspan="3" width="17%">Please check if applicable</th>
+                    <th rowspan="2" width="8%">SIGNATURE</th>
+                    <th rowspan="2" width="8%">PHOTO</th>
                 </tr>
                 <tr>
                     <th width="3%">4Ps</th>
@@ -140,50 +140,36 @@
                     <th width="3%">IP</th>
                 </tr>
             </thead>
-
             <tbody>
                 @foreach ($data['attendees'] as $attendee)
                     <tr style="text-align: center;">
                         <td>{{ $loop->iteration }}</td>
-                            <!-- NAME -->
-                            <td>
-                                {{ $attendee->participant->firstname ?? '' }} {{ $attendee->participant->lastname ?? '' }}
-                            </td>
-
-                            <!-- AFFILIATION / DESIGNATION -->
-                            <td style="text-align: center;">
-                                {{ $attendee->participant->detail->affiliation ?? '' }}<br>
-                                <small style="color: gray;">{{ $attendee->participant->detail->designation ?? '' }}</small>
-                            </td>
-
-                            <!-- EMAIL / CONTACT -->
-                            <td style="text-align: center;">
-                                {{ $attendee->participant->email ?? '' }}<br>
-                                <small style="color: gray;">{{ $attendee->participant->contact_no ?? '' }}</small>
-                            </td>
-
-                            <!-- SEX -->
-                            <td>{{ $attendee->participant->detail->sex->name[0] ?? '' }}</td>
-
-                            <!-- AGE -->
-                            <td>{{ $attendee->age ?? '31' }}</td>
-
-                            <!-- CHECKBOX COLUMNS -->
-                            <td>{{ $attendee->is_4ps ? '✔' : '' }}</td>
-                            <td>{{ $attendee->is_pwd ? '✔' : '' }}</td>
-                            <td>{{ $attendee->is_ip ? '✔' : '' }}</td>
-
-                            <!-- SIGNATURE -->
-                            <td>
-                                @if(!empty($attendee->participant->detail->signature_base64))
-                                    <img src="{{ $attendee->participant->detail->signature_base64 }}" style="width:70px; height:auto;" alt="Signature">
-                                @else
-                                    <span>No signature</span>
-                                @endif
-                            </td>
-                            <td>
-                                <img src="{{ $attendee->image_base64 }}" style="width:70px; height:auto;" alt="Photo">
-                            </td>
+                        <td>
+                            {{ $attendee->participant->firstname ?? '' }} {{ $attendee->participant->lastname ?? '' }}
+                        </td>
+                        <td style="text-align: center;">
+                            {{ $attendee->participant->detail->affiliation ?? '' }}<br>
+                            <small style="color: gray;">{{ $attendee->participant->detail->designation ?? '' }}</small>
+                        </td>
+                        <td style="text-align: center;">
+                            {{ $attendee->participant->email ?? '' }}<br>
+                            <small style="color: gray;">{{ $attendee->participant->contact_no ?? '' }}</small>
+                        </td>
+                        <td>{{ $attendee->participant->detail->sex->name[0] ?? '' }}</td>
+                        <td>{{ $attendee->age ?? '31' }}</td>
+                        <td>{{ $attendee->is_4ps ? '✔' : '' }}</td>
+                        <td>{{ $attendee->is_pwd ? '✔' : '' }}</td>
+                        <td>{{ $attendee->is_ip ? '✔' : '' }}</td>
+                        <td>
+                            @if(!empty($attendee->participant->detail->signature_base64))
+                                <img src="{{ $attendee->participant->detail->signature_base64 }}" style="width:70px; height:auto;" alt="Signature">
+                            @else
+                                <span>No signature</span>
+                            @endif
+                        </td>
+                        <td>
+                            <img src="{{ $attendee->image_base64 }}" style="width:70px; height:auto;" alt="Photo">
+                        </td>
                     </tr>
                 @endforeach
             </tbody>
