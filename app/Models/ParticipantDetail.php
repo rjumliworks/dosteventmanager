@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class ParticipantDetail extends Model
@@ -9,6 +10,15 @@ class ParticipantDetail extends Model
     protected $fillable = [
         'designation','affiliation','birthdate','type_id','sex_id','avatar','signature','is_4ps','is_pwd','is_ip','is_completed'
     ];
+
+    protected $appends = ['age'];
+
+    public function getAgeAttribute()
+    {
+        return $this->birthdate
+            ? Carbon::parse($this->birthdate)->age   // Carbon automatically calculates age
+            : null;
+    }
 
     public function sex()
     {
