@@ -142,12 +142,9 @@
             </thead>
 
             <tbody>
-                @for ($i = 0; $i <= 19; $i++)
+                @foreach ($data['attendees'] as $attendee)
                     <tr style="text-align: center;">
-                        <td>{{ $i+1 }}</td>
-                        @if(isset($data['attendees'][$i]))
-                            @php $attendee = $data['attendees'][$i]; @endphp
-
+                        <td>{{ $loop->iteration }}</td>
                             <!-- NAME -->
                             <td>
                                 {{ $attendee->participant->firstname ?? '' }} {{ $attendee->participant->lastname ?? '' }}
@@ -187,10 +184,6 @@
                             <td>
                                 <img src="{{ $attendee->image_base64 }}" style="width:70px; height:auto;" alt="Photo">
                             </td>
-                        @else
-                            <td></td><td></td><td></td><td></td>
-                            <td></td><td></td><td></td><td></td><td></td><td></td>
-                        @endif
                     </tr>
                 @endfor
             </tbody>
