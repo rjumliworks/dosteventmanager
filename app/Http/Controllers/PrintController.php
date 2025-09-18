@@ -204,6 +204,8 @@ class PrintController extends Controller
     }
 
     public function lists($request){
+         ini_set('max_execution_time', 0);
+        set_time_limit(0);
         $data = Participant::with('detail.sex')->get();
         $url = $_SERVER['HTTP_HOST'].'/verification/';
         $qrCode = new QrCode($url);
