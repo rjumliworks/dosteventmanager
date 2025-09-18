@@ -34,7 +34,7 @@ class PrintController extends Controller
                 return $this->attendance($request);
             break;
             case 'lists':
-                return $this->lists($request);
+                return $this->lists();
             break;
         }
     }
@@ -203,7 +203,7 @@ class PrintController extends Controller
         return null;
     }
 
-    public function lists($request){
+    public function lists(){
          ini_set('max_execution_time', 0);
         set_time_limit(0);
         $data = Participant::with('detail.sex')->get();

@@ -186,9 +186,7 @@ export default {
             this.$refs.update.edit(data);
         },
         openPrint(){
-            window.open('/print?option=lists'
-                
-            );
+            window.open('/print?option=lists');
         },
     }
 }
