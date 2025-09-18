@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Endroid\QrCode\QrCode;
 use Endroid\QrCode\Logo\Logo;
 use Endroid\QrCode\Writer\PngWriter;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class SessionViewResource extends JsonResource
@@ -17,7 +18,8 @@ class SessionViewResource extends JsonResource
         $key = $hashids->encode($this->id);
 
         $code = $this->code;
-        $qrCode = new QrCode($code);
+        $encrypted = Crypt::encrypt($code);
+        $qrCode = new QrCode($encrypted);
         $qrCode->setSize(2000)->setMargin(10);;
         $logo = Logo::create(public_path('images/qrlogo.png'))->setResizeToWidth(400);                        
 

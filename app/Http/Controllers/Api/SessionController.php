@@ -12,6 +12,7 @@ use App\Http\Resources\Api\SessionResource;
 use App\Http\Resources\Api\SessionViewResource;
 use App\Http\Resources\Api\Data\QuestionResource;
 use App\Http\Resources\ParticipantListResource;
+use Illuminate\Support\Facades\Crypt;
 use App\Events\SessionEvent;
 
 class SessionController extends Controller
@@ -57,7 +58,8 @@ class SessionController extends Controller
 
     public function attendance(Request $request)
     {
-        $session_id = EventSession::where('code', $request->session)->value('id');
+        $code = Crypt::decrypt($request->session);
+        $session_id = EventSession::where('code', $code)->value('id');
 
         if (!$session_id) {
             return response()->json([

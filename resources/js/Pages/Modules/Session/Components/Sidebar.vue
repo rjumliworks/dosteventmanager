@@ -5,7 +5,8 @@
             <tr>
                 <td style="border-right: none; border-left: none;"><span class="fw-semibold text-primary fs-12 ms-2">Session Status</span></td>
             </tr>
-            <td style="border-right: none; border-left: none;">
+            <tr>
+                <td style="border-right: none; border-left: none;">
                     <div class="row ms-n2 mb-0">
                         <div class="col-md-12">
                             <div class="d-flex">
@@ -25,6 +26,7 @@
                         </div>
                     </div>
                 </td>
+            </tr>
             <tr>
                 <td style="border-right: none; border-left: none;"><span class="fw-semibold text-primary fs-12 ms-2">Session Information</span></td>
             </tr>
@@ -74,6 +76,17 @@
                     </div>
                 </td>
             </tr>
+            <tr>
+                <td style="border-right: none; border-left: none;"><span class="fw-semibold text-primary fs-12 ms-2">QR Code</span></td>
+            </tr>
+            <td style="border-right: none; border-left: none;" class="text-center">
+                <img
+                    :src="selected.qr"
+                    alt="QR Code"
+                    style="width: 60%; height: auto; object-fit: contain; cursor: pointer;"
+                    @click="openImage(selected.qr)"
+                />
+            </td>
             <tr>
                 <td style="border-right: none; border-left: none;"><span class="fw-semibold text-primary fs-12 ms-2">Session Settings</span></td>
             </tr>
@@ -195,6 +208,11 @@ export default {
             return start === end
                 ? formatDate(start)
                 : `${formatDate(start)} - ${formatDate(end)}`;
+        }
+    },
+    methods: {
+        openImage(qr) {
+            window.open(qr, '_blank');
         }
     }
 }
