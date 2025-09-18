@@ -185,7 +185,7 @@
                                 <img src="{{ $attendee->image_base64 }}" style="width:70px; height:auto;" alt="Photo">
                             </td>
                     </tr>
-                @endfor
+                @endforeach
             </tbody>
 
         </table>
