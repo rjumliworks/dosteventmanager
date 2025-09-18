@@ -1,6 +1,6 @@
 <template>
-<Head title="Hotels"/>
-<PageHeader title="List of Hotels" pageTitle="List" />
+<Head title="Participants"/>
+<PageHeader title="List of Participants" pageTitle="List" />
     <BRow>
         <div class="col-md-12">
             <div class="card bg-light-subtle shadow-none border">
