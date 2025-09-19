@@ -5,6 +5,9 @@
                 <div class="input-group mb-1">
                     <span class="input-group-text"> <i class="ri-search-line search-icon"></i></span>
                     <input type="text"  placeholder="Search Session" class="form-control" style="width: 30%;">
+                       <span @click="openPrint()" class="input-group-text" v-b-tooltip.hover title="Print" style="cursor: pointer;"> 
+                        <i class="ri-qr-code-fill search-icon"></i>
+                    </span>
                     <b-button type="button" variant="primary" @click="openCreate">
                         <i class="ri-add-circle-fill align-bottom me-1"></i> Create
                     </b-button>
@@ -40,13 +43,13 @@
                     </td>
                      <td class="text-end">
                        
-                            <b-button variant="soft-info" class="me-1" v-b-tooltip.hover title="View" size="sm">
-                                <i class="ri-eye-fill align-bottom"></i>
+                            <b-button @click="openPrint(list.code)" variant="soft-info" class="me-1" v-b-tooltip.hover title="View" size="sm">
+                                <i class="ri-qr-code-fill align-bottom"></i>
                             </b-button>
                         
-                        <b-button @click="openEdit(list)" variant="soft-warning" v-b-tooltip.hover title="Edit" size="sm">
+                        <!-- <b-button @click="openEdit(list)" variant="soft-warning" v-b-tooltip.hover title="Edit" size="sm">
                             <i class="ri-pencil-fill align-bottom"></i>
-                        </b-button>
+                        </b-button> -->
                     </td>
                 </tr>
             </tbody>
@@ -72,6 +75,9 @@ export default {
         },
         openEdit(list){
             this.$refs.create.edit(list);
+        },
+        openPrint(code){
+            window.open('/print?option=qr&code='+code);
         },
         dateRange(schedules) {
             if (!schedules || schedules.length === 0) return 'No date';

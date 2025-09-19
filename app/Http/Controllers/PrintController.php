@@ -7,8 +7,11 @@ use Hashids\Hashids;
 use Illuminate\Http\Request;
 use App\Models\EventSession;
 use App\Models\EventSessionParticipant;
+use App\Models\EventExhibitor;
 use Endroid\QrCode\QrCode;
+use Endroid\QrCode\Logo\Logo;
 use Endroid\QrCode\Writer\PngWriter;
+use Illuminate\Support\Facades\Crypt;
 use App\Mail\CertificateMail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
@@ -35,6 +38,9 @@ class PrintController extends Controller
             break;
             case 'lists':
                 return $this->lists();
+            break;
+            case 'qr':
+                return $this->qrcode($request);
             break;
         }
     }
@@ -234,6 +240,23 @@ class PrintController extends Controller
             $canvas->text($x, $y, $text, $font, $size);
         });
         return $pdf->stream('participants.pdf');
+    }
+
+    public function qrcode($request){
+        $list = EventExhibitor::where('code',$request->code)->first();
+    
+        $code = $list->code;
+        $encrypted = Crypt::encrypt($code);
+        $qrCode = new QrCode($encrypted);
+        $qrCode->setSize(2000)->setMargin(10);;
+        $logo = Logo::create(public_path('images/qrlogo.png'))->setResizeToWidth(400);              
+
+        $pngWriter = new PngWriter();
+        $qrCodeImageString = $pngWriter->write($qrCode,$logo)->getString();
+        $qr = 'data:image/png;base64,' . base64_encode($qrCodeImageString);
+
+          return response($qrCodeImageString)
+        ->header('Content-Type', 'image/png');
     }
 
 }
