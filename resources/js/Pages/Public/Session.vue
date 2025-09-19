@@ -27,40 +27,28 @@
                                  class="img-fluid position-absolute"
                                  style="top:-40%; left:0; width:100%;" />
 
-                            <!-- ✅ Fixed 200x200 box -->
-                            <div class="position-absolute qr-box"
-                                style="top:53%; left:51.7%; transform:translate(-50%, -50%);">
-                              <img
-                                    v-if="!showScanner"
+                            <div class="position-absolute qr-box" style="top:53%; left:51.7%; transform:translate(-50%, -50%);">
+                                <img v-if="!showScanner"
                                     :src="selected.qr"
                                     alt="QR Code"
                                     style="width: 100%; height: 100%; object-fit: contain;"
                                 />
-                                <!-- QR Scanner -->
                                 <div v-show="showScanner" id="qr-reader" class="qr-child"></div>
-
-                                <!-- Camera Preview -->
                                 <video v-show="showCamera"
                                     ref="cameraPreview"
                                     autoplay
                                     playsinline
-                                    class="qr-child"></video>
-
-                                <!-- Captured Image -->
+                                    class="qr-child">
+                                </video>
                                 <img v-if="capturedImage && !showCamera && !showScanner"
                                     :src="capturedImage"
                                     class="qr-child" />
-
-                                <!-- Countdown -->
                                 <div v-if="countdown > 0" class="countdown-overlay">
                                     {{ countdown }}
                                 </div>
                             </div>
 
-                            <b-form-group class="text-center position-absolute"
-                                          style="top:85%; left:55%;
-                                                 transform:translate(-50%, -50%);
-                                                 width:200px;">
+                            <b-form-group class="text-center position-absolute" style="top:85%; left:55%; transform:translate(-50%, -50%); width:200px;">
                                 <b-form-checkbox switch v-model="scannerToggle">
                                     {{ scannerToggle ? 'Stop Scanner' : 'Start Scanner' }}
                                 </b-form-checkbox>
@@ -192,6 +180,7 @@ export default {
                 if (event.type === 'attendance') {
                     if (!this.session.data.attendees.some(a => a.id === event.data.id)) {
                         this.session.data.attendees.unshift(event.data);
+                        this.startCamera(event.data.participant_id);
                     }
                     this.session.data.attendees = this.session.data.attendees.filter(
                         (attendee, index, self) =>

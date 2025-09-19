@@ -36,22 +36,16 @@ class UpdateClass
         $code = $request->participant;
 
         $participant_id = Participant::where('code',$code)->value('id');
-        $data = EventSessionParticipant::where('session_id',$session_id)->where('participant_id',$participant_id)->first();
-        $data->attended_at = now();
-        $data->save();
-
-        
-        $data = EventSessionParticipant::where('session_id', $session_id)
-        ->where('participant_id', $participant_id)
-        ->first();
+        $data = EventSessionParticipant::where('session_id', $session_id)->where('participant_id', $participant_id)->first();
 
         if($request->image){
             $path = $this->image($request);
             $data->image = $path;
         }
-
-        $data->attended_at = now();
-        $data->status_id = 8;
+        if(!$data->attended_at){
+            $data->attended_at = now();
+            $data->status_id = 8;
+        }
         $data->save();
 
         $latest = EventSessionParticipant::with('participant')->where('session_id', $session_id)
