@@ -38,6 +38,23 @@ class UpdateClass
         $participant_id = Participant::where('code',$code)->value('id');
         $data = EventSessionParticipant::where('session_id', $session_id)->where('participant_id', $participant_id)->first();
 
+        if (!$data) {
+            broadcast(new SessionEvent('You are not a registered participant.','attendance-error'));
+            return response()->json([
+                'status' => false,
+                'message' => 'You are not a registered participant.'
+            ], 400);
+        }
+
+        if ($data->attended_at) {
+            broadcast(new SessionEvent('Attendance already recorded for this participant.','attendance-error'));
+            return response()->json([
+                'status' => false,
+                'message' => 'Attendance already recorded for this participant.'
+            ], 400);
+        }
+
+
         if($request->image){
             $path = $this->image($request);
             $data->image = $path;

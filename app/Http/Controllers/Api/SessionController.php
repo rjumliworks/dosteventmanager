@@ -89,8 +89,14 @@ class SessionController extends Controller
             ], 400);
         }
 
-        $attendance->attended_at = now();
-        $attendance->status_id = 8;
+        if($request->image){
+            $path = $this->image($request);
+            $attendance->image = $path;
+        }
+        if(!$attendance->attended_at){
+            $attendance->attended_at = now();
+            $attendance->status_id = 8;
+        }
 
         if ($attendance->save()) {
             $latest = EventSessionParticipant::with('participant.detail')->where('session_id', $session_id)
