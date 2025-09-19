@@ -159,7 +159,11 @@ export default {
                 option: 'attendance'
             }),
             error: null,
-            participant: null
+            participant: { 
+                avatar: null,
+                name: null,
+                date: null
+            }
         }
     },
     watch: {
