@@ -61,11 +61,11 @@
                 <div class="col-lg-6 mt-4">
                     <div class="card bg-light-subtle shadow-none border">
                         <div class="card-header bg-light-subtle" style="height:calc(100vh - 700px);">
-                            <div class="pt-1 ps-1 profile-wrapper" v-if="session.data.attendees.length == 0">
+                            <div class="pt-1 ps-1 profile-wrapper" v-if="error">
                                 <div class="row g-4">
                                     <div class="col-12 text-center">
                                         <div class="p-4 border rounded bg-light">
-                                            <p class="mb-0 text-muted fw-semibold">No attendee found</p>
+                                            <p class="mb-0 text-muted fw-semibold">{{ error }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -161,7 +161,12 @@ export default {
                 participant: null,
                 image: null,
                 option: 'attendance'
-            })
+            }),
+            error: null,
+            participant: { 
+                name: null,
+                date: null
+            }
         }
     },
     watch: {
@@ -177,16 +182,21 @@ export default {
         setupEchoListener() {
             window.Echo.channel('session')
                 .listen('SessionEvent', (event) => {
-                if (event.type === 'attendance') {
-                    if (!this.session.data.attendees.some(a => a.id === event.data.id)) {
-                        this.session.data.attendees.unshift(event.data);
-                        this.startCamera(event.data.participant_id);
+                    switch(event.type){
+                        case 'attendance':
+                            if (!this.session.data.attendees.some(a => a.id === event.data.id)) {
+                                this.session.data.attendees.unshift(event.data);
+                                this.startCamera(event.data.participant_id);
+                            }
+                            this.session.data.attendees = this.session.data.attendees.filter(
+                                (attendee, index, self) =>
+                                    index === self.findIndex(a => a.id === attendee.id)
+                            );
+                        break;
+                        case 'attendance-error':
+                            this.error = event.data;
+                        break;
                     }
-                    this.session.data.attendees = this.session.data.attendees.filter(
-                        (attendee, index, self) =>
-                            index === self.findIndex(a => a.id === attendee.id)
-                    );
-                }
             })
         },
 

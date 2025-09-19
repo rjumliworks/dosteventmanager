@@ -74,6 +74,7 @@ class SessionController extends Controller
             ->first();
 
         if (!$attendance) {
+            broadcast(new SessionEvent('You are not a registered participant.','attendance-error'));
             return response()->json([
                 'status' => false,
                 'message' => 'You are not a registered participant.'
@@ -81,6 +82,7 @@ class SessionController extends Controller
         }
 
         if ($attendance->attended_at) {
+            broadcast(new SessionEvent('Attendance already recorded for this participant.','attendance-error'));
             return response()->json([
                 'status' => false,
                 'message' => 'Attendance already recorded for this participant.'
