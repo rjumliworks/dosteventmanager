@@ -38,6 +38,9 @@ class ViewClass
         $data = new SessionViewResource(
            EventSession::with([
                 'venue','detail','schedules',
+                'participants' => function ($q) {
+                    $q->orderBy('updated_at', 'desc');
+                },
                 'participants.participant.detail',
                 'participants.participant.csfs' => function ($q) use ($key) {
                     $q->where('feedbackable_type', EventSession::class)

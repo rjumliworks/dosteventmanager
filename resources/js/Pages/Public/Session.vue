@@ -181,17 +181,18 @@ export default {
                 .listen('SessionEvent', (event) => {
                     switch(event.type){
                         case 'attendance':
-                            if (!this.session.data.attendees.some(a => a.id === event.data.id)) {
-                                this.session.data.attendees.unshift(event.data);
-                                this.startCamera(event.data.participant_id);
-                            }
-                            this.session.data.attendees = this.session.data.attendees.filter(
-                                (attendee, index, self) =>
-                                    index === self.findIndex(a => a.id === attendee.id)
-                            );
-                            this.participant.avatar = event.data.avatar. 
-                            this.participant.name = event.data.participant.firstname+' '+event.data.participant.middlename+' '+event.data.participant.lastname;
-                            this.participant.date = event.data.attended_at;
+                            // if (!this.session.data.attendees.some(a => a.id === event.data.id)) {
+                            //     this.session.data.attendees.unshift(event.data);
+                            //     this.startCamera(event.data.participant_id);
+                            // }
+                            // this.session.data.attendees = this.session.data.attendees.filter(
+                            //     (attendee, index, self) =>
+                            //         index === self.findIndex(a => a.id === attendee.id)
+                            // );
+                            // this.participant.avatar = event.data.avatar. 
+                            // this.participant.name = event.data.participant.firstname+' '+event.data.participant.middlename+' '+event.data.participant.lastname;
+                            // this.participant.date = event.data.attended_at;
+                            console.log(event);
                         break;
                         case 'attendance-error':
                             this.error = event.data;
