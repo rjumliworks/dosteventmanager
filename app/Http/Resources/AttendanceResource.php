@@ -13,7 +13,7 @@ class AttendanceResource extends JsonResource
             'id' => $this->id,
             'attended_at' => $this->attended_at,
             'avatar' => asset('storage/'.$this->image),
-            'participant_id' => $this->participant_id,
+            'participant_id' => $this->participant->code,
             'participant' => $this->participant
         ];
     }
