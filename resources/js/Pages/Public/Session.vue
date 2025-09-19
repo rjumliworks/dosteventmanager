@@ -61,13 +61,9 @@
                 <div class="col-lg-6 mt-4">
                     <div class="card bg-light-subtle shadow-none border">
                         <div class="card-header bg-light-subtle" style="height:calc(100vh - 700px);">
-                            <div class="pt-1 ps-1 profile-wrapper" v-if="error">
-                                <div class="row g-4">
-                                    <div class="col-12 text-center">
-                                        <div class="p-4 border rounded bg-light">
-                                            <p class="mb-0 text-muted fw-semibold">{{ error }}</p>
-                                        </div>
-                                    </div>
+                            <div class="pt-1 ps-1 profile-wrapper" style="vertical-align: middle; text-align: center;" v-if="error">
+                                <div class="p-4 border rounded bg-danger-subtle mt-4">
+                                    <p class="mb-0 text-danger fw-semibold">{{ error }}</p>
                                 </div>
                             </div>
                             <div v-else class="pt-1 ps-1 profile-wrapper">
