@@ -8,6 +8,7 @@ use App\Models\EventSessionParticipant;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Resources\DefaultResource;
+use App\Http\Resources\AtttendanceResource;
 use App\Http\Resources\Api\SessionResource;
 use App\Http\Resources\Api\SessionViewResource;
 use App\Http\Resources\Api\Data\QuestionResource;
@@ -93,11 +94,11 @@ class SessionController extends Controller
             $latest = EventSessionParticipant::with('participant.detail')->where('session_id', $session_id)
             ->where('id', $attendance->id)
             ->first();
-            broadcast(new SessionEvent(new ParticipantListResource($latest),'attendance'));
+            broadcast(new SessionEvent(new AttendanceResource($latest),'attendance'));
             return response()->json([
                 'status' => true,
                 'message' => 'Attendance successfully recorded.',
-                'data' => new ParticipantListResource($latest)
+                'data' => new AttendanceResource($latest)
             ], 200);
         }
 
