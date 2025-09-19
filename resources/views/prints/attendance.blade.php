@@ -145,7 +145,7 @@
                     <tr style="text-align: center;">
                         <td>{{ $loop->iteration }}</td>
                         <td>
-                            {{ $attendee->participant->firstname ?? '' }} {{ $attendee->participant->lastname ?? '' }}
+                            {{ $attendee->participant->firstname ?? '' }} {{ $attendee->participant->lastname ?? '' }}<br>
                             <small style="color: gray;">{{$attendee->attended_at ?? '' }}</small>
                         </td>
                         <td style="text-align: center;">
