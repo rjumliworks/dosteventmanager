@@ -146,6 +146,7 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>
                             {{ $attendee->participant->firstname ?? '' }} {{ $attendee->participant->lastname ?? '' }}
+                            <small style="color: gray;">{{$attendee->attended_at ?? '' }}</small>
                         </td>
                         <td style="text-align: center;">
                             {{ $attendee->participant->detail->affiliation ?? '' }}<br>
