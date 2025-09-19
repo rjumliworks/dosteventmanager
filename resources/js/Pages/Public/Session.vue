@@ -62,22 +62,22 @@
                     <div class="card bg-light-subtle shadow-none border">
                         <div class="card-header bg-light-subtle" style="height:calc(100vh - 700px);">
                             <div class="pt-1 ps-1 profile-wrapper" style="vertical-align: middle; text-align: center;" v-if="error">
-                                <div class="p-4 border rounded bg-danger-subtle mt-4">
+                                <div class="p-4 border rounded bg-danger-subtle mt-3">
                                     <p class="mb-0 text-danger fw-semibold">{{ error }}</p>
                                 </div>
                             </div>
                             <div v-else class="pt-1 ps-1 profile-wrapper">
-                                <div class="row g-4">
+                                <div class="row g-4" v-if="participant">
                                     <div class="col-auto">
                                         <div>
-                                            <img :src="session.data.attendees[0].avatar" alt="user-img" class="avatar-lg">
+                                            <img :src="participant.avatar" alt="user-img" class="avatar-lg">
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="p-2 mt-1">
                                             <p class="text-primary text-opacity-75 mb-1">Welcome, and thank you..</p>
-                                            <h3 class="text-primary mb-1">{{ session.data.attendees[0].participant.firstname }} {{ session.data.attendees[0].participant.middlename }} {{ session.data.attendees[0].participant.lastname }}</h3>
-                                            <p class="text-primary text-muted fs-14">Attendance confirmed on <b class="text-primary">{{session.data.attendees[0].attended_at}}</b></p>
+                                            <h3 class="text-primary mb-1">{{ participant.name }}</h3>
+                                            <p class="text-primary text-muted fs-14">Attendance confirmed on <b class="text-primary">{{participant.date}}</b></p>
                                         </div>
                                     </div>
                                 </div>
@@ -159,10 +159,7 @@ export default {
                 option: 'attendance'
             }),
             error: null,
-            participant: { 
-                name: null,
-                date: null
-            }
+            participant: null
         }
     },
     watch: {
@@ -188,6 +185,9 @@ export default {
                                 (attendee, index, self) =>
                                     index === self.findIndex(a => a.id === attendee.id)
                             );
+                            this.participant.avatar = event.data.avatar. 
+                            this.participant.name = event.data.participant.firstname+' '+event.data.participant.middlename+' '+event.data.participant.lastname;
+                            this.participant.date = event.data.attended_at;
                         break;
                         case 'attendance-error':
                             this.error = event.data;
