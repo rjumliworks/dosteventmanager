@@ -40,18 +40,24 @@ class UpdateClass
 
         if (!$data) {
             broadcast(new SessionEvent('You are not a registered participant.','attendance-error'));
-            return response()->json([
-                'status' => false,
-                'message' => 'You are not a registered participant.'
-            ], 400);
+            return [
+                'data' => '-',
+                'message' => 'Activity successfully created.', 
+                'info' => "false"
+            ];
         }
 
         if ($data->attended_at) {
             broadcast(new SessionEvent('Attendance already recorded for this participant.','attendance-error'));
-            return response()->json([
-                'status' => false,
-                'message' => 'Attendance already recorded for this participant.'
-            ], 400);
+            // return response()->json([
+            //     'status' => false,
+            //     'message' => 'Attendance already recorded for this participant.'
+            // ], 400);
+             return [
+                'data' => '-',
+                'message' => 'Activity successfully created.', 
+                'info' => "false"
+            ];
         }
 
 
