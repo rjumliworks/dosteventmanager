@@ -16,6 +16,7 @@ class ExhibitorResource extends JsonResource
             'institution' => $this->institution,
             'description' => $this->description,
             'area' => $this->area,
+            'type' => $this->type,
             'is_active' => $this->is_active,
             'has_visited' => $this->has_visited,
             'has_voted' => $this->has_voted,

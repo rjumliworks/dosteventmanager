@@ -13,6 +13,7 @@ class EventExhibitor extends Model
        'description',
        'area',
        'is_active',
+       'type_id',
        'event_id'
     ];
 
