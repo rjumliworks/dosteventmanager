@@ -43,7 +43,7 @@ class AvatarController extends Controller
                 // Store new image
                 $extension = $request->file('image')->getClientOriginalExtension();
                 
-                $filename  = $timestamp+$request->id . '.' . $extension;
+                $filename  = $timestamp.$request->id . '.' . $extension;
                 $path = $request->file('image')->storeAs('images/avatars', $filename, 'public');
 
                 $participant->detail->avatar = $path;
