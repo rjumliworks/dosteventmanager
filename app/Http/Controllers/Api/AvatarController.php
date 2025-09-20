@@ -34,7 +34,7 @@ class AvatarController extends Controller
 
                 // Delete old avatar if exists
                 if ($participant->detail->avatar) {
-                    Storage::disk('public')->delete('images/avatars/' . $participant->detail->avatar);
+                    Storage::disk('public')->delete($participant->detail->avatar);
                 }
 
                 // $hashids = new Hashids('krad',10);
