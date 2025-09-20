@@ -27,7 +27,7 @@ class AvatarController extends Controller
 
         try {
             $request->validate([
-                'iamge' => 'required|image|max:2048', // Assuming maximum file size is 2MB
+                'image' => 'required|image|max:2048', // Assuming maximum file size is 2MB
             ]);
            
                 $participant = Participant::with('detail')->findOrFail($request->id);
@@ -37,12 +37,7 @@ class AvatarController extends Controller
                     Storage::disk('public')->delete($participant->detail->signature);
                 }
 
-                $hashids = new Hashids('krad',10);
-                $key = $hashids->encode($request->id);
-                // Store new image
-                $extension = $request->file('image')->getClientOriginalExtension();
-                $filename  = $key . '.' . $extension;
-                $path = $request->file('image')->storeAs('images/avatars', $filename, 'public');
+                $path = $this->image($request);
 
                 $participant->detail->image = $path;
                 $participant->detail->save();
@@ -50,7 +45,7 @@ class AvatarController extends Controller
                 return response()->json([
                     'status'  => true,
                     'message' => 'Profile updated successfully',
-                    'data'    => $this->convertToBase64($participant->detail->signature)
+                    'data'    => asset('storage/'.$participant->detail->image)
                 ]);
 
         }catch(\Throwable $th){
@@ -60,6 +55,37 @@ class AvatarController extends Controller
                 'message' => $th->getMessage()
             ], 500);
         }
+    }
+
+    public function image($request)
+    {
+        $image = $request->input('image'); // base64 string
+
+        // Validate format
+        if (!preg_match('/^data:image\/(\w+);base64,/', $image, $matches)) {
+            return response()->json(['error' => 'Invalid image format.'], 422);
+        }
+
+        $type = strtolower($matches[1]); // png, jpg, jpeg, gif
+        if (!in_array($type, ['jpg', 'jpeg', 'png'])) {
+            return response()->json(['error' => 'Invalid image type.'], 422);
+        }
+
+        // Remove header and decode
+        $image = substr($image, strpos($image, ',') + 1);
+        $image = str_replace(' ', '+', $image);
+        $imageData = base64_decode($image);
+
+        if ($imageData === false) {
+            return response()->json(['error' => 'Base64 decode failed.'], 422);
+        }
+
+        // Save to storage/app/public/images/attendance
+        $filename = Str::random(10) . '.' . $type;
+        $path = 'images/attendance/' . $filename;
+        Storage::disk('public')->put($path, $imageData);
+
+        return $path;
     }
 
     public function signature(Request $request){
