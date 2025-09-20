@@ -52,7 +52,7 @@ class AvatarController extends Controller
                 return response()->json([
                     'status'  => true,
                     'message' => 'Profile updated successfully',
-                    'data'    => $filename
+                    'data'    => asset('storage/'.$filename)
                 ]);
 
         }catch(\Throwable $th){
