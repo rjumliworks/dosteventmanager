@@ -37,9 +37,9 @@ class AvatarController extends Controller
                     Storage::disk('public')->delete($participant->detail->image);
                 }
                 $timestamp = time();
-                $extension = $request->file('signature')->getClientOriginalExtension();
+                $extension = $request->file('image')->getClientOriginalExtension();
                 $filename = $timestamp.$request->id . '.' . $extension;
-                $path = $request->file('signature')->storeAs('images/avatars', $filename, 'public');
+                $path = $request->file('image')->storeAs('images/avatars', $filename, 'public');
 
                 $participant->detail->image = $path;
                 $participant->detail->save();
