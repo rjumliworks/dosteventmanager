@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\Event;
 use App\Models\Hotel;
 use App\Models\CsfQuestion;
 use App\Models\EventSession;
@@ -20,12 +21,18 @@ class DashboardController extends Controller
     {
         $id = $request->user_id;
         return response()->json([
+            'event'       => $this->event(),
             'points'      => $this->points($id),
             'sessions'    => $this->sessions($id),
             'exhibitors'  => $this->exhibitors($id),
             'csfs'        => $this->csfs(),
             'hotels'      => $this->hotels()
         ]);
+    }
+
+    public function event(){
+        $data = Event::where('is_active',1)->value('name');
+        return $data;
     }
 
     public function points($id){
