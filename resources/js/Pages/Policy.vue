@@ -1,108 +1,177 @@
 <template>
-    <div class="row justify-content-center mt-2">
-                        <div class="col-lg-10">
-                            <div class="card">
-                                <div class="bg-warning-subtle position-relative">
-                                    <div class="card-body p-5">
-                                        <div class="text-center">
-                                            <h3>Privacy Policy</h3>
-                                            <p class="mb-0 text-muted">Last update: 21 Sept, 2025</p>
-                                        </div>
-                                    </div>
-                                    <div class="shape">
-                                        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" width="1440" height="60" preserveAspectRatio="none" viewBox="0 0 1440 60">
-                                            <g mask="url(&quot;#SvgjsMask1001&quot;)" fill="none">
-                                                <path d="M 0,4 C 144,13 432,48 720,49 C 1008,50 1296,17 1440,9L1440 60L0 60z" style="fill: var(--vz-secondary-bg);"></path>
-                                            </g>
-                                            <defs>
-                                                <mask id="SvgjsMask1001">
-                                                    <rect width="1440" height="60" fill="#ffffff"></rect>
-                                                </mask>
-                                            </defs>
-                                        </svg>
-                                    </div>
-                                </div>
-                                <div class="card-body p-4">
-                                    <div class="d-flex">
-                                        <div class="flex-shrink-0 me-3">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle text-success icon-dual-success icon-xs"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                                        </div>
-                                        <div class="flex-grow-1">
-                                            <h5>Privacy Policy for velzon</h5>
-                                            <p class="text-muted">At Website Name, accessible at Website.com, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by Website Name and how we use it.</p>
-                                            <p class="text-muted">If you have additional questions or require more information about our Privacy Policy, do not hesitate to contact us through email at Email@Website.com</p>
-                                            <p class="text-muted">This privacy policy applies only to our online activities and is valid for visitors to our website with regards to the information that they shared and/or collect in Website Name. This policy is not applicable to any information collected offline or via channels other than this website.</p>
-                                            <p class="text-muted">How we use your information:</p>
-                                            <ul class="text-muted">
-                                                <li>
-                                                    <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</p>
-                                                </li>
-                                                <li>
-                                                    <p>If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet.</p>
-                                                </li>
-                                                <li>
-                                                    <p>On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment.</p>
-                                                </li>
-                                                <li>
-                                                    <p>It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.</p>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="d-flex">
-                                        <div class="flex-shrink-0 me-3">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle text-success icon-dual-success icon-xs"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                                        </div>
-                                        <div class="flex-grow-1">
-                                            <h5>How we use your information</h5>
-                                            <p class="text-muted">If you contact us directly, we may receive additional information about you such as your name, email address, phone number, the contents of the message and/or attachments you may send us, and any other information you may choose to provide.</p>
-                                            <p class="text-muted">Communicate with you, either directly or through one of our partners, including for customer service, to provide you with updates and other information relating to the website, and for marketing and promotional purposes.</p>
-                                            <p class="text-muted">When you register for an Account, we may ask for your contact information, including items such as name, company name, address, email address, and telephone number.</p>
-                                            <p class="text-muted">We use the information we collect in various ways, including to:</p>
-                                            <ul class="text-muted vstack gap-2">
-                                                <li>
-                                                    Provide, operate, and maintain our website
-                                                </li>
-                                                <li>
-                                                    Improve, personalize, and expand our website
-                                                </li>
-                                                <li>
-                                                    Understand and analyze how you use our website
-                                                </li>
-                                                <li>
-                                                    Develop new products, services, features, and functionality
-                                                </li>
-                                                <li>
-                                                    Send you emails
-                                                </li>
-                                                <li>
-                                                Find and prevent fraud
-                                                </li>
-                                            </ul>
-                                            <p class="text-muted">Like any other website, Website Name uses ‘cookies'. These cookies are used to store information including visitors' preferences, and the pages on the website that the visitor accessed or visited. The information is used to optimize the users' experience by customizing our web page content based on visitors' browser type and/or other information.</p>
-                                        </div>
-                                    </div>
+  <div class="row justify-content-center mt-2">
+    <div class="col-lg-10">
+      <div class="card">
+        <div class="bg-warning-subtle position-relative">
+          <div class="card-body p-5">
+            <div class="text-center">
+              <h3>Privacy Policy</h3>
+              <p class="mb-0 text-muted">Last update: 21 Sept, 2025</p>
+            </div>
+          </div>
+          <div class="shape">
+            <svg xmlns="http://www.w3.org/2000/svg" width="1440" height="60" preserveAspectRatio="none" viewBox="0 0 1440 60">
+              <g mask="url(#SvgjsMask1001)" fill="none">
+                <path d="M 0,4 C 144,13 432,48 720,49 C 1008,50 1296,17 1440,9L1440 60L0 60z" style="fill: var(--vz-secondary-bg);"></path>
+              </g>
+              <defs>
+                <mask id="SvgjsMask1001">
+                  <rect width="1440" height="60" fill="#ffffff"></rect>
+                </mask>
+              </defs>
+            </svg>
+          </div>
+        </div>
 
-                                    <div class="d-flex">
-                                        <div class="flex-shrink-0 me-3">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle text-success icon-dual-success icon-xs"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                                        </div>
-                                        <div class="flex-grow-1">
-                                            <p class="text-muted">Some of advertisers on our site may use cookies and web beacons. Our advertising partners are listed below. Each of our advertising partners has their own Privacy Policy for their policies on user data. For easier access, we hyperlinked to their Privacy Policies below.</p>
-                                            <p class="text-muted"><b>Website Name's Privacy Policy does not apply to other advertisers or websites. Thus, we are advising you to consult the respective Privacy Policies of these third-party ad servers for more detailed information. It may include their practices and instructions about how to opt-out of certain options. You may find a complete list of these Privacy Policies and their links here: Privacy Policy Links.</b></p>
-                                        </div>
-                                    </div>
+        <div class="card-body p-4">
+          <!-- Section: Introduction -->
+          <div class="d-flex mb-4">
+            <div class="flex-shrink-0 me-3">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle text-success icon-dual-success icon-xs">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              </svg>
+            </div>
+            <div class="flex-grow-1">
+              <h5>Effective Date: 21 Sept, 2025</h5>
+              <p class="text-muted">Thank you for using our event management app. Your privacy is important to us. This privacy policy explains what personal information we collect, how we use it, and your rights related to your data.</p>
+            </div>
+          </div>
+
+          <!-- Section: Information We Collect -->
+          <div class="d-flex mb-4">
+            <div class="flex-shrink-0 me-3">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle text-success icon-dual-success icon-xs">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              </svg>
+            </div>
+            <div class="flex-grow-1">
+              <h5>1. Information We Collect</h5>
+              <ul class="text-muted">
+                <li><b>Personal Information:</b> Email address (OTP login), Full name, Photo & digital signature (identity verification and participation tracking)</li>
+                <li><b>Usage Data:</b> Event sessions you view or register for, Exhibitors you visit or vote for, Customer satisfaction surveys (CSF), QR codes scanned, Attendance status</li>
+                <li><b>Device & Technical Data:</b> Device type and OS version, Anonymous usage analytics</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Section: How We Use Your Information -->
+          <div class="d-flex mb-4">
+            <div class="flex-shrink-0 me-3">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle text-success icon-dual-success icon-xs">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              </svg>
+            </div>
+            <div class="flex-grow-1">
+              <h5>2. How We Use Your Information</h5>
+              <ul class="text-muted">
+                <li>Enable secure login and verification</li>
+                <li>Register attendance and session participation</li>
+                <li>Allow QR-based booth visits and point tracking</li>
+                <li>Facilitate voting and survey submissions</li>
+                <li>Email certificates after CSF submissions</li>
+                <li>Improve user experience and app performance</li>
+                <li>Provide technical support if needed</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Section: Data Sharing -->
+          <div class="d-flex mb-4">
+            <div class="flex-shrink-0 me-3">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle text-success icon-dual-success icon-xs">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              </svg>
+            </div>
+            <div class="flex-grow-1">
+              <h5>3. Data Sharing and Disclosure</h5>
+              <p class="text-muted">We do not sell or rent your personal data. Your data may be shared only with:</p>
+              <ul class="text-muted">
+                <li>Event organizers and administrators for event-related purposes</li>
+                <li>Third-party services (e.g., email or storage providers) strictly to operate the app</li>
+              </ul>
+              <p class="text-muted">All third-party services comply with industry-standard security and privacy practices.</p>
+            </div>
+          </div>
+
+          <!-- Section: Data Retention -->
+          <div class="d-flex mb-4">
+            <div class="flex-shrink-0 me-3">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle text-success icon-dual-success icon-xs">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              </svg>
+            </div>
+            <div class="flex-grow-1">
+              <h5>4. Data Retention</h5>
+              <p class="text-muted">We retain your data only as long as necessary to fulfill the purpose it was collected for, unless a longer retention period is required by law or event organizers.</p>
+            </div>
+          </div>
+
+          <!-- Section: Your Rights -->
+          <div class="d-flex mb-4">
+            <div class="flex-shrink-0 me-3">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle text-success icon-dual-success icon-xs">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              </svg>
+            </div>
+            <div class="flex-grow-1">
+              <h5>5. Your Rights</h5>
+              <ul class="text-muted">
+                <li>Access, update, or delete your personal data</li>
+                <li>Request a copy of your data</li>
+                <li>Withdraw consent to data collection at any time (may affect app usage)</li>
+              </ul>
+              <p class="text-muted">To exercise these rights, contact us at: [your-support-email@example.com]</p>
+            </div>
+          </div>
+
+          <!-- Section: Security -->
+          <div class="d-flex mb-4">
+            <div class="flex-shrink-0 me-3">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle text-success icon-dual-success icon-xs">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              </svg>
+            </div>
+            <div class="flex-grow-1">
+              <h5>6. Security</h5>
+              <p class="text-muted">We implement reasonable safeguards (e.g., encryption, secure storage) to protect your information. However, no system is 100% secure.</p>
+            </div>
+          </div>
+
+          <!-- Section: Changes & Contact -->
+          <div class="d-flex mb-4">
+            <div class="flex-shrink-0 me-3">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle text-success icon-dual-success icon-xs">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              </svg>
+            </div>
+            <div class="flex-grow-1">
+              <h5>7. Changes to This Policy</h5>
+              <p class="text-muted">We may update this privacy policy from time to time. Changes will be posted on this page with an updated “Effective Date.”</p>
+              <h5>8. Contact Us</h5>
+              <p class="text-muted">If you have any questions or concerns about your privacy or this policy, please contact:</p>
+              <ul class="text-muted">
+                <li>📧 DOST Region IX</li>
+                <li>📨 ord@ro9.dost.gov.ph</li>
+                <li>🌐 https://region9.dost.gov.ph</li>
+              </ul>
+            </div>
+          </div>
 
 
-                                    <div class="text-end">
-                                        <a href="#!" class="btn btn-danger">I'm Understand</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
+
 <script>
 export default { 
     layout: null
