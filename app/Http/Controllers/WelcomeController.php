@@ -25,6 +25,9 @@ class WelcomeController extends Controller
         ]);
     }
 
+    public function policy(){
+        return inertia('Policy');
+    }
     
     public function hotel_index(){
         return inertia('Hotels',[

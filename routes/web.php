@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [App\Http\Controllers\WelcomeController::class, 'index']);
+Route::get('/privacy-policy', [App\Http\Controllers\WelcomeController::class, 'policy']);
 Route::post('/mail', [App\Http\Controllers\OtpController::class, 'mail']);
 Route::post('/verify', [App\Http\Controllers\OtpController::class, 'verify']);
 Route::post('/', [App\Http\Controllers\RegistrationController::class, 'store']);
