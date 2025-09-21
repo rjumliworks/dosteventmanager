@@ -33,21 +33,21 @@ class AvatarController extends Controller
                 $participant = Participant::with('detail')->findOrFail($request->id);
 
                 // Delete old avatar if exists
-                if ($participant->detail->image) {
-                    Storage::disk('public')->delete($participant->detail->image);
+                if ($participant->detail->avatar) {
+                    Storage::disk('public')->delete($participant->detail->avatar);
                 }
                 $timestamp = time();
                 $extension = $request->file('image')->getClientOriginalExtension();
                 $filename = $timestamp.$request->id . '.' . $extension;
                 $path = $request->file('image')->storeAs('images/avatars', $filename, 'public');
 
-                $participant->detail->image = $path;
+                $participant->detail->avatar = $path;
                 $participant->detail->save();
 
                 return response()->json([
                     'status'  => true,
                     'message' => 'Profile updated successfully',
-                    'data'    => asset('storage/'.$participant->detail->image)
+                    'data'    => asset('storage/'.$participant->detail->avatar)
                 ]);
 
         }catch(\Throwable $th){
