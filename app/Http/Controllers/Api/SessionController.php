@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\Participant;
 use App\Models\EventSession;
 use App\Models\EventSessionQuestion;
 use App\Models\EventSessionParticipant;
@@ -74,12 +75,13 @@ class SessionController extends Controller
             ->first();
 
         if (!$attendance) {
-            broadcast(new SessionEvent('You are not a registered participant.','attendance-error'));
+            $participant = Participant::select('id','firstname','lastname')->where('id',$request->participant_id)->first();
             $data = [
                 'participant_id' => $request->participant_id,
-                'message' => 'You are not a registered participant'
+                'name' => $participant->firstname.' '.$participant->lastname,
+                'type' => 'not'
             ];
-            broadcast(new SessionEvent($data,'mobile-error'));
+            broadcast(new SessionEvent($data,'attendance-error'));
             return response()->json([
                 'status' => false,
                 'message' => 'You are not a registered participant.'
@@ -88,7 +90,13 @@ class SessionController extends Controller
 
         if ($attendance->attended_at) {
             if(!$request->image){
-                broadcast(new SessionEvent('Attendance already recorded for this participant.','attendance-error'));
+                $participant = Participant::select('id','firstname','lastname')->where('id',$request->participant_id)->first();
+                $data = [
+                    'participant_id' => $request->participant_id,
+                    'name' => $participant->firstname.' '.$participant->lastname,
+                    'type' => 'already'
+                ];
+                broadcast(new SessionEvent($data,'attendance-error'));
                 return response()->json([
                     'status' => false,
                     'message' => 'Attendance already recorded for this participant.'
