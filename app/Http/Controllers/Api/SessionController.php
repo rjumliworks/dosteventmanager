@@ -86,7 +86,6 @@ class SessionController extends Controller
                 $new = new EventExhibitorVisitor;
                 $new->participant_id = $request->participant_id;
                 $new->exhibitor_id = $ex->id;
-                $new->save();
 
                 if($new->save){
                     $engage = Dropdown::findOrFail(26);
