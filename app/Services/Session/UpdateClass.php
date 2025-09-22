@@ -87,7 +87,7 @@ class UpdateClass
                 $latest = EventSessionParticipant::with('participant')->where('session_id', $session_id)
                 ->where('participant_id', $participant_id)
                 ->first();
-                broadcast(new SessionEvent(new AttendanceResource($latest),'attendance-image'));
+                broadcast(new SessionEvent(new AttendanceResource($latest),'attendance-image',$request->code));
             }
         }
 
