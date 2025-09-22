@@ -122,80 +122,81 @@ class SessionController extends Controller
                     'message' => 'Thanks.'
                 ], 200);
             }
-        }
-        $randomkey = substr($request->session, -10);
-        $cipher = substr($request->session, 0, -10);
-        $code = Crypt::decrypt($cipher);
-        $session_id = EventSession::where('code', $code)->value('id');
+        }else{
+            $randomkey = substr($request->session, -10);
+            $cipher = substr($request->session, 0, -10);
+            $code = Crypt::decrypt($cipher);
+            $session_id = EventSession::where('code', $code)->value('id');
 
-        if (!$session_id) {
-            return response()->json([
-                'status' => false,
-                'message' => 'Session not found.'
-            ], 404);
-        }
+            if (!$session_id) {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Session not found.'
+                ], 404);
+            }
 
-        $attendance = EventSessionParticipant::where('participant_id', $request->participant_id)
-            ->where('session_id', $session_id)
-            ->first();
+            $attendance = EventSessionParticipant::where('participant_id', $request->participant_id)
+                ->where('session_id', $session_id)
+                ->first();
 
-        if (!$attendance) {
-            $participant = Participant::select('id','firstname','lastname')->where('id',$request->participant_id)->first();
-            $data = [
-                'participant_id' => $request->participant_id,
-                'name' => $participant->firstname.' '.$participant->lastname,
-                'type' => 'not',
-                'message' => 'You are not registered as a participant. Please go to the Sessions tab to complete your registration'
-            ];
-            broadcast(new SessionEvent($data,'attendance-error',$randomkey));
-            return response()->json([
-                'status' => false,
-                'message' => 'You are not a registered participant.'
-            ], 400);
-        }
-
-        if ($attendance->attended_at) {
-            if(!$request->image){
+            if (!$attendance) {
                 $participant = Participant::select('id','firstname','lastname')->where('id',$request->participant_id)->first();
                 $data = [
                     'participant_id' => $request->participant_id,
                     'name' => $participant->firstname.' '.$participant->lastname,
-                    'type' => 'already',
-                    'message' => 'Your attendance has already been recorded'
+                    'type' => 'not',
+                    'message' => 'You are not registered as a participant. Please go to the Sessions tab to complete your registration'
                 ];
                 broadcast(new SessionEvent($data,'attendance-error',$randomkey));
                 return response()->json([
                     'status' => false,
-                    'message' => 'Attendance already recorded for this participant.'
+                    'message' => 'You are not a registered participant.'
                 ], 400);
             }
-        }
 
-        if($request->image){
-            $path = $this->image($request);
-            $attendance->image = $path;
-        }
-        if(!$attendance->attended_at){
-            $attendance->attended_at = now();
-            $attendance->status_id = 8;
-        }
+            if ($attendance->attended_at) {
+                if(!$request->image){
+                    $participant = Participant::select('id','firstname','lastname')->where('id',$request->participant_id)->first();
+                    $data = [
+                        'participant_id' => $request->participant_id,
+                        'name' => $participant->firstname.' '.$participant->lastname,
+                        'type' => 'already',
+                        'message' => 'Your attendance has already been recorded'
+                    ];
+                    broadcast(new SessionEvent($data,'attendance-error',$randomkey));
+                    return response()->json([
+                        'status' => false,
+                        'message' => 'Attendance already recorded for this participant.'
+                    ], 400);
+                }
+            }
 
-        if ($attendance->save()) {
-            $latest = EventSessionParticipant::with('participant.detail','session')->where('session_id', $session_id)
-            ->where('id', $attendance->id)
-            ->first();
-            broadcast(new SessionEvent(new AttendanceResource($latest),'attendance',$randomkey));
+            if($request->image){
+                $path = $this->image($request);
+                $attendance->image = $path;
+            }
+            if(!$attendance->attended_at){
+                $attendance->attended_at = now();
+                $attendance->status_id = 8;
+            }
+
+            if ($attendance->save()) {
+                $latest = EventSessionParticipant::with('participant.detail','session')->where('session_id', $session_id)
+                ->where('id', $attendance->id)
+                ->first();
+                broadcast(new SessionEvent(new AttendanceResource($latest),'attendance',$randomkey));
+                return response()->json([
+                    'status' => true,
+                    'message' => 'Attendance successfully recorded.',
+                    'data' => new AttendanceResource($latest)
+                ], 200);
+            }
+
             return response()->json([
-                'status' => true,
-                'message' => 'Attendance successfully recorded.',
-                'data' => new AttendanceResource($latest)
-            ], 200);
+                'status' => false,
+                'message' => 'Failed to record attendance. Please try again.'
+            ], 500);
         }
-
-        return response()->json([
-            'status' => false,
-            'message' => 'Failed to record attendance. Please try again.'
-        ], 500);
     }
 
     public function question(Request $request){
