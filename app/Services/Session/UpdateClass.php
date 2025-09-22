@@ -62,6 +62,11 @@ class UpdateClass
                     'type' => 'already'
                 ];
                 broadcast(new SessionEvent($data,'attendance-error',$request->code));
+                 return [
+                    'data' => '-',
+                    'message' => 'Activity successfully created.', 
+                    'info' => "false"
+                ];
             }
         }
 
