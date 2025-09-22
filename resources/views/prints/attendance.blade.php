@@ -146,7 +146,7 @@
                     <tr style="text-align: center;">
                         <td>{{ $loop->iteration }}</td>
                         <td>
-                            <img src="{{ $attendee->avatar_base64 }}" style="width:80px; height:auto;" alt="Photo">
+                            <img src="{{ $attendee->participant->detail->avatar_base64 }}" style="width:80px; height:auto;" alt="Photo">
                         </td>
                         <td>
                             {{ $attendee->participant->firstname ?? '' }} {{ $attendee->participant->lastname ?? '' }}<br>
