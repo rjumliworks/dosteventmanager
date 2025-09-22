@@ -190,7 +190,9 @@ export default {
                     case 'attendance':
                         if (!this.session.data.attendees.some(a => a.id === event.data.id)) {
                             this.session.data.attendees.unshift(event.data);
-                            this.startCamera(event.data.participant_id);
+                            if(this.selected.randomkey == event.code){
+                                this.startCamera(event.data.participant_id);
+                            }
                         }
                     break;
                     case 'attendance-error':
