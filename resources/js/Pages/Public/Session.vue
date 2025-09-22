@@ -61,7 +61,7 @@
                 <div class="col-lg-6 mt-4">
                     <div class="card bg-light-subtle shadow-none border">
                         <div class="card-header bg-light-subtle" style="height:calc(100vh - 800px);">
-                            <div class="pt-1 ps-1 profile-wrapper" style="vertical-align: middle; text-align: center;" v-if="!error">
+                            <div class="pt-1 ps-1 profile-wrapper" style="vertical-align: middle; text-align: center;" v-if="error">
                                 <div class="p-4 border rounded bg-danger-subtle mt-3">
                                     <p class="mb-0 text-danger fw-semibold">Hi, {{ error.name }}</p>
                                     <p class="mb-0 text-danger fs-11" v-if="error.type == 'not'">You are <b>not registered</b> as a participant. Please go to the <b>Sessions tab</b> to complete your registration</p>
