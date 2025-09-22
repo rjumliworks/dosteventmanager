@@ -14,12 +14,13 @@ class SessionEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $data,$type;
+    public $data,$type,$code;
 
-    public function __construct($data,$type)
+    public function __construct($data,$type,$code = null)
     {
         $this->data = $data;
         $this->type = $type;
+        $this->code = $code;
     }
 
     public function broadcastOn(): array
@@ -33,7 +34,8 @@ class SessionEvent implements ShouldBroadcast
     {
         return [
             'data' => $this->data,
-            'type' => $this->type
+            'type' => $this->type,
+            'code' => $this->code
         ];
     }
 }

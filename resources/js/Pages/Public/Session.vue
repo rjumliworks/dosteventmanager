@@ -5,7 +5,8 @@
             <div class="row p-5">
                 <!-- Header Info -->
                 <div class="col-lg-12 text-center mb-3">
-                    <img src="@assets/images/logo-sm.png" alt="" class="avatar-xs mb-1">
+                    <img src="@assets/images/logos/dost.png" alt="" class="avatar-xs mb-1">
+                    <img src="@assets/images/logos/bagongpilipinas.png" alt="" class="avatar-xs mb-1">
                     <h1 class="mb-0 ff-secondary fw-semibold text-capitalize lh-base fs-22">
                         <span class="text-primary">{{ selected.title }}</span>
                     </h1>
@@ -22,12 +23,12 @@
                 <div class="col-lg-5" style="margin-top: 65px;">
                     <div class="text-center">
                         <div class="position-relative d-inline-block" style="width:700px; height:400px;">
-                            <img src="/images/border.png"
+                            <img src="/images/hands.png"
                                  alt="Phone Frame"
                                  class="img-fluid position-absolute"
                                  style="top:-40%; left:0; width:100%;" />
 
-                            <div class="position-absolute qr-box" style="top:53%; left:51.7%; transform:translate(-50%, -50%);">
+                            <div class="position-absolute qr-box" style="top:58%; left:53.2%; transform:translate(-50%, -50%);">
                                 <img v-if="!showScanner"
                                     :src="selected.qr"
                                     alt="QR Code"
@@ -48,7 +49,7 @@
                                 </div>
                             </div>
 
-                            <b-form-group class="text-center position-absolute" style="top:85%; left:55%; transform:translate(-50%, -50%); width:200px;">
+                            <b-form-group class="text-center position-absolute" style="top:104%; left:58%; transform:translate(-50%, -50%); width:200px;">
                                 <b-form-checkbox switch v-model="scannerToggle">
                                     {{ scannerToggle ? 'Stop Scanner' : 'Start Scanner' }}
                                 </b-form-checkbox>
@@ -61,13 +62,15 @@
                 <div class="col-lg-6 mt-4">
                     <div class="card bg-light-subtle shadow-none border">
                         <div class="card-header bg-light-subtle d-flex justify-content-center align-items-center" style="height:120px;">
-                            <div class="p-4 w-100 border rounded bg-danger-subtle text-center" v-if="error">
-                                <p class="mb-0 text-danger fw-semibold">Hi, {{ error.name }}</p>
-                                <p class="mb-0 text-danger fs-11" v-if="error.type == 'not'">You are <b>not registered</b> as a participant. Please go to the <b>Sessions tab</b> to complete your registration</p>
-                                <p class="mb-0 text-danger fs-11" v-else>Your attendance has already been recorded</p>
+                            <div class="d-flex w-100 justify-content-center align-items-center" v-if="error">
+                                <div class="p-4 w-100 border rounded bg-danger-subtle text-center">
+                                    <p class="mb-0 text-danger fw-semibold">Hi, {{ error.name }}</p>
+                                    <p class="mb-0 text-danger fs-11" v-if="error.type == 'not'">You are <b>not registered</b> as a participant. Please go to the <b>Sessions tab</b> to complete your registration</p>
+                                    <p class="mb-0 text-danger fs-11" v-else>Your attendance has already been recorded</p>
+                                </div>
                             </div>
-                            <div v-else class="pt-1 ps-1 profile-wrapper">
-                                <div class="row g-4" v-if="participant.avatar">
+                            <div v-else-if="participant.avatar" class="pt-1 ps-1 profile-wrapper">
+                                <div class="row g-4">
                                     <div class="col-auto">
                                         <div>
                                             <img :src="participant.avatar" alt="user-img" class="avatar-lg">
@@ -80,6 +83,12 @@
                                             <p class="text-primary text-muted fs-14">Attendance confirmed on <b class="text-primary">{{participant.attended_at}}</b></p>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                            <div v-else class="d-flex w-100 justify-content-center align-items-center">
+                                <div class="p-4 w-100 border rounded bg-dark-subtle text-center">
+                                    <p class="mb-0 text-dark fs-12">Please use the <b>QR Scanner</b> in the application to scan the provided QR code.</p>
+                                    <p class="mb-0 text-muted fs-11">If you are using the mobile browser, please allow camera access to enable QR code scanning.</p>
                                 </div>
                             </div>
                         </div>
@@ -104,7 +113,7 @@
                         </div>
                         <div class="card-body bg-white rounded-bottom">
                             <div class="table-responsive table-card"
-                                 style="height:calc(100vh - 520px); overflow-x:hidden;">
+                                 style="height:calc(100vh - 550px); overflow-x:hidden;">
                                 <table class="table table-nowrap align-middle mb-0">
                                     <thead class="bg-light thead-fixed">
                                         <tr class="fs-11">
@@ -159,6 +168,7 @@ export default {
                 option: 'attendance'
             }),
             error: null,
+            code: this.generateRandomKey(10),
             participant: {}
         }
     },
@@ -175,31 +185,24 @@ export default {
         setupEchoListener() {
             window.Echo.channel('session')
                 .listen('SessionEvent', (event) => {
+                if(this.code == event.code){
                     switch(event.type){
                         case 'attendance':
                             if (!this.session.data.attendees.some(a => a.id === event.data.id)) {
                                 this.session.data.attendees.unshift(event.data);
                                 this.startCamera(event.data.participant_id);
                             }
-                            // this.session.data.attendees = this.session.data.attendees.filter(
-                            //     (attendee, index, self) =>
-                            //         index === self.findIndex(a => a.id === attendee.id)
-                            // );
-                            // this.participant.avatar = event.data.avatar. 
-                            // this.participant.name = event.data.participant.firstname+' '+event.data.participant.lastname;
-                            // this.participant.date = event.data.attended_at;
                         break;
                         case 'attendance-error':
                             this.error = event.data;
                         break;
                         case 'attendance-image':
-                            console.log(event.data);
                             this.participant = event.data;
                         break;
                     }
+                }
             })
         },
-
         async startScanner() {
             await this.$nextTick()
             this.error = null;
@@ -225,7 +228,6 @@ export default {
                 console.error("Scanner error:", err)
             }
         },
-
         stopScanner() {
             this.showScanner = false
             if (this.qrScanner) {
@@ -233,7 +235,6 @@ export default {
                 this.qrScanner = null
             }
         },
-
         async startCamera(code) {
             this.error = null;
             try {
@@ -252,7 +253,6 @@ export default {
                 console.error("Camera error:", err)
             }
         },
-
         capturePhoto() {
             const video = this.$refs.cameraPreview
             const canvas = document.createElement("canvas")
@@ -262,7 +262,6 @@ export default {
             ctx.drawImage(video, 0, 0, canvas.width, canvas.height)
             this.form.image = canvas.toDataURL("image/png")
         },
-
         stopCamera() {
             if (this.cameraStream) {
                 this.cameraStream.getTracks().forEach(t => t.stop())
@@ -270,10 +269,18 @@ export default {
             }
             this.showCamera = false
         },
-
         submit(code) {
+            this.form.code = this.code;
             this.form.participant = code
             this.form.put('/sessions/update', { preserveScroll: true })
+        },
+        generateRandomKey(length) {
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+            let result = ''
+            for (let i = 0; i < length; i++) {
+                result += chars.charAt(Math.floor(Math.random() * chars.length))
+            }
+            return result
         }
     },
     beforeUnmount() {
@@ -285,8 +292,8 @@ export default {
 <style scoped>
 /* Parent container controls final size */
 .qr-box {
-  width: 200px;        /* ✅ change here for bigger/smaller box */
-  height: 200px;
+  width: 310px;        /* ✅ change here for bigger/smaller box */
+  height:310px;
   position: relative;
   overflow: hidden;
 }
