@@ -60,7 +60,7 @@
                 <!-- Attendance Table -->
                 <div class="col-lg-6 mt-4">
                     <div class="card bg-light-subtle shadow-none border">
-                        <div class="card-header bg-light-subtle" style="height:calc(100vh - 700px);">
+                        <div class="card-header bg-light-subtle" style="height:calc(100vh - 800px);">
                             <div class="pt-1 ps-1 profile-wrapper" style="vertical-align: middle; text-align: center;" v-if="error">
                                 <div class="p-4 border rounded bg-danger-subtle mt-3">
                                     <p class="mb-0 text-danger fw-semibold">{{ error }}</p>
@@ -104,7 +104,7 @@
                         </div>
                         <div class="card-body bg-white rounded-bottom">
                             <div class="table-responsive table-card"
-                                 style="height:calc(100vh - 560px); overflow-x:hidden;">
+                                 style="height:calc(100vh - 520px); overflow-x:hidden;">
                                 <table class="table table-nowrap align-middle mb-0">
                                     <thead class="bg-light thead-fixed">
                                         <tr class="fs-11">
@@ -181,17 +181,17 @@ export default {
                 .listen('SessionEvent', (event) => {
                     switch(event.type){
                         case 'attendance':
-                            if (!this.session.data.attendees.some(a => a.id === event.data.id)) {
-                                this.session.data.attendees.unshift(event.data);
-                                this.startCamera(event.data.participant_id);
-                            }
+                            // if (!this.session.data.attendees.some(a => a.id === event.data.id)) {
+                            //     this.session.data.attendees.unshift(event.data);
+                            //     this.startCamera(event.data.participant_id);
+                            // }
                             // this.session.data.attendees = this.session.data.attendees.filter(
                             //     (attendee, index, self) =>
                             //         index === self.findIndex(a => a.id === attendee.id)
                             // );
-                            this.participant.avatar = event.data.avatar. 
-                            this.participant.name = event.data.participant.firstname+' '+event.data.participant.lastname;
-                            this.participant.date = event.data.attended_at;
+                            // this.participant.avatar = event.data.avatar. 
+                            // this.participant.name = event.data.participant.firstname+' '+event.data.participant.lastname;
+                            // this.participant.date = event.data.attended_at;
                         break;
                         case 'attendance-error':
                             this.error = event.data;
