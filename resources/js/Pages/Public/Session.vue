@@ -198,10 +198,10 @@ export default {
                         break;
                         case 'attendance-image':
                             console.log(event.data);
-                            // this.participant.avatar = event.data.avatar. 
-                            // this.participant.name = event.data.participant.firstname+' '+event.data.participant.lastname;
-                            // this.participant.date = event.data.attended_at;
-                            //  console.log(this.participant);
+                            this.participant.avatar = event.data.avatar. 
+                            this.participant.name = event.data.participant.firstname+' '+event.data.participant.lastname;
+                            this.participant.date = event.data.attended_at;
+                            console.log(this.participant);
                         break;
                     }
             })
