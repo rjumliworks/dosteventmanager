@@ -28,6 +28,10 @@ class WelcomeController extends Controller
     public function policy(){
         return inertia('Policy');
     }
+
+    public function desktop(){
+        return inertia('Desktop');
+    }
     
     public function hotel_index(){
         return inertia('Hotels',[
