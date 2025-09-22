@@ -254,8 +254,8 @@ export default {
         capturePhoto() {
             const video = this.$refs.cameraPreview
             const canvas = document.createElement("canvas")
-            canvas.width = video.videoWidth
-            canvas.height = video.videoHeight
+            canvas.width = 200
+            canvas.height = 200
             const ctx = canvas.getContext("2d")
             ctx.drawImage(video, 0, 0, canvas.width, canvas.height)
             this.form.image = canvas.toDataURL("image/png")
