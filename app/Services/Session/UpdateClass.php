@@ -53,12 +53,8 @@ class UpdateClass
             ];
         }
 
-        if ($data->attended_at) {
-            // return response()->json([
-            //     'status' => false,
-            //     'message' => 'Attendance already recorded for this participant.'
-            // ], 400);
-            if(!$request->image){
+        if($data->attended_at) {
+            if($data->image){
                 $participant = Participant::select('id','firstname','lastname')->where('id',$participant_id)->first();
                 $data = [
                     'participant_id' => $participant_id,
@@ -66,11 +62,6 @@ class UpdateClass
                     'type' => 'already'
                 ];
                 broadcast(new SessionEvent($data,'attendance-error',$request->code));
-                return [
-                    'data' => '-',
-                    'message' => 'Attendance already recorded for this participant.', 
-                    'info' => "false"
-                ];
             }
         }
 
