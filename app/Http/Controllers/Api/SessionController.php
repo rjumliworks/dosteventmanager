@@ -65,7 +65,72 @@ class SessionController extends Controller
 
     public function attendance(Request $request)
     {   
-        
+        $sessionCode = $request->session;
+        $participant = Participant::select('id','firstname','lastname')
+                    ->where('id', $request->participant_id)
+                    ->first();
+        try {
+            $aa = Crypt::decrypt($sessionCode); // only works if it was encrypted cleanly
+            $ex = EventExhibitor::where('code', $aa)->first();
+        } catch (\Exception $e) {
+            $ex = null;
+        }
+ 
+        if($ex){
+            $x = EventExhibitorVisitor::where('exhibitor_id',$ex->id)->where('participant_id',$request->participant_id)->first();
+            if($x){
+                $data = [
+                    'participant_id' => $request->participant_id,
+                    'name' => $participant->firstname.' '.$participant->lastname,
+                    'type' => 'not',
+                    'message' => 'You already visited the exhibitor'
+                ];
+                broadcast(new SessionEvent($data,'exhibit_visit'));
+                return response()->json([
+                    'status' => false,
+                    'message' => 'You are not a registered participant.'
+                ], 400);
+            }else{
+                $new = new EventExhibitorVisitor;
+                $new->participant_id = $request->participant_id;
+                $new->exhibitor_id = $ex->id;
+
+                if($new->save()){
+                    $engage = Dropdown::findOrFail(26);
+                    $point = ParticipantPoint::where('participant_id', $request->participant_id)->firstOrFail();
+
+                    $new->update([
+                    'has_voted' => true,
+                    'voted_at'  => now(),
+                    ]);
+
+                    $new->engageable()->create([
+                        'points'   => $engage->others,
+                        'type_id'  => $engage->id,
+                        'point_id' => $point->id,
+                    ]);
+
+                    $point->points += $engage->others;
+                    $point->save();
+                    $data = [
+                        'participant_id'        => $request->participant_id,
+                        'points'    => $engage->others
+                    ];
+                    broadcast(new SessionEvent($data, 'plus'));
+                }
+                $data = [
+                    'participant_id' => $request->participant_id,
+                    'name' => $participant->firstname.' '.$participant->lastname,
+                    'type' => 'not',
+                    'message' => 'Thank you for visiting '.$ex->title
+                ];
+                broadcast(new SessionEvent($data,'exhibit_visit'));
+                return response()->json([
+                    'status' => true,
+                    'message' => 'Thanks.'
+                ], 200);
+            }
+        }else{
             $randomkey = substr($request->session, -10);
             $cipher = substr($request->session, 0, -10);
             $code = Crypt::decrypt($cipher);
@@ -139,7 +204,7 @@ class SessionController extends Controller
                 'status' => false,
                 'message' => 'Failed to record attendance. Please try again.'
             ], 500);
-        
+        }
     }
 
     public function question(Request $request){
