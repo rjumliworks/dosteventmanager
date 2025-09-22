@@ -67,7 +67,7 @@
                                 </div>
                             </div>
                             <div v-else class="pt-1 ps-1 profile-wrapper">
-                                <div class="row g-4" v-if="participant">
+                                <div class="row g-4" v-if="participant.avatar">
                                     <div class="col-auto">
                                         <div>
                                             <img :src="participant.avatar" alt="user-img" class="avatar-lg">
@@ -197,10 +197,11 @@ export default {
                             this.error = event.data;
                         break;
                         case 'attendance-image':
-                            console.log(event.data);
-                            this.participant.avatar = event.data.data.avatar. 
-                            this.participant.name = event.data.data.participant.firstname+' '+event.data.data.participant.lastname;
-                            this.participant.date = event.data.data.attended_at;
+                            console.log(event.data.avatar);
+                            this.participant.avatar = event.data.avatar. 
+                            this.participant.name = event.data.participant.firstname+' '+event.data.participant.lastname;
+                            this.participant.date = event.data.attended_at;
+                             console.log(this.participant);
                         break;
                     }
             })
