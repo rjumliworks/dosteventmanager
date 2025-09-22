@@ -39,7 +39,13 @@ class UpdateClass
         $data = EventSessionParticipant::where('session_id', $session_id)->where('participant_id', $participant_id)->first();
 
         if (!$data) {
-            broadcast(new SessionEvent('You are not a registered participant.','attendance-error'));
+            $participant = Participant::select('id','firstname','lastname')->where('id',$participant_id)->first();
+            $data = [
+                'participant_id' => $request->participant_id,
+                'name' => $participant->firstname.' '.$participant->lastname,
+                'type' => 'not'
+            ];
+            broadcast(new SessionEvent($data,'attendance-error',$request->code));
             return [
                 'data' => '-',
                 'message' => 'Activity successfully created.', 
@@ -53,7 +59,13 @@ class UpdateClass
             //     'message' => 'Attendance already recorded for this participant.'
             // ], 400);
             if(!$request->image){
-                broadcast(new SessionEvent('Attendance already recorded for this participant.','attendance-error'));
+                $participant = Participant::select('id','firstname','lastname')->where('id',$participant_id)->first();
+                $data = [
+                    'participant_id' => $participant_id,
+                    'name' => $participant->firstname.' '.$participant->lastname,
+                    'type' => 'already'
+                ];
+                broadcast(new SessionEvent($data,'attendance-error',$request->code));
                 return [
                     'data' => '-',
                     'message' => 'Attendance already recorded for this participant.', 
