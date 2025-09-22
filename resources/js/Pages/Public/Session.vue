@@ -196,6 +196,9 @@ export default {
                         case 'attendance-error':
                             this.error = event.data;
                         break;
+                        case 'attendance-image':
+                        
+                        break;
                     }
             })
         },

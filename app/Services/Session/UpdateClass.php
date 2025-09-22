@@ -48,20 +48,21 @@ class UpdateClass
         }
 
         if ($data->attended_at) {
-            broadcast(new SessionEvent('Attendance already recorded for this participant.','attendance-error'));
             // return response()->json([
             //     'status' => false,
             //     'message' => 'Attendance already recorded for this participant.'
             // ], 400);
             if(!$request->image){
+                broadcast(new SessionEvent('Attendance already recorded for this participant.','attendance-error'));
                 return [
                     'data' => '-',
-                    'message' => 'Activity successfully created.', 
+                    'message' => 'Attendance already recorded for this participant.', 
                     'info' => "false"
                 ];
+            }else{
+                broadcast(new SessionEvent('Attendance already recorded for this participant.','attendance-image'));
             }
         }
-
 
         if($request->image){
             $path = $this->image($request);
