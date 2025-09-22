@@ -84,7 +84,6 @@ class SessionController extends Controller
                 'type' => 'not',
                 'message' => 'You are not registered as a participant. Please go to the Sessions tab to complete your registration'
             ];
-            broadcast(new SessionEvent($data,'mobile-error'));
             broadcast(new SessionEvent($data,'attendance-error',$randomkey));
             return response()->json([
                 'status' => false,
