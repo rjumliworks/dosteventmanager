@@ -55,7 +55,7 @@ class Participant extends Authenticatable
 
     public function getFirstnameAttribute($value)
     {
-        return Crypt::decryptString($value);
+        return ucwords(Crypt::decryptString($value));
     }
 
     public function setMiddlenameAttribute($value)
@@ -67,7 +67,7 @@ class Participant extends Authenticatable
 
     public function getMiddlenameAttribute($value)
     {
-        return Crypt::decryptString($value);
+        return ucwords(Crypt::decryptString($value));
     }
 
     public function setLastnameAttribute($value)
@@ -79,7 +79,7 @@ class Participant extends Authenticatable
 
     public function getLastnameAttribute($value)
     {
-        return Crypt::decryptString($value);
+        return ucwords(Crypt::decryptString($value));
     }
 
     public function setEmailAttribute($value)
