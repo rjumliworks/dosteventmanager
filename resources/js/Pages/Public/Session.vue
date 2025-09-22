@@ -202,6 +202,7 @@ export default {
 
         async startScanner() {
             await this.$nextTick()
+            this.error = null;
             this.showScanner = true
             this.capturedImage = null
             const config = { fps: 10, qrbox: { width: 200, height: 200 } }
@@ -234,6 +235,7 @@ export default {
         },
 
         async startCamera(code) {
+            this.error = null;
             try {
                 this.showCamera = true
                 this.cameraStream = await navigator.mediaDevices.getUserMedia({ video: true })
