@@ -81,8 +81,10 @@ class SessionController extends Controller
             $data = [
                 'participant_id' => $request->participant_id,
                 'name' => $participant->firstname.' '.$participant->lastname,
-                'type' => 'not'
+                'type' => 'not',
+                'message' => 'You are not registered as a participant. Please go to the Sessions tab to complete your registration'
             ];
+            broadcast(new SessionEvent($data,'mobile-error'));
             broadcast(new SessionEvent($data,'attendance-error',$randomkey));
             return response()->json([
                 'status' => false,
@@ -96,7 +98,8 @@ class SessionController extends Controller
                 $data = [
                     'participant_id' => $request->participant_id,
                     'name' => $participant->firstname.' '.$participant->lastname,
-                    'type' => 'already'
+                    'type' => 'already',
+                    'message' => 'Your attendance has already been recorded'
                 ];
                 broadcast(new SessionEvent($data,'attendance-error',$randomkey));
                 return response()->json([
