@@ -67,7 +67,7 @@
                                 </div>
                             </div>
                             <div v-else class="pt-1 ps-1 profile-wrapper">
-                                <div class="row g-4" v-if="participant.avatar">
+                                <!-- <div class="row g-4" v-if="participant.avatar">
                                     <div class="col-auto">
                                         <div>
                                             <img :src="participant.avatar" alt="user-img" class="avatar-lg">
@@ -80,7 +80,7 @@
                                             <p class="text-primary text-muted fs-14">Attendance confirmed on <b class="text-primary">{{participant.date}}</b></p>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>
