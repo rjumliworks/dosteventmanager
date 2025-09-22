@@ -8,7 +8,7 @@ use App\Models\EventSessionParticipant;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Resources\DefaultResource;
-use App\Http\Resources\AttendanceResource;
+use App\Http\Resources\Api\AttendanceResource;
 use App\Http\Resources\Api\SessionResource;
 use App\Http\Resources\Api\SessionViewResource;
 use App\Http\Resources\Api\Data\QuestionResource;
@@ -106,7 +106,7 @@ class SessionController extends Controller
         }
 
         if ($attendance->save()) {
-            $latest = EventSessionParticipant::with('participant.detail')->where('session_id', $session_id)
+            $latest = EventSessionParticipant::with('participant.detail','session')->where('session_id', $session_id)
             ->where('id', $attendance->id)
             ->first();
             broadcast(new SessionEvent(new AttendanceResource($latest),'attendance'));
