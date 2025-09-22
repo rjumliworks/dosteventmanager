@@ -165,6 +165,7 @@ export default {
                 session: this.session.data.key,
                 participant: null,
                 image: null,
+                code: null,
                 option: 'attendance'
             }),
             error: null,
