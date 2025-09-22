@@ -186,22 +186,24 @@ export default {
         setupEchoListener() {
             window.Echo.channel('session')
                 .listen('SessionEvent', (event) => {
-                if(this.code == event.code){
-                    switch(event.type){
-                        case 'attendance':
-                            if (!this.session.data.attendees.some(a => a.id === event.data.id)) {
-                                this.session.data.attendees.unshift(event.data);
-                                this.startCamera(event.data.participant_id);
-                            }
-                        break;
-                        case 'attendance-error':
+                switch(event.type){
+                    case 'attendance':
+                        if (!this.session.data.attendees.some(a => a.id === event.data.id)) {
+                            this.session.data.attendees.unshift(event.data);
+                            this.startCamera(event.data.participant_id);
+                        }
+                    break;
+                    case 'attendance-error':
+                        if(this.code == event.code){
                             this.error = event.data;
-                        break;
-                        case 'attendance-image':
+                        }
+                    break;
+                    case 'attendance-image':
+                        if(this.code == event.code){
                             this.participant = event.data;
-                        break;
-                    }
-                }
+                        }
+                    break;
+            }
             })
         },
         async startScanner() {
