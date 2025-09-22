@@ -87,7 +87,7 @@ class SessionController extends Controller
                 $new->participant_id = $request->participant_id;
                 $new->exhibitor_id = $ex->id;
 
-                if($new->save){
+                if($new->save()){
                     $engage = Dropdown::findOrFail(26);
                     $point = ParticipantPoint::where('participant_id', $request->participant_id)->firstOrFail();
 
