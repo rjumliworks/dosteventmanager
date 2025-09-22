@@ -60,7 +60,9 @@ class SessionController extends Controller
 
     public function attendance(Request $request)
     {
-        $code = Crypt::decrypt($request->session);
+        $randomkey = substr($request->session, -10);
+        $cipher = substr($request->session, 0, -10);
+        $code = Crypt::decrypt($cipher);
         $session_id = EventSession::where('code', $code)->value('id');
 
         if (!$session_id) {
@@ -81,7 +83,7 @@ class SessionController extends Controller
                 'name' => $participant->firstname.' '.$participant->lastname,
                 'type' => 'not'
             ];
-            broadcast(new SessionEvent($data,'attendance-error'));
+            broadcast(new SessionEvent($data,'attendance-error',$randomkey));
             return response()->json([
                 'status' => false,
                 'message' => 'You are not a registered participant.'
@@ -96,7 +98,7 @@ class SessionController extends Controller
                     'name' => $participant->firstname.' '.$participant->lastname,
                     'type' => 'already'
                 ];
-                broadcast(new SessionEvent($data,'attendance-error'));
+                broadcast(new SessionEvent($data,'attendance-error',$randomkey));
                 return response()->json([
                     'status' => false,
                     'message' => 'Attendance already recorded for this participant.'

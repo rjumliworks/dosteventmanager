@@ -194,12 +194,12 @@ export default {
                         }
                     break;
                     case 'attendance-error':
-                        if(this.code == event.code){
+                        if(this.selected.randomkey == event.code){
                             this.error = event.data;
                         }
                     break;
                     case 'attendance-image':
-                        if(this.code == event.code){
+                        if(this.selected.randomkey == event.code){
                             this.participant = event.data;
                         }
                     break;
@@ -273,7 +273,7 @@ export default {
             this.showCamera = false
         },
         submit(code) {
-            this.form.code = this.code;
+            this.form.code = this.selected.randomkey;
             this.form.participant = code
             this.form.put('/sessions/update', { preserveScroll: true })
         },
