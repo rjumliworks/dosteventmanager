@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\Dropdown;
+use Illuminate\Support\Facades\DB;
+use App\Models\ParticipantPoint;
 use App\Models\Participant;
 use App\Models\EventExhibitor;
 use App\Models\EventExhibitorVisitor;
@@ -85,6 +88,29 @@ class SessionController extends Controller
                 $new->exhibitor_id = $ex->id;
                 $new->save();
 
+                if($new->save){
+                    $engage = Dropdown::findOrFail(26);
+                    $point = ParticipantPoint::where('participant_id', $request->participant_id)->firstOrFail();
+
+                    $new->update([
+                    'has_voted' => true,
+                    'voted_at'  => now(),
+                    ]);
+
+                    $new->engageable()->create([
+                        'points'   => $engage->others,
+                        'type_id'  => $engage->id,
+                        'point_id' => $point->id,
+                    ]);
+
+                    $point->points += $engage->others;
+                    $point->save();
+                    $data = [
+                        'participant_id'        => $request->participant_id,
+                        'points'    => $engage->others
+                    ];
+                    broadcast(new SessionEvent($data, 'plus'));
+                }
                 $data = [
                     'participant_id' => $request->participant_id,
                     'name' => $participant->firstname.' '.$participant->lastname,
