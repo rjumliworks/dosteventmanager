@@ -59,8 +59,6 @@ class UpdateClass
                     'message' => 'Attendance already recorded for this participant.', 
                     'info' => "false"
                 ];
-            }else{
-                broadcast(new SessionEvent('Attendance already recorded for this participant.','attendance-image'));
             }
         }
 
@@ -72,7 +70,14 @@ class UpdateClass
             $data->attended_at = now();
             $data->status_id = 8;
         }
-        $data->save();
+        if($data->save()){
+            if($request->image){
+                $latest = EventSessionParticipant::with('participant')->where('session_id', $session_id)
+                ->where('participant_id', $participant_id)
+                ->first();
+                broadcast(new SessionEvent(new AttendanceResource($latest),'attendance-image'));
+            }
+        }
 
         $latest = EventSessionParticipant::with('participant')->where('session_id', $session_id)
         ->where('participant_id', $participant_id)
