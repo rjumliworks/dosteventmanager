@@ -75,6 +75,11 @@ class SessionController extends Controller
 
         if (!$attendance) {
             broadcast(new SessionEvent('You are not a registered participant.','attendance-error'));
+            $data = [
+                'participant_id' => $request->participant_id,
+                'message' => 'You are not a registered participant'
+            ];
+            broadcast(new SessionEvent($data,'mobile-error'));
             return response()->json([
                 'status' => false,
                 'message' => 'You are not a registered participant.'

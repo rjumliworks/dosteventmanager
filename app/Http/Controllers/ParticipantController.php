@@ -27,7 +27,8 @@ class ParticipantController extends Controller
             break;
             default :
             return inertia('Modules/Participants/Index',[
-                'types' => $this->dropdown->dropdowns('Participant Type')
+                'types' => $this->dropdown->dropdowns('Participant Type'),
+                'affiliations' => $this->dropdown->affiliations()
             ]);
         }
     }

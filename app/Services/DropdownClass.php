@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\User;
 use App\Models\Speakers;
 use App\Models\Dropdown;
+use App\Models\ParticipantDetail;
 use App\Models\LocationRegion;
 use App\Models\LocationProvince;
 use App\Models\LocationMunicipality;
@@ -12,6 +13,20 @@ use App\Models\LocationBarangay;
 
 class DropdownClass
 {  
+    public function affiliations(){
+        $data = ParticipantDetail::select('affiliation')
+            ->distinct()
+            ->orderBy('affiliation')
+            ->get()
+            ->map(function ($item) {
+                return [
+                    'value' => $item->affiliation,
+                    'name'  => $item->affiliation,
+                ];
+            });
+        return $data;
+    }
+
     public function dropdowns($class,$type = null){
         $data = Dropdown::where('classification',$class)
         ->when($type, function ($query) use ($type){

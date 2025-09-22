@@ -27,7 +27,8 @@
                         <b-col lg>
                             <div class="input-group mb-1">
                                 <span class="input-group-text"> <i class="ri-search-line search-icon"></i></span>
-                                <input type="text" v-model="keyword" placeholder="Search Event" class="form-control" style="width: 60%;">
+                                <input type="text" v-model="keyword" placeholder="Search Event" class="form-control" style="width: 30%;">
+                                 <Multiselect class="white" style="width: 27%;" :options="affiliations" v-model="filter.affiliation" label="name" :searchable="true" placeholder="Select Affiliations" />
                                 <Multiselect class="white" style="width: 17%;" :options="types" v-model="filter.type" label="name" :searchable="true" placeholder="Select Type" />
                                  <span @click="openPrint()" class="input-group-text" v-b-tooltip.hover title="Print" style="cursor: pointer;"> 
                                     <i class="ri-printer-fill search-icon"></i>
@@ -123,7 +124,7 @@ import PageHeader from '@/Shared/Components/PageHeader.vue';
 import Pagination from "@/Shared/Components/Pagination.vue";
 export default {
     components: { PageHeader, Pagination, Create, Upload, Update, Multiselect },
-    props: ['types'],
+    props: ['types','affiliations'],
     data(){
         return {
             currentUrl: window.location.origin,
@@ -132,6 +133,7 @@ export default {
             links: {},
             filter: {
                 keyword: null,
+                affiliation: null,
                 type: null
             },
             index: null
@@ -142,6 +144,9 @@ export default {
             this.checkSearchStr(newVal);
         },
         "filter.type"(newVal){
+            this.fetch();
+        },
+        "filter.affiliation"(newVal){
             this.fetch();
         }
     },
@@ -158,6 +163,7 @@ export default {
                 params : {
                     keyword: this.filter.keyword,
                     type: this.filter.type,
+                    affiliation: this.filter.affiliation,
                     count: 10,
                     option: 'lists'
                 }
