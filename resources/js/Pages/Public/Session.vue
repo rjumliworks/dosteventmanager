@@ -76,8 +76,8 @@
                                     <div class="col">
                                         <div class="p-2 mt-1">
                                             <p class="text-primary text-opacity-75 mb-1">Welcome, and thank you..</p>
-                                            <h3 class="text-primary mb-1">{{ participant.name }}</h3>
-                                            <p class="text-primary text-muted fs-14">Attendance confirmed on <b class="text-primary">{{participant.date}}</b></p>
+                                            <h3 class="text-primary mb-1">{{ participant.participant.firstname }} {{ participant.participant.lastname }}</h3>
+                                            <p class="text-primary text-muted fs-14">Attendance confirmed on <b class="text-primary">{{participant.attended_at}}</b></p>
                                         </div>
                                     </div>
                                 </div>
