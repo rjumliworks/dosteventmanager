@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\Participant;
+use App\Models\EventExhibitor;
+use App\Models\EventExhibitorVisitor;
 use App\Models\EventSession;
 use App\Models\EventSessionQuestion;
 use App\Models\EventSessionParticipant;
@@ -59,7 +61,43 @@ class SessionController extends Controller
     }
 
     public function attendance(Request $request)
-    {
+    {   
+        $aa = Crypt::decrypt($request->session);
+        $ex = EventExhibitor::where('code',$aa)->first();
+        if($ex){
+            $x = EventExhibitorVisitor::where('exhibitor_id',$ex->id)->where('participant_id',$request->participant_id)->first();
+            $participant = Participant::select('id','firstname','lastname')->where('id',$request->participant_id)->first();
+            if($x){
+                $data = [
+                    'participant_id' => $request->participant_id,
+                    'name' => $participant->firstname.' '.$participant->lastname,
+                    'type' => 'not',
+                    'message' => 'You already visited the exhibitor'
+                ];
+                broadcast(new SessionEvent($data,'exhibit_visit'));
+                return response()->json([
+                    'status' => false,
+                    'message' => 'You are not a registered participant.'
+                ], 400);
+            }else{
+                $new = new EventExhibitorVisitor;
+                $new->participant_id = $request->participant_id;
+                $new->exhibitor_id = $ex->id;
+                $new->save();
+
+                $data = [
+                    'participant_id' => $request->participant_id,
+                    'name' => $participant->firstname.' '.$participant->lastname,
+                    'type' => 'not',
+                    'message' => 'Thank you for visiting '.$ex->title
+                ];
+                broadcast(new SessionEvent($data,'exhibit_visit'));
+                return response()->json([
+                    'status' => true,
+                    'message' => 'Thanks.'
+                ], 200);
+            }
+        }
         $randomkey = substr($request->session, -10);
         $cipher = substr($request->session, 0, -10);
         $code = Crypt::decrypt($cipher);
