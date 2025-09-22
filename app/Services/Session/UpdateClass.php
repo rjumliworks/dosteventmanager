@@ -53,11 +53,13 @@ class UpdateClass
             //     'status' => false,
             //     'message' => 'Attendance already recorded for this participant.'
             // ], 400);
-             return [
-                'data' => '-',
-                'message' => 'Activity successfully created.', 
-                'info' => "false"
-            ];
+            if(!$request->image){
+                return [
+                    'data' => '-',
+                    'message' => 'Activity successfully created.', 
+                    'info' => "false"
+                ];
+            }
         }
 
 

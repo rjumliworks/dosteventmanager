@@ -238,7 +238,7 @@ export default {
                 this.showCamera = true
                 this.cameraStream = await navigator.mediaDevices.getUserMedia({ video: true })
                 this.$refs.cameraPreview.srcObject = this.cameraStream
-                this.countdown = 3
+                this.countdown = 5
                 while (this.countdown > 0) {
                     await new Promise(r => setTimeout(r, 1000))
                     this.countdown--
