@@ -125,6 +125,7 @@
             <thead style="background-color:#c8c8c8; padding: 5px; font-size: 10px;">
                 <tr>
                     <th rowspan="2" width="3%">#</th>
+                    <th rowspan="2" width="7%">PHOTO</th>
                     <th rowspan="2" width="15%">NAME</th>
                     <th rowspan="2" width="15%">AFFILIATION / DESIGNATION</th>
                     <th rowspan="2" width="15%">EMAIL / CONTACT NO.</th>
@@ -144,6 +145,9 @@
                 @foreach ($data['attendees'] as $attendee)
                     <tr style="text-align: center;">
                         <td>{{ $loop->iteration }}</td>
+                        <td>
+                            <img src="{{ $attendee->avatar_base64 }}" style="width:80px; height:auto;" alt="Photo">
+                        </td>
                         <td>
                             {{ $attendee->participant->firstname ?? '' }} {{ $attendee->participant->lastname ?? '' }}<br>
                             <small style="color: gray;">{{$attendee->attended_at ?? '' }}</small>
