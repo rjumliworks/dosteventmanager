@@ -61,7 +61,7 @@
                 <!-- Attendance Table -->
                 <div class="col-lg-6 mt-4">
                     <div class="card bg-light-subtle shadow-none border">
-                        <div class="card-header bg-light-subtle d-flex justify-content-center align-items-center" style="height:120px;">
+                        <div class="card-header bg-light-subtle" style="height:120px;">
                             <div class="d-flex w-100 justify-content-center align-items-center" v-if="error">
                                 <div class="p-4 w-100 border rounded bg-danger-subtle text-center">
                                     <p class="mb-0 text-danger fw-semibold">Hi, {{ error.name }}</p>
@@ -77,7 +77,7 @@
                                         </div>
                                     </div>
                                     <div class="col">
-                                        <div class="p-2 mt-1">
+                                        <div class="">
                                             <p class="text-primary text-opacity-75 mb-1">Welcome, and thank you..</p>
                                             <h3 class="text-primary mb-1">{{ participant.participant.firstname }} {{ participant.participant.lastname }}</h3>
                                             <p class="text-primary text-muted fs-14">Attendance confirmed on <b class="text-primary">{{participant.attended_at}}</b></p>
