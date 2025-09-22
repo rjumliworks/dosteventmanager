@@ -197,9 +197,9 @@ export default {
                             this.error = event.data;
                         break;
                         case 'attendance-image':
-                            this.participant.avatar = event.data.avatar. 
-                            this.participant.name = event.data.participant.firstname+' '+event.data.participant.lastname;
-                            this.participant.date = event.data.attended_at;
+                            this.participant.avatar = event.data.data.avatar. 
+                            this.participant.name = event.data.data.participant.firstname+' '+event.data.data.participant.lastname;
+                            this.participant.date = event.data.data.attended_at;
                         break;
                     }
             })
