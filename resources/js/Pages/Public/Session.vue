@@ -197,7 +197,7 @@ export default {
                             this.error = event.data;
                         break;
                         case 'attendance-image':
-                            console.log(event.data.avatar);
+                            console.log(event.data.data);
                             this.participant.avatar = event.data.avatar. 
                             this.participant.name = event.data.participant.firstname+' '+event.data.participant.lastname;
                             this.participant.date = event.data.attended_at;
