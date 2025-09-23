@@ -128,7 +128,7 @@
                     <th rowspan="2" width="7%">PHOTO</th>
                     <th rowspan="2" width="15%">NAME</th>
                     <th rowspan="2" width="15%">AFFILIATION / DESIGNATION</th>
-                    <th rowspan="2" width="15%">EMAIL / CONTACT NO.</th>
+                    <th rowspan="2" width="13%">EMAIL / CONTACT NO.</th>
                     <th rowspan="2" width="3%">SEX</th>
                     <th rowspan="2" width="3%">AGE</th>
                     <th colspan="3" width="18%">Check if applicable</th>
@@ -161,7 +161,7 @@
                             <small style="color: gray;">{{ $attendee->participant->contact_no ?? '' }}</small>
                         </td>
                         <td>{{ $attendee->participant->detail->sex->name[0] ?? '' }}</td>
-                        <td>{{ $attendee->age ?? '31' }}</td>
+                        <td>{{ $attendee->participant->detail->age ?? '-' }}</td>
                         <td>{{ $attendee->is_4ps ? '✔' : '' }}</td>
                         <td>{{ $attendee->is_pwd ? '✔' : '' }}</td>
                         <td>{{ $attendee->is_ip ? '✔' : '' }}</td>
