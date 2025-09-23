@@ -125,20 +125,20 @@
             <thead style="background-color:#c8c8c8; padding: 5px; font-size: 10px;">
                 <tr>
                     <th rowspan="2" width="3%">#</th>
-                    <th rowspan="2" width="7%">PHOTO</th>
-                    <th rowspan="2" width="15%">NAME</th>
-                    <th rowspan="2" width="15%">AFFILIATION / DESIGNATION</th>
-                    <th rowspan="2" width="13%">EMAIL / CONTACT NO.</th>
-                    <th rowspan="2" width="3%">SEX</th>
-                    <th rowspan="2" width="3%">AGE</th>
-                    <th colspan="3" width="20%">Check if applicable</th>
-                    <th rowspan="2" width="7%">SIGNATURE</th>
-                    <th rowspan="2" width="7%">PHOTO</th>
+                    <th rowspan="2" width="80px;">PHOTO</th>
+                    <th rowspan="2" width="190px;">NAME</th>
+                    <th rowspan="2" width="160px;">AFFILIATION / DESIGNATION</th>
+                    <th rowspan="2" width="100px;">EMAIL / CONTACT NO.</th>
+                    <th rowspan="2" width="25px;">SEX</th>
+                    <th rowspan="2" width="25px;">AGE</th>
+                    <th colspan="3" width="30px;">Check if applicable</th>
+                    <th rowspan="2" width="80px;">SIGNATURE</th>
+                    <th rowspan="2" width="80px;">PHOTO</th>
                 </tr>
                 <tr>
-                    <th width="6%">4Ps</th>
-                    <th width="6%">PWD</th>
-                    <th width="6%">IP</th>
+                    <th width="25px;">4Ps</th>
+                    <th width="25px;">PWD</th>
+                    <th width="25px;">IP</th>
                 </tr>
             </thead>
             <tbody>
