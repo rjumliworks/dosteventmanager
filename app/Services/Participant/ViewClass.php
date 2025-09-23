@@ -53,6 +53,6 @@ class ViewClass
         ->orderByDesc('points') // ✅ highest → lowest
         ->paginate($request->count);
 
-    return $data;
+    return PointResource::collection($data);
 }
 }
