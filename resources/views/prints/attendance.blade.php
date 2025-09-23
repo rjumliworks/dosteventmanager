@@ -131,14 +131,14 @@
                     <th rowspan="2" width="13%">EMAIL / CONTACT NO.</th>
                     <th rowspan="2" width="3%">SEX</th>
                     <th rowspan="2" width="3%">AGE</th>
-                    <th colspan="3" width="18%">Check if applicable</th>
+                    <th colspan="3" width="20%">Check if applicable</th>
                     <th rowspan="2" width="7%">SIGNATURE</th>
                     <th rowspan="2" width="7%">PHOTO</th>
                 </tr>
                 <tr>
-                    <th width="3%">4Ps</th>
-                    <th width="3%">PWD</th>
-                    <th width="3%">IP</th>
+                    <th width="6%">4Ps</th>
+                    <th width="6%">PWD</th>
+                    <th width="6%">IP</th>
                 </tr>
             </thead>
             <tbody>
