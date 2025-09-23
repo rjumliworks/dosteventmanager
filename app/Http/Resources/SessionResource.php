@@ -24,6 +24,7 @@ class SessionResource extends JsonResource
             'activities' => $this->activities,
             'managers' => $this->managers,
             'participants' => $this->participants,
+            'attendees' => $this->attendees,
             'status' => $this->status,
             'event' => new EventViewResource($this->event),
             'is_closed' => ($this->is_closed) ? true : false,

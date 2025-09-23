@@ -12,7 +12,7 @@ class ViewClass
         $data = EventResource::collection(
             Event::with('venues')
             ->with('exhibitors.contact')
-            ->with('sessions.venue','sessions.detail','sessions.schedules','sessions.status','sessions.participants','sessions.managers.user.profile')
+            ->with('sessions.venue','sessions.detail','sessions.schedules','sessions.status','sessions.participants','sessions.attendees','sessions.managers.user.profile')
             ->with('detail.region:code,name,region','detail.province:code,name','detail.municipality:code,name','detail.barangay:code,name')
             ->when($request->keyword, function ($query,$keyword) {
                 $query->where('name', 'LIKE', "%{$keyword}%");
