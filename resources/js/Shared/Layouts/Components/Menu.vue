@@ -34,6 +34,13 @@
                     </Link>
                 </li>
                 <li class="nav-item">
+                    <Link href="/points" class="nav-link menu-link"
+                    :class="{'active': $page.component.startsWith('Modules/Points') }">
+                    <i class="ri-group-2-fill"></i>
+                    <span class="fw-semibold fs-14" data-key="t-dashboards">Points</span>
+                    </Link>
+                </li>
+                <li class="nav-item">
                     <Link href="/hotels" class="nav-link menu-link"
                     :class="{'active': $page.component.startsWith('Modules/Hotel') }">
                     <i class="ri-building-fill"></i>
