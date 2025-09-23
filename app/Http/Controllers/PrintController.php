@@ -46,6 +46,8 @@ class PrintController extends Controller
     }
 
     public function attendance($request){
+        ini_set('memory_limit', '1024M');
+        ini_set('max_execution_time', 0);
         $session = $request->krdwrks;
         $hashids = new Hashids('krad',10);
         $id = $hashids->decode($session);
