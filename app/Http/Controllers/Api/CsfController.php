@@ -63,7 +63,7 @@ class CsfController extends Controller
     }
 
     private function certificate($session,$participant){
-        $data = EventSessionParticipant::with('participant','session.venue','session.schedules','session.event.detail.municipality')->where('session_id',$session)->where('participant_id',$participant)->first();
+        $data = EventSessionParticipant::with('participant','session.event.detail.municipality')->where('session_id',$session)->where('participant_id',$participant)->first();
 
         $url = $_SERVER['HTTP_HOST'].'/verification/'.$participant;
         $qrCode = new QrCode($url);
@@ -77,11 +77,9 @@ class CsfController extends Controller
             'data' => $data
         ]; 
 
-        $appearance = \PDF::loadView('certificates.appearance',$array)->setPaper('a4', 'portrait');
-        $appearance = base64_encode($appearance->output());
-        $appreciation = \PDF::loadView('certificates.appreciation',$array)->setPaper('a4', 'portrait');
-        $appreciation = base64_encode($appreciation->output());
-        CertificateJob::dispatch($data->participant->email, $array, $appreciation,$appearance)->onConnection('database');
+        $pdf = \PDF::loadView('certificates.appearance',$array)->setPaper('a4', 'portrait');
+        $pdfContent = base64_encode($pdf->output());
+        CertificateJob::dispatch($data->participant->email, $array, $pdfContent)->onConnection('database');
     }
 
     public function exhibitor(Request $request){

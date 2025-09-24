@@ -14,29 +14,21 @@ class CertificateMail extends Mailable
     use Queueable, SerializesModels;
 
     public $data; 
-    protected $pdf1;
-    protected $pdf2;
+    protected $pdf;
 
-    public function __construct($data, $pdf1, $pdf2)
+    public function __construct($data, $pdf)
     {
         $this->data = $data;
-        $this->pdf1  = $pdf1;
-        $this->pdf2 = $pdf2;
+        $this->pdf  = $pdf;
     }
 
     public function build()
     {
-        return $this->subject('Your Certificate of Appearance and Appreciation')
+        $pdfBinary = base64_decode($this->pdf);
+        return $this->subject('Your Certificate of Appearance')
             ->view('emails.certificate') // simple blade for the email body
-            >attachData(
-                base64_decode($this->pdf1),
-                'Certificate_of_Appreciation.pdf',
-                ['mime' => 'application/pdf']
-            )
-            ->attachData(
-                base64_decode($this->pdf2),
-                'Certificate_of_Appearance.pdf',
-                ['mime' => 'application/pdf']
-            );
+            ->attachData($pdfBinary, 'certificate.pdf', [
+                'mime' => 'application/pdf',
+            ]);
     }
 }
