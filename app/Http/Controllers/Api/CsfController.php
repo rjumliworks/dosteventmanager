@@ -69,9 +69,11 @@ class CsfController extends Controller
             'data' => $data
         ]; 
 
-        $pdf = \PDF::loadView('certificates.appearance',$array)->setPaper('a4', 'portrait');
-        $pdfContent = base64_encode($pdf->output());
-        CertificateJob::dispatch($data->participant->email, $array, $pdfContent)->onConnection('database');
+        $pdf1 = \PDF::loadView('certificates.appearance',$array)->setPaper('a4', 'portrait');
+        $pdfContent1 = base64_encode($pdf1->output());
+        $pdf2 = \PDF::loadView('certificates.participation',$array)->setPaper('a4', 'portrait');
+        $pdfContent2 = base64_encode($pdf2->output());
+        CertificateJob::dispatch($data->participant->email, $array,$pdfContent2, $pdfContent2)->onConnection('database');
     }
 
     private function participation($session,$participant){
@@ -80,7 +82,7 @@ class CsfController extends Controller
             'data' => $data
         ]; 
 
-        $pdf = \PDF::loadView('certificates.appreaciation',$array)->setPaper('a4', 'portrait');
+        $pdf = \PDF::loadView('certificates.participation',$array)->setPaper('a4', 'portrait');
         $pdfContent = base64_encode($pdf->output());
         CertificateJob::dispatch($data->participant->email, $array, $pdfContent)->onConnection('database');
     }
