@@ -47,19 +47,8 @@
     </style>
 </head>
 <body>
-    <!-- Background -->
     <img src="{{ public_path('images/ca.png') }}" class="certificate-bg">
-
-    <!-- Foreground Content -->
     <div class="content">
-        {{-- <div style="text-align: center; margin-top: 125px; margin-bottom: 20px;">
-            <img src="{{ public_path('images/dost.png') }}" alt="tag" style="width: 80px; height: 80px; margin-right: 20px;">
-            <img src="{{ public_path('images/bagongpilipinas.png') }}" alt="tag" style="width: 80px; height: 80px;">
-        </div> --}}
-
-        {{-- <h1 style="text-align: center; font-size: 36px; margin-top: 20px;">CERTIFICATE OF APPRECIATION</h1>
-        <p style="text-align: center; font-size: 20px; margin-top: -10px;">This certificate is proudly presented to</p> --}}
-
         <h1 style="text-align: center; font-size: 40px; margin-top: 300px; text-transform: uppercase; margin-left: -185px; margin-bottom: -30px; color:#00018d; font-family: 'Roboto', sans-serif;">
             <ins>{{$data['participant']['firstname'].' '.$data['participant']['middlename'][0].'. '.$data['participant']['lastname']}}</ins>
         </h1>
@@ -72,20 +61,11 @@
                {{ \Carbon\Carbon::parse($data['session']['schedules'][0]['date'])->format('d F Y') }} at {{ $data['session']['venue']['name']}}, {{ $data['session']['event']['detail']['venue']}}. 
             </p> 
 
-            {{-- <p style="text-align: center; margin-top: 30px; font-size: 15px;">
-                Your expertise, insightful presentation and shared knowledge significantly contributed 
-                to the success of our event.
-            </p> --}}
-
             <p style="text-align: center; margin-top: 50px; font-size: 15px;">
                 Given this <b>{{ \Carbon\Carbon::now()->format('jS \\d\\a\\y \\o\\f F Y') }} in Zamboanga City, Philippines.</b>
             </p>
         </div>
 
-        {{-- <div style="text-align: center; position: absolute; bottom: 60; left: 50%; transform: translateX(-50%);">
-            <h1 style="font-size: 17px; margin: 0;">JENNIFER A. PIDOR</h1>
-            <p style="font-size: 13px; margin: 0;">OIC - Regional Director</p>
-        </div> --}}
         <img src="{{ public_path('images/esig.png') }}" 
                 alt="tag" 
                 style="width: 200px; height: 200px; position: absolute; bottom: 15; left: 240;">
