@@ -78,7 +78,7 @@
                                 <tr v-for="(list,index) in lists" v-bind:key="index" :class="[(list.is_active == 0) ? 'table-warnings' : '']">
                                     <td>
                                         <div class="avatar-xs chat-user-img online">
-                                            <img :src="`/storage/${list.avatar}`" alt="" class="avatar-xs rounded-circle">
+                                            <img :src="`/storage/${list.participant.detail.avatar}`" alt="" class="avatar-xs rounded-circle">
                                         </div>
                                     </td>
                                     <td>
