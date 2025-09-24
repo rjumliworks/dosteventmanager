@@ -19,7 +19,7 @@ class CertificateJob implements ShouldQueue
     protected $pdf1;
     protected $pdf2;
 
-    public function __construct($email, $data, $pdf)
+    public function __construct($email, $data, $pdf1, $pdf2)
     {
         $this->email = $email;
         $this->data = $data;
