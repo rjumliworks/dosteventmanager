@@ -55,6 +55,7 @@ class CsfController extends Controller
         $entry->refresh();
         broadcast(new SessionEvent(new FeedbackResource($entry),'rating'));
         $this->certificate($request->session_id,$request->participant_id);
+        $this->participation($request->session_id,$request->participant_id);
         return response()->json([
             'status' => true,
             'message' => 'CSF submitted successfully',
@@ -63,21 +64,23 @@ class CsfController extends Controller
     }
 
     private function certificate($session,$participant){
-        $data = EventSessionParticipant::with('participant','session.event.detail.municipality')->where('session_id',$session)->where('participant_id',$participant)->first();
-
-        $url = $_SERVER['HTTP_HOST'].'/verification/'.$participant;
-        $qrCode = new QrCode($url);
-        $qrCode->setSize(300);
-        $pngWriter = new PngWriter();
-        $qrCodeImageString = $pngWriter->write($qrCode)->getString();
-        $base64Image = 'data:image/png;base64,' . base64_encode($qrCodeImageString);
-        
+        $data = EventSessionParticipant::with('participant','session.event.detail.municipality')->where('session_id',$session)->where('participant_id',$participant)->first(); 
         $array = [
-            'qrCodeImage' => $base64Image,
             'data' => $data
         ]; 
 
         $pdf = \PDF::loadView('certificates.appearance',$array)->setPaper('a4', 'portrait');
+        $pdfContent = base64_encode($pdf->output());
+        CertificateJob::dispatch($data->participant->email, $array, $pdfContent)->onConnection('database');
+    }
+
+    private function participation($session,$participant){
+        $data = EventSessionParticipant::with('participant','session.venue','session.schedules','session.event.detail.municipality')->where('session_id',$session)->where('participant_id',$participant)->first(); 
+        $array = [
+            'data' => $data
+        ]; 
+
+        $pdf = \PDF::loadView('certificates.participation',$array)->setPaper('a4', 'portrait');
         $pdfContent = base64_encode($pdf->output());
         CertificateJob::dispatch($data->participant->email, $array, $pdfContent)->onConnection('database');
     }

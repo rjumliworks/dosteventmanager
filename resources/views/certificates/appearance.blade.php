@@ -64,8 +64,6 @@
                 <p style="font-size: 13px; margin: 0; color: black;">OIC - Regional Director</p>
             </div>
         </div>
-
-        {{-- <img src="<?php echo $qrCodeImage; ?>" style="margin-top: 70px;"  width="70" height="70" alt="QR Code"> --}}
         
     </div>
 </body>
