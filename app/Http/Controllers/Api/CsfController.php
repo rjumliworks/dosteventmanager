@@ -77,12 +77,11 @@ class CsfController extends Controller
             'data' => $data
         ]; 
 
-        $pdf = \PDF::loadView('certificates.appearance',$array)->setPaper('a4', 'portrait');
-        $pdfContent = base64_encode($pdf->output());
-        CertificateJob::dispatch($data->participant->email, $array, $pdfContent)->onConnection('database');
-        $pdf = \PDF::loadView('certificates.appreaciation',$array)->setPaper('a4', 'portrait');
-        $pdfContent = base64_encode($pdf->output());
-        CertificateJob::dispatch($data->participant->email, $array, $pdfContent)->onConnection('database');
+        $appearance = \PDF::loadView('certificates.appearance',$array)->setPaper('a4', 'portrait');
+        $appearance = base64_encode($appearance->output());
+        $appreciation = \PDF::loadView('certificates.appreciation',$array)->setPaper('a4', 'portrait');
+        $appreciation = base64_encode($appreciation->output());
+        CertificateJob::dispatch($data->participant->email, $array, $appreciation,$appearance)->onConnection('database');
     }
 
     public function exhibitor(Request $request){
