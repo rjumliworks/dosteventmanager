@@ -55,7 +55,7 @@ class CsfController extends Controller
         $entry->refresh();
         broadcast(new SessionEvent(new FeedbackResource($entry),'rating'));
         $this->certificate($request->session_id,$request->participant_id);
-        $this->participation($request->session_id,$request->participant_id);
+        // $this->participation($request->session_id,$request->participant_id);
         return response()->json([
             'status' => true,
             'message' => 'CSF submitted successfully',
