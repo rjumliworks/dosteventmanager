@@ -78,15 +78,15 @@
                                 <tr v-for="(list,index) in lists" v-bind:key="index" :class="[(list.is_active == 0) ? 'table-warnings' : '']">
                                     <td>
                                         <div class="avatar-xs chat-user-img online">
-                                            <img @click="showQr = !showQr" :src="`/storage/${list.participant.detail.avatar}`" alt="" class="avatar-xs rounded-circle">
+                                            <img  @click="openQr(index)" :src="`/storage/${list.participant.detail.avatar}`" alt="" class="avatar-xs rounded-circle">
                                         </div>
-                                        <div v-if="showQr" class="qr-float" @click="showQr = false">
-                                        <img 
-                                            :src="`/storage/${list.participant.detail.avatar}`"
-                                            class="qr-large"
-                                            alt="QR Code Large"
-                                        />
-                                    </div>
+                                         <div v-if="qrIndex === index" class="qr-float" @click="closeQr">
+                                                <img 
+                                                :src="`/storage/${list.participant.detail.avatar}`"
+                                                class="qr-large"
+                                                alt="QR Code Large"
+                                                />
+                                            </div>
                                     </td>
                                     <td>
                                         <h5 class="fs-13 mb-0 text-dark text-uppercase">{{list.participant.lastname}}, {{list.participant.firstname}} {{list.participant.middlename[0]}}.</h5>
@@ -132,7 +132,8 @@ export default {
                 type: null
             },
             index: null,
-            showQr: false
+            showQr: false,
+            qrIndex: null   
         }
     },
     watch: {
@@ -150,6 +151,12 @@ export default {
         this.fetch();
     },
     methods: {
+         openQr(index) {
+        this.qrIndex = index;   // show this participant’s QR/image
+    },
+    closeQr() {
+        this.qrIndex = null;    // hide all
+    },
         checkSearchStr: _.debounce(function(string) {
             this.fetch();
         }, 300),
