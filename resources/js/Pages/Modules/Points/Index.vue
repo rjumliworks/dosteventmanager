@@ -78,8 +78,15 @@
                                 <tr v-for="(list,index) in lists" v-bind:key="index" :class="[(list.is_active == 0) ? 'table-warnings' : '']">
                                     <td>
                                         <div class="avatar-xs chat-user-img online">
-                                            <img :src="`/storage/${list.participant.detail.avatar}`" alt="" class="avatar-xs rounded-circle">
+                                            <img @click="showQr = !showQr" :src="`/storage/${list.participant.detail.avatar}`" alt="" class="avatar-xs rounded-circle">
                                         </div>
+                                        <div v-if="showQr" class="qr-float" @click="showQr = false">
+                                        <img 
+                                            :src="`/storage/${list.participant.detail.avatar}`"
+                                            class="qr-large"
+                                            alt="QR Code Large"
+                                        />
+                                    </div>
                                     </td>
                                     <td>
                                         <h5 class="fs-13 mb-0 text-dark text-uppercase">{{list.participant.lastname}}, {{list.participant.firstname}} {{list.participant.middlename[0]}}.</h5>
@@ -124,7 +131,8 @@ export default {
                 affiliation: null,
                 type: null
             },
-            index: null
+            index: null,
+            showQr: false
         }
     },
     watch: {
@@ -172,3 +180,25 @@ export default {
     }
 }
 </script>
+<style scoped>
+.qr-float {
+  position: fixed;       /* floats above everything */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;         /* center horizontally & vertically */
+  justify-content: center;
+  align-items: center;
+ background: rgba(0, 0, 0, 0.6); 
+  z-index: 9999;
+}
+
+.qr-large {
+  max-width: 80%;   /* responsive */
+  max-height: 80%;
+  border-radius: 8px;
+  border: 15px solid #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2); /* subtle depth */
+}
+</style>
