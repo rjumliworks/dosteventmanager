@@ -68,28 +68,31 @@
                                 <tr class="fs-11">
                                     <th style="width: 4%;"></th>
                                     <th>Name</th>
-                                    <th style="width: 10%;" class="text-center">Points</th>
-                                    <th style="width: 10%;"></th>
+                                    <th style="width: 20%;" class="text-center">Email</th>
+                                    <th style="width: 13%;" class="text-center">Contact no.</th>
+                                    <th style="width: 10%;" class="text-end"><span class="me-3">Points</span></th>
+                                    <!-- <th style="width: 10%;"></th> -->
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr v-for="(list,index) in lists" v-bind:key="index" :class="[(list.is_active == 0) ? 'table-warnings' : '']">
                                     <td>
                                         <div class="avatar-xs chat-user-img online">
-                                            <img :src="list.avatar" alt="" class="avatar-xs rounded-circle">
-                                            <span v-if="list.is_active" class="user-status text-success"></span>
+                                            <img :src="`/storage/${list.avatar}`" alt="" class="avatar-xs rounded-circle">
                                         </div>
                                     </td>
                                     <td>
                                         <h5 class="fs-13 mb-0 text-dark text-uppercase">{{list.participant.lastname}}, {{list.participant.firstname}} {{list.participant.middlename[0]}}.</h5>
                                         <p class="fs-12 text-muted mb-0 text-uppercase">{{list.participant.detail.affiliation}} ({{ list.participant.detail.designation }})</p>
                                     </td>
-                                    <td class="text-center fs-12">{{list.points}}</td>
-                                    <td class="text-end">
+                                    <td class="text-center fs-12">{{list.participant.email}}</td>
+                                    <td class="text-center fs-12">{{list.participant.contact_no}}</td>
+                                    <td class=" fs-12 text-danger fw-semibold text-end"><span class="me-4">{{list.points}}</span></td>
+                                    <!-- <td class="text-end">
                                         <b-button variant="soft-primary" @click="openUpdate(list,index)" v-b-tooltip.hover title="Edit" size="sm" class="edit-list">
                                             <i class="ri-pencil-fill align-bottom"></i>
                                         </b-button>
-                                    </td>
+                                    </td> -->
                                 </tr>
                             </tbody>
                         </table>
