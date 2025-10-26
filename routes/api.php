@@ -8,6 +8,12 @@ Route::post('/login', [App\Http\Controllers\Api\AuthController::class, 'login'])
 Route::post('/verify', [App\Http\Controllers\Api\AuthController::class, 'verify']);
 Route::post('/register', [App\Http\Controllers\Api\AuthController::class, 'register']);
 
+Route::prefix('csf')->controller(App\Http\Controllers\Api\CsfController::class)->group(function () {
+    Route::get('/questions', 'questions');
+    Route::post('/public', 'public');
+    Route::post('/fb', 'fb');
+});
+
 Route::get('/participant', function (Request $request) {
      return new ParticipantResource(
         $request->user()->load(['detail.sex', 'detail.type'])

