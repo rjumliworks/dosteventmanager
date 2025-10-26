@@ -32,24 +32,6 @@ Route::get('/', [App\Http\Controllers\WelcomeController::class, 'index']);
 
 //     Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
 
-<<<<<<< HEAD
-//     Route::resource('/events', App\Http\Controllers\EventController::class);
-//     Route::resource('/users', App\Http\Controllers\UserController::class);
-//     Route::resource('/participants', App\Http\Controllers\ParticipantController::class);
-//     Route::post('/import', [App\Http\Controllers\ParticipantController::class, 'import']);
-//     Route::resource('/sessions', App\Http\Controllers\SessionController::class);
-//     Route::resource('/exhibitors', App\Http\Controllers\ExhibitorController::class);
-//     Route::resource('/hotels', App\Http\Controllers\HotelController::class);
-=======
-    Route::resource('/events', App\Http\Controllers\EventController::class);
-    Route::resource('/users', App\Http\Controllers\UserController::class);
-    Route::resource('/participants', App\Http\Controllers\ParticipantController::class);
-    Route::post('/import', [App\Http\Controllers\ParticipantController::class, 'import']);
-    Route::resource('/sessions', App\Http\Controllers\SessionController::class);
-    Route::resource('/exhibitors', App\Http\Controllers\ExhibitorController::class);
-    Route::resource('/hotels', App\Http\Controllers\HotelController::class);
-    Route::resource('/points', App\Http\Controllers\PointController::class);
->>>>>>> fea4cdff532be065268d7bb4ad87412e134e155c
 
 //     Route::get('/print', [App\Http\Controllers\PrintController::class, 'index']);
 // });
