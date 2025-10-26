@@ -35,7 +35,7 @@
                     </td>
                     <!-- <td class="text-center">{{list.venue.name}}, {{ list.venue.establishment }}</td> -->
                     <td class="text-center" v-if="!list.has_registration">{{list.participants.length }}</td>
-                    <td class="text-center" v-else>{{list.detail.attendees}} / {{list.participants.length }}</td>
+                    <td class="text-center" v-else>{{list.attendees.length}} / {{list.participants.length }}</td>
                     <td class="text-center">{{ dateRange(list.schedules) }}</td>
                     <!-- <td class="text-center">
                         <span v-if="list.has_registration" class="badge bg-success">Required</span>

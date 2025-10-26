@@ -72,7 +72,7 @@
                 <tr style="text-align: center;">
                     <td width="33.3%"><span style="font-weight: bold; font-size: 11px; color: #072388; text-transform: uppercase;">{{$head['user']['profile']['firstname']}} {{$head['user']['profile']['middlename'][0]}}. {{$head['user']['profile']['lastname']}}</span><hr style="margin-top: 0px; margin-bottom: 1px; border: .1px solid black; width: 50%;">Name and Signature </br><span style="color: gray;">(Facilitated By)</span></td>
                     <td width="33.3%" style="border-left-style: hidden; border-right-style: hidden;"> </td>
-                    <td width="33.3%"><span style="font-weight: bold; font-size: 11px; color: #072388; text-transform: uppercase;">JENNIFER A. PIDOR</span><hr style="margin-top: 0px; margin-bottom: 1px; border: .1px solid black; width: 50%;">Unit Head </br><span style="color: gray;">(Noted By)</span></td>
+                    <td width="33.3%"><span style="font-weight: bold; font-size: 11px; color: #072388; text-transform: uppercase;">THELMA E. DIEGO</span><hr style="margin-top: 0px; margin-bottom: 1px; border: .1px solid black; width: 50%;">Unit Head </br><span style="color: gray;">(Noted By)</span></td>
                 </tr>
             </tbody>
         </table>
@@ -125,20 +125,20 @@
             <thead style="background-color:#c8c8c8; padding: 5px; font-size: 10px;">
                 <tr>
                     <th rowspan="2" width="3%">#</th>
-                    <th rowspan="2" width="7%">PHOTO</th>
-                    <th rowspan="2" width="15%">NAME</th>
-                    <th rowspan="2" width="15%">AFFILIATION / DESIGNATION</th>
-                    <th rowspan="2" width="15%">EMAIL / CONTACT NO.</th>
-                    <th rowspan="2" width="3%">SEX</th>
-                    <th rowspan="2" width="3%">AGE</th>
-                    <th colspan="3" width="18%">Check if applicable</th>
-                    <th rowspan="2" width="7%">SIGNATURE</th>
-                    <th rowspan="2" width="7%">PHOTO</th>
+                    <th rowspan="2" width="80px;">PHOTO</th>
+                    <th rowspan="2" width="190px;">NAME</th>
+                    <th rowspan="2" width="160px;">AFFILIATION / DESIGNATION</th>
+                    <th rowspan="2" width="100px;">EMAIL / CONTACT NO.</th>
+                    <th rowspan="2" width="25px;">SEX</th>
+                    <th rowspan="2" width="25px;">AGE</th>
+                    <th colspan="3" width="30px;">Check if applicable</th>
+                    <th rowspan="2" width="80px;">SIGNATURE</th>
+                    <th rowspan="2" width="80px;">PHOTO</th>
                 </tr>
                 <tr>
-                    <th width="3%">4Ps</th>
-                    <th width="3%">PWD</th>
-                    <th width="3%">IP</th>
+                    <th width="25px;">4Ps</th>
+                    <th width="25px;">PWD</th>
+                    <th width="25px;">IP</th>
                 </tr>
             </thead>
             <tbody>
@@ -161,7 +161,7 @@
                             <small style="color: gray;">{{ $attendee->participant->contact_no ?? '' }}</small>
                         </td>
                         <td>{{ $attendee->participant->detail->sex->name[0] ?? '' }}</td>
-                        <td>{{ $attendee->age ?? '31' }}</td>
+                        <td>{{ $attendee->participant->detail->age ?? '-' }}</td>
                         <td>{{ $attendee->is_4ps ? '✔' : '' }}</td>
                         <td>{{ $attendee->is_pwd ? '✔' : '' }}</td>
                         <td>{{ $attendee->is_ip ? '✔' : '' }}</td>

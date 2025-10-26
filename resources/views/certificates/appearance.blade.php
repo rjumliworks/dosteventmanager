@@ -52,12 +52,18 @@
             Issued this <b><ins>{{ \Carbon\Carbon::now()->format('jS \\d\\a\\y \\o\\f F Y') }}</ins></b> in Zamboanga City, Philippines.
         </p>
 
-        <div style="float: right; text-align: center; margin-top: 90px;">
-            <h1 style="font-size: 17px; margin: 0;">JENNIFER A. PIDOR</h1>
-            <p style="font-size: 13px; margin: 0;">OIC - Regional Director</p>
-        </div>
+        <div style="float: right; text-align: center; margin-top: 70px; position: relative; width: 200px; height: 200px;">
+            <!-- Signature Image -->
+            <img src="{{ public_path('images/esig.png') }}" 
+                alt="tag" 
+                style="width: 200px; height: 200px; position: absolute; top: 0; left: 0;">
 
-        <img src="<?php echo $qrCodeImage; ?>" style="margin-top: 70px;"  width="70" height="70" alt="QR Code">
+            <!-- Name & Title -->
+            <div style="position: absolute; bottom: 10px; left: 0; width: 100%;">
+                <h1 style="font-size: 17px; margin: 0; color: black;">JENNIFER A. PIDOR</h1>
+                <p style="font-size: 13px; margin: 0; color: black;">OIC - Regional Director</p>
+            </div>
+        </div>
         
     </div>
 </body>

@@ -46,6 +46,8 @@ class PrintController extends Controller
     }
 
     public function attendance($request){
+        ini_set('memory_limit', '1G');
+        ini_set('max_execution_time', 0);
         $session = $request->krdwrks;
         $hashids = new Hashids('krad',10);
         $id = $hashids->decode($session);
@@ -125,7 +127,7 @@ class PrintController extends Controller
         $hashids = new Hashids('krad',10);
         $id = $hashids->decode($participant);
 
-        $data = EventSessionParticipant::with('participant','session.venue','session.event.detail.municipality')->where('id',$id)->first();
+        $data = EventSessionParticipant::with('participant','session.venue','session.schedules','session.event.detail.municipality')->where('id',$id)->first();
 
         $url = $_SERVER['HTTP_HOST'].'/verification/'.$participant;
         $qrCode = new QrCode($url);
@@ -140,7 +142,7 @@ class PrintController extends Controller
         ]; 
 
         $pdf = \PDF::loadView('certificates.appreciation',$array)->setPaper('a4', 'landscape');
-        Mail::to($data->participant->email)->send(new CertificateMail($array, $pdf));
+        // Mail::to($data->participant->email)->send(new CertificateMail($array, $pdf));
         return $pdf->stream('certificate.pdf');
     }
 
