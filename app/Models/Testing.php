@@ -16,4 +16,9 @@ class Testing extends Model
     {
         $this->attributes['password'] = Crypt::encryptString($value);
     }
+
+    public function getCreatedAttribute($value)
+    {
+        return date('F d, Y', strtotime($value));
+    }
 }
