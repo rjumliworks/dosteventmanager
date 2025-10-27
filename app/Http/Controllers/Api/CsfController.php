@@ -33,7 +33,11 @@ class CsfController extends Controller
 
     public function questions(){
         $data = CsfQuestion::where('is_active', 1)->where('is_rating', 1)->get();
-        return DefaultResource::collection($data);
+        // return DefaultResource::collection($data);
+          return response()->json([
+            'status' => 'ok',
+            'questions' =>  DefaultResource::collection($data)
+        ]);
     }
 
     public function public(Request $request){
