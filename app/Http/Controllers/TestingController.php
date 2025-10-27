@@ -14,7 +14,7 @@ class TestingController extends Controller
             break;
             default :
             return inertia('Modules/Testing',[
-                'lists' => Testing::where('created_at','DESC')->get()
+                'lists' => Testing::orderBy('created_at','DESC')->get()
             ]);
         }
     }
