@@ -16,13 +16,13 @@ class WelcomeController extends Controller
 
 
     public function index(){
-        // return inertia('Welcome',[
-        //     'dropdowns' => [
-        //         'sexs' => $this->dropdown->dropdowns('Sex'),
-        //         'types' => $this->dropdown->dropdowns('Participant Type')
-        //     ],
-        //     'hotels' => Hotel::with('location','rates')->get()
-        // ]);
+        return inertia('Welcome',[
+            'dropdowns' => [
+                'sexs' => $this->dropdown->dropdowns('Sex'),
+                'types' => $this->dropdown->dropdowns('Participant Type')
+            ],
+            'hotels' => Hotel::with('location','rates')->get()
+        ]);
         return inertia('Public/Csf');
     }
 

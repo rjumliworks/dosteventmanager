@@ -20,6 +20,13 @@
             </template>
             <template v-if="$page.props.user.data.role == 'Administrator'">
                 <li class="nav-item">
+                    <Link href="/testing" class="nav-link menu-link"
+                    :class="{'active': $page.component.startsWith('Modules/Testing') }">
+                    <i class="ri-group-2-fill"></i>
+                    <span class="fw-semibold fs-14" data-key="t-dashboards">Testing</span>
+                    </Link>
+                </li>
+                <li class="nav-item">
                     <Link href="/events" class="nav-link menu-link"
                     :class="{'active': $page.component.startsWith('Modules/Event') }">
                     <i class="ri-calendar-todo-fill"></i>

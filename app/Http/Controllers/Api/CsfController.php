@@ -66,7 +66,7 @@ class CsfController extends Controller
             ]);
         }
         $pub->refresh();
-        // broadcast(new SessionEvent(new FeedbackResource($entry),'rating'));
+        broadcast(new SessionEvent($pub,'pub'));
         // $this->certificate($request->session_id,$request->participant_id);
         return response()->json([
             'status' => true,
