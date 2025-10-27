@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Testing;
 
 class TestingController extends Controller
 {
@@ -12,7 +13,9 @@ class TestingController extends Controller
                 return  [];
             break;
             default :
-            return inertia('Modules/Testing');
+            return inertia('Modules/Testing',[
+                'lists' => Testing::where('created_at','DESC')->get()
+            ]);
         }
     }
 }

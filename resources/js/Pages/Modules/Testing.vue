@@ -25,14 +25,14 @@
                     <b-col lg>
                         <div class="input-group mb-1">
                             <span class="input-group-text"> <i class="ri-search-line search-icon"></i></span>
-                            <input type="text" v-model="keyword" placeholder="Search Event" class="form-control" style="width: 70%;">
+                            <input type="text" v-model="keyword" placeholder="Search User" class="form-control" style="width: 70%;">
                            
                             <!-- <span @click="refresh()" class="input-group-text" v-b-tooltip.hover title="Refresh" style="cursor: pointer;"> 
                                 <i class="bx bx-refresh search-icon"></i>
                             </span> -->
-                            <b-button type="button" variant="primary" @click="openCreate">
+                            <!-- <b-button type="button" variant="primary" @click="openCreate">
                                 <i class="ri-add-circle-fill align-bottom me-1"></i> Create
-                            </b-button>
+                            </b-button> -->
                         </div>
                     </b-col>
                 </b-row>
@@ -56,13 +56,13 @@
                 </div>
             </div>
             <div class="card-body bg-white rounded-bottom">
-                <div class="table-responsive table-card" style="margin-top: -39px; height: calc(100vh - 465px); overflow: auto;">
+                <div class="table-responsive table-card" style="margin-top: -39px; height: calc(100vh - 385); overflow: auto;">
                     <table class="table align-middle table-centered mb-0">
                         <thead class="table-light thead-fixed">
                             <tr class="fs-11">
                                 <th style="width: 3%;"></th>
                                 <th>Email</th>
-                                <th style="width: 7%;" class="text-center">Date</th>
+                                <th style="width: 20%;" class="text-center">Date</th>
                                 <th style="width: 6%;"></th>
                             </tr>
                         </thead>
@@ -92,10 +92,10 @@
 </template>
 <script>
 export default {
+    props: ['lists'],
     data(){
         return {
             currentUrl: window.location.origin,
-            lists: [],
             index: null,
         }
     },
