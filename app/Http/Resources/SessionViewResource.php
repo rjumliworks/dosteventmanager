@@ -20,7 +20,8 @@ class SessionViewResource extends JsonResource
         $randomkey = Str::random(10);
         $code = $this->code;
         $encrypted = Crypt::encrypt($code).$randomkey;
-        $qrCode = new QrCode($encrypted);
+        $l = 'https://cybersec-csf.dost9.ph/fakebook';
+        $qrCode = new QrCode($l);
         $qrCode->setSize(2000)->setMargin(10);;
         $logo = Logo::create(public_path('images/qrlogo.png'))->setResizeToWidth(400);                        
 
