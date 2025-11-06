@@ -16,7 +16,7 @@ class CsfQuestion extends Model
 
     public function ratings()
     {
-        return $this->hasMany('App\Models\CsfRating', 'csf_id');
+        return $this->hasMany('App\Models\CsfRating', 'question_id');
     } 
 
     public function getUpdatedAtAttribute($value)

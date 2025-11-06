@@ -114,87 +114,87 @@
             </div> 
         </div>
      <table style="border: 1px solid black; margin-top: 15px;">
-    <thead style="background-color:#c8c8c8; padding: 5px; font-size: 10px;">
-        <tr>
-            <th rowspan="2" style="vertical-align: middle;" width="23%">Service Quality Attributes</th>
-            <th colspan="5" style="vertical-align: middle;">Client Satisfaction Rating</th>
-            <th rowspan="2" style="vertical-align: middle;" width="8%">Score<br>(Total)</th>
-            <th rowspan="2" style="vertical-align: middle;" width="8%">Rating</th>
-            <th rowspan="2" style="vertical-align: middle;" width="15%">(Average)</th>
-        </tr>
-        <tr style="font-size: 9px;">
-            <th width="10%">Very<br>Satisfied<br>(5)</th>
-            <th width="10%">Satisfied<br>(4)</th>
-            <th width="10%">Neither<br>(3)</th>
-            <th width="10%">Dissatisfied<br>(2)</th>
-            <th width="10%">Very<br>Dissatisfied<br>(1)</th>
-        </tr>
-    </thead>
+        <thead style="background-color:#c8c8c8; padding: 5px; font-size: 10px;">
+            <tr>
+                <th rowspan="2" style="vertical-align: middle;" width="23%">Service Quality Attributes</th>
+                <th colspan="5" style="vertical-align: middle;">Client Satisfaction Rating</th>
+                <th rowspan="2" style="vertical-align: middle;" width="8%">Score<br>(Total)</th>
+                <th rowspan="2" style="vertical-align: middle;" width="8%">Rating</th>
+                <th rowspan="2" style="vertical-align: middle;" width="15%">(Average)</th>
+            </tr>
+            <tr style="font-size: 9px;">
+                <th width="10%">Very<br>Satisfied<br>(5)</th>
+                <th width="10%">Satisfied<br>(4)</th>
+                <th width="10%">Neither<br>(3)</th>
+                <th width="10%">Dissatisfied<br>(2)</th>
+                <th width="10%">Very<br>Dissatisfied<br>(1)</th>
+            </tr>
+        </thead>
 
-    <tbody>
-        @php
-            $grandCount5 = $grandCount4 = $grandCount3 = $grandCount2 = $grandCount1 = 0;
-            $grandTotalScore = 0;
-            $grandTotalResponses = 0;
-        @endphp
-
-        @foreach ($questions as $question)
+        <tbody>
             @php
-                $count5 = $question->ratings->where('rating', 5)->count();
-                $count4 = $question->ratings->where('rating', 4)->count();
-                $count3 = $question->ratings->where('rating', 3)->count();
-                $count2 = $question->ratings->where('rating', 2)->count();
-                $count1 = $question->ratings->where('rating', 1)->count();
-
-                $totalCount = $count1 + $count2 + $count3 + $count4 + $count5;
-
-                // Weighted total score
-                $totalScore = ($count5 * 5) + ($count4 * 4) + ($count3 * 3) + ($count2 * 2) + ($count1 * 1);
-
-                // Average
-                $average = $totalCount > 0 ? $totalScore / $totalCount : 0;
-
-                // Accumulate grand totals
-                $grandCount5 += $count5;
-                $grandCount4 += $count4;
-                $grandCount3 += $count3;
-                $grandCount2 += $count2;
-                $grandCount1 += $count1;
-
-                $grandTotalScore += $totalScore;
-                $grandTotalResponses += $totalCount;
+                $grandCount5 = $grandCount4 = $grandCount3 = $grandCount2 = $grandCount1 = 0;
+                $grandTotalScore = 0;
+                $grandTotalResponses = 0;
             @endphp
 
-            <tr style="text-align: center;">
-                <td style="text-align:left;">{{ $question->name }}</td>
-                <td>{{ $count5 }}</td>
-                <td>{{ $count4 }}</td>
-                <td>{{ $count3 }}</td>
-                <td>{{ $count2 }}</td>
-                <td>{{ $count1 }}</td>
-                <td>{{ $totalScore }}</td>
-                <td>
-                    {{ number_format($average, 2) }}
-                   
-                </td>
-                <td>
-                     <small>
-                        @if ($average >= 4.5)
-                            Excellent
-                        @elseif ($average >= 3.5)
-                            Very Satisfactory
-                        @elseif ($average >= 2.5)
-                            Satisfactory
-                        @elseif ($average >= 1.5)
-                            Fair
-                        @else
-                            Poor
-                        @endif
-                    </small>
-                </td>
-            </tr>
-        @endforeach
-    </tbody>
+            @foreach ($questions as $question)
+                @php
+                    $count5 = $question->ratings->where('rating', 5)->count();
+                    $count4 = $question->ratings->where('rating', 4)->count();
+                    $count3 = $question->ratings->where('rating', 3)->count();
+                    $count2 = $question->ratings->where('rating', 2)->count();
+                    $count1 = $question->ratings->where('rating', 1)->count();
+
+                    $totalCount = $count1 + $count2 + $count3 + $count4 + $count5;
+
+                    // Weighted total score
+                    $totalScore = ($count5 * 5) + ($count4 * 4) + ($count3 * 3) + ($count2 * 2) + ($count1 * 1);
+
+                    // Average
+                    $average = $totalCount > 0 ? $totalScore / $totalCount : 0;
+
+                    // Accumulate grand totals
+                    $grandCount5 += $count5;
+                    $grandCount4 += $count4;
+                    $grandCount3 += $count3;
+                    $grandCount2 += $count2;
+                    $grandCount1 += $count1;
+
+                    $grandTotalScore += $totalScore;
+                    $grandTotalResponses += $totalCount;
+                @endphp
+
+                <tr style="text-align: center;">
+                    <td style="text-align:left;">{{ $question->name }}</td>
+                    <td>{{ $count5 }}</td>
+                    <td>{{ $count4 }}</td>
+                    <td>{{ $count3 }}</td>
+                    <td>{{ $count2 }}</td>
+                    <td>{{ $count1 }}</td>
+                    <td>{{ $totalScore }}</td>
+                    <td>
+                        {{ number_format($average, 2) }}
+                    
+                    </td>
+                    <td>
+                        <small>
+                            @if ($average >= 4.5)
+                                Excellent
+                            @elseif ($average >= 3.5)
+                                Very Satisfactory
+                            @elseif ($average >= 2.5)
+                                Satisfactory
+                            @elseif ($average >= 1.5)
+                                Fair
+                            @else
+                                Poor
+                            @endif
+                        </small>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
 
     {{-- ✅ Footer with weighted totals --}}
     <tfoot style="background-color:#e8e8e8; font-weight: bold; text-align: center;">
@@ -209,7 +209,7 @@
             $overallAverage = $grandTotalResponses > 0 ? $grandTotalScore / $grandTotalResponses : 0;
         @endphp
         <tr>
-            <td style="text-align:right;">TOTAL (Count × Rating)</td>
+            <td style="text-align:left;">TOTAL (Count × Rating)</td>
             <td>{{ $weighted5 }} ({{ $grandCount5 }})</td>
             <td>{{ $weighted4 }} ({{ $grandCount4 }})</td>
             <td>{{ $weighted3 }} ({{ $grandCount3 }})</td>
@@ -237,6 +237,38 @@
         </tr>
     </tfoot>
 </table>
+
+    <table style="border: 1px solid black; margin-top: 15px;">
+        <thead style="background-color:#c8c8c8; padding: 5px; font-size: 10px;">
+            <tr>
+                <th style="vertical-align: middle;" width="33.3%">Total No. of Participants</th>
+                <th style="vertical-align: middle;" width="33.3%">Likert Scale Rating (Average)</th>
+                <th style="vertical-align: middle;" width="33.3%">Customer Satisfaction Rating</th>
+            </tr>
+        </thead>
+        <tbody>
+           <tr style="text-align: center; font-size: 12px;">
+            <td>{{ $participantCount }}</td>
+            <td>
+                {{ number_format($overallAverage, 2) }}
+             
+            </td>
+            <td>   <small>
+                    @if ($overallAverage >= 4.5)
+                        Excellent
+                    @elseif ($overallAverage >= 3.5)
+                        Very Satisfactory
+                    @elseif ($overallAverage >= 2.5)
+                        Satisfactory
+                    @elseif ($overallAverage >= 1.5)
+                        Fair
+                    @else
+                        Poor
+                    @endif
+                </small></td>
+        </tr>
+        </tbody>
+    </table>
 
 
 

@@ -3,6 +3,7 @@
 namespace App\Services\Session;
 
 use Hashids\Hashids;
+use App\Models\CsfEntry;
 use App\Models\CsfQuestion;
 use App\Models\EventSession;
 use App\Models\EventExhibitor;
@@ -64,20 +65,19 @@ class ViewClass
         return $data;
     }
 
-  public function print($request)
-{
-    $id = $request->id;
+    public function print($request)
+    {
+        $id = $request->id;
 
-    if ($request->typee === 'session') {
-        $session = EventSession::findOrFail($id);
-        $type = 'App\\Models\\EventSession';
-    } else {
-        $session = EventExhibitor::findOrFail($id);
-        $type = 'App\\Models\\EventExhibitor';
-    }
+        if ($request->typee === 'session') {
+            $session = EventSession::findOrFail($id);
+            $type = 'App\\Models\\EventSession';
+        } else {
+            $session = EventExhibitor::findOrFail($id);
+            $type = 'App\\Models\\EventExhibitor';
+        }
 
-    // ✅ Get all questions (even if they have 0 ratings)
-    $questions = CsfQuestion::where('is_rating', 1)
+        $questions = CsfQuestion::where('is_rating', 1)
         ->with(['ratings' => function ($q) use ($id, $type) {
             $q->whereHas('csf', function ($csf) use ($id, $type) {
                 $csf->where('feedbackable_type', $type)
@@ -86,12 +86,38 @@ class ViewClass
         }])
         ->get();
 
-    $pdf = \PDF::loadView('prints.csf', [
-        'session' => $session->title,
-        'questions' => $questions,
-    ])->setPaper('a4', 'portrait');
+        $participantCount = CsfEntry::where('feedbackable_type', $type)
+        ->where('feedbackable_id', $id)
+        ->count();
 
-    return $pdf->stream($session->title . '.pdf');
-}
+        // ✅ Compute overall customer satisfaction (average of all questions)
+        $grandTotalScore = 0;
+        $grandTotalResponses = 0;
+
+        foreach ($questions as $question) {
+            $count5 = $question->ratings->where('rating', 5)->count();
+            $count4 = $question->ratings->where('rating', 4)->count();
+            $count3 = $question->ratings->where('rating', 3)->count();
+            $count2 = $question->ratings->where('rating', 2)->count();
+            $count1 = $question->ratings->where('rating', 1)->count();
+
+            $totalCount = $count1 + $count2 + $count3 + $count4 + $count5;
+            $totalScore = ($count5 * 5) + ($count4 * 4) + ($count3 * 3) + ($count2 * 2) + ($count1 * 1);
+
+            $grandTotalScore += $totalScore;
+            $grandTotalResponses += $totalCount;
+        }
+
+        $overallAverage = $grandTotalResponses > 0 ? $grandTotalScore / $grandTotalResponses : 0;
+
+        $pdf = \PDF::loadView('prints.csf', [
+            'session' => $session->title,
+            'questions' => $questions,
+            'participantCount' => $participantCount,
+             'overallAverage' => $overallAverage,
+        ])->setPaper('a4', 'portrait');
+
+        return $pdf->stream($session->title . '.pdf');
+    }
 
 }
