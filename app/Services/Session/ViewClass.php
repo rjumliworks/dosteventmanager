@@ -69,7 +69,7 @@ class ViewClass
     {
         $id = $request->id;
 
-        if ($request->typee === 'session') {
+        if ($request->type === 'session') {
             $session = EventSession::findOrFail($id);
             $type = 'App\\Models\\EventSession';
         } else {
