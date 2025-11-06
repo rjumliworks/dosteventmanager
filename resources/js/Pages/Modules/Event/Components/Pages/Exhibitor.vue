@@ -46,7 +46,9 @@
                             <b-button @click="openPrint(list.code)" variant="soft-info" class="me-1" v-b-tooltip.hover title="View" size="sm">
                                 <i class="ri-qr-code-fill align-bottom"></i>
                             </b-button>
-                        
+                          <b-button @click="openPrintCsf(list)" variant="soft-danger" v-b-tooltip.hover title="Print" size="sm">
+                            <i class="ri-printer-fill align-bottom"></i>
+                        </b-button>
                         <!-- <b-button @click="openEdit(list)" variant="soft-warning" v-b-tooltip.hover title="Edit" size="sm">
                             <i class="ri-pencil-fill align-bottom"></i>
                         </b-button> -->
@@ -79,6 +81,9 @@ export default {
         openPrint(code){
             window.open('/print?option=qr&code='+code);
         },
+        openPrintCsf(list){
+             window.open('/sessions?option=print&type=exhibitor&id='+list.id);
+        },  
         dateRange(schedules) {
             if (!schedules || schedules.length === 0) return 'No date';
 

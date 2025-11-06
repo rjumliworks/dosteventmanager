@@ -25,6 +25,9 @@ class SessionController extends Controller
             case 'lists':
                 return $this->view->lists($request);
             break;
+            case 'print':
+                return $this->view->print($request);
+            break;
             default :
             return inertia('Modules/Session/Index',[
                 'dropdowns' => [

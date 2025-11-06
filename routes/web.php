@@ -14,6 +14,22 @@ Route::get('/captcha', function () {
     ]);
 });
 
+    Route::resource('/events', App\Http\Controllers\EventController::class);
+    Route::resource('/users', App\Http\Controllers\UserController::class);
+    Route::resource('/participants', App\Http\Controllers\ParticipantController::class);
+    Route::post('/import', [App\Http\Controllers\ParticipantController::class, 'import']);
+    Route::resource('/sessions', App\Http\Controllers\SessionController::class);
+    Route::resource('/exhibitors', App\Http\Controllers\ExhibitorController::class);
+    Route::resource('/hotels', App\Http\Controllers\HotelController::class);
+
+// Route::middleware('auth:participant')->group(function () {
+//     Route::get('/participant', [App\Http\Controllers\ParticipantController::class, 'view'])->name('participant.dashboard');
+//     Route::get('/participant/logout', [App\Http\Controllers\ParticipantController::class, 'logout'])->name('participant.logout');
+//     Route::get('/qrcode', [App\Http\Controllers\Participant\IndexController::class, 'qrcode']);
+//     Route::get('/settings', [App\Http\Controllers\Participant\IndexController::class, 'settings']);
+//     Route::get('/exhibits', [App\Http\Controllers\Participant\IndexController::class, 'sessions']);
+// });
+
 Route::get('/participant/login', [App\Http\Controllers\ParticipantController::class, 'login'])->name('participant.login');
 Route::middleware('auth:participant')->group(function () {
     Route::get('/participant', [App\Http\Controllers\ParticipantController::class, 'view'])->name('participant.dashboard');

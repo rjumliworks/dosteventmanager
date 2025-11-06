@@ -3,7 +3,11 @@
 namespace App\Services\Session;
 
 use Hashids\Hashids;
+use App\Models\CsfQuestion;
 use App\Models\EventSession;
+use App\Models\EventExhibitor;
+use Endroid\QrCode\QrCode;
+use Endroid\QrCode\Writer\PngWriter;
 use App\Http\Resources\SessionResource;
 use App\Http\Resources\SessionViewResource;
 
@@ -59,4 +63,35 @@ class ViewClass
         );
         return $data;
     }
+
+  public function print($request)
+{
+    $id = $request->id;
+
+    if ($request->typee === 'session') {
+        $session = EventSession::findOrFail($id);
+        $type = 'App\\Models\\EventSession';
+    } else {
+        $session = EventExhibitor::findOrFail($id);
+        $type = 'App\\Models\\EventExhibitor';
+    }
+
+    // ✅ Get all questions (even if they have 0 ratings)
+    $questions = CsfQuestion::where('is_rating', 1)
+        ->with(['ratings' => function ($q) use ($id, $type) {
+            $q->whereHas('csf', function ($csf) use ($id, $type) {
+                $csf->where('feedbackable_type', $type)
+                    ->where('feedbackable_id', $id);
+            });
+        }])
+        ->get();
+
+    $pdf = \PDF::loadView('prints.csf', [
+        'session' => $session->title,
+        'questions' => $questions,
+    ])->setPaper('a4', 'portrait');
+
+    return $pdf->stream($session->title . '.pdf');
+}
+
 }

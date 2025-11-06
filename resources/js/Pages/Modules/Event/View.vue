@@ -11,11 +11,11 @@
                 <div class="file-manager-content w-100 p-4 pb-0" ref="box" style="margin-left: 20px;">
                     <Main :types="types" :selected="event.data"/>
                 </div>
-                <div class="file-manager-sidebar" style="margin-right: 20px;">
+                <!-- <div class="file-manager-sidebar" style="margin-right: 20px;">
                     <simplebar data-simplebar style="overflow-x: hidden;" class="h-100" ref="scrollbar">
                         
                     </simplebar>
-                </div>
+                </div> -->
 
             </div>
         </div>

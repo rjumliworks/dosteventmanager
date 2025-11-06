@@ -54,8 +54,11 @@
                                 <i class="ri-eye-fill align-bottom"></i>
                             </b-button>
                         </a>
-                        <b-button @click="openEdit(list)" variant="soft-warning" v-b-tooltip.hover title="Edit" size="sm">
+                        <b-button @click="openEdit(list)" class="me-1" variant="soft-warning" v-b-tooltip.hover title="Edit" size="sm">
                             <i class="ri-pencil-fill align-bottom"></i>
+                        </b-button>
+                         <b-button @click="openPrint(list)" variant="soft-danger" v-b-tooltip.hover title="Print" size="sm">
+                            <i class="ri-printer-fill align-bottom"></i>
                         </b-button>
                     </td>
                 </tr>
@@ -83,6 +86,9 @@ export default {
         openEdit(list){
             this.$refs.create.edit(list);
         },
+        openPrint(list){
+             window.open('/sessions?option=print&type=session&id='+list.id);
+        },  
         dateRange(schedules) {
             if (!schedules || schedules.length === 0) return 'No date';
 
