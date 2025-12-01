@@ -70,10 +70,10 @@ class ViewClass
         $id = $request->id;
 
         if ($request->type === 'session') {
-            $session = EventSession::findOrFail($id);
+            $session = EventSession::with('feedbackable')->where('id',$id)->first();
             $type = 'App\\Models\\EventSession';
         } else {
-            $session = EventExhibitor::findOrFail($id);
+            $session = EventExhibitor::with('feedbackable')->where('id',$id)->first();
             $type = 'App\\Models\\EventExhibitor';
         }
 
@@ -114,7 +114,8 @@ class ViewClass
             'session' => $session->title,
             'questions' => $questions,
             'participantCount' => $participantCount,
-             'overallAverage' => $overallAverage,
+            'overallAverage' => $overallAverage,
+            'comments' => $session->feedbackable
         ])->setPaper('a4', 'portrait');
 
         return $pdf->stream($session->title . '.pdf');

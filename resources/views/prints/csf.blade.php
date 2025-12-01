@@ -270,7 +270,20 @@
         </tbody>
     </table>
 
-
+    <table style="border: 1px solid black; margin-top: 15px;">
+        <thead style="background-color:#c8c8c8; padding: 5px; font-size: 10px;">
+            <tr>
+                <th style="vertical-align: middle;">Comments</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($comments as $comment)
+            <tr>
+                 <td>{{ $comment['comment'] }}</td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
 
 
 
